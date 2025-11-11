@@ -6,20 +6,42 @@
   <title>Vers Le Vin</title>
 
   <style>
-    /* Font imports: keep the monospace for nav & UI, plus a handwriting font for the title */
-    @import url('https://fonts.googleapis.com/css2?family=DejaVu+Sans+Mono&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=EB Garamond' rel='stylesheet');
+    /* If you have Caslon webfont files (WOFF2/WOFF), place them in /fonts and they will load.
+       Otherwise EB Garamond (Google Fonts) will be used as a fallback. */
+    @font-face {
+      font-family: 'CaslonCustom';
+     <link href="https://www.fontsquirrel.com/.../CaslonAntique.css" rel="stylesheet">
+
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'CaslonCustom';
+      src: url('/fonts/Caslon-Italic.woff2') format('woff2'),
+           url('/fonts/Caslon-Italic.woff') format('woff');
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    /* Fallback import (used if CaslonCustom isn't available) */
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
     :root{
       --text-color: #592C38;
       --bg: #F3ECDC;
+      --nav-gap: 28px;
+      --nav-font-size: 18px;
+      --dropdown-bg: rgba(242,240,208,0.98); /* matching background */
+      --dropdown-border: rgba(89,44,56,0.06);
     }
 
     html,body{ height:100%; margin:0; }
 
+    /* Use Caslon if available, otherwise EB Garamond, otherwise generic serif */
     body {
-      font-family: 'DejaVu Sans Mono', monospace;
+      font-family: 'CaslonCustom', 'EB Garamond', Georgia, 'Times New Roman', serif;
       background-color: var(--bg);
       color: var(--text-color);
       display:flex;
@@ -27,20 +49,95 @@
       min-height:100vh;
       position:relative;
       overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Navigation */
-    nav{
+    /* Top navigation — converted to semantic list for accessibility */
+    .nav-wrap {
       display:flex;
       justify-content:center;
-      gap: 40px;
-      padding: 22px 32px;
-      font-size:18px;
+      padding: 18px 24px;
+      background: transparent;
     }
-    nav a{ color:var(--text-color); text-decoration:none; transition:opacity .18s ease; }
-    nav a:hover{ opacity:.6; }
 
-    /* Centering container */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display:flex;
+      gap: var(--nav-gap);
+      align-items:center;
+      font-size: var(--nav-font-size);
+    }
+
+    /* top-level nav items */
+    nav li {
+      position: relative; /* for dropdown positioning */
+    }
+
+    nav a, nav button {
+      color: var(--text-color);
+      text-decoration: none;
+      background: none;
+      border: none;
+      padding: 6px 8px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    nav a:hover, nav button:hover,
+    nav a:focus, nav button:focus {
+      opacity: 0.8;
+      outline: none;
+    }
+
+    /* Dropdown panel */
+    .dropdown {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: calc(100% + 10px);
+      min-width: 180px;
+      background: var(--dropdown-bg);
+      border: 1px solid var(--dropdown-border);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      border-radius: 6px;
+      padding: 8px 0;
+      display: none; /* hidden by default */
+      z-index: 200;
+      white-space: nowrap;
+    }
+
+    /* Dropdown list items */
+    .dropdown a {
+      display:block;
+      padding: 8px 20px;
+      text-decoration:none;
+      color: var(--text-color);
+      font-size: 16px;
+    }
+    .dropdown a:hover,
+    .dropdown a:focus {
+      background: rgba(89,44,56,0.06);
+      color: var(--text-color);
+    }
+
+    /* Hover & focus to reveal dropdown (mouse and keyboard accessible) */
+    nav li:hover > .dropdown,
+    nav li:focus-within > .dropdown {
+      display:block;
+    }
+
+    /* For small screens convert nav to wrap */
+    @media (max-width:720px) {
+      .nav-wrap { padding: 12px; }
+      nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
+      .dropdown { left: 0; transform: none; top: calc(100% + 8px); min-width:160px; }
+    }
+
+    /* --- rest of your existing styles, slightly adapted --- */
+
     .hero {
       flex:1;
       display:flex;
@@ -51,14 +148,12 @@
       position:relative;
     }
 
-    /* container for brand + vine */
     .brand-wrap {
       position: relative;
       display: inline-block;
-      padding: 20px 56px; /* give space for vine */
+      padding: 20px 56px;
     }
 
-    /* place interactive SVG around logo (z-index between elements) */
     .vine-svg {
       position: absolute;
       left: 50px;
@@ -71,10 +166,9 @@
       transform: translate(18px, -18px);
     }
 
-    /* THE BRAND ROW: text (left) aligned bottom, logo (right) */
     .brand {
       display:flex;
-      align-items:flex-end;        /* align children by bottom edge */
+      align-items:flex-end;
       gap: 40px;
       justify-content:center;
       text-align:left;
@@ -83,7 +177,6 @@
       z-index: 4;
     }
 
-    /* Logo */
     .logo-wrap {
       display:inline-block;
       width: 320px;
@@ -111,27 +204,17 @@
     .logo-wrap:hover .logo,
     .logo-wrap.is-flipped .logo { transform: rotateY(180deg); }
 
-    /* Title aligned at bottom of the logo (left)
-       Use a handwriting font for a signature-like look */
     .brand-title {
-      font-family: 'EB Garamond', cursive;   /* <-- handwriting font */
-      font-size: 35px;                       /* larger, signature-like */
+      /* now using Caslon/EB Garamond (page-level font already applied) */
+      font-size: 35px;
       line-height: 1.02;
       color: var(--text-color);
       margin-bottom: 8px;
       white-space: nowrap;
       z-index: 6;
-      letter-spacing: 0.4px;                 /* slight spacing to keep it readable */
-      transform-origin: left bottom;
-      text-rendering: optimizeLegibility;
+      letter-spacing: 0.2px;
     }
 
-    /* If you'd like to combine a small monospace subtitle, example:
-       .brand-sub { font-family: 'DejaVu Sans Mono', monospace; font-size:14px; opacity:.85;}
-       You can add a subtitle under the signature if desired.
-    */
-
-    /* Footer split */
     footer {
       position: absolute;
       bottom: 10px;
@@ -146,7 +229,6 @@
     }
     footer span { pointer-events: auto; }
 
-    /* SVG vine styling */
     .vine-path {
       fill: none;
       stroke: rgba(89,44,56,0.95);
@@ -166,13 +248,8 @@
       opacity: 0;
       transform: scale(0.01);
     }
+    .grape.pop { opacity:1; transform: scale(1); }
 
-    .grape.pop {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Hide vine on small displays for performance */
     @media (max-width:820px){
       .logo-wrap { width: 240px; height:240px; }
       .brand-title { font-size: 34px; }
@@ -181,14 +258,14 @@
     }
 
     @media (max-width:520px){
-      nav { gap:16px; font-size:15px; padding:14px; }
+      .nav-wrap { padding: 8px; }
+      nav ul { gap:10px; }
       .brand { gap:16px; flex-direction:column; align-items:center; }
       .logo-wrap { width:150px; height:150px; }
       .brand-title { font-size:20px; text-align:center; white-space:normal; margin-bottom: 0; }
-      .vine-svg { display: none; } /* hide complex SVG on tiny screens */
+      .vine-svg { display: none; }
     }
 
-    /* Respect reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .vine-path { transition: none !important; stroke-dashoffset: 0 !important; }
       .grape { transition: none !important; transform: none !important; opacity: 1 !important; }
@@ -197,33 +274,50 @@
 </head>
 <body>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Lantignié</a>
-    <a href="#">Wijnen</a>
-    <a href="#">Pairing</a>
-    <a href="#">Blog</a>
-    <a href="#">Beelden</a>
-    <a href="#">Contact/About</a>
-  </nav>
+  <!-- NAV with dropdown structure -->
+  <div class="nav-wrap">
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="#">Home</a></li>
+
+        <!-- Lantignié with dropdown -->
+        <li>
+          <button aria-haspopup="true" aria-expanded="false" id="lantBtn">Lantignié ▾</button>
+          <div class="dropdown" role="menu" aria-labelledby="lantBtn">
+            <a role="menuitem" href="#">Wijnmakers</a>
+            <a role="menuitem" href="#">Wijnen</a>
+            <a role="menuitem" href="#">Pairing</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">Wijnen</a>
+        </li>
+
+        <li>
+          <button aria-haspopup="true" aria-expanded="false" id="blogBtn">Blog ▾</button>
+          <div class="dropdown" role="menu" aria-labelledby="blogBtn">
+            <a role="menuitem" href="#">Beelden</a>
+          </div>
+        </li>
+
+        <li>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
   <main class="hero">
     <div class="brand-wrap" id="brandWrap" aria-hidden="false">
 
-      <!-- Vine SVG anchored to the logo area on the right.
-           The viewBox is approx the wrapper space so coordinates are tuned to wrap the logo.
-           It contains vine paths and grape circles positioned roughly to look like a cluster.
-      -->
       <svg class="vine-svg" id="vineSvg" viewBox="0 0 520 520" preserveAspectRatio="xMaxYMin meet" aria-hidden="true">
-        <!-- main curling vine -->
         <path class="vine-path" id="vpath1" d="M40 420 C120 340 160 290 220 250 C280 210 340 200 380 170 C410 150 430 138 480 120" />
         <path class="vine-path" id="vpath2" d="M120 360 C150 320 180 300 220 270 C260 240 300 230 340 210" />
         <path class="vine-path" id="vpath3" d="M200 220 C210 210 230 200 258 190" />
-        <!-- tendril curls -->
         <path class="vine-path" id="t1" d="M300 210 C320 190 340 172 356 160" />
         <path class="vine-path" id="t2" d="M380 170 C392 162 406 158 420 154" />
-
-        <!-- stylized grape cluster (circles) positioned near the right/center -->
         <circle class="grape" id="g1" cx="400" cy="230" r="12" />
         <circle class="grape" id="g2" cx="420" cy="250" r="14" />
         <circle class="grape" id="g3" cx="380" cy="250" r="13" />
@@ -235,10 +329,8 @@
       </svg>
 
       <div class="brand" aria-label="Vers Le Vin - logo and title">
-        <!-- text on the left, bottom aligned with logo -->
         <div class="brand-title">Welcome to Vers Le Vin by</div>
 
-        <!-- logo on right -->
         <span class="logo-wrap" id="logoWrap" tabindex="0">
           <img id="logo-img" class="logo" src="images/logo-stijn.jpg" alt="Vers Le Vin logo" onerror="this.style.opacity=0;">
         </span>
@@ -251,8 +343,56 @@
     <span>by Stijn Verschelden</span>
   </footer>
 
-  <!-- vine animation script (new vine.js) -->
   <script src="vine.js" defer></script>
+
+  <!-- Small JS to handle keyboard-friendly dropdown toggles -->
+  <script>
+    // Toggle aria-expanded when buttons are used (improves screen reader behavior)
+    document.addEventListener('DOMContentLoaded', function () {
+      const controls = [
+        { btnId: 'lantBtn' },
+        { btnId: 'blogBtn' }
+      ];
+
+      controls.forEach(c => {
+        const btn = document.getElementById(c.btnId);
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          // find associated dropdown and toggle display (for keyboard users)
+          const menu = btn.nextElementSibling;
+          if (menu) {
+            menu.style.display = expanded ? 'none' : 'block';
+          }
+        });
+
+        // close dropdown on Escape
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            btn.setAttribute('aria-expanded', 'false');
+            const menu = btn.nextElementSibling;
+            if (menu) menu.style.display = 'none';
+            btn.blur();
+          }
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        controls.forEach(c => {
+          const btn = document.getElementById(c.btnId);
+          if (!btn) return;
+          const menu = btn.nextElementSibling;
+          if (!menu) return;
+          if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            btn.setAttribute('aria-expanded', 'false');
+            menu.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 
   <!-- logo flip script -->
   <script>
