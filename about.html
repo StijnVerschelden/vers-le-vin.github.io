@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About – Vers Le Vin</title>
+
+  <!-- Caslon Antique -->
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
+
+  <!-- Same styling as index.html -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+    :root{
+      --text-color: #592C38;
+      --bg: #F3ECDC;
+      --nav-gap: 28px;
+      --nav-font-size: 18px;
+      --dropdown-bg: rgba(242,240,208,0.98);
+      --dropdown-border: rgba(89,44,56,0.06);
+    }
+
+    body {
+      margin:0;
+      background-color: var(--bg);
+      color: var(--text-color);
+      font-family: 'CaslonAntiqueRegular','EB Garamond',serif;
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* NAVIGATION (identical to index) */
+    nav ul, nav a, nav button {
+      font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
+    }
+
+    .nav-wrap {
+      display:flex;
+      justify-content:center;
+      padding: 18px 24px;
+      background: transparent;
+    }
+
+    nav ul {
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:var(--nav-gap);
+      align-items:center;
+      font-size:var(--nav-font-size);
+    }
+
+    nav li { position:relative; }
+
+    nav a, nav button {
+      color:var(--text-color);
+      text-decoration:none;
+      background:none;
+      border:none;
+      padding:6px 8px;
+      cursor:pointer;
+      font:inherit;
+    }
+
+    nav a:hover, nav button:hover {
+      opacity:0.7;
+    }
+
+    .dropdown {
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      top:calc(100% + 10px);
+      min-width:180px;
+      background:var(--dropdown-bg);
+      border:1px solid var(--dropdown-border);
+      border-radius:6px;
+      padding:8px 0;
+      box-shadow:0 8px 20px rgba(0,0,0,0.04);
+      display:none;
+      z-index:200;
+    }
+
+    .dropdown a {
+      display:block;
+      padding:8px 20px;
+      text-decoration:none;
+      color:var(--text-color);
+      font-size:16px;
+    }
+    .dropdown a:hover { background:rgba(89,44,56,0.06); }
+
+    nav li:hover > .dropdown,
+    nav li:focus-within > .dropdown {
+      display:block;
+    }
+
+    @media(max-width:720px){
+      nav ul { flex-wrap:wrap; gap:12px; }
+      .dropdown { left:0; transform:none; min-width:150px; }
+    }
+
+    /* ABOUT PAGE CONTENT */
+    .content-wrap {
+      max-width: 860px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+      font-size:20px;
+      line-height:1.55;
+    }
+
+    .content-wrap h1 {
+      font-size:42px;
+      margin-bottom:20px;
+      text-align:center;
+      font-weight:400;
+    }
+
+    .content-image {
+      width:100%;
+      border-radius:12px;
+      margin:32px 0;
+      box-shadow:0 6px 25px rgba(0,0,0,0.08);
+    }
+
+    footer {
+      margin-top:auto;
+      padding:10px 20px;
+      font-size:14px;
+      display:flex;
+      justify-content:space-between;
+      opacity:0.85;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION (same as index.html) -->
+  <div class="nav-wrap">
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+
+        <li>
+          <button aria-haspopup="true" aria-expanded="false" id="lantBtn">Lantignié ▾</button>
+          <div class="dropdown" role="menu">
+            <a role="menuitem" href="#">Wijnmakers</a>
+          </div>
+        </li>
+
+        <li>
+          <button aria-haspopup="true" aria-expanded="false">Wijnen ▾</button>
+          <div class="dropdown">
+            <a role="menuitem" href="#">Pairing</a>
+          </div>
+        </li>
+
+        <li>
+          <button aria-haspopup="true" aria-expanded="false" id="blogBtn">Blog ▾</button>
+          <div class="dropdown" role="menu">
+            <a role="menuitem" href="#">Beelden</a>
+          </div>
+        </li>
+
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+
+      </ul>
+    </nav>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="content-wrap">
+
+    <h1>About Vers Le Vin</h1>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.  
+      This is the first block of text. You can describe your vision, your passion
+      for wine, or the mission behind **Vers Le Vin**.
+    </p>
+
+    <img src="images/about-photo1.jpg" alt="About image 1" class="content-image">
+
+    <p>
+      This is the second text section. Here you can go deeper into your journey,
+      the story of Lantignié, the craft of winemaking, or your personal
+      connection to the region.
+    </p>
+
+    <img src="images/about-photo2.jpg" alt="About image 2" class="content-image">
+
+  </main>
+
+  <footer>
+    <span>© 2025 Vers Le Vin</span>
+    <span>by Stijn Verschelden</span>
+  </footer>
+
+</body>
+</html>
