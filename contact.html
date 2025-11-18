@@ -1,243 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact – Vers Le Vin</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contact – Vers Le Vin</title>
 
-  <!-- Caslon Antique -->
-  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
+<!-- Same fonts -->
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
-    :root{
-      --text-color: #592C38;
-      --bg: #F3ECDC;
-      --nav-gap: 28px;
-      --nav-font-size: 18px;
-      --dropdown-bg: rgba(242,240,208,0.98);
-      --dropdown-border: rgba(89,44,56,0.06);
-      --button-red: #8A1E2B; /* deep warm red */
-    }
+  :root{
+    --text-color: #592C38;
+    --bg: #F3ECDC;
+    --accent: #992828;
+    --input-bg: #ffffff;
+  }
 
-    html,body {
-      margin:0;
-      height:100%;
-    }
+  body {
+    margin:0;
+    background: var(--bg);
+    color: var(--text-color);
+    font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
 
-    body {
-      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, serif;
-      background: var(--bg);
-      color: var(--text-color);
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-    }
+  /* NAV same as index */
+  .nav-wrap {
+    display:flex;
+    justify-content:center;
+    padding: 18px 24px;
+  }
+  nav ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    gap:28px;
+    font-size:18px;
+  }
+  nav a, nav button {
+    text-decoration:none;
+    color:var(--text-color);
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:6px 8px;
+    font:inherit;
+  }
 
-    nav ul, nav a, nav button {
-      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, serif !important;
-    }
+  .dropdown { display:none; }
 
-    /* Navigation */
-    .nav-wrap {
-      display:flex;
-      justify-content:center;
-      padding:18px 24px;
-    }
+  /* -------------------- CONTACT PAGE LAYOUT -------------------- */
 
-    nav ul {
-      list-style:none;
-      display:flex;
-      gap: var(--nav-gap);
-      margin:0;
-      padding:0;
-      font-size: var(--nav-font-size);
-      align-items:center;
-    }
+  .contact-wrap {
+    max-width: 1080px;
+    margin: 40px auto 80px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 
-    nav li { position:relative; }
-    nav a, nav button {
-      text-decoration:none;
-      border:none;
-      background:none;
-      color: var(--text-color);
-      cursor:pointer;
-      padding:6px 8px;
-      font:inherit;
-    }
-    nav a:hover, nav button:hover {
-      opacity:0.75;
-    }
+  /* LEFT TEXT BLOCK aligned with left navigation */
+  .contact-info {
+    width: 40%;
+    font-size: 20px;
+    line-height: 1.55;
+  }
 
-    /* Dropdown */
-    .dropdown {
-      display:none;
-      position:absolute;
-      top:calc(100% + 10px);
-      left:50%;
-      transform:translateX(-50%);
-      min-width:180px;
-      background:var(--dropdown-bg);
-      border:1px solid var(--dropdown-border);
-      border-radius:6px;
-      padding:8px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.04);
-      z-index:200;
-    }
+  .contact-info p {
+    margin: 0 0 16px 0;
+    text-align: justify;
+  }
 
-    .dropdown a {
-      display:block;
-      padding:8px 20px;
-      text-decoration:none;
-      color:var(--text-color);
-      font-size:16px;
-    }
-    nav li:hover > .dropdown {
-      display:block;
-    }
+  /* RIGHT FORM BLOCK aligned so right edge matches "Contact" nav */
+  .contact-form {
+    width: 48%;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
 
-    /* PAGE CONTENT */
-    .contact-container {
-      flex:1;
-      display:flex;
-      justify-content:flex-end;
-      align-items:flex-start;
-      padding:80px 100px;
-    }
+  label {
+    font-size: 18px;
+  }
 
-    .contact-form {
-      width:360px;
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-    }
+  input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 18px;
+    border: 1px solid #cabfb6;
+    background: var(--input-bg);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-family: inherit;
+  }
 
-    label {
-      font-size:18px;
-      margin-bottom:4px;
-    }
+  textarea {
+    height: 180px;
+    resize: vertical;
+  }
 
-    input, textarea {
-      width:100%;
-      padding:12px;
-      border:1px solid rgba(89,44,56,0.25);
-      background:white;
-      border-radius:6px;
-      color: var(--text-color);
-      font-family: 'EB Garamond', serif;
-      font-size:18px;
-      outline:none;
-    }
+  button.send-btn {
+    background: var(--accent);
+    color: white;
+    border:none;
+    padding: 14px 22px;
+    font-size: 18px;
+    cursor:pointer;
+    border-radius:6px;
+    width: 160px;
+  }
 
-    textarea {
-      height:160px;
-      resize:vertical;
-    }
+  button.send-btn:hover {
+    opacity:0.8;
+  }
 
-    input:focus, textarea:focus {
-      border-color: var(--text-color);
-    }
+  footer {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right:10px;
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+  }
 
-    .send-btn {
-      background: var(--button-red);
-      color:white;
-      padding:12px 20px;
-      font-size:18px;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      font-family: 'CaslonAntiqueRegular', serif;
-      letter-spacing:0.3px;
+  /* Responsive */
+  @media(max-width:780px){
+    .contact-wrap {
+      flex-direction: column;
+      gap: 40px;
     }
-    .send-btn:hover {
-      opacity:0.85;
+    .contact-info, .contact-form {
+      width: 100%;
     }
-
-    /* Footer */
-    footer {
-      position:absolute;
-      bottom:10px;
-      left:10px;
-      width:calc(100% - 20px);
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-      font-size:14px;
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
-  <div class="nav-wrap">
-    <nav aria-label="Main Navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
+<!-- NAV -->
+<div class="nav-wrap">
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li>
+        <button>Lantignié ▾</button>
+      </li>
+      <li>
+        <button>Wijnen ▾</button>
+      </li>
+      <li>
+        <button>Blog ▾</button>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</div>
 
-        <li>
-          <button>Lantignié ▾</button>
-          <div class="dropdown">
-            <a href="#">Terrior</a>
-            <a href="#">Association</a>
-            <a href="#">Wijnmakers</a>
-          </div>
-        </li>
+<!-- CONTENT -->
+<div class="contact-wrap">
 
-        <li>
-          <button>Wijnen ▾</button>
-          <div class="dropdown">
-            <a href="#">Wit</a>
-            <a href="#">Rood</a>
-          </div>
-        </li>
+  <!-- LEFT SIDE TEXT -->
+  <div class="contact-info">
+    <p><strong>You can find us on:</strong></p>
 
-        <li>
-          <button>Blog ▾</button>
-          <div class="dropdown">
-            <a href="#">Essays</a>
-            <a href="#">Pairing</a>
-            <a href="#">Beelden</a>
-          </div>
-        </li>
+    <p><strong>Address</strong><br>
+    Lantignié, Beaujolais</p>
 
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
+    <p><strong>Tele</strong><br>
+    +33 000 000 000</p>
 
-      </ul>
-    </nav>
+    <p><strong>Email</strong><br>
+    contact@verslevin.com</p>
   </div>
 
-  <!-- CONTACT FORM -->
-  <main class="contact-container">
+  <!-- RIGHT SIDE FORM -->
+  <form class="contact-form">
+    <div>
+      <label>Your Name</label>
+      <input type="text" name="name" required>
+    </div>
 
-    <form class="contact-form" action="#" method="POST">
-      <div>
-        <label>Your Name</label>
-        <input type="text" name="name" required>
-      </div>
+    <div>
+      <label>Your Email</label>
+      <input type="email" name="email" required>
+    </div>
 
-      <div>
-        <label>Your Email</label>
-        <input type="email" name="email" required>
-      </div>
+    <div>
+      <label>Message</label>
+      <textarea name="message" required></textarea>
+    </div>
 
-      <div>
-        <label>Message</label>
-        <textarea name="message" required></textarea>
-      </div>
+    <button type="submit" class="send-btn">Send</button>
+  </form>
 
-      <button type="submit" class="send-btn">Send</button>
-    </form>
+</div>
 
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <span>© 2025 Vers Le Vin</span>
-    <span>by Stijn Verschelden</span>
-  </footer>
+<footer>
+  <span>© 2025 Vers Le Vin</span>
+  <span>by Stijn Verschelden</span>
+</footer>
 
 </body>
 </html>
