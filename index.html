@@ -12,6 +12,8 @@
 :root{
   --text-color: #592C38;
   --bg: #F3ECDC;
+  --orbit-radius: 190px; /* bigger circle */
+  --icon-size: 90px; /* bigger icons */
 }
 
 body {
@@ -25,7 +27,6 @@ body {
   overflow-x:hidden;
 }
 
-/* NAVIGATION */
 .nav-wrap { display:flex; justify-content:center; padding:18px 24px; }
 nav ul { display:flex; gap:28px; list-style:none; margin:0; padding:0; }
 nav li { position:relative; }
@@ -35,7 +36,6 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 .dropdown a { display:block; padding:8px 20px; color:var(--text-color); text-decoration:none; font-size:16px; }
 .dropdown a:hover { background: rgba(89,44,56,0.06); }
 
-/* HERO SECTION */
 .hero {
   flex:1;
   display:flex;
@@ -45,11 +45,11 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   padding:40px;
 }
 
-/* LOGO + ORBITS */
 .logo-container {
   position: relative;
   width: 320px;
   height: 320px;
+  cursor:pointer;
 }
 
 .logo-container .logo {
@@ -58,29 +58,51 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   display: block;
   object-fit: contain;
   border-radius:8px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(.2,.9,.3,1);
+}
+
+.logo-container.is-flipped .logo {
+  transform: rotateY(180deg);
 }
 
 /* ORBITING ICONS */
 .orbit-item {
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: var(--icon-size);
+  height: var(--icon-size);
   top:50%;
   left:50%;
-  margin:-35px 0 0 -35px; /* center icon on its rotation origin */
-  transform-origin: 160px 50%; /* horizontal radius, vertical center */
+  margin: calc(-1 * var(--icon-size)/2) 0 0 calc(-1 * var(--icon-size)/2);
+  transform-origin: var(--orbit-radius) center;
   transition: transform 0.3s ease-out;
 }
 
-/* individual orbit animation on hover */
-.orbit-item:hover {
-  animation: orbit 2s linear infinite;
+/* INITIAL POSITION */
+.orbit-item:nth-child(1) { transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
+.orbit-item:nth-child(2) { transform: rotate(90deg) translateX(var(--orbit-radius)) rotate(-90deg); }
+.orbit-item:nth-child(3) { transform: rotate(180deg) translateX(var(--orbit-radius)) rotate(-180deg); }
+.orbit-item:nth-child(4) { transform: rotate(270deg) translateX(var(--orbit-radius)) rotate(-270deg); }
+
+/* ANIMATION ON HOVER: hover on any icon rotates all icons */
+.logo-container:hover .orbit-item {
+  animation: orbitAll 2s linear infinite;
 }
 
-/* rotate along circle while keeping upright */
-@keyframes orbit {
-  from { transform: rotate(0deg) translateX(160px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(160px) rotate(-360deg); }
+@keyframes orbitAll {
+  from {
+    transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+  }
+}
+
+/* Responsive */
+@media(max-width:520px){
+  .logo-container { width: 200px; height: 200px; }
+  :root { --orbit-radius: 120px; --icon-size: 60px; }
 }
 
 </style>
@@ -106,14 +128,14 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 </div>
 
 <main class="hero">
-  <div class="logo-container">
+  <div class="logo-container" id="logoContainer">
     <img class="logo" src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
 
     <!-- Orbiting icons -->
-    <img src="images/grape.png" class="orbit-item" style="transform: rotate(0deg) translateX(160px) rotate(0deg);">
-    <img src="images/bottle.png" class="orbit-item" style="transform: rotate(90deg) translateX(160px) rotate(-90deg);">
-    <img src="images/glass.png" class="orbit-item" style="transform: rotate(180deg) translateX(160px) rotate(-180deg);">
-    <img src="images/moon.png" class="orbit-item" style="transform: rotate(270deg) translateX(160px) rotate(-270deg);">
+    <img src="images/grape.png" class="orbit-item">
+    <img src="images/bottle.png" class="orbit-item">
+    <img src="images/glass.png" class="orbit-item">
+    <img src="images/moon.png" class="orbit-item">
   </div>
 </main>
 
@@ -121,6 +143,32 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   <span>© 2025 Vers Le Vin</span>
   <span>by Stijn Verschelden</span>
 </footer>
+
+<script>
+// LOGO FLIP ON CLICK OR HOVER
+const logoContainer = document.getElementById('logoContainer');
+
+// Click toggle
+logoContainer.addEventListener('click', () => {
+  logoContainer.classList.toggle('is-flipped');
+});
+
+// Keyboard accessibility (Enter or Space)
+logoContainer.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    logoContainer.classList.toggle('is-flipped');
+  }
+});
+
+// Optional: flip on hover
+logoContainer.addEventListener('mouseenter', () => {
+  logoContainer.classList.add('is-flipped');
+});
+logoContainer.addEventListener('mouseleave', () => {
+  logoContainer.classList.remove('is-flipped');
+});
+</script>
 
 </body>
 </html>
