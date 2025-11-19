@@ -219,7 +219,43 @@
       .logo-wrap { width:150px; height:150px; }
       .brand-title { font-size:20px; text-align:center; white-space:normal; margin-bottom: 0; }
     }
-    
+    /* ORBITING ICONS AROUND THE MAIN LOGO */
+.orbit-icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.orbit-item {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  pointer-events: auto;
+  transform-origin: center center;
+  transition: transform 0.3s ease-out;
+  
+  /* Positioning each icon around the circle */
+  transform: 
+    rotate(var(--angle)) 
+    translate(160px) 
+    rotate(calc(-1 * var(--angle)));
+}
+
+/* ROTATION ON HOVER (CLOCKWISE) */
+.orbit-item:hover {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg) translate(160px) rotate(0deg); }
+  to   { transform: rotate(360deg) translate(160px) rotate(-360deg); }
+}
+
   </style>
 </head>
 <body>
@@ -271,6 +307,13 @@
 
         <span class="logo-wrap" id="logoWrap" tabindex="0">
           <img id="logo-img" class="logo" src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo" onerror="this.style.opacity=0;">
+          <div class="orbit-icons">
+  <img src="images/grape.png" class="orbit-item" style="--angle:0deg;">
+  <img src="images/bottle.png" class="orbit-item" style="--angle:90deg;">
+  <img src="images/glass.png" class="orbit-item" style="--angle:180deg;">
+  <img src="images/moon.png" class="orbit-item" style="--angle:270deg;">
+</div>
+
         </span>
       </div>
     </div>
