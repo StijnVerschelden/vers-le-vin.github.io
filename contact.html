@@ -185,39 +185,55 @@
       </ul>
     </nav>
   </div>
-  <main class="content-wrap contact-wrap" style="display:flex; gap:18px;">
+  <main class="content-wrap contact-wrap" 
+      style="max-width: 600px; margin: 40px auto; text-align: left; display: flex; flex-direction: column; gap: 20px;">
 
-  <!-- LEFT SIDE: Contact Info aligned with Home nav -->
-  <div class="contact-info" style="width:40%;">
+  <!-- TOP SECTION: Contact Info centered above form -->
+  <div class="contact-info" style="width:100%; text-align:left;">
     <p><strong>You can find us on:</strong></p>
+
     <p><strong>Address</strong><br>
-       Ghent, Blegium</p>
+       Ghent, Belgium</p>
+
     <p><strong>Tele</strong><br>
        +32 476 30 22 07</p>
+
     <p><strong>Email</strong><br>
        info@vers-le-vin.be</p>
+
     <p><strong>Instagram</strong><br>
        @vers.le.vin</p>
   </div>
 
-  <!-- RIGHT SIDE: Contact Form aligned with Contact nav -->
-  <form class="contact-form" action="mailto:info@vers-le-vin.be" method="post" enctype="text/plain" style="width:48%; display:flex; flex-direction:column; gap:18px;">
+  <!-- CONTACT FORM (centered below text) -->
+  <form class="contact-form" 
+        action="mailto:info@vers-le-vin.be" 
+        method="post" 
+        enctype="text/plain"
+        style="width:100%; display:flex; flex-direction:column; gap:18px;">
+
     <div>
       <label>Naam</label>
-      <input type="text" name="name" required style="width:100%; padding:12px; border:1px solid rgba(89,44,56,0.25); border-radius:4px; font-family:'EB Garamond', serif; color:#592C38;">
+      <input type="text" name="name" required
+             style="width:100%; padding:12px; border:1px solid rgba(89,44,56,0.25); border-radius:4px; font-family:'EB Garamond', serif; color:#592C38;">
     </div>
 
     <div>
       <label>Email</label>
-      <input type="email" name="email" required style="width:100%; padding:12px; border:1px solid rgba(89,44,56,0.25); border-radius:4px; font-family:'EB Garamond', serif; color:#592C38;">
+      <input type="email" name="email" required
+             style="width:100%; padding:12px; border:1px solid rgba(89,44,56,0.25); border-radius:4px; font-family:'EB Garamond', serif; color:#592C38;">
     </div>
 
     <div>
       <label>Message</label>
-      <textarea name="message" required style="width:100%; padding:12px; height:180px; border:1px solid rgba(89,44,56,0.25); border-radius:4px; font-family:'EB Garamond', serif; color:#592C38;"></textarea>
+      <textarea name="message" required
+                style="width:100%; padding:12px; height:180px; border:1px solid rgba(89,44,56,0.25); border-radius:4px; font-family:'EB Garamond', serif; color:#592C38;"></textarea>
     </div>
 
-    <button type="submit" style="background:white; color:#592C38; border:2px solid #592C38; padding:14px 30px; font-size:18px; border-radius:6px; cursor:pointer;">Send</button>
+    <button type="submit" 
+            style="background:white; color:#592C38; border:2px solid #592C38; padding:14px 30px; font-size:18px; border-radius:6px; cursor:pointer;">
+      Send
+    </button>
   </form>
 
 </main>
