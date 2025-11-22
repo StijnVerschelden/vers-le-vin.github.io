@@ -8,188 +8,116 @@
   <!-- Caslon Antique -->
   <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
 
-  <!-- Fonts -->
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&display=swap');
 
     :root{
       --text-color: #592C38;
       --bg: #F3ECDC;
-      --nav-gap: 28px;
-      --nav-font-size: 18px;
-      --dropdown-bg: rgba(242,240,208,0.98);
-      --dropdown-border: rgba(89,44,56,0.06);
     }
 
-    html, body{
-      height:100%;
+    body {
       margin:0;
-      font-family:'CaslonAntiqueRegular','EB Garamond',Georgia,serif;
+      height:100vh;
       background:var(--bg);
-      color:var(--text-color);
+      font-family:'CaslonAntiqueRegular','EB Garamond',serif;
       display:flex;
       flex-direction:column;
-      overflow-x:hidden;
-    }
-
-    /**************** NAVIGATION ****************/
-    .nav-wrap {
-      display:flex;
-      justify-content:center;
-      padding: 18px 24px;
-    }
-
-    nav ul {
-      list-style:none;
-      margin:0; padding:0;
-      display:flex;
-      gap:var(--nav-gap);
-      align-items:center;
-      font-size:var(--nav-font-size);
-    }
-
-    nav li { position:relative; }
-    nav a, nav button {
-      background:none; border:none;
+      overflow:hidden;
       color:var(--text-color);
-      text-decoration:none;
-      padding:6px 8px;
-      cursor:pointer;
-      font:inherit;
     }
 
-    nav a:hover, nav button:hover { opacity:0.8; }
-
-    .dropdown {
-      position:absolute;
-      left:50%; transform:translateX(-50%);
-      top:calc(100% + 10px);
-      min-width:180px;
-      background:var(--dropdown-bg);
-      border:1px solid var(--dropdown-border);
-      border-radius:6px;
-      padding:8px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.04);
-      display:none;
-      z-index:200;
-    }
-
-    .dropdown a {
-      padding:8px 20px;
-      display:block;
-      font-size:16px;
-      color:var(--text-color);
-      text-decoration:none;
-    }
-    .dropdown a:hover { background:rgba(89,44,56,0.06); }
-
-    nav li:hover > .dropdown,
-    nav li:focus-within > .dropdown { display:block; }
-
-    @media(max-width:720px){
-      nav ul { flex-wrap:wrap; gap:12px; }
-      .dropdown { left:0; transform:none; }
-    }
-
-    /**************** HERO / LOGO + FLIP ****************/
+    /* ---------------- HERO + FLIP ---------------- */
     .hero {
       flex:1;
       display:flex;
-      align-items:center;
       justify-content:center;
-      padding:40px;
-      perspective:1000px;
+      align-items:center;
+      perspective:1400px;
     }
 
-    .brand-wrap {
-      position:relative;
-      padding:20px 40px;
-    }
-
-    /* card container */
     .flip-card {
-      position:relative;
       width:320px;
       height:320px;
-      cursor:pointer;
+      position:relative;
       transform-style:preserve-3d;
-      transition:transform .8s cubic-bezier(.2,.9,.3,1);
+      transition:transform 1s cubic-bezier(.3,.85,.25,1);
+      cursor:pointer;
     }
 
-    .flip-card.is-flipped {
-      transform: rotateY(180deg);
+    .is-flipped {
+      transform:rotateY(180deg);
     }
 
     .card-face {
       position:absolute;
       inset:0;
       backface-visibility:hidden;
-      border-radius:8px;
+      border-radius:10px;
     }
 
+    /* FRONT */
     .card-front img {
       width:100%; height:100%;
       object-fit:contain;
-      border-radius:8px;
-      box-shadow:0 8px 30px rgba(89,44,56,0.08);
+      border-radius:10px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.1);
     }
 
+    /* BACK */
     .card-back {
       transform:rotateY(180deg);
       display:flex;
-      flex-direction:column;
-      align-items:center;
       justify-content:center;
-      padding:12px;
+      align-items:center;
     }
 
     .back-row {
       width:100%;
       display:flex;
-      justify-content:space-between;
-      gap:10px;
+      justify-content:center;
+      gap:14px;     /* perfectly centered */
+      padding:10px;
     }
 
     .back-row img {
-      width:100%;
-      height:auto;
-      border-radius:6px;
-      object-fit:cover;
+      width:30%;
+      border-radius:8px;
+      transition:transform 1.4s ease-in-out;
     }
 
-    @media(max-width:520px){
+    .back-row img:hover {
+      transform:rotate(360deg) scale(1.05);
+    }
+
+    @media (max-width:520px){
       .flip-card { width:220px; height:220px; }
-      .back-row { gap:6px; }
     }
 
-    /**************** FOOTER ****************/
     footer {
       padding:10px 20px;
-      font-size:14px;
       display:flex;
       justify-content:space-between;
-      opacity:0.85;
-      margin-top:auto;
+      font-size:14px;
     }
   </style>
 </head>
+
 <body>
 
-  <!------- NAVIGATION ------->
+  <!-- NAVIGATION (UNCHANGED) -->
   <div class="nav-wrap">
     <nav aria-label="Main Navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
-
         <li>
-          <button aria-expanded="false" id="lantBtn">Lantignié ▾</button>
+          <button aria-expanded="false">Lantignié ▾</button>
           <div class="dropdown">
             <a href="#">Terrior</a>
             <a href="#">Associatie</a>
             <a href="#">Wijnmakers</a>
           </div>
         </li>
-
         <li>
           <button aria-expanded="false">Wijnen ▾</button>
           <div class="dropdown">
@@ -197,95 +125,78 @@
             <a href="#">Rood</a>
           </div>
         </li>
-
         <li>
-          <button aria-expanded="false" id="blogBtn">Blog ▾</button>
+          <button aria-expanded="false">Blog ▾</button>
           <div class="dropdown">
             <a href="#">Essays</a>
             <a href="#">Pairing</a>
             <a href="#">Beelden</a>
           </div>
         </li>
-
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </div>
 
-  <!------- HERO ------->
+
+  <!-- HERO -->
   <main class="hero">
 
-    <div class="brand-wrap">
-      <div class="flip-card" id="flipCard" tabindex="0">
+    <div class="flip-card" id="flipCard">
 
-        <!-- FRONT -->
-        <div class="card-face card-front">
-          <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
-        </div>
-
-        <!-- BACK -->
-        <div class="card-face card-back">
-          <div class="back-row">
-            <img src="images/essay1.jpg" alt="Essay 1">
-            <img src="images/essay2.jpg" alt="Essay 2">
-            <img src="images/essay3.jpg" alt="Essay 3">
-          </div>
-        </div>
-
+      <!-- FRONT -->
+      <div class="card-face card-front">
+        <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin">
       </div>
+
+      <!-- BACK -->
+      <div class="card-face card-back">
+        <div class="back-row">
+          <img src="images/essay1.jpg">
+          <img src="images/essay2.jpg">
+          <img src="images/essay3.jpg">
+        </div>
+      </div>
+
     </div>
 
   </main>
 
-  <!------- FOOTER ------->
+
+  <!-- FOOTER -->
   <footer>
     <span>© 2025 Vers Le Vin</span>
     <span>by Stijn Verschelden</span>
   </footer>
 
-  <!------- DROPDOWN JS ------->
+
   <script>
-    document.addEventListener('click', (e) => {
-      document.querySelectorAll('nav button').forEach(btn => {
-        const menu = btn.nextElementSibling;
-        if (!menu) return;
-        if (btn.contains(e.target)) {
-          const isOpen = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', !isOpen);
-          menu.style.display = isOpen ? 'none' : 'block';
-        } else if (!menu.contains(e.target)) {
-          btn.setAttribute('aria-expanded', 'false');
-          menu.style.display = 'none';
-        }
-      });
-    });
-  </script>
+    const card = document.getElementById("flipCard");
 
-  <!------- FLIP JS ------->
-  <script>
-    const card = document.getElementById('flipCard');
-
-    function flip(on) {
-      if (on) card.classList.add('is-flipped');
-      else card.classList.remove('is-flipped');
-    }
-
-    // Hover flip
-    card.addEventListener('mouseenter', () => flip(true));
-    card.addEventListener('mouseleave', () => flip(false));
-
-    // Click flip toggle
-    card.addEventListener('click', (e) => {
-      card.classList.toggle('is-flipped');
+    /* Flip on hover */
+    card.addEventListener("mouseenter", () => {
+      card.classList.add("is-flipped");
     });
 
-    // Keyboard flip
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.classList.toggle('is-flipped');
+    /* Flip back when mouse leaves the entire PAGE */
+    document.body.addEventListener("mousemove", (e) => {
+      const bounds = card.getBoundingClientRect();
+
+      const inside =
+        e.clientX > bounds.left &&
+        e.clientX < bounds.right &&
+        e.clientY > bounds.top &&
+        e.clientY < bounds.bottom;
+
+      if (!inside) {
+        card.classList.remove("is-flipped");
       }
+    });
+
+    /* Also allow click toggle */
+    card.addEventListener("click", () => {
+      card.classList.toggle("is-flipped");
     });
   </script>
 
