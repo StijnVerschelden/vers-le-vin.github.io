@@ -19,6 +19,10 @@
       --nav-font-size: 18px;
       --dropdown-bg: rgba(242,240,208,0.98);
       --dropdown-border: rgba(89,44,56,0.06);
+
+      /* card sizes */
+      --logo-size: 320px;      /* base logo width/height */
+      --back-gap: 18px;        /* space under images for button */
     }
 
     html,body{ height:100%; margin:0; }
@@ -132,7 +136,7 @@
       align-items:center;
       justify-content:center;
       padding: 40px;
-      perspective: 1000px;
+      perspective: 1400px; /* perspective for 3D flip */
       position:relative;
     }
 
@@ -142,7 +146,6 @@
       padding: 20px 56px;
     }
 
-    
     .brand {
       display:flex;
       align-items:flex-end;
@@ -154,42 +157,110 @@
       z-index: 4;
     }
 
-    .logo-wrap {
-      display:inline-block;
-      width: 320px;
-      height: 320px;
-      perspective: 1000px;
-      cursor:pointer;
-      flex-shrink: 0;
+    /* The flip card wrapper */
+    .logo-card {
+      width: var(--logo-size);
+      height: var(--logo-size);
       position: relative;
-      z-index: 5;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(.2,.9,.3,1);
+      cursor: pointer;
+      margin: 0 auto;
+      /* allow the back's wide images to overflow visibly */
+      overflow: visible;
     }
-    .logo {
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      display:block;
-      backface-visibility:hidden;
-      transform-style:preserve-3d;
-      transition: transform 600ms cubic-bezier(.2,.9,.3,1);
-      transform-origin:center center;
-      border-radius:8px;
-      will-change:transform;
-      box-shadow: 0 8px 30px rgba(89,44,56,0.06);
-      background: rgba(255,255,255,0.02);
-    }
-    .logo-wrap:hover .logo,
-    .logo-wrap.is-flipped .logo { transform: rotateY(180deg); }
 
-    .brand-title {
-      /* now using Caslon/EB Garamond (page-level font already applied) */
-      font-size: 35px;
-      line-height: 1.02;
+    /* flipped state (also triggered on hover) */
+    .logo-card.flipped,
+    .logo-card:hover {
+      transform: rotateY(180deg);
+    }
+
+    /* faces */
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:8px;
+    }
+
+    /* front (logo) */
+    .card-front {
+      background: transparent;
+      z-index: 2;
+    }
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display:block;
+      border-radius:8px;
+      box-shadow: 0 8px 30px rgba(89,44,56,0.06);
+    }
+
+    /* back (three images + button) */
+    .card-back {
+      transform: rotateY(180deg);
+      z-index: 1;
+      /* let back content overflow so three images can be shown in a row */
+      overflow: visible;
+      flex-direction: column;
+      padding-bottom: var(--back-gap);
+    }
+
+    /* row with the three images */
+    .back-row {
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      justify-content:center;
+      /* allow the row to be wider than the card so each image can match logo height */
+      width: max-content;
+      margin-top: -6px; /* slight pull up so images visually appear from belly */
+    }
+
+    .back-row img {
+      height: var(--logo-size); /* match logo height */
+      width: auto;
+      object-fit: cover;
+      border-radius:6px;
+      box-shadow: 0 8px 30px rgba(89,44,56,0.08);
+      display:block;
+    }
+
+    /* button under row */
+    .back-action {
+      margin-top: 14px;
+      text-align:center;
+    }
+    .back-action button {
+      background: white;
       color: var(--text-color);
-      margin-bottom: 8px;
-      white-space: nowrap;
-      z-index: 6;
-      letter-spacing: 0.2px;
+      border: 2px solid var(--text-color);
+      padding: 10px 18px;
+      font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .back-action button:hover { opacity: 0.9; }
+
+    /* accessibility focus outline */
+    .logo-card:focus { outline: 3px solid rgba(89,44,56,0.12); outline-offset: 6px; }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      :root { --logo-size: 260px; }
+      .back-row img { height: var(--logo-size); }
+    }
+    @media (max-width: 520px) {
+      :root { --logo-size: 160px; }
+      .back-row { gap:8px; }
+      .back-action button { padding:8px 12px; font-size:14px; }
     }
 
     footer {
@@ -205,21 +276,6 @@
       pointer-events: none;
     }
     footer span { pointer-events: auto; }
-
-    @media (max-width:820px){
-      .logo-wrap { width: 240px; height:240px; }
-      .brand-title { font-size: 34px; }
-      .brand-wrap { padding: 12px 20px; }
-    }
-
-    @media (max-width:520px){
-      .nav-wrap { padding: 8px; }
-      nav ul { gap:10px; }
-      .brand { gap:16px; flex-direction:column; align-items:center; }
-      .logo-wrap { width:150px; height:150px; }
-      .brand-title { font-size:20px; text-align:center; white-space:normal; margin-bottom: 0; }
-    }
-    
   </style>
 </head>
 <body>
@@ -265,13 +321,30 @@
   <main class="hero">
     <div class="brand-wrap" id="brandWrap" aria-hidden="false">
 
-
       <div class="brand" aria-label="Vers Le Vin - logo and title">
 
+        <!-- FLIP CARD -->
+        <div class="logo-card" id="logoCard" tabindex="0" aria-live="polite" aria-pressed="false" role="button" title="Hover or press to flip">
+          <!-- front face -->
+          <div class="card-face card-front" aria-hidden="false">
+            <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
+          </div>
 
-        <span class="logo-wrap" id="logoWrap" tabindex="0">
-          <img id="logo-img" class="logo" src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo" onerror="this.style.opacity=0;">
-        </span>
+          <!-- back face -->
+          <div class="card-face card-back" aria-hidden="true">
+            <div class="back-row" aria-hidden="false">
+              <img src="images/essay1.jpg" alt="Essay 1">
+              <img src="images/essay2.jpg" alt="Essay 2">
+              <img src="images/essay3.jpg" alt="Essay 3">
+            </div>
+
+            <div class="back-action" aria-hidden="false">
+              <button id="hoverBackBtn" type="button">Hover back</button>
+            </div>
+          </div>
+        </div>
+        <!-- end flip card -->
+
       </div>
     </div>
   </main>
@@ -281,10 +354,8 @@
     <span>by Stijn Verschelden</span>
   </footer>
 
-
-  <!-- Small JS to handle keyboard-friendly dropdown toggles -->
   <script>
-    // Toggle aria-expanded when buttons are used (improves screen reader behavior)
+    // Keep previous dropdown behaviour (no change)
     document.addEventListener('DOMContentLoaded', function () {
       const controls = [
         { btnId: 'lantBtn' },
@@ -297,14 +368,11 @@
         btn.addEventListener('click', () => {
           const expanded = btn.getAttribute('aria-expanded') === 'true';
           btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          // find associated dropdown and toggle display (for keyboard users)
           const menu = btn.nextElementSibling;
           if (menu) {
             menu.style.display = expanded ? 'none' : 'block';
           }
         });
-
-        // close dropdown on Escape
         btn.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
             btn.setAttribute('aria-expanded', 'false');
@@ -315,7 +383,6 @@
         });
       });
 
-      // Close dropdown when clicking outside
       document.addEventListener('click', (e) => {
         controls.forEach(c => {
           const btn = document.getElementById(c.btnId);
@@ -329,27 +396,61 @@
         });
       });
     });
-  </script>
 
-  <!-- logo flip script -->
-  <script>
+    // Flip-card behaviour
     (function () {
-      const wrap = document.getElementById('logoWrap');
-      if (!wrap) return;
-      wrap.addEventListener('click', () => wrap.classList.toggle('is-flipped'));
-      wrap.addEventListener('keydown', (e) => {
+      const card = document.getElementById('logoCard');
+      const backBtn = document.getElementById('hoverBackBtn');
+
+      // Toggle flipped on click / keyboard
+      function toggleFlip(force) {
+        if (typeof force === 'boolean') {
+          card.classList.toggle('flipped', force);
+          card.setAttribute('aria-pressed', force.toString());
+        } else {
+          card.classList.toggle('flipped');
+          card.setAttribute('aria-pressed', card.classList.contains('flipped').toString());
+        }
+      }
+
+      // Click toggles flip
+      card.addEventListener('click', (e) => {
+        // avoid flipping when clicking the "Hover back" button (it will handle itself)
+        if (e.target === backBtn) return;
+        toggleFlip();
+      });
+
+      // Keyboard: Enter or Space toggles flip
+      card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          wrap.classList.toggle('is-flipped');
+          toggleFlip();
         }
       });
-      wrap.addEventListener('blur', () => wrap.classList.remove('is-flipped'), true);
-      function adjustPerspective(){
-        const p = window.innerWidth < 520 ? 600 : 1000;
-        wrap.style.perspective = p + 'px';
-      }
-      window.addEventListener('resize', adjustPerspective, { passive: true });
-      adjustPerspective();
+
+      // Hover flips visually (CSS handles :hover) — keep aria state in sync
+      card.addEventListener('mouseenter', () => {
+        card.classList.add('flipped');
+        card.setAttribute('aria-pressed', 'true');
+      });
+      card.addEventListener('mouseleave', () => {
+        card.classList.remove('flipped');
+        card.setAttribute('aria-pressed', 'false');
+      });
+
+      // "Hover back" button flips it back when clicked (and focuses card)
+      backBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleFlip(false); // un-flip
+        // return focus to card for accessibility
+        card.focus({ preventScroll: true });
+      });
+
+      // Prevent back-row images from capturing click that toggles unexpectedly
+      const backRow = card.querySelector('.back-row');
+      backRow.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
     })();
   </script>
 </body>
