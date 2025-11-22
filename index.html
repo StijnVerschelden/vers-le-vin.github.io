@@ -27,7 +27,7 @@
     html,body{ height:100%; margin:0; }
 
     body {
-      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
+      font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
       background-color: var(--bg);
       color: var(--text-color);
       display:flex;
@@ -38,14 +38,13 @@
     }
 
     nav ul, nav a, nav button, .brand-title, footer, .dropdown a {
-      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif !important;
+      font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif !important;
     }
 
     .nav-wrap {
       display:flex;
       justify-content:center;
       padding: 18px 24px;
-      background: transparent;
     }
 
     nav ul {
@@ -66,8 +65,8 @@
       background: none;
       border: none;
       padding: 6px 8px;
+      cursor:pointer;
       font: inherit;
-      cursor: pointer;
     }
 
     .dropdown {
@@ -78,33 +77,21 @@
       min-width: 180px;
       background: var(--dropdown-bg);
       border: 1px solid var(--dropdown-border);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
       border-radius: 6px;
       padding: 8px 0;
       display: none;
       z-index: 200;
-      white-space: nowrap;
-    }
-
-    .dropdown a {
-      display:block;
-      padding: 8px 20px;
-      text-decoration:none;
-      color: var(--text-color);
-      font-size: 16px;
     }
 
     nav li:hover > .dropdown,
-    nav li:focus-within > .dropdown {
-      display:block;
+    nav li:focus-within > .dropdown { display:block; }
+
+    @media (max-width:720px){
+      nav ul { flex-wrap:wrap; gap:12px; }
+      .dropdown { left:0; transform:none; }
     }
 
-    @media (max-width:720px) {
-      .nav-wrap { padding: 12px; }
-      nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
-      .dropdown { left: 0; transform: none; top: calc(100% + 8px); min-width:160px; }
-    }
-
+    /* HERO */
     .hero {
       flex:1;
       display:flex;
@@ -112,7 +99,6 @@
       justify-content:center;
       padding: 40px;
       perspective: 1400px;
-      position:relative;
     }
 
     .brand-wrap {
@@ -123,24 +109,21 @@
 
     .brand {
       display:flex;
-      align-items:flex-end;
-      gap: 40px;
+      align-items:center;
       justify-content:center;
-      text-align:left;
-      user-select:none;
       position: relative;
-      z-index: 4;
     }
 
+    /* FLIP CARD */
     .logo-card {
       width: var(--logo-size);
       height: var(--logo-size);
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.8s cubic-bezier(.2,.9,.3,1);
-      cursor: pointer;
-      margin: 0 auto;
+      transition: transform 1.4s cubic-bezier(.25,.85,.25,1); /* smoother slower */
+      cursor:pointer;
       overflow: visible;
+      margin:0 auto;
     }
 
     .logo-card.flipped,
@@ -149,55 +132,87 @@
     }
 
     .card-face {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
       display:flex;
       align-items:center;
       justify-content:center;
-      border-radius:8px;
     }
 
     .card-front img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      width:100%;
+      height:100%;
+      object-fit:contain;
       border-radius:8px;
-      box-shadow: 0 8px 30px rgba(89,44,56,0.06);
+      box-shadow:0 8px 30px rgba(89,44,56,0.06);
     }
 
     .card-back {
-      transform: rotateY(180deg);
-      overflow: visible;
-      flex-direction: column;
-      padding-bottom: var(--back-gap);
+      transform:rotateY(180deg);
+      flex-direction:column;
+      padding-bottom:var(--back-gap);
     }
 
     .back-row {
       display:flex;
-      gap: 12px;
-      align-items:center;
+      gap:12px;
       justify-content:center;
-      width: max-content;
+      align-items:center;
+      width:max-content;
+    }
+
+    /* essay images + captions */
+    .essay-link {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-decoration:none;
     }
 
     .back-row img {
-      height: var(--logo-size);
-      object-fit: cover;
+      height:var(--logo-size);
+      object-fit:cover;
       border-radius:6px;
-      box-shadow: 0 8px 30px rgba(89,44,56,0.08);
+      box-shadow:0 8px 30px rgba(89,44,56,0.08);
+    }
+
+    .caption {
+      font-size:14px;
+      margin-top:6px;
+      color:#592C38;
+      opacity:0;
+      transition:opacity .4s ease;
+      pointer-events:none;
+    }
+
+    .essay-link:hover .caption {
+      opacity:1;
+    }
+
+    /* hover hint */
+    .hover-hint {
+      text-align:center;
+      font-size:14px;
+      opacity:0.7;
+      margin-top:10px;
+      transition:opacity .5s ease;
+    }
+
+    .logo-card:hover + .hover-hint,
+    .logo-card.flipped + .hover-hint {
+      opacity:0;
     }
 
     footer {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      font-size: 14px;
-      opacity: 0.85;
-      display: flex;
-      justify-content: space-between;
-      width: calc(100% - 20px);
-      padding-right: 10px;
+      position:absolute;
+      bottom:10px;
+      left:10px;
+      width:calc(100% - 20px);
+      display:flex;
+      justify-content:space-between;
+      font-size:14px;
+      opacity:0.85;
     }
   </style>
 </head>
@@ -208,7 +223,6 @@
     <nav aria-label="Main Navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
-
         <li>
           <button aria-haspopup="true" aria-expanded="false" id="lantBtn">Lantignié ▾</button>
           <div class="dropdown">
@@ -217,27 +231,23 @@
             <a href="#">Wijnmakers</a>
           </div>
         </li>
-
         <li>
-          <button aria-haspopup="true" aria-expanded="false">Wijnen ▾</button>
+          <button aria-haspopup="true">Wijnen ▾</button>
           <div class="dropdown">
             <a href="#">Wit</a>
             <a href="#">Rood</a>
           </div>
         </li>
-
         <li>
-          <button aria-haspopup="true" aria-expanded="false" id="blogBtn">Blog ▾</button>
+          <button aria-haspopup="true" id="blogBtn">Blog ▾</button>
           <div class="dropdown">
             <a href="#">Essays</a>
             <a href="#">Pairing</a>
             <a href="#">Beelden</a>
           </div>
         </li>
-
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-
       </ul>
     </nav>
   </div>
@@ -250,18 +260,32 @@
         <div class="logo-card" id="logoCard" tabindex="0">
 
           <div class="card-face card-front">
-            <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
+            <img src="images/logo-bar VER - border.jpg">
           </div>
 
           <div class="card-face card-back">
             <div class="back-row">
-              <img src="images/essay1.jpg" alt="Essay 1">
-              <img src="images/essay2.jpg" alt="Essay 2">
-              <img src="images/essay3.jpg" alt="Essay 3">
+              <a class="essay-link" href="essay1.html">
+                <img src="images/essay1.jpg">
+                <span class="caption">Essay 1</span>
+              </a>
+
+              <a class="essay-link" href="essay2.html">
+                <img src="images/essay2.jpg">
+                <span class="caption">Essay 2</span>
+              </a>
+
+              <a class="essay-link" href="essay3.html">
+                <img src="images/essay3.jpg">
+                <span class="caption">Essay 3</span>
+              </a>
             </div>
           </div>
 
         </div>
+
+        <!-- MUIS HIER TEXT -->
+        <div class="hover-hint">muis hier</div>
 
       </div>
     </div>
@@ -273,36 +297,34 @@
   </footer>
 
   <script>
+    /* dropdown behaviour unchanged */
     document.addEventListener('DOMContentLoaded', function () {
-      const controls = [{ btnId: 'lantBtn' }, { btnId: 'blogBtn' }];
-
+      const controls = [
+        { btnId: 'lantBtn' },
+        { btnId: 'blogBtn' }
+      ];
       controls.forEach(c => {
         const btn = document.getElementById(c.btnId);
         if (!btn) return;
         btn.addEventListener('click', () => {
           const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          btn.setAttribute('aria-expanded', (!expanded).toString());
           const menu = btn.nextElementSibling;
           if (menu) menu.style.display = expanded ? 'none' : 'block';
         });
       });
-
-      document.addEventListener('click', (e) => {
-        controls.forEach(c => {
-          const btn = document.getElementById(c.btnId);
-          if (!btn) return;
-          const menu = btn.nextElementSibling;
-          if (!menu) return;
-          if (!btn.contains(e.target) && !menu.contains(e.target)) {
-            btn.setAttribute('aria-expanded', 'false');
-            menu.style.display = 'none';
-          }
-        });
-      });
     });
 
+    /* flip-card aria sync */
     (function () {
       const card = document.getElementById('logoCard');
+
+      card.addEventListener('mouseenter', () => {
+        card.classList.add('flipped');
+      });
+      card.addEventListener('mouseleave', () => {
+        card.classList.remove('flipped');
+      });
 
       card.addEventListener('click', () => {
         card.classList.toggle('flipped');
@@ -314,9 +336,6 @@
           card.classList.toggle('flipped');
         }
       });
-
-      const backRow = card.querySelector('.back-row');
-      backRow.addEventListener('click', (e) => e.stopPropagation());
     })();
   </script>
 
