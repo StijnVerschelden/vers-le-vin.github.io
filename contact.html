@@ -143,15 +143,22 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   transform: rotateY(180deg);
 }
 
-footer {
-  margin-top:auto;
-  padding:10px 20px;
-  font-size:14px;
-  display:flex;
-  justify-content:space-between;
-  opacity:0.85;
-}
+  footer {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      opacity: 0.85;
+      display: flex;
+      justify-content: space-between;
+      width: calc(100% - 20px);
+      padding-right: 10px;
+      pointer-events: none;
+    }
+    footer span { pointer-events: auto; }
+  
 </style>
+  
 </head>
 <body>
 <!-- NAVIGATION (same as index.html) -->
@@ -205,7 +212,7 @@ footer {
     </div>
 
     <!-- TEXT -->
-    <div class="contact-info"style="width:100%; text-align:center; line-height:1.25;">
+    <div class="contact-info"style="width:100%; text-align:left; left:40% line-height:1.25;">
       <p><strong>YOU CAN FIND US ON:</strong></p>
       <p><strong>Address.</strong><br> Oudenaarde & Ghent, Belgium</p>
       <p><strong>Tel.</strong><br> +32 476 30 22 07</p>
@@ -221,6 +228,6 @@ footer {
 </main>
 
 <footer>
-  <span>© 2025 Vers Le Vin</span>
-  <span>by Stijn Verschelden</span>
-</footer>
+    <span>© 2025 Vers Le Vin</span>
+    <span>by Stijn Verschelden</span>
+  </footer>
