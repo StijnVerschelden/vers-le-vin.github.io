@@ -99,51 +99,53 @@
     /*----------------------------*/
     /*          MAIN              */
     /*----------------------------*/
-    main {
-      flex:1;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:40px;
-      gap:60px;
-      perspective:1400px;
-    }
+    /* --- WIJNEN PAGE — contact-style flipping logos --- */
 
-    .logo-card {
-      width:var(--logo-size);
-      height:var(--logo-size);
-      position:relative;
-      transform-style:preserve-3d;
-      transition:transform 1.2s cubic-bezier(.2,.9,.3,1);
-      cursor:pointer;
-    }
-    .logo-card:hover,
-    .logo-card.flipped {
-      transform:rotateY(180deg);
-    }
+.wine-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin-top: 60px;
+}
 
-    .card-face {
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      backface-visibility:hidden;
-    }
+.wine-flip-container {
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  position: relative;
+}
 
-    .card-face img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      box-shadow:0 8px 30px rgba(89,44,56,0.06);
-    }
+.wine-flip {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.3s ease;
+}
 
-    .card-back { transform:rotateY(180deg); }
+.wine-flip:hover {
+  transform: rotateY(180deg);
+}
 
-    .card-back img {
-      object-fit:contain;
-      border-radius:8px;
-    }
+.wine-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.wine-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* same as Contact page */
+}
+
+.wine-back {
+  transform: rotateY(180deg);
+}
+
+
 
     /*----------------------------*/
     /*          FOOTER            */
@@ -201,26 +203,35 @@
 
 <!-- MAIN – 2 FLIP CARDS -->
 <main>
-  <!-- WIT CARD -->
-  <a href="wit.html" class="logo-card" id="witCard">
-    <div class="card-face card-front">
-      <img src="images/wit-front.jpg" alt="Wit – front">
-    </div>
-    <div class="card-face card-back">
-      <img src="images/wit-back.jpg" alt="Wit – back">
-    </div>
-  </a>
+  <div class="wine-row">
 
-  <!-- ROOD CARD -->
-  <a href="rood.html" class="logo-card" id="roodCard">
-    <div class="card-face card-front">
-      <img src="images/rood-front.jpg" alt="Rood – front">
-    </div>
-    <div class="card-face card-back">
-      <img src="images/rood-back.jpg" alt="Rood – back">
-    </div>
-  </a>
+    <!-- LEFT: WIT -->
+    <a href="wit.html" class="wine-flip-container">
+      <div class="wine-flip">
+        <div class="wine-face wine-front">
+          <img src="images/wit-front.jpg" alt="Wit – front">
+        </div>
+        <div class="wine-face wine-back">
+          <img src="images/wit-back.jpg" alt="Wit – back">
+        </div>
+      </div>
+    </a>
+
+    <!-- RIGHT: ROOD -->
+    <a href="rood.html" class="wine-flip-container">
+      <div class="wine-flip">
+        <div class="wine-face wine-front">
+          <img src="images/rood-front.jpg" alt="Rood – front">
+        </div>
+        <div class="wine-face wine-back">
+          <img src="images/rood-back.jpg" alt="Rood – back">
+        </div>
+      </div>
+    </a>
+
+  </div>
 </main>
+
 
 <!-- FOOTER -->
 <footer>
