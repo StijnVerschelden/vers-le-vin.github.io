@@ -104,14 +104,47 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   margin-left:0px;
   font-weight:400;
 }
-.content-image {
-  margine-left: 100px;
-  margine-bottom: 100px;
-  width:100%;
-  border-radius:12px;
-  margin:32px 0;
-  box-shadow:0 6px 25px rgba(0,0,0,0.08);
+/* CONTACT PAGE — FLIPPING LOGO */
+.flip-logo-container {
+  width: 260px;
+  height: 260px;
+  perspective: 1000px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-140%);
+  top: 180px; /* adjust up/down */
 }
+
+.flip-logo {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.3s ease;
+}
+
+.flip-logo:hover {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-front img,
+.flip-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
 footer {
   margin-top:auto;
   padding:10px 20px;
@@ -158,6 +191,19 @@ footer {
 </div>
 
 <main class="content-wrap contact-wrap" style=" max-width: 600px; margin: 20px auto; text-align: left; display: flex; flex-direction: column; gap: 20px; font-size: 17px; ">
+  
+  <!-- FLIPPING MAIN LOGO -->
+<div class="flip-logo-container">
+  <div class="flip-logo">
+    <div class="flip-face flip-front">
+      <img src="images/main-logo.png" alt="Main Logo">
+    </div>
+    <div class="flip-face flip-back">
+      <img src="images/main-logo-back.png" alt="Back Logo">
+    </div>
+  </div>
+</div>
+
 <!-- TOP SECTION: Contact Info above form -->
 <div class="contact-info" style="width:100%; text-align:left; line-height:1.6;">
   <p><strong>You can find us on:</strong></p>
