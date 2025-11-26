@@ -46,7 +46,7 @@ nav ul, nav a, nav button {
   display:flex;
   justify-content:center;
   padding: 18px 24px;
-  background: transparent;
+  ground: transparent;
 }
 nav ul {
   list-style:none;
@@ -61,7 +61,7 @@ nav li { position:relative; }
 nav a, nav button {
   color:var(--text-color);
   text-decoration:none;
-  background:none;
+  ground:none;
   border:none;
   padding:6px 8px;
   cursor:pointer;
@@ -174,13 +174,15 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     }
 
     .back-item img {
-      height: var(--logo-size);
-      width: auto;
-      object-fit: cover;
-      border-radius:6px;
-      box-shadow: 0 8px 30px rgba(89,44,56,0.08);
-      display:block;
-    }
+  width: 100%;
+  height: auto;
+  max-width: var(--logo-size);
+  object-fit: contain;
+  border-radius:6px;
+  box-shadow: 0 8px 30px rgba(89,44,56,0.08);
+  display:block;
+}
+
 
     .back-item span {
       margin-top: 6px;
