@@ -268,22 +268,6 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     }
     footer span { pointer-events: auto; }
     
-/* Prevent iOS tap overlay on 3D faces */
-.card-front,
-.card-back {
-  pointer-events: none;
-}
-
-/* Allow interaction where needed */
-.logo-card {
-  pointer-events: auto;
-}
-
-.back-item a,
-.back-item img {
-  pointer-events: auto;
-}
-
 
 /* ------------------------------------------------ */
 /* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
@@ -339,20 +323,25 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       padding-right: 10px;
       pointer-events: none;
   }
-  /* Disable interaction on 3D inner layers only */
+
+}
+
+    /* Disable iOS overlay on faces */
 .card-front,
-.card-back,
-.back-row {
+.card-back {
   pointer-events: none;
 }
 
-/* Allow interaction on logo card itself */
+/* Allow interaction where needed */
 .logo-card {
   pointer-events: auto;
 }
 
-
+.back-item a,
+.back-item img {
+  pointer-events: auto;
 }
+
 
   </style>
 </head>
@@ -508,17 +497,14 @@ const hint = document.querySelector(".hover-hint");
 
 let isFlipped = false;
 
-/* Tap to flip (mobile & touch devices) */
-logoCard.addEventListener("touchstart", (e) => {
-  e.preventDefault();
+logoCard.addEventListener("touchstart", () => {
   isFlipped = !isFlipped;
-
   logoCard.style.transform = isFlipped
     ? "rotateY(180deg)"
     : "rotateY(0deg)";
-
   hint.style.opacity = "0";
 });
+
 
 /* Hide hint on desktop click as well */
 logoCard.addEventListener("click", () => {
