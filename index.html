@@ -1,408 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Home</title>
 
-  <title>Vers Le Vin</title>
+<!-- Caslon Antique -->
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
 
-  <!-- Caslon Antique -->
-  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
+<!-- Fallback font -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
-  <!-- Fallback -->
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
-
-    :root{
-      --text-color: #592C38;
-      --bg: #F3ECDC;
-      --nav-gap: 28px;
-      --nav-font-size: 18px;
-      --dropdown-bg: rgba(242,240,208,0.98);
-      --dropdown-border: rgba(89,44,56,0.06);
-      --logo-size: 320px;
-    }
-
-    html,body{ height:100%; margin:0; }
-
-    body {
-      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
-      background-color: var(--bg);
-      color: var(--text-color);
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-      position:relative;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-  /* NAVIGATION */
-nav ul, nav a, nav button {
-  font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
+:root{
+  --text-color:#592C38;
+  --bg:#F3ECDC;
+  --nav-gap:28px;
+  --nav-font-size:18px;
+  --dropdown-bg:rgba(242,240,208,0.98);
+  --dropdown-border:rgba(89,44,56,0.06);
 }
-.nav-wrap {
+
+html,body{
+  margin:0;
+  height:100%;
+}
+
+body{
+  font-family:'CaslonAntiqueRegular','EB Garamond',serif;
+  background:var(--bg);
+  color:var(--text-color);
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* NAVIGATION */
+.nav-wrap{
   display:flex;
   justify-content:center;
-  padding: 18px 24px;
-  background: transparent;
+  padding:18px 24px;
+  position:relative;
 }
-nav ul {
+
+nav ul, nav a, nav button{
+  font-family:'CaslonAntiqueRegular','EB Garamond',serif;
+}
+
+nav ul{
   list-style:none;
-  margin:0;
-  padding:0;
   display:flex;
   gap:var(--nav-gap);
+  margin:0;
+  padding:0;
   align-items:center;
   font-size:var(--nav-font-size);
 }
-nav li { position:relative; }
-nav a, nav button {
-  color:var(--text-color);
+
+nav a, nav button{
   text-decoration:none;
   background:none;
   border:none;
   padding:6px 8px;
+  color:var(--text-color);
   cursor:pointer;
-  font:inherit;
 }
-nav a:hover, nav button:hover { opacity:0.7; }
-.dropdown {
+
+nav a:hover, nav button:hover{
+  opacity:.7;
+}
+
+nav li{ position:relative; }
+
+/* Dropdown */
+.dropdown{
   position:absolute;
   left:50%;
   transform:translateX(-50%);
   top:calc(100% + 10px);
   min-width:180px;
- 
-  border:1px solid var(--dropdown-border);
-  border-radius:6px;
   padding:8px 0;
-  box-shadow:0 8px 20px rgba(0,0,0,0.04);
+  border-radius:6px;
+  border:1px solid var(--dropdown-border);
+  background:var(--dropdown-bg);
   display:none;
   z-index:200;
 }
-.dropdown a {
+
+.dropdown a{
   display:block;
   padding:8px 20px;
-  text-decoration:none;
   color:var(--text-color);
-  font-size:16px;
+  text-decoration:none;
 }
-.dropdown a:hover { background:rgba(89,44,56,0.06); }
-nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
+
+nav li:hover > .dropdown,
+nav li:focus-within > .dropdown{
+  display:block;
+}
+
+/* HAMBURGER MENU (MOBILE ONLY) */
+.hamburger{
+  display:none;
+  background:none;
+  border:none;
+  color:var(--text-color);
+  font-size:32px;
+  cursor:pointer;
+  position:absolute;
+  left:20px;
+  top:15px;
+  z-index:500;
+}
+
 @media(max-width:720px){
-  nav ul { flex-wrap:wrap; gap:12px; }
-  .dropdown { left:0; transform:none; min-width:150px; }
-}
+  .hamburger{ display:block; }
 
-    .hero {
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 40px;
-      perspective: 1400px;
-      position:relative;
-    }
-
-    .brand-wrap { position: relative; display: inline-block; padding: 20px 56px; }
-
-    .brand {
-      display:flex;
-      align-items:flex-end;
-      gap: 40px;
-      justify-content:center;
-      text-align:left;
-      user-select:none;
-      position: relative;
-      z-index: 4;
-    }
-
-    .logo-card {
-      width: var(--logo-size);
-      height: var(--logo-size);
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 1.2s cubic-bezier(.2,.9,.3,1);
-      cursor: pointer;
-      margin: 0 auto;
-      overflow: visible;
-    }
-
-    .logo-card.flipped,
-    .logo-card:hover { transform: rotateY(180deg); }
-
-    .card-face {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:8px;
-    }
-
-    .card-front img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .card-back {
-      transform: rotateY(180deg);
-      z-index: 1;
-      overflow: visible;
-      flex-direction: column;
-      padding-bottom: 0;
-    }
-
-    .back-row {
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      justify-content:center;
-      width: max-content;
-      margin-top: -6px;
-    }
-
-    .back-item {
-      display:flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .back-item img {
-      height: var(--logo-size);
-      width: auto;
-      object-fit: cover;
-      border-radius:6px;
-      box-shadow: 0 8px 30px rgba(89,44,56,0.08);
-      display:block;
-    }
-
-    .back-item span {
-      margin-top: 6px;
-      font-size: 14px;
-      color: var(--text-color);
-      font-family: 'EB Garamond', serif;
-    }
-
-    .hover-hint {
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 14px;
-      color: rgba(89,44,56,0.6);
-      pointer-events: none;
-      transition: opacity 0.8s ease;
-    }
-
-    .logo-card.flipped + .hover-hint { opacity: 0; }
-
-    @media (max-width: 900px) { 
-      :root { --logo-size: 260px; } 
-      .back-row img { height: var(--logo-size); } 
-    }
-
-    @media (max-width: 520px) { 
-      :root { --logo-size: 160px; } 
-      .back-row { gap:8px; } 
-    }
-
-    footer {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      font-size: 14px;
-      opacity: 0.85;
-      display: flex;
-      justify-content: space-between;
-      width: calc(100% - 20px);
-      padding-right: 10px;
-      pointer-events: none;
-    }
-    footer span { pointer-events: auto; }
-
-
-/* ------------------------------------------------ */
-/* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
-/* ------------------------------------------------ */
-@media (max-width: 720px) {
-
-  .hero {
-    padding: 30px 10px;
-    padding-top: 70px;
-    flex-direction: column;
+  nav ul{
+    display:none;
+    flex-direction:column;
+    background:var(--dropdown-bg);
+    position:absolute;
+    width:100%;
+    top:60px;
+    left:0;
+    padding:20px;
+    gap:18px;
+    border-top:1px solid rgba(0,0,0,0.05);
   }
 
-  :root {
-    --logo-size: 200px;
-  }
+  nav ul.open{ display:flex; }
 
-  .brand {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    text-align: center;
-  }
-
-  .brand-wrap {
-    padding: 10px;
-  }
-
-  .back-item img {
-    height: 150px;
-  }
-
-  .back-row {
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hover-hint {
-    bottom: -12px;
-    font-size: 12px;
-  }
-
-  footer {
-    position: static;
-    margin-top: 40px;
-    text-align: center;
-    flex-direction: column;
-    gap: 4px;
+  .dropdown{
+    position:static;
+    transform:none;
+    width:100%;
+    border:none;
+    box-shadow:none;
   }
 }
 
-  </style>
+/* MAIN HOMEPAGE CONTENT */
+main{
+  max-width:900px;
+  margin:0 auto;
+  padding:40px;
+  text-align:center;
+}
+
+/* FLIPPING LOGO (same behavior as contact) */
+.flip-logo-container{
+  width:300px;
+  height:300px;
+  margin:0 auto 40px auto;
+  perspective:1000px;
+}
+
+.flip-logo{
+  width:100%;
+  height:100%;
+  transition:transform 1.3s ease;
+  transform-style:preserve-3d;
+  position:relative;
+}
+
+.flip-logo:hover{
+  transform:rotateY(180deg);
+}
+
+.flip-face{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+}
+
+.flip-back{ transform:rotateY(180deg); }
+
+/* 3-image horizontal row on desktop */
+.image-row{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-top:40px;
+}
+
+.image-row img{
+  width:28%;
+  height:auto;
+  object-fit:cover;
+}
+
+/* MOBILE: vertical stacking */
+@media(max-width:720px){
+  .flip-logo-container{
+    width:200px;
+    height:200px;
+  }
+
+  .image-row{
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+  }
+
+  .image-row img{
+    width:90%;
+  }
+}
+
+/* FOOTER */
+footer{
+  margin-top:auto;
+  padding:10px 20px 20px 20px;
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  opacity:.85;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="nav-wrap">
-    <nav aria-label="Main Navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
+<!-- NAVIGATION -->
+<div class="nav-wrap">
+  <button class="hamburger">☰</button>
 
-        <li>
-          <button aria-haspopup="true" aria-expanded="false" id="lantBtn">Lantignié ▾</button>
-          <div class="dropdown" role="menu">
-            <a role="menuitem" href="#">Terrior</a>
-            <a role="menuitem" href="#">Associatie</a>
-            <a role="menuitem" href="#">Wijnmakers</a>
-          </div>
-        </li>
+  <nav aria-label="Main Navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
 
-        <li>
-          <a href="wijnen.html">Wijnen ▾</a>
-          <div class="dropdown">
-            <a role="menuitem" href="wit.html">Wit</a>
-            <a role="menuitem" href="rood.html">Rood</a>
-          </div>
-        </li>
-
-        <li>
-          <button aria-haspopup="true" aria-expanded="false" id="blogBtn">Blog ▾</button>
-          <div class="dropdown" role="menu">
-            <a role="menuitem" href="#">Essays</a>
-            <a role="menuitem" href="#">Pairing</a>
-            <a role="menuitem" href="#">Beelden</a>
-          </div>
-        </li>
-
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-
-      </ul>
-    </nav>
-  </div>
-
-  <main class="hero">
-    <div class="brand-wrap" id="brandWrap">
-
-      <div class="brand">
-
-        <div class="logo-card" id="logoCard" tabindex="0" role="button">
-          <div class="card-face card-front">
-            <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
-          </div>
-
-          <div class="card-face card-back">
-            <div class="back-row">
-              <div class="back-item">
-                <a href="Blog/Essays/essay1.html"><img src="images/essay1.jpg"></a>
-                <span>Terroir 1</span>
-              </div>
-              <div class="back-item">
-                <a href="about.html"><img src="images/imagelast.jpg"></a>
-                <span>About</span>
-              </div>
-              <div class="back-item">
-                <a href="wijnen.html"><img src="images/winesindex.jpg"></a>
-                <span>Wijnen</span>
-              </div>
-            </div>
-          </div>
+      <li>
+        <button id="lantBtn">Lantignié ▾</button>
+        <div class="dropdown">
+          <a href="#">Terrior</a>
+          <a href="#">Associatie</a>
+          <a href="#">Wijnmakers</a>
         </div>
+      </li>
 
-        <span class="hover-hint">Beweeg Hier ▲</span>
+      <li>
+        <a href="wijnen.html">Wijnen ▾</a>
+        <div class="dropdown">
+          <a href="#">Wit</a>
+          <a href="#">Rood</a>
+        </div>
+      </li>
 
+      <li>
+        <button id="blogBtn">Blog ▾</button>
+        <div class="dropdown">
+          <a href="#">Essays</a>
+          <a href="#">Pairing</a>
+          <a href="#">Beelden</a>
+        </div>
+      </li>
+
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- FLIPPING LOGO -->
+  <div class="flip-logo-container">
+    <div class="flip-logo">
+      <div class="flip-face flip-front">
+        <img src="images/logo-bar VER - border.jpg" alt="Logo">
+      </div>
+      <div class="flip-face flip-back">
+        <img src="images/logo-bar back.jpg" alt="Logo Back">
       </div>
     </div>
-  </main>
+  </div>
 
-  <footer>
-    <span>© 2025 Vers Le Vin</span>
-    <span>by Stijn Verschelden</span>
-  </footer>
+  <!-- THREE HOMEPAGE IMAGES -->
+  <div class="image-row">
+    <img src="images/img1.jpg" alt="">
+    <img src="images/img2.jpg" alt="">
+    <img src="images/img3.jpg" alt="">
+  </div>
 
+</main>
+
+<footer>
+  <span>© 2025 Vers Le Vin</span>
+  <span>by Stijn Verschelden</span>
+</footer>
+
+<!-- MOBILE MENU SCRIPT -->
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const controls = [{ btnId: 'lantBtn' }, { btnId: 'blogBtn' }];
-  controls.forEach(c => {
-    const btn = document.getElementById(c.btnId);
-    if (!btn) return;
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-      const menu = btn.nextElementSibling;
-      if (menu) menu.style.display = expanded ? 'none' : 'block';
-    });
-    btn.addEventListener('keydown', (e) => { 
-      if (e.key==='Escape') { 
-        btn.setAttribute('aria-expanded','false'); 
-        const menu=btn.nextElementSibling;
-        if(menu)menu.style.display='none';
-        btn.blur();
-      }
-    });
-  });
-  document.addEventListener('click', (e) => {
-    controls.forEach(c => {
-      const btn = document.getElementById(c.btnId);
-      if (!btn) return;
-      const menu = btn.nextElementSibling;
-      if (!menu) return;
-      if (!btn.contains(e.target) && !menu.contains(e.target)) {
-        btn.setAttribute('aria-expanded', 'false');
-        menu.style.display = 'none';
-      }
-    });
-  });
+document.querySelector(".hamburger").addEventListener("click", () => {
+  document.querySelector("nav ul").classList.toggle("open");
 });
-
-(function () {
-  const card = document.getElementById('logoCard');
-  function toggleFlip() {
-    card.classList.toggle('flipped');
-  }
-  card.addEventListener('click', toggleFlip);
-  card.addEventListener('mouseenter', () => card.classList.add('flipped'));
-  card.addEventListener('mouseleave', () => card.classList.remove('flipped'));
-})();
 </script>
 
 </body>
