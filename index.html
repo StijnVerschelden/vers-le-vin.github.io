@@ -322,6 +322,11 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       padding-right: 10px;
       pointer-events: none;
   }
+  
+  .back-item a {
+  -webkit-tap-highlight-color: rgba(0, 0, 255, 0.3); /* blue ripple */
+}
+
 }
 
   </style>
@@ -473,6 +478,15 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+  // MOBILE: hide hint after first flip
+const logoCard = document.getElementById("logoCard");
+const hint = document.querySelector(".hover-hint");
+
+logoCard.addEventListener("click", () => {
+  hint.style.opacity = "0";
+});
+
+  
 </script>
 
 </body>
