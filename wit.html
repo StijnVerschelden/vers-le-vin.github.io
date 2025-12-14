@@ -21,6 +21,11 @@
   --dropdown-border:rgba(89,44,56,0.06);
 }
 
+    /* GLOBAL BOX SIZING FIX — IMPORTANT */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+  
 html,body{height:100%;margin:0;}
 
 body{
@@ -112,45 +117,135 @@ main{
   width:100%;
 }
 
+/* --- CLICK FLIP WINE CARDS (like wijnen.html, but click) --- */
+
 .wine-card{
-  position:relative;
-  max-width:360px;
-  margin:0 auto;
+  width: 360px;
+  max-width: 92vw;
+  margin: 0 auto;
+  perspective: 1000px;
 }
 
-.wine-card img{
-  width:100%;
-  height:auto;
-  display:block;
-  border-radius:6px;
-  box-shadow:0 8px 30px rgba(89,44,56,0.1);
+.wine-flip{
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.1s ease;
+  cursor: pointer;
 }
 
-/* description box */
-.wine-info{
+.wine-card.is-flipped .wine-flip{
+  transform: rotateY(180deg);
+}
+
+.wine-face{
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(89,44,56,0.10);
+}
+
+/* FRONT */
+.wine-front{
+  background: transparent;
+}
+
+.wine-front img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Keep your “label” look on the front */
+.wine-front .wine-info{
+  background: rgba(243,236,220,0.95);
+  padding: 14px 18px;
+  text-align: center;
+  border-top: 1px solid rgba(89,44,56,0.10);
+}
+
+.wine-front .wine-info h3{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.wine-front .wine-info p{
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* BACK */
+.wine-back{
   position:absolute;
-  bottom:-40px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(243,236,220,0.95);
+  inset:0;
+  transform:rotateY(180deg);
+  background: rgba(243,236,220,0.98);
+  display:flex;
+  align-items:center;
+  justify-content:center;
   padding:14px 18px;
-  width:85%;
-  text-align:center;
-  border-radius:6px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.wine-info h3{
-  margin:0;
-  font-size:16px;
+
+.wine-back .back-inner{
+  width: 100%;
+  text-align: center;
+}
+
+.wine-back h3{
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.wine-back p{
+  margin: 6px 0;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* Accessibility: show focus */
+.wine-card:focus-within .wine-face{
+  outline: 2px solid rgba(89,44,56,0.25);
+  outline-offset: 3px;
+}
+  /* --- Wine info table --- */
+.wine-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:12px 0 14px;
+  font-size:12px;
+}
+
+.wine-table td{
+  padding:4px 0;
+  vertical-align:top;
+}
+
+.wine-table td:first-child{
   font-weight:600;
+  padding-right:10px;
+  white-space:nowrap;
+  text-align:left;
 }
 
-.wine-info p{
-  margin:6px 0 0;
-  font-size:14px;
-  line-height:1.2;
+.wine-table td:last-child{
+  text-align:right;
 }
+
+.wine-description{
+  margin-top:8px;
+  font-size:12px;
+  line-height:1.4;
+  text-align:justify;
+}
+
 
   footer {
       margin-top:auto;
@@ -159,7 +254,7 @@ main{
       display:flex;
       justify-content:space-between;
       opacity:0.85;
-    }
+  }
   
 /* ---------------- MOBILE ---------------- */
 @media(max-width:720px){
@@ -211,17 +306,56 @@ main{
 </nav>
 </div>
 
+
 <!-- MAIN -->
 <main>
 <div class="wine-grid">
 
-  <div class="wine-card">
-    <img src="images/cosimaface.jpg" alt="DES VERGERS">
+  <!-- CARD 1: LE BLANC -->
+<div class="wine-card" tabindex="0" role="button" aria-label="Open wine details">
+  <div class="wine-flip">
+
+    <!-- FRONT -->
+    <div class="wine-face wine-front">
+      <img src="images/cosimaface.jpg" alt="DES VERGERS">
     <div class="wine-info">
       <h3>Château des Vergers, Beaujolais Lantignié</h3>
       <p>Le Blanc 2024</p>
+      </div>
     </div>
+
+   <!-- BACK -->
+<div class="wine-face wine-back">
+  <div class="back-inner">
+    <h3>Château des Vergers</h3>
+
+    <table class="wine-table">
+      <tbody>
+        <tr><td>Appellation</td><td>Beaujolais Lantignié</td></tr>
+        <tr><td>Vintage</td><td>2024</td></tr>
+        <tr><td>Stijl</td><td>Strak & Mineraal</td></tr>
+        <tr><td>Bodem</td><td>Pierre Bleue</td></tr>
+        <tr><td>Aroma’s</td><td>Rijpe appel, frisse kruiden, amandel</td></tr>
+        <tr><td>Opvoeding</td><td>Beton</td></tr>
+        <tr><td>Bewaarpotentieel</td><td>4 - 5 jaar</td></tr>
+        <tr><td>Serveren</td><td>8 - 10 °C</td></tr>
+        <tr><td>Alcohol</td><td>12%</td></tr>
+        <tr><td>Prijs</td><td>€21.50</td></tr>
+      </tbody>
+    </table>
+
+    <p class="wine-description">
+Cosima haar Cuvée Le Blanc is afkomstig van een uniek pierre bleue-perceel op 300 meter hoogte, met een zuid- tot zuidwestelijke oriëntatie. Dit terroir staat normaal bekend om het voortbrengen van kruidige, gestructureerde rode wijnen. Met Le Blanc bewijst Cosima echter dat deze ondergrond ook kan leiden tot een frisse, minerale witte wijn, gekenmerkt door aroma’s van lentebloesem en frisse kruiden.
+
+Deze wijn is gemaakt via een lange persing waardoor subtiele oxidatieve aroma’s vrijkomen. Daarna wordt het nog voor een jaar deels op houten vaten en deels op inox gerijpt.
+    </p>
   </div>
+</div>
+
+  </div>
+</div>
+  
+
 
    <div class="wine-card">
     <img src="images/axiome.jpg" alt="LES CAPRÉOLES">
