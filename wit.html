@@ -355,23 +355,94 @@ Deze wijn is gemaakt via een lange persing waardoor subtiele oxidatieve aroma’
   </div>
 </div>
   
+ <!-- CARD 2: AXIOME -->
+<div class="wine-card" tabindex="0" role="button" aria-label="Open wine details">
+  <div class="wine-flip">
 
-
-   <div class="wine-card">
-    <img src="images/axiome.jpg" alt="LES CAPRÉOLES">
+    <!-- FRONT -->
+    <div class="wine-face wine-front">
+      <img src="images/axiome.jpg" alt="LES CAPRÉOLES">
     <div class="wine-info">
       <h3>Domaine les Capréoles, Beaujolais Lantignié</h3>
       <p>Axiome 2024</p>
+      </div>
     </div>
-  </div>
 
-   <div class="wine-card">
-    <img src="images/FBWIT1.jpg" alt="FRÉDÉRIC BERNE">
+   <!-- BACK -->
+<div class="wine-face wine-back">
+  <div class="back-inner">
+    <h3>Domaine les Capréoles</h3>
+
+    <table class="wine-table">
+      <tbody>
+        <tr><td>Appellation</td><td>Beaujolais Lantignié</td></tr>
+        <tr><td>Vintage</td><td>2024</td></tr>
+        <tr><td>Stijl</td><td>Fijn & Mineraal</td></tr>
+        <tr><td>Bodem</td><td>Glacier Moraines</td></tr>
+        <tr><td>Aroma’s</td><td>Peer, lindebloesems, brioche</td></tr>
+        <tr><td>Opvoeding</td><td>1 jaar eik</td></tr>
+        <tr><td>Bewaarpotentieel</td><td>5 - 7 jaar</td></tr>
+        <tr><td>Serveren</td><td>10 - 12°C</td></tr>
+        <tr><td>Alcohol</td><td>13%</td></tr>
+        <tr><td>Prijs</td><td>€22.50</td></tr>
+      </tbody>
+    </table>
+
+    <p class="wine-description">
+Deze wijn is afkomstig van een uniek terroir, gevormd door afzettingsmateriaal dat door het smeltwater van gletsjers duizenden jaren geleden werd meegevoerd. De bodem bestaat uit glaciaire morenes, wat een ideale ondergrond vormt voor de teelt van Chardonnay.
+De wijn rijpte gedurende 16 maanden op eikenhouten vaten, waarbij het hout subtiel en harmonieus geïntegreerd is en nooit domineert. In de neus tonen zich aroma’s van fris fruit zoals peer, rode appel en citrus, aangevuld met frisse kruidigheid en bloesemtonen met naunces van gerookte accenten, brioche en amandel.
+In de mond presenteert de wijn zich met een volle, ronde aanzet dankzij de houtopvoeding, mooi ondersteund door strakke, verfrissende zuren. De structuur is evenwichtig en precies, met een lange afdronk die uitmondt in een fijne minerale nasmaak.
+    </p>
+  </div>
+</div>
+
+  </div>
+</div>
+
+ <!-- CARD 3: BLANC -->
+<div class="wine-card" tabindex="0" role="button" aria-label="Open wine details">
+  <div class="wine-flip">
+
+    <!-- FRONT -->
+    <div class="wine-face wine-front">
+     <img src="images/FBWIT1.jpg" alt="FRÉDÉRIC BERNE">
     <div class="wine-info">
       <h3>Domaine Frédéric Berne, Beaujolais Lantignié</h3>
       <p>Blanc 2024</p>
+      </div>
     </div>
+
+   <!-- BACK -->
+<div class="wine-face wine-back">
+  <div class="back-inner">
+    <h3>Domaine Frédéric Berne</h3>
+
+    <table class="wine-table">
+      <tbody>
+        <tr><td>Appellation</td><td>Beaujolais Lantignié</td></tr>
+        <tr><td>Vintage</td><td>2024</td></tr>
+        <tr><td>Stijl</td><td>Fris & Floraal</td></tr>
+        <tr><td>Bodem</td><td>Glacier Moraines</td></tr>
+        <tr><td>Aroma’s</td><td>Peer, hooi, florale toetsen</td></tr>
+        <tr><td>Opvoeding</td><td>1 jaar eik/ inox</td></tr>
+        <tr><td>Bewaarpotentieel</td><td>5 - 7 jaar</td></tr>
+        <tr><td>Serveren</td><td>10 - 12°C</td></tr>
+        <tr><td>Alcohol</td><td>12%</td></tr>
+        <tr><td>Prijs</td><td>€21.90</td></tr>
+      </tbody>
+    </table>
+
+    <p class="wine-description">
+Deze wijn is afkomstig van een terroir van glaciale morenes, gevormd door afzettingen van een gletsjer. Het is gemaakt via een maceration carbonique van 2 dagen wat zorgt voor een heel lichte, subtiele tannine.
+In de neus presenteert hij zich met aroma’s van peer, gedroogd hooi en verfijnde florale toetsen. De wijn is ongefilterd en rijpte gedurende 12 maanden, deels op eikenhouten vaten en deels op inox, wat zorgt voor een evenwicht tussen rondheid, frisheid.
+Serveren niet te koel: rond 10 °C komt de wijn het best tot zijn recht en ontvouwt hij volledig zijn aromatische finesse.
+    </p>
   </div>
+</div>
+
+  </div>
+</div>
+
 
 
 </div>
@@ -382,6 +453,44 @@ Deze wijn is gemaakt via een lange persing waardoor subtiele oxidatieve aroma’
 <span>© 2025 Vers Le Vin</span>
 <span>by Stijn Verschelden</span>
 </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.wine-card');
+
+    function closeAll(except = null){
+      cards.forEach(c => { if (c !== except) c.classList.remove('is-flipped'); });
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // prevent weird text selection on double click
+        e.preventDefault?.();
+
+        const willOpen = !card.classList.contains('is-flipped');
+        closeAll(card);
+        card.classList.toggle('is-flipped', willOpen);
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const willOpen = !card.classList.contains('is-flipped');
+          closeAll(card);
+          card.classList.toggle('is-flipped', willOpen);
+        }
+        if (e.key === 'Escape') {
+          card.classList.remove('is-flipped');
+        }
+      });
+    });
+
+    // click outside closes all
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.wine-card')) closeAll();
+    });
+  });
+</script>
 
 </body>
 </html>
