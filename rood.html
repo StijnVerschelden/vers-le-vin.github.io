@@ -172,7 +172,16 @@ main{
 
 /* BACK */
 .wine-back{
-  overflow:auto;
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  background: rgba(243,236,220,0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 
