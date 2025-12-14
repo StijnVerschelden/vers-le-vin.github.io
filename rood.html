@@ -20,6 +20,11 @@
   --dropdown-border:rgba(89,44,56,0.06);
 }
 
+  /* GLOBAL BOX SIZING FIX — IMPORTANT */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+  
 html,body{height:100%;margin:0;}
 
 body{
@@ -172,18 +177,19 @@ main{
 
 /* BACK */
 .wine-back{
-  position: absolute;
-  inset: 0;
-  transform: rotateY(180deg);
+  position:absolute;
+  inset:0;
+  transform:rotateY(180deg);
   background: rgba(243,236,220,0.98);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 18px;
 
-  overflow: auto;
+  overflow:auto;
   -webkit-overflow-scrolling: touch;
 }
+
 
 .wine-back .back-inner{
   width: 100%;
