@@ -151,7 +151,7 @@
     /*          FOOTER            */
     /*----------------------------*/
     footer {
-      position:absolute;
+      position:fixed;
       bottom:10px;
       left:10px;
       font-size:14px;
@@ -161,6 +161,7 @@
       width:calc(100% - 20px);
       padding-right:10px;
       pointer-events:none;
+      z-index: 100;
     }
     footer span { pointer-events:auto; }
 
@@ -174,6 +175,7 @@
     flex-direction: column;
     gap: 40px;
     margin-top: 60px; /* reduce huge spacing */
+    padding-bottom: 60px; /* Add space so content doesn't hide under footer */
   }
 
   /* Make flip cards scale to screen width */
@@ -203,10 +205,12 @@
     min-width: 140px;
   }
 
-  /* Footer stays readable */
+ /* Footer stays readable and consistent */
   footer {
     font-size: 12px;
-    bottom: 8px;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
   }
 }
 
