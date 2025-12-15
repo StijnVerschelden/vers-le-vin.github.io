@@ -292,7 +292,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
   .back-item img,
   .back-item video {
-    height: 140px;
+    height: 180px;
     width: auto;
     max-width: 90vw;
   }
