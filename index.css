@@ -249,25 +249,29 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       .back-row { gap:8px; } 
     }
 
-   footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:14px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
+       footer {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      padding-right: 10px;
+      margin-top: auto;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      opacity: 0.85;
+      z-index: 100;
     }
-  
 
 
-/* ------------------------------------------------ */
 /* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
-/* ------------------------------------------------ */
+
 @media (max-width: 720px) {
 
   .hero {
     padding: 30px 10px;
     padding-top: 70px;
+    padding-bottom: 80px; /* Add space so content doesn't hide under footer */
     flex-direction: column;
   }
 
@@ -286,16 +290,17 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     padding: 10px;
   }
 
-  .back-item img 
+  .back-item img,
   .back-item video {
-    height: 180px;
+    height: 140px;
     width: auto;
+    max-width: 90vw;
   }
 
   .back-row {
-    flex-direction: column;   /* ← STACK VERTICALLY */
+    flex-direction: column;
     gap: 12px;
-    align-items: center;      /* keep centered */
+    align-items: center;
     justify-content: flex-start;
   }
 
@@ -304,9 +309,9 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     font-size: 10px;
   }
 
-      footer {
-      font-size:12px;
-    }
-
-
+  footer {
+    font-size: 12px;
+    bottom: 10px;
+    left: 10px;
+  }
 }
