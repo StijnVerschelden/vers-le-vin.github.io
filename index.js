@@ -73,32 +73,3 @@ logoCard.addEventListener("click", () => {
 });
 
 
-// Mobile hamburger toggle
-(function(){
-  const navWrap = document.querySelector('.nav-wrap');
-  const hamburger = document.querySelector('.hamburger');
-  if(!navWrap || !hamburger) return;
-
-  function setOpen(isOpen){
-    if(isOpen){
-      navWrap.classList.add('open');
-      hamburger.setAttribute('aria-expanded','true');
-      document.body.style.overflow = 'hidden';
-    } else {
-      navWrap.classList.remove('open');
-      hamburger.setAttribute('aria-expanded','false');
-      document.body.style.overflow = '';
-    }
-  }
-
-  hamburger.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    setOpen(!navWrap.classList.contains('open'));
-  });
-
-  document.addEventListener('click', (e)=>{
-    if(!navWrap.classList.contains('open')) return;
-    if(!navWrap.contains(e.target)) setOpen(false);
-  });
-  window.addEventListener('resize', ()=> setOpen(false));
-})();
