@@ -213,11 +213,12 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     .back-item video {
       height: var(--logo-size);
       width: auto;
+      max-width: var(--logo-size);
       object-fit: cover;
       border-radius:6px;
       box-shadow: 0 8px 30px rgba(89,44,56,0.08);
       display:block;
-}
+    }
 
     .back-item span {
       margin-top: 6px;
