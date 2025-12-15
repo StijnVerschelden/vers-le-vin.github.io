@@ -164,22 +164,52 @@
     }
     footer span { pointer-events:auto; }
 
-    /* ------------------------------------------------ */
-/* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
+/* ------------------------------------------------ */
+/* 📱 MOBILE LAYOUT FIXES FOR WIJNEN PAGE          */
 /* ------------------------------------------------ */
 @media (max-width: 720px) {
-footer {
-      position:absolute;
-      bottom:10px;
-      left:10px;
-      font-size:12px;
-      opacity:0.85;
-      display:flex;
-      justify-content:space-between;
-      width:calc(100% - 20px);
-      padding-right:10px;
-      pointer-events:none;
-    }
+
+  /* Stack the wine cards vertically */
+  .wine-row {
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 60px; /* reduce huge spacing */
+  }
+
+  /* Make flip cards scale to screen width */
+  .wine-flip-container {
+    width: 80vw;      /* responsive width */
+    height: 80vw;     /* keep square ratio */
+    max-width: 320px; /* optional limit */
+    max-height: 320px;
+  }
+
+  /* Ensure images scale nicely */
+  .wine-face img {
+    object-fit: contain;
+  }
+
+  /* Navigation spacing */
+  nav ul {
+    gap: 16px;
+    font-size: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Dropdowns align left on mobile */
+  .dropdown {
+    left: 0;
+    transform: none;
+    min-width: 140px;
+  }
+
+  /* Footer stays readable */
+  footer {
+    font-size: 12px;
+    bottom: 8px;
+  }
+}
+
   </style>
 </head>
 <body>
