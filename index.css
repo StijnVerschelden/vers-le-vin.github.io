@@ -138,7 +138,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 .hamburger .line {
   display: block;
   height: 2px;
-  background: var(--text-color);
+  background: #592C38;
   margin: 5px 0;
   transition: transform 0.25s ease, opacity 0.2s ease;
 }
