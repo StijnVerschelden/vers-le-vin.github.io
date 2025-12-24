@@ -118,46 +118,7 @@ nav a:hover, nav button:hover { opacity:0.7; }
 .dropdown a:hover { background:rgba(89,44,56,0.06); }
 nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
-/* HAMBURGER BUTTON */
-.hamburger {
-  display: flex;  /* change from "none" to "flex" */
-  flex-direction: column; /* stack the three lines */
-  gap: 3px;
-  background: #F3ECDC;
-  border: none;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  left: 16px;
-  top: 12px;
-  z-index: 1100;
-}
 
-.hamburger .line {
-  display: block;
-  width: 20px;           /* fixed width so lines don't fill the whole button */
-  height: 4px;
-  background: #592C38;   /* change color if needed */
-  margin: 3px 0;
-  border-radius: 1px;
-  transition: transform .25s ease, opacity .2s ease;
-}
-
-.hamburger[aria-expanded="true"] .line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.hamburger[aria-expanded="true"] .line:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger[aria-expanded="true"] .line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
 
 .hero {
       flex:1;
@@ -325,13 +286,23 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 }
 .hamburger .line {
   width: 20px;           /* fixed width for each bar */
-  height: 4px;
+  height: 8px;
   background: #592C38;   /* bar color */
   border-radius: 1px;
   transition: transform .25s ease, opacity .2s ease;
   display: block;
 }
+.hamburger[aria-expanded="true"] .line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
 
+.hamburger[aria-expanded="true"] .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] .line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
   nav ul {
     display: none;
