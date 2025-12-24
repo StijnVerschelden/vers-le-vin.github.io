@@ -121,7 +121,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 /* HAMBURGER BUTTON */
 .hamburger {
   display: flex;  /* change from "none" to "flex" */
-  background: transparent;
+  background: #F3ECDC;
   border: none;
   width: 44px;
   height: 44px;
