@@ -8,264 +8,10 @@
 <!-- Caslon Antique -->
 <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
-
-:root{
-  --text-color:#592C38;
-  --bg:#F3ECDC;
-  --nav-gap:28px;
-  --nav-font-size:18px;
-  --dropdown-bg:rgba(242,240,208,0.98);
-  --dropdown-border:rgba(89,44,56,0.06);
-}
-
-  /* GLOBAL BOX SIZING FIX — IMPORTANT */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+<!-- External CSS for style -->
+ <link rel="stylesheet" href="rood.css">
   
-html,body{height:100%;margin:0;}
 
-body{
-  font-family:'CaslonAntiqueRegular','EB Garamond',serif;
-  background:var(--bg);
-  color:var(--text-color);
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
-}
-
-    /*----------------------------*/
-    /*      NAVIGATION COPY       */
-    /*----------------------------*/
-    nav ul, nav a, nav button {
-      font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
-    }
-    .nav-wrap {
-      display:flex;
-      justify-content:center;
-      padding:18px 24px;
-      background:transparent;
-    }
-    nav ul {
-      list-style:none;
-      margin:0;
-      padding:0;
-      display:flex;
-      gap:var(--nav-gap);
-      align-items:center;
-      font-size:var(--nav-font-size);
-    }
-    nav li { position:relative; }
-    nav a, nav button {
-      color:var(--text-color);
-      text-decoration:none;
-      background:none;
-      border:none;
-      padding:6px 8px;
-      cursor:pointer;
-      font:inherit;
-    }
-    nav a:hover, nav button:hover { opacity:0.7; }
-    .dropdown {
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      top:calc(100% + 10px);
-      min-width:180px;
-      background:var(--dropdown-bg);
-      border:1px solid var(--dropdown-border);
-      border-radius:6px;
-      padding:8px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.04);
-      display:none;
-      z-index:200;
-    }
-    .dropdown a {
-      display:block;
-      padding:8px 20px;
-      text-decoration:none;
-      color:var(--text-color);
-      font-size:16px;
-    }
-    .dropdown a:hover { background:rgba(89,44,56,0.06); }
-
-    nav li:hover > .dropdown,
-    nav li:focus-within > .dropdown { display:block; }
-
-    @media(max-width:720px){
-      nav ul { flex-wrap:wrap; gap:12px; }
-      .dropdown { left:0; transform:none; min-width:150px; }
-    }
-
-
-/* ---------------- MAIN ---------------- */
-main{
-  flex:1;
-  display:flex;
-  justify-content:center;
-  padding:80px 20px;
-}
-
-.wine-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:80px;
-  max-width:700px;
-  width:100%;
-}
-/* --- CLICK FLIP WINE CARDS (like wijnen.html, but click) --- */
-
-.wine-card{
-  width: 360px;
-  max-width: 92vw;
-  margin: 0 auto;
-  perspective: 1000px;
-}
-
-.wine-flip{
-  width: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1.1s ease;
-  cursor: pointer;
-}
-
-.wine-card.is-flipped .wine-flip{
-  transform: rotateY(180deg);
-}
-
-.wine-face{
-  width: 100%;
-  backface-visibility: hidden;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(89,44,56,0.10);
-}
-
-/* FRONT */
-.wine-front{
-  background: transparent;
-}
-
-.wine-front img{
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Keep your “label” look on the front */
-.wine-front .wine-info{
-  background: rgba(243,236,220,0.95);
-  padding: 14px 18px;
-  text-align: center;
-  border-top: 1px solid rgba(89,44,56,0.10);
-}
-
-.wine-front .wine-info h3{
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.wine-front .wine-info p{
-  margin: 6px 0 0;
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-/* BACK */
-.wine-back{
-  position:absolute;
-  inset:0;
-  transform:rotateY(180deg);
-  background: rgba(243,236,220,0.98);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:14px 18px;
-
-  overflow:auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-
-.wine-back .back-inner{
-  width: 100%;
-  text-align: center;
-}
-
-.wine-back h3{
-  margin: 0 0 10px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.wine-back p{
-  margin: 6px 0;
-  font-size: 12px;
-  line-height: 1.35;
-}
-
-/* Accessibility: show focus */
-.wine-card:focus-within .wine-face{
-  outline: 2px solid rgba(89,44,56,0.25);
-  outline-offset: 3px;
-}
-  /* --- Wine info table --- */
-.wine-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:12px 0 14px;
-  font-size:12px;
-}
-
-.wine-table td{
-  padding:4px 0;
-  vertical-align:top;
-}
-
-.wine-table td:first-child{
-  font-weight:600;
-  padding-right:10px;
-  white-space:nowrap;
-  text-align:left;
-}
-
-.wine-table td:last-child{
-  text-align:right;
-}
-
-.wine-description{
-  margin-top:8px;
-  font-size:12px;
-  line-height:1.4;
-  text-align:justify;
-}
-
-
-  footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:14px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-    }
-  
-/* ---------------- MOBILE ---------------- */
-@media(max-width:720px){
-  main{padding:60px 16px;}
-  .wine-grid{gap:100px;}
-  .wine-info{bottom:-48px;}
-  
-  footer {
-      font-size:12px;
-    }
-}
-  
-</style>
 </head>
 
 <body>
@@ -273,6 +19,13 @@ main{
 <!-- NAV -->
 <div class="nav-wrap">
 <nav>
+  <!-- HAMBURGER (mobile) -->
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
+  <span class="line"></span>
+  <span class="line"></span>
+  <span class="line"></span>
+</button>
+
 <ul>
 <li><a href="index.html">Home</a></li>
 <li>
@@ -301,6 +54,7 @@ main{
 <li><a href="about.html">About</a></li>
 <li><a href="contact.html">Contact</a></li>
 </ul>
+
 </nav>
 </div>
 
@@ -764,44 +518,9 @@ Deze Régnié is nu al zeer toegankelijk op het fruit, maar zal zich met de tijd
 <span>© 2025 Vers Le Vin</span>
 <span>by Stijn Verschelden</span>
 </footer>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.wine-card');
 
-    function closeAll(except = null){
-      cards.forEach(c => { if (c !== except) c.classList.remove('is-flipped'); });
-    }
-
-    cards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        // prevent weird text selection on double click
-        e.preventDefault?.();
-
-        const willOpen = !card.classList.contains('is-flipped');
-        closeAll(card);
-        card.classList.toggle('is-flipped', willOpen);
-      });
-
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const willOpen = !card.classList.contains('is-flipped');
-          closeAll(card);
-          card.classList.toggle('is-flipped', willOpen);
-        }
-        if (e.key === 'Escape') {
-          card.classList.remove('is-flipped');
-        }
-      });
-    });
-
-    // click outside closes all
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.wine-card')) closeAll();
-    });
-  });
-</script>
-
+ <!-- External JavaScript -->
+  <script src="rood.js"></script>
   
 </body>
 </html>

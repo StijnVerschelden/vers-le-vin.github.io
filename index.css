@@ -399,7 +399,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
   .hover-hint {
     bottom: -15px;
-    font-size: 10px;
+    font-size: 8px;
   }
    footer {
     font-size: 12px;
