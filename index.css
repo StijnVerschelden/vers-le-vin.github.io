@@ -137,11 +137,15 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
 .hamburger .line {
   display: block;
+  width: 20px;           /* fixed width so lines don't fill the whole button */
   height: 2px;
-  background: #592C38;  /* change to a bright color to test, e.g., gold */
-  margin: 5px 0;
-  transition: transform 0.25s ease, opacity 0.2s ease;
+  background: #592C38;   /* change color if needed */
+  margin: 4px 0;
+  border-radius: 1px;
+  transition: transform .25s ease, opacity .2s ease;
+  box-shadow: none;
 }
+
 .hamburger[aria-expanded="true"] .line:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
