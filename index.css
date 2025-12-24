@@ -117,11 +117,43 @@ nav a:hover, nav button:hover { opacity:0.7; }
 }
 .dropdown a:hover { background:rgba(89,44,56,0.06); }
 nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
-@media(max-width:720px){
-  nav ul { flex-wrap:wrap; gap:12px; }
-  .dropdown { left:0; transform:none; min-width:150px; }
+
+/* HAMBURGER BUTTON */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  z-index: 1001;
 }
-    .hero {
+
+.hamburger .line {
+  display: block;
+  height: 2px;
+  background: var(--text-color);
+  margin: 5px 0;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.hamburger[aria-expanded="true"] .line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] .line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+.hero {
       flex:1;
       display:flex;
       align-items:center;
@@ -263,15 +295,78 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       z-index: 100;
     }
 
-
-/* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
-
+    /* 📱 MOBILE: 720px AND BELOW */
 @media (max-width: 720px) {
+  
+  /* show hamburger, hide desktop nav */
+  .hamburger {
+    display: flex;
+  }
 
+  nav ul {
+    display: none;
+  }
+
+  /* transparent overlay when menu is open */
+  .nav-wrap.open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 900;
+  }
+   /* slide-in menu from left */
+  .nav-wrap.open nav ul {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    bottom: 0;
+    width: 280px;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: var(--bg);
+    z-index: 950;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
+  .nav-wrap.open nav ul li {
+    width: 100%;
+  }
+   .nav-wrap.open nav ul a,
+  .nav-wrap.open nav ul button {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  .nav-wrap.open nav ul .dropdown {
+    position: static;
+    transform: none;
+    background: rgba(89, 44, 56, 0.06);
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 4px;
+  }
+  .nav-wrap.open nav ul .dropdown a {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  /* hero adjustments */
   .hero {
     padding: 30px 10px;
     padding-top: 70px;
-    padding-bottom: 80px; /* Add space so content doesn't hide under footer */
+    padding-bottom: 80px;
     flex-direction: column;
   }
 
@@ -285,15 +380,15 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     gap: 20px;
     text-align: center;
   }
-
   .brand-wrap {
     padding: 10px;
   }
 
   .back-item img,
   .back-item video {
-    height: 185px;
+    height: 140px;
     width: auto;
+    max-width: 90vw;
   }
 
   .back-row {
@@ -307,10 +402,10 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     bottom: -15px;
     font-size: 10px;
   }
-
-  footer {
+   footer {
     font-size: 12px;
     bottom: 10px;
     left: 10px;
   }
 }
+
