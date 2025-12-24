@@ -249,6 +249,104 @@ main{
   main{padding:60px 16px;}
   .wine-grid{gap:100px;}
   .wine-info{bottom:-48px;}
+
+  /* show hamburger, hide desktop nav */
+
+    .hamburger {
+  display: flex;
+  flex-direction: column; /* stack the three lines */
+  gap: 3px;
+  background: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  z-index: 1100;
+}
+.hamburger .line {
+  width: 20px;           /* fixed width for each bar */
+  height: 7px;
+  background: #592C38;   /* bar color */
+  border-radius: 3px;
+  transition: transform .25s ease, opacity .2s ease;
+  display: block;
+}
+.hamburger[aria-expanded="true"] .line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] .line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+  nav ul {
+    display: none;
+  }
+
+  /* transparent overlay when menu is open */
+  .nav-wrap.open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 900;
+  }
+   /* slide-in menu from left */
+  .nav-wrap.open nav ul {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    bottom: 0;
+    width: 280px;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: var(--bg);
+    z-index: 950;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
+  .nav-wrap.open nav ul li {
+    width: 100%;
+  }
+   .nav-wrap.open nav ul a,
+  .nav-wrap.open nav ul button {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  .nav-wrap.open nav ul .dropdown {
+    position: static;
+    transform: none;
+    background: rgba(89, 44, 56, 0.06);
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 4px;
+  }
+  .nav-wrap.open nav ul .dropdown a {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
   
   footer {
       font-size:12px;

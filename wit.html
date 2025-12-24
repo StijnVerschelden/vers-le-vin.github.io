@@ -19,7 +19,14 @@
 <!-- NAV -->
 <div class="nav-wrap">
 <nav>
+   <!-- HAMBURGER (mobile) -->
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
+  <span class="line"></span>
+  <span class="line"></span>
+  <span class="line"></span>
+</button>
 <ul>
+  
 <li><a href="index.html">Home</a></li>
 <li>
 <button id="lantBtn">Lantignié ▾</button>
@@ -198,43 +205,7 @@ Serveren niet te koel: rond 10 °C komt de wijn het best tot zijn recht en ontvo
 <span>by Stijn Verschelden</span>
 </footer>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.wine-card');
-
-    function closeAll(except = null){
-      cards.forEach(c => { if (c !== except) c.classList.remove('is-flipped'); });
-    }
-
-    cards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        // prevent weird text selection on double click
-        e.preventDefault?.();
-
-        const willOpen = !card.classList.contains('is-flipped');
-        closeAll(card);
-        card.classList.toggle('is-flipped', willOpen);
-      });
-
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const willOpen = !card.classList.contains('is-flipped');
-          closeAll(card);
-          card.classList.toggle('is-flipped', willOpen);
-        }
-        if (e.key === 'Escape') {
-          card.classList.remove('is-flipped');
-        }
-      });
-    });
-
-    // click outside closes all
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.wine-card')) closeAll();
-    });
-  });
-</script>
+  
 
 </body>
 </html>
