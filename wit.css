@@ -271,7 +271,7 @@ main{
 }
 .hamburger .line {
   width: 20px;           /* fixed width for each bar */
-  height: 5px;
+  height: 4px;
   background: #592C38;   /* bar color */
   border-radius: 3px;
   transition: transform .25s ease, opacity .2s ease;

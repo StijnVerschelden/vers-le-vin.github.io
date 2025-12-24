@@ -118,8 +118,6 @@ nav a:hover, nav button:hover { opacity:0.7; }
 .dropdown a:hover { background:rgba(89,44,56,0.06); }
 nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
-
-
 .hero {
       flex:1;
       display:flex;
@@ -286,7 +284,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 }
 .hamburger .line {
   width: 20px;           /* fixed width for each bar */
-  height: 5px;
+  height: 4px;
   background: #592C38;   /* bar color */
   border-radius: 3px;
   transition: transform .25s ease, opacity .2s ease;
