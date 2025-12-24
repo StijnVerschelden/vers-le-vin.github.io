@@ -1,5 +1,4 @@
-
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 :root{
   --text-color: #592C38;
   --bg: #F3ECDC;
@@ -79,10 +78,86 @@ nav a:hover, nav button:hover { opacity:0.7; }
 .dropdown a:hover { background:rgba(89,44,56,0.06); }
 nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
-/* MOBILE NAVIGATION */
-@media(max-width:720px){
+/* ABOUT PAGE CONTENT */
+.content-wrap {
+  padding: 0 24px;
+  font-size:17px;
+  line-height:1.25;
+}
+.content-wrap h1 {
+  font-size:17px;
+  margin-bottom:5px;
+  font-weight:400;
+}
+/* CONTACT PAGE — FLIPPING LOGO */
+.flip-logo-container {
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  position: absolute;
+  left: 80%;
+  transform: translateX(-140%);
+  top: 300px; /* adjust up/down */
+}
 
-  /* show hamburger, hide desktop nav */
+.flip-logo {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.3s ease;
+}
+
+.flip-logo:hover {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-front img,
+.flip-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+  
+  /* Hint overlay */
+    .hover-hint {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: rgba(89,44,56,0.6);
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+  footer {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      opacity: 0.85;
+      display: flex;
+      justify-content: space-between;
+      width: calc(100% - 20px);
+      padding-right: 10px;
+      pointer-events: none;
+    }
+    footer span { pointer-events: auto; }
+  
+    @media(max-width:720px){
+   /* show hamburger, hide desktop nav */
 
     .hamburger {
   display: flex;
@@ -179,72 +254,12 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     padding: 8px 14px;
     font-size: 14px;
   }
-}
-
-/* ABOUT PAGE CONTENT */
-.content-wrap {
-  padding: 0 24px;
-  font-size:15px;
-  line-height:1.25;
-}
-.content-wrap h1 {
-  font-size:15px;
-  margin-bottom:5px;
-  font-weight:400;
-}
-
-  
-  /* Hint overlay */
-    .hover-hint {
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 14px;
-      color: rgba(89,44,56,0.6);
-      pointer-events: none;
-      transition: opacity 0.8s ease;
-    }
-
-
-  /* Reset the logo positioning */
-  .flip-logo-container {
-    position: static;
-    width: 250px;
-    height: 250px;
-    margin: 0 auto 24px;
-    transform: none;
-  }
-
-  /* Stack everything normally */
-  .contact-wrap {
-    align-items: center;
-    text-align: center;
-  }
-
-  /* Move contact text below logo */
-  .contact-info {
-    position: static !important;
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
-    line-height: 1.0;
-  }
-
-  /* Smaller hint */
-  .hover-hint {
-    bottom: -14px;
-    font-size: 12px;
-  }
-
-   footer {
+ footer {
       margin-top:auto;
       padding:10px 20px;
       font-size:12px;
       display:flex;
       justify-content:space-between;
       opacity:0.85;
-  
+    }
 }
-  
-
