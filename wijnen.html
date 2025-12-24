@@ -8,204 +8,21 @@
   <!-- Caslon Antique -->
   <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+  <!-- External CSS for style --> 
+  <link rel="stylesheet" href="wijnen.css">
 
-    :root{
-      --text-color: #592C38;
-      --bg: #F3ECDC;
-      --nav-gap: 28px;
-      --nav-font-size: 18px;
-      --dropdown-bg: rgba(242,240,208,0.98);
-      --dropdown-border: rgba(89,44,56,0.06);
-      --logo-size: 260px;
-    }
-
-    html,body { height:100%; margin:0; }
-
-    body {
-      font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
-      background-color: var(--bg);
-      color: var(--text-color);
-      display:flex;
-      flex-direction:column;
-      position:relative;
-      overflow-x:hidden;
-    }
-
-    /*----------------------------*/
-    /*      NAVIGATION COPY       */
-    /*----------------------------*/
-    nav ul, nav a, nav button {
-      font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
-    }
-    .nav-wrap {
-      display:flex;
-      justify-content:center;
-      padding:18px 24px;
-      background:transparent;
-    }
-    nav ul {
-      list-style:none;
-      margin:0;
-      padding:0;
-      display:flex;
-      gap:var(--nav-gap);
-      align-items:center;
-      font-size:var(--nav-font-size);
-    }
-    nav li { position:relative; }
-    nav a, nav button {
-      color:var(--text-color);
-      text-decoration:none;
-      background:none;
-      border:none;
-      padding:6px 8px;
-      cursor:pointer;
-      font:inherit;
-    }
-    nav a:hover, nav button:hover { opacity:0.7; }
-    .dropdown {
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      top:calc(100% + 10px);
-      min-width:180px;
-      background:var(--dropdown-bg);
-      border:1px solid var(--dropdown-border);
-      border-radius:6px;
-      padding:8px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.04);
-      display:none;
-      z-index:200;
-    }
-    .dropdown a {
-      display:block;
-      padding:8px 20px;
-      text-decoration:none;
-      color:var(--text-color);
-      font-size:16px;
-    }
-    .dropdown a:hover { background:rgba(89,44,56,0.06); }
-
-    nav li:hover > .dropdown,
-    nav li:focus-within > .dropdown { display:block; }
-
-    @media(max-width:720px){
-      nav ul { flex-wrap:wrap; gap:12px; }
-      .dropdown { left:0; transform:none; min-width:150px; }
-    }
-
-    /*----------------------------*/
-    /*          MAIN              */
-    /*----------------------------*/
-    /* --- WIJNEN PAGE — contact-style flipping logos --- */
-
-.wine-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  margin-top: 200px;
-}
-
-.wine-flip-container {
-  width: 300px;
-  height: 300px;
-  perspective: 1000px;
-  position: relative;
-}
-
-.wine-flip {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1.3s ease;
-}
-
-.wine-flip:hover {
-  transform: rotateY(180deg);
-}
-
-.wine-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
-
-.wine-face img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* same as Contact page */
-}
-
-.wine-back {
-  transform: rotateY(180deg);
-}
-
-
-
-    /*----------------------------*/
-    /*          FOOTER            */
-    /*----------------------------*/
-    footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:14px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-    }
-    
-/* ------------------------------------------------ */
-/* 📱 MOBILE LAYOUT FIXES FOR WIJNEN PAGE          */
-/* ------------------------------------------------ */
-@media (max-width: 720px) {
-
-  /* Stack the wine cards vertically */
-  .wine-row {
-    flex-direction: column;
-    gap: 40px;
-    margin-top: 60px; /* reduce huge spacing */
-    padding-bottom: 60px; /* Add space so content doesn't hide under footer */
-  }
-
-  /* Make flip cards scale to screen width */
-  .wine-flip-container {
-    width: 80vw;      /* responsive width */
-    height: 80vw;     /* keep square ratio */
-    max-width: 320px; /* optional limit */
-    max-height: 320px;
-  }
-
-  /* Ensure images scale nicely */
-  .wine-face img {
-    object-fit: contain;
-  }
-
-  
-  footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:12px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-  
-}
-  
- 
-}
-
-  </style>
 </head>
 <body>
 
 <!-- NAV -->
 <div class="nav-wrap">
   <nav aria-label="Main Navigation">
+    <!-- HAMBURGER (mobile) -->
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
+  <span class="line"></span>
+  <span class="line"></span>
+  <span class="line"></span>
+</button>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li>
@@ -275,44 +92,8 @@
   <span>by Stijn Verschelden</span>
 </footer>
 
-<script>
-  /* Dropdown click toggle */
-  document.addEventListener('DOMContentLoaded', function () {
-    const controls = [{ btnId:'lantBtn' }, { btnId:'blogBtn' }];
-    controls.forEach(c=>{
-      const btn=document.getElementById(c.btnId);
-      if(!btn) return;
-      btn.addEventListener('click',()=>{
-        const expanded = btn.getAttribute('aria-expanded')==='true';
-        btn.setAttribute('aria-expanded', expanded?'false':'true');
-        const menu = btn.nextElementSibling;
-        if(menu) menu.style.display = expanded?'none':'block';
-      });
-      btn.addEventListener('keydown',e=>{
-        if(e.key==='Escape'){
-          btn.setAttribute('aria-expanded','false');
-          const menu=btn.nextElementSibling;
-          if(menu) menu.style.display='none';
-          btn.blur();
-        }
-      });
-    });
-
-    /* close menus on outside click */
-    document.addEventListener('click',e=>{
-      controls.forEach(c=>{
-        const btn=document.getElementById(c.btnId);
-        if(!btn) return;
-        const menu=btn.nextElementSibling;
-        if(!menu) return;
-        if(!btn.contains(e.target) && !menu.contains(e.target)){
-          btn.setAttribute('aria-expanded','false');
-          menu.style.display='none';
-        }
-      });
-    });
-  });
-</script>
+ <!-- External JavaScript -->
+  <script src="wijnen.js"></script>
 
 </body>
 </html>
