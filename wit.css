@@ -61,7 +61,7 @@ body{
       position:absolute;
       left:50%;
       transform:translateX(-50%);
-      top:calc(100% + 10px);
+      top:100%;
       min-width:180px;
       background:var(--dropdown-bg);
       border:1px solid var(--dropdown-border);
