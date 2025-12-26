@@ -378,7 +378,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   }
 
   :root {
-    --logo-size: 320px;
+    --logo-size: 300px;
   }
 
   .brand {
