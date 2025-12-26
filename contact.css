@@ -91,8 +91,8 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 }
 /* CONTACT PAGE — FLIPPING LOGO */
 .flip-logo-container {
-  width: 320px;
-  height: 320px;
+  width: 350px;
+  height: 350px;
   perspective: 1000px;
     position: relative;
     flex-shrink: 0;
