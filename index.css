@@ -233,7 +233,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
     .hover-hint {
       position: absolute;
-      bottom: -30px;
+      bottom: -25px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 14px;
