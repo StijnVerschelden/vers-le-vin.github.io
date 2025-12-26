@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 :root{
   --text-color: #592C38;
   --bg: #F3ECDC;
@@ -77,184 +77,53 @@ nav a:hover, nav button:hover { opacity:0.7; }
 }
 .dropdown a:hover { background:rgba(89,44,56,0.06); }
 nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
-
-/* ...existing code... */
-
-/* CONTACT PAGE — MAIN WRAPPER */
-.contact-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-/* CONTACT PAGE — FLIPPING LOGO */
-.flip-logo-container {
-  width: 280px;
-  height: 280px;
-  margin: 0 auto 30px;
-  perspective: 1000px;
-  position: relative;
-}
-
-.flip-logo {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1.3s ease;
-  cursor: pointer;
-}
-
-@media (hover: hover) {
-  .flip-logo:hover {
-    transform: rotateY(180deg);
-  }
-}
-
-.flip-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flip-front img,
-.flip-back img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 8px 30px rgba(89,44,56,0.08);
-}
-
-.flip-back {
-  transform: rotateY(180deg);
-}
-
-/* CONTACT INFO (address, phone, email, instagram) */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-  margin-top: 20px;
-  width: 100%;
-}
-
-.contact-info a,
-.contact-info .address {
-  color: var(--text-color);
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.contact-info a:hover,
-.contact-info .address:hover {
-  opacity: 0.7;
-}
-
-/* Hint overlay */
-.hover-hint {
-  position: relative;
-  margin-top: 10px;
-  font-size: 14px;
-  color: rgba(89,44,56,0.6);
-  pointer-events: none;
-}
-
-/* Footer */
-footer {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  font-size: 14px;
-  opacity: 0.85;
-  display: flex;
-  justify-content: space-between;
-  width: calc(100% - 20px);
-  padding-right: 10px;
-  pointer-events: none;
-  z-index: 50;
-}
-footer span { pointer-events: auto; }
-
-/* MOBILE */
 @media(max-width:720px){
-  .contact-main {
-    padding: 60px 20px 80px;
-  }
+  nav ul { flex-wrap:wrap; gap:12px; }
+  .dropdown { left:0; transform:none; min-width:150px; }
+  /* show hamburger, hide desktop nav */
 
-  .flip-logo-container {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 20px;
-  }
+    .hamburger {
+  display: flex;
+  flex-direction: column; /* stack the three lines */
+  gap: 3px;
+  background: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  z-index: 1100;
+}
+.hamburger .line {
+  width: 20px;           /* fixed width for each bar */
+  height: 4px;
+  background: #592C38;   /* bar color */
+  border-radius: 3px;
+  transition: transform .25s ease, opacity .2s ease;
+  display: block;
+}
+.hamburger[aria-expanded="true"] .line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
 
-  .contact-info {
-    gap: 10px;
-    margin-top: 16px;
-  }
+.hamburger[aria-expanded="true"] .line:nth-child(2) {
+  opacity: 0;
+}
 
-  .contact-info a,
-  .contact-info .address {
-    font-size: 14px;
-  }
-
-  footer {
-    font-size: 12px;
-  }
-
-  /* HAMBURGER */
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    background: transparent;
-    border: none;
-    width: 44px;
-    height: 44px;
-    padding: 8px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    position: absolute;
-    left: 16px;
-    top: 12px;
-    z-index: 1100;
-  }
-
-  .hamburger .line {
-    width: 20px;
-    height: 4px;
-    background: #592C38;
-    border-radius: 3px;
-    transition: transform .25s ease, opacity .2s ease;
-    display: block;
-  }
-
-  .hamburger[aria-expanded="true"] .line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-
-  .hamburger[aria-expanded="true"] .line:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger[aria-expanded="true"] .line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
+.hamburger[aria-expanded="true"] .line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
   nav ul {
     display: none;
   }
 
+  /* transparent overlay when menu is open */
   .nav-wrap.open::before {
     content: '';
     position: fixed;
@@ -262,7 +131,7 @@ footer span { pointer-events: auto; }
     background: rgba(0, 0, 0, 0.4);
     z-index: 900;
   }
-
+   /* slide-in menu from left */
   .nav-wrap.open nav ul {
     display: flex;
     position: fixed;
@@ -283,8 +152,7 @@ footer span { pointer-events: auto; }
   .nav-wrap.open nav ul li {
     width: 100%;
   }
-
-  .nav-wrap.open nav ul a,
+   .nav-wrap.open nav ul a,
   .nav-wrap.open nav ul button {
     display: block;
     width: 100%;
@@ -305,16 +173,125 @@ footer span { pointer-events: auto; }
     width: 100%;
     margin-top: 4px;
   }
-
   .nav-wrap.open nav ul .dropdown a {
     padding: 8px 14px;
     font-size: 14px;
   }
 }
 
-@media(max-width:420px){
-  .flip-logo-container {
-    width: 160px;
-    height: 160px;
-  }
+/* ABOUT PAGE CONTENT */
+.content-wrap {
+  padding: 0 24px;
+  font-size:17px;
+  line-height:1.25;
 }
+.content-wrap h1 {
+  font-size:17px;
+  margin-bottom:5px;
+  font-weight:400;
+}
+/* CONTACT PAGE — FLIPPING LOGO */
+.flip-logo-container {
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  position: absolute;
+  left: 80%;
+  transform: translateX(-140%);
+  top: 300px; /* adjust up/down */
+}
+
+.flip-logo {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.3s ease;
+}
+
+.flip-logo:hover {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-front img,
+.flip-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+  
+  /* Hint overlay */
+    .hover-hint {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: rgba(89,44,56,0.6);
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+   footer {
+      margin-top:auto;
+      padding:10px 20px;
+      font-size:14px;
+      display:flex;
+      justify-content:space-between;
+      opacity:0.85;
+    }
+
+/* 📱 CONTACT PAGE – MOBILE FIX */
+@media (max-width: 720px) {
+
+  /* Reset the logo positioning */
+  .flip-logo-container {
+    position: static;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 24px;
+    transform: none;
+  }
+
+  /* Stack everything normally */
+  .contact-wrap {
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Move contact text below logo */
+  .contact-info {
+    position: static !important;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 1.0;
+  }
+
+  /* Smaller hint */
+  .hover-hint {
+    bottom: -14px;
+    font-size: 12px;
+  }
+
+   footer {
+      margin-top:auto;
+      padding:10px 20px;
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      opacity:0.85;
+  
+}
+   }
