@@ -156,6 +156,14 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   .logo-card:hover {
     transform: rotateY(180deg);
   }
+
+  /* hide the flip hint when the card is hovered/flipped on desktop */
+  .logo-card:hover + .hover-hint {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .3s ease, visibility .3s ease;
+  }
 }
 
     .card-face {
