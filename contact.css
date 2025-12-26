@@ -142,7 +142,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
     /* Smaller hint */
   .hover-hint {
-    bottom: -14px;
+    bottom: -16px;
     font-size: 12px;
   }
 
