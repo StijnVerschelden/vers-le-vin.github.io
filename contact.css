@@ -271,4 +271,10 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     padding: 8px 14px;
     font-size: 14px;
   }
+
+  footer {
+    font-size: 12px;
+    bottom: 10px;
+    left: 10px;
+  }
 }
