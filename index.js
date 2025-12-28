@@ -34,22 +34,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-  const gate = document.getElementById("ageGate");
-  const enter = document.getElementById("enterBtn");
-  const leave = document.getElementById("leaveBtn");
+  
+  // Inject age-gate markup only for clients; skip entirely if user already verified
+  if (localStorage.getItem("ageVerified") === "true") return;
 
-  // If they already confirmed earlier, skip
-  if (localStorage.getItem("ageVerified") === "true") {
-    gate.style.display = "none";
-  }
+  const gate = document.createElement('div');
+  gate.id = 'ageGate';
+  gate.setAttribute('data-nosnippet', '');
 
-  enter.addEventListener("click", () => {
-    localStorage.setItem("ageVerified", "true");
-    gate.style.display = "none";
+  gate.innerHTML = `
+    <div class="age-modal">
+      <h2>Are you 18 or older?</h2>
+      <p>You must be of legal drinking age to enter this website.</p>
+      <button id="enterBtn">Yes, I am 18+</button>
+      <button id="leaveBtn">No</button>
+    </div>
+  `;
+
+  document.body.appendChild(gate);
+
+  const enter = document.getElementById('enterBtn');
+  const leave = document.getElementById('leaveBtn');
+
+  enter.addEventListener('click', () => {
+    localStorage.setItem('ageVerified', 'true');
+    gate.style.display = 'none';
   });
 
-  leave.addEventListener("click", () => {
-    window.location.href = "https://www.google.com"; // or any other redirect
+  leave.addEventListener('click', () => {
+    window.location.href = 'https://www.google.com';
   });
 });
 
