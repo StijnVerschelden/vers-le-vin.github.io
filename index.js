@@ -31,20 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Prevent background scrolling while gate is open
   document.body.style.overflow = "hidden";
 
-  // Delegate clicks so buttons always work
-  gate.addEventListener("click", (e) => {
-    const id = e.target && e.target.id;
+  document.addEventListener("click", (e) => {
+  if (e.target.id === "enterBtn") {
+    localStorage.setItem("ageVerified", "true");
+    document.getElementById("ageGate")?.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
 
-    if (id === "enterBtn") {
-      localStorage.setItem("ageVerified", "true");
-      gate.classList.add("hidden");
-      document.body.style.overflow = ""; // restore scroll
-    }
-
-    if (id === "leaveBtn") {
-      window.location.href = "https://www.google.com";
-    }
-  });
+  if (e.target.id === "leaveBtn") {
+    window.location.href = "https://www.google.com";
+  }
+}, true); // capture phase
 
   // Accessibility: ESC = leave
   document.addEventListener("keydown", (e) => {
