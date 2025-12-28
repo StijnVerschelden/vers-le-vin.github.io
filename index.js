@@ -2,8 +2,7 @@
    AGE GATE (ROBUST + CLICKABLE)
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  // If user already verified, do nothing
-  if (localStorage.getItem("ageVerified") === "true") return;
+
 
   // Create/inject gate if missing
   let gate = document.getElementById("ageGate");
