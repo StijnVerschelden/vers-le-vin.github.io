@@ -34,36 +34,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-  
-  // Inject age-gate markup only for clients; skip entirely if user already verified
+  // If user already verified, do nothing
   if (localStorage.getItem("ageVerified") === "true") return;
 
-  const gate = document.createElement('div');
-  gate.id = 'ageGate';
-  gate.setAttribute('data-nosnippet', '');
+  // Use existing static gate if present; otherwise create and inject one
+  let gate = document.getElementById('ageGate');
+  if (!gate) {
+    gate = document.createElement('div');
+    gate.id = 'ageGate';
+    gate.setAttribute('data-nosnippet', '');
+    gate.innerHTML = `
+      <div class="age-modal">
+        <h2>Are you 18 or older?</h2>
+        <p>You must be of legal drinking age to enter this website.</p>
+        <button id="enterBtn">Yes, I am 18+</button>
+        <button id="leaveBtn">No</button>
+      </div>
+    `;
+    document.body.appendChild(gate);
+  }
 
-  gate.innerHTML = `
-    <div class="age-modal">
-      <h2>Are you 18 or older?</h2>
-      <p>You must be of legal drinking age to enter this website.</p>
-      <button id="enterBtn">Yes, I am 18+</button>
-      <button id="leaveBtn">No</button>
-    </div>
-  `;
+  // Query buttons from the gate (works for static or injected)
+  const enter = gate.querySelector('#enterBtn');
+  const leave = gate.querySelector('#leaveBtn');
 
-  document.body.appendChild(gate);
+  if (enter) {
+    enter.addEventListener('click', () => {
+      localStorage.setItem('ageVerified', 'true');
+      gate.style.display = 'none';
+    });
+  }
 
-  const enter = document.getElementById('enterBtn');
-  const leave = document.getElementById('leaveBtn');
-
-  enter.addEventListener('click', () => {
-    localStorage.setItem('ageVerified', 'true');
-    gate.style.display = 'none';
-  });
-
-  leave.addEventListener('click', () => {
-    window.location.href = 'https://www.google.com';
-  });
+  if (leave) {
+    leave.addEventListener('click', () => {
+      window.location.href = 'https://www.google.com';
+    });
+  }
 });
 
 const logoCard = document.getElementById("logoCard");
