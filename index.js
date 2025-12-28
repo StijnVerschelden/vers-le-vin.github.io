@@ -1,121 +1,150 @@
-document.addEventListener("DOMContentLoaded", function() {
+/* =========================
+   AGE GATE (ROBUST + CLICKABLE)
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
   // If user already verified, do nothing
   if (localStorage.getItem("ageVerified") === "true") return;
 
-  // Use existing static gate if present; otherwise create and inject one
-  let gate = document.getElementById('ageGate');
+  // Create/inject gate if missing
+  let gate = document.getElementById("ageGate");
   if (!gate) {
-    gate = document.createElement('div');
-    gate.id = 'ageGate';
-    gate.setAttribute('data-nosnippet', '');
+    gate = document.createElement("div");
+    gate.id = "ageGate";
+    gate.setAttribute("data-nosnippet", "");
     gate.innerHTML = `
-      <div class="age-modal">
-        <h2>Are you 18 or older?</h2>
+      <div class="age-modal" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+        <h2 id="ageGateTitle">Are you 18 or older?</h2>
         <p>You must be of legal drinking age to enter this website.</p>
-        <button id="enterBtn">Yes, I am 18+</button>
-        <button id="leaveBtn">No</button>
+        <div class="age-actions">
+          <button type="button" id="enterBtn">Yes, I am 18+</button>
+          <button type="button" id="leaveBtn">No</button>
+        </div>
       </div>
     `;
     document.body.appendChild(gate);
   }
 
-  // Query buttons from the gate (works for static or injected)
-  const enter = gate.querySelector('#enterBtn');
-  const leave = gate.querySelector('#leaveBtn');
+  // Make sure it's visible (CSS controls layout)
+  gate.classList.remove("hidden");
 
-  if (enter) {
-    enter.addEventListener('click', () => {
-      localStorage.setItem('ageVerified', 'true');
-      gate.style.display = 'none';
-    });
-  }
+  // Prevent background scrolling while gate is open
+  document.body.style.overflow = "hidden";
 
-  if (leave) {
-    leave.addEventListener('click', () => {
-      window.location.href = 'https://www.google.com';
-    });
-  }
+  // Delegate clicks so buttons always work
+  gate.addEventListener("click", (e) => {
+    const id = e.target && e.target.id;
+
+    if (id === "enterBtn") {
+      localStorage.setItem("ageVerified", "true");
+      gate.classList.add("hidden");
+      document.body.style.overflow = ""; // restore scroll
+    }
+
+    if (id === "leaveBtn") {
+      window.location.href = "https://www.google.com";
+    }
+  });
+
+  // Accessibility: ESC = leave
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !gate.classList.contains("hidden")) {
+      window.location.href = "https://www.google.com";
+    }
+  });
 });
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const controls = [{ btnId: 'lantBtn' }, { btnId: 'blogBtn' }];
-  controls.forEach(c => {
+/* =========================
+   DROPDOWN CONTROLS
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const controls = [{ btnId: "lantBtn" }, { btnId: "blogBtn" }];
+
+  controls.forEach((c) => {
     const btn = document.getElementById(c.btnId);
     if (!btn) return;
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", expanded ? "false" : "true");
       const menu = btn.nextElementSibling;
-      if (menu) menu.style.display = expanded ? 'none' : 'block';
+      if (menu) menu.style.display = expanded ? "none" : "block";
     });
-    btn.addEventListener('keydown', (e) => { 
-      if (e.key==='Escape') { 
-        btn.setAttribute('aria-expanded','false'); 
-        const menu=btn.nextElementSibling;
-        if(menu)menu.style.display='none';
+
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        btn.setAttribute("aria-expanded", "false");
+        const menu = btn.nextElementSibling;
+        if (menu) menu.style.display = "none";
         btn.blur();
       }
     });
   });
-  document.addEventListener('click', (e) => {
-    controls.forEach(c => {
+
+  document.addEventListener("click", (e) => {
+    controls.forEach((c) => {
       const btn = document.getElementById(c.btnId);
       if (!btn) return;
+
       const menu = btn.nextElementSibling;
       if (!menu) return;
+
       if (!btn.contains(e.target) && !menu.contains(e.target)) {
-        btn.setAttribute('aria-expanded', 'false');
-        menu.style.display = 'none';
+        btn.setAttribute("aria-expanded", "false");
+        menu.style.display = "none";
       }
     });
   });
 });
 
 
+/* =========================
+   LOGO CARD FLIP (GUARDED: NO CRASH)
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const logoCard = document.getElementById("logoCard");
+  const hint = document.querySelector(".hover-hint");
 
+  if (!logoCard) return; // IMPORTANT: prevents JS crash on pages without logoCard
 
-const logoCard = document.getElementById("logoCard");
-const hint = document.querySelector(".hover-hint");
+  let isFlipped = false;
 
-let isFlipped = false;
+  logoCard.addEventListener("touchstart", () => {
+    isFlipped = !isFlipped;
+    logoCard.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+    if (hint) hint.style.opacity = "0";
+  });
 
-logoCard.addEventListener("touchstart", () => {
-  isFlipped = !isFlipped;
-  logoCard.style.transform = isFlipped
-    ? "rotateY(180deg)"
-    : "rotateY(0deg)";
-  hint.style.opacity = "0";
+  // Hide hint on desktop click as well
+  logoCard.addEventListener("click", () => {
+    if (hint) hint.style.opacity = "0";
+  });
 });
 
 
-/* Hide hint on desktop click as well */
-logoCard.addEventListener("click", () => {
-  hint.style.opacity = "0";
-});
-
-// Mobile hamburger toggle
-(function(){
-  const navWrap = document.querySelector('.nav-wrap');
-  const hamburger = document.querySelector('.hamburger');
+/* =========================
+   MOBILE HAMBURGER TOGGLE
+   ========================= */
+(function () {
+  const navWrap = document.querySelector(".nav-wrap");
+  const hamburger = document.querySelector(".hamburger");
   if (!navWrap || !hamburger) return;
 
   function setOpen(open) {
-    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    navWrap.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    hamburger.setAttribute("aria-expanded", open ? "true" : "false");
+    navWrap.classList.toggle("open", open);
+    document.body.style.overflow = open ? "hidden" : "";
   }
 
-  hamburger.addEventListener('click', (e) => {
+  hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
-    setOpen(!navWrap.classList.contains('open'));
+    setOpen(!navWrap.classList.contains("open"));
   });
 
-  document.addEventListener('click', (e) => {
-    if (!navWrap.classList.contains('open')) return;
+  document.addEventListener("click", (e) => {
+    if (!navWrap.classList.contains("open")) return;
     if (!navWrap.contains(e.target)) setOpen(false);
   });
 
-  window.addEventListener('resize', () => setOpen(false));
+  window.addEventListener("resize", () => setOpen(false));
 })();
-
