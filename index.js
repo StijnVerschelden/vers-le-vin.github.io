@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Make sure it's visible (CSS controls layout)
   gate.classList.remove("hidden");
 
+
   // Prevent background scrolling while gate is open
   document.body.style.overflow = "hidden";
 

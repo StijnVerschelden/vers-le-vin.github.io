@@ -4,19 +4,12 @@
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.75);
-
-  /* center modal */
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* make SURE it sits above everything */
-  z-index: 999999;          /* was 9999 */
-  
-  /* make SURE it can receive clicks */
-  pointer-events: auto;
-
-  /* don’t use visibility here; display controls showing/hiding */
+  z-index: 2147483647;      /* 🔥 MAX z-index */
+  pointer-events: auto;     /* 🔥 ensure clicks enabled */
 }
 
 #ageGate.hidden {
@@ -33,22 +26,13 @@
   font-family: 'EB Garamond', serif;
   box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 
-  /* ensure modal is clickable even if parent layers do weird stuff */
-  pointer-events: auto;
   position: relative;
-  z-index: 1;
-}
-
-#ageGate .age-actions {
-  margin-top: 14px;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
+  z-index: 2147483647;      /* 🔥 also max */
+  pointer-events: auto;     /* 🔥 */
 }
 
 #ageGate button {
-  margin: 0;
+  margin: 10px;
   padding: 10px 20px;
   cursor: pointer;
   border: none;
@@ -57,10 +41,10 @@
   color: white;
   font-size: 16px;
   font-family: inherit;
-}
 
-#ageGate button:hover {
-  opacity: 0.85;
+  position: relative;
+  z-index: 2147483647;      /* 🔥 */
+  pointer-events: auto;     /* 🔥 */
 }
 
 
@@ -347,8 +331,8 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
-    z-index: 900
-    pointer-events: auto;
+    z-index: 900;
+    pointer-events: none;
   }
    /* slide-in menu from left */
   .nav-wrap.open nav ul {
@@ -442,5 +426,5 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     bottom: 10px;
     left: 10px;
   }
-}
+
 
