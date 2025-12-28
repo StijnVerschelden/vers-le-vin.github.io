@@ -11,6 +11,11 @@
   visibility: visible;
 }
 
+#ageGate .age-modal {
+  position: relative;
+  pointer-events: auto;
+}
+
 .age-modal {
   background: #F3ECDC;
   color: #592C38;
