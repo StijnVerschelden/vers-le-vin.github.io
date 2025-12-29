@@ -119,15 +119,13 @@ logoCard.addEventListener("touchstart", (e) => {
   if (hint) hint.style.opacity = "0";
 
   // ⬇️ THIS IS WHERE YOUR QUOTED CODE GOES
-  if (isFlipped) {
+ if (isFlipped) {
+  requestAnimationFrame(() => {
     const items = logoCard.querySelectorAll(".card-back .back-item");
-    const middle = items[1]; // 2nd image
-    middle?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest"
-    });
-  }
+    items[1]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  });
+}
+
 }, { passive: true });
 
   // Hide hint on desktop click as well

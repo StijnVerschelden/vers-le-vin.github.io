@@ -405,32 +405,49 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     padding: 10px;
   }
 
-  /* allow the back carousel to extend beyond the card */
-  .card-back {
-    overflow: visible;
+  :root { --logo-size: 300px; }
+
+  /* Important: allow horizontal scroll to work even though body is overflow-x hidden */
+  .logo-card {
+    overflow: visible; /* keep visible */
   }
 
-  /* centered 3-item carousel (middle item can sit perfectly centered) */
+  .card-back {
+    overflow: visible;
+    width: 100%;
+  }
+
+  /* The scroll container */
   .back-row {
     display: flex;
     flex-direction: row;
-    gap: 16px;
     align-items: center;
+    gap: 16px;
 
+    /* full viewport width so left/right cards can peek */
     width: 100vw;
-    max-width: 100vw;
 
+    /* centered relative to the viewport */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+
+    /* scrolling */
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 
+    /* snap */
     scroll-snap-type: x mandatory;
 
-    /* KEY: makes the centered item align to the middle of the screen */
+    /* KEY: makes item center align perfectly */
     padding-left: calc((100vw - var(--logo-size)) / 2);
     padding-right: calc((100vw - var(--logo-size)) / 2);
     scroll-padding-left: calc((100vw - var(--logo-size)) / 2);
     scroll-padding-right: calc((100vw - var(--logo-size)) / 2);
+
+    /* prevents weird iOS transform scroll glitches */
+    transform: translateZ(0);
+    will-change: scroll-position;
   }
 
   .back-item {
@@ -438,7 +455,6 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     scroll-snap-align: center;
   }
 
-  /* back images/videos same size as the front logo card */
   .back-item img,
   .back-item video {
     width: var(--logo-size);
@@ -449,6 +465,8 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     max-width: none;
   }
 
+  .back-row::-webkit-scrollbar { display: none; }
+  .back-row { scrollbar-width: none; }
   /* hide scrollbar but keep scrolling */
   .back-row::-webkit-scrollbar { display: none; }
   .back-row { scrollbar-width: none; }
