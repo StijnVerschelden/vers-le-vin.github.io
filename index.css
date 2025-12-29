@@ -281,53 +281,41 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       z-index: 100;
     }
 
-    /* 📱 MOBILE: 720px AND BELOW */
+/* 📱 MOBILE: 720px AND BELOW */
 @media (max-width: 720px) {
-  
+
   /* show hamburger, hide desktop nav */
-
-    .hamburger {
-  display: flex;
-  flex-direction: column; /* stack the three lines */
-  gap: 3px;
-  background: transparent;
-  border: none;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  left: 16px;
-  top: 12px;
-  z-index: 1100;
-}
-.hamburger .line {
-  width: 20px;           /* fixed width for each bar */
-  height: 4px;
-  background: #592C38;   /* bar color */
-  border-radius: 3px;
-  transition: transform .25s ease, opacity .2s ease;
-  display: block;
-}
-.hamburger[aria-expanded="true"] .line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.hamburger[aria-expanded="true"] .line:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger[aria-expanded="true"] .line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-  nav ul {
-    display: none;
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: transparent;
+    border: none;
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    left: 16px;
+    top: 12px;
+    z-index: 1100;
   }
+  .hamburger .line {
+    width: 20px;
+    height: 4px;
+    background: #592C38;
+    border-radius: 3px;
+    transition: transform .25s ease, opacity .2s ease;
+    display: block;
+  }
+  .hamburger[aria-expanded="true"] .line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] .line:nth-child(2) { opacity: 0; }
+  .hamburger[aria-expanded="true"] .line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* transparent overlay when menu is open */
+  nav ul { display: none; }
+
   .nav-wrap.open::before {
     content: '';
     position: fixed;
@@ -336,7 +324,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     z-index: 900;
     pointer-events: none;
   }
-   /* slide-in menu from left */
+
   .nav-wrap.open nav ul {
     display: flex;
     position: fixed;
@@ -354,10 +342,9 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     align-items: flex-start;
   }
 
-  .nav-wrap.open nav ul li {
-    width: 100%;
-  }
-   .nav-wrap.open nav ul a,
+  .nav-wrap.open nav ul li { width: 100%; }
+
+  .nav-wrap.open nav ul a,
   .nav-wrap.open nav ul button {
     display: block;
     width: 100%;
@@ -382,7 +369,8 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     padding: 8px 14px;
     font-size: 14px;
   }
- /* hero adjustments */
+
+  /* hero adjustments */
   .hero {
     padding: 30px 10px;
     padding-top: 70px;
@@ -390,8 +378,9 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     flex-direction: column;
   }
 
+  /* IMPORTANT: keep logo-size responsive so padding never goes negative */
   :root {
-    --logo-size: 300px; /* front + back item size */
+    --logo-size: min(300px, 86vw);
   }
 
   .brand {
@@ -405,47 +394,39 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     padding: 10px;
   }
 
-  :root { --logo-size: 300px; }
+  /* allow the back carousel to extend beyond the card */
+  .logo-card { overflow: visible; }
+  .card-back { overflow: visible; width: 100%; }
 
-  /* Important: allow horizontal scroll to work even though body is overflow-x hidden */
-  .logo-card {
-    overflow: visible; /* keep visible */
-  }
-
-  .card-back {
-    overflow: visible;
-    width: 100%;
-  }
-
-  /* The scroll container */
+  /* FULL-WIDTH centered scroller + captions visible */
   .back-row {
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 16px;
+    align-items: flex-start; /* captions fit */
 
-    /* full viewport width so left/right cards can peek */
     width: 100vw;
+    max-width: 100vw;
 
-    /* centered relative to the viewport */
+    /* escape hero padding so the scroller reaches screen edges */
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
 
-    /* scrolling */
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible; /* ✅ do NOT clip captions */
     -webkit-overflow-scrolling: touch;
 
-    /* snap */
     scroll-snap-type: x mandatory;
 
-    /* KEY: makes item center align perfectly */
-    padding-left: calc((100vw - var(--logo-size)) / 2);
-    padding-right: calc((100vw - var(--logo-size)) / 2);
-    scroll-padding-left: calc((100vw - var(--logo-size)) / 2);
-    scroll-padding-right: calc((100vw - var(--logo-size)) / 2);
+    /* center item; clamp to avoid negative padding */
+    padding-left: max(12px, calc((100vw - var(--logo-size)) / 2));
+    padding-right: max(12px, calc((100vw - var(--logo-size)) / 2));
+    scroll-padding-left: max(12px, calc((100vw - var(--logo-size)) / 2));
+    scroll-padding-right: max(12px, calc((100vw - var(--logo-size)) / 2));
 
-    /* prevents weird iOS transform scroll glitches */
+    padding-bottom: 28px; /* ✅ space for captions */
+    box-sizing: border-box;
+
     transform: translateZ(0);
     will-change: scroll-position;
   }
@@ -453,6 +434,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   .back-item {
     flex: 0 0 auto;
     scroll-snap-align: center;
+    text-align: center;
   }
 
   .back-item img,
@@ -465,8 +447,16 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     max-width: none;
   }
 
-  .back-row::-webkit-scrollbar { display: none; }
-  .back-row { scrollbar-width: none; }
+  /* ✅ captions fully visible + wrap */
+  .back-item span {
+    display: block;
+    width: var(--logo-size);
+    margin-top: 8px;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   /* hide scrollbar but keep scrolling */
   .back-row::-webkit-scrollbar { display: none; }
   .back-row { scrollbar-width: none; }
