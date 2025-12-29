@@ -108,13 +108,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isFlipped = false;
 
- logoCard.addEventListener("touchstart", (e) => {
-  if (e.target.closest(".back-item")) return; // allow swipe scrolling
+logoCard.addEventListener("touchstart", (e) => {
+  // allow horizontal swipe on back images
+  if (e.target.closest(".back-item")) return;
+
   isFlipped = !isFlipped;
   logoCard.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
-  if (hint) hint.style.opacity = "0";
-}, { passive: true });
+  logoCard.classList.toggle("flipped", isFlipped);
 
+  if (hint) hint.style.opacity = "0";
+
+  // ⬇️ THIS IS WHERE YOUR QUOTED CODE GOES
+  if (isFlipped) {
+    const items = logoCard.querySelectorAll(".card-back .back-item");
+    const middle = items[1]; // 2nd image
+    middle?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest"
+    });
+  }
+}, { passive: true });
 
   // Hide hint on desktop click as well
   logoCard.addEventListener("click", () => {
