@@ -109,13 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let isFlipped = false;
 
  logoCard.addEventListener("touchstart", (e) => {
-  // If user is swiping on a back image/video, don't flip
-  if (e.target.closest(".back-item")) return;
-
+  if (e.target.closest(".back-item")) return; // allow swipe scrolling
   isFlipped = !isFlipped;
   logoCard.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
   if (hint) hint.style.opacity = "0";
 }, { passive: true });
+
 
   // Hide hint on desktop click as well
   logoCard.addEventListener("click", () => {

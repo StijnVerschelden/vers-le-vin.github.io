@@ -449,7 +449,62 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   .back-row {
     scrollbar-width: none; /* Firefox */
   }
-  
+  /* make logo size stable on mobile */
+  :root { --logo-size: 300px; }
+
+  /* back row becomes a centered horizontal strip that overflows the screen */
+  .card-back {
+    overflow: visible; /* allow the row to "spill" outside the card */
+  }
+
+  .back-row {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-start;
+
+    /* IMPORTANT: make it full screen width, centered on the card */
+    width: 100vw;
+    max-width: 100vw;
+
+    /* center the strip relative to the card */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* horizontal scrolling */
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    /* "carousel" feel */
+    scroll-snap-type: x mandatory;
+    padding: 10px 12vw; /* this creates the "half peeking" edges */
+  }
+
+  .back-item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+
+  /* Make each back image/video as big as the front logo card */
+  .back-item img,
+  .back-item video {
+    height: var(--logo-size);
+    width: var(--logo-size);
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    max-width: none;
+  }
+
+  /* Optional: hide scrollbar */
+  .back-row::-webkit-scrollbar { display: none; }
+  .back-row { scrollbar-width: none; }
+
+
+
    footer {
     font-size: 12px;
     bottom: 10px;
