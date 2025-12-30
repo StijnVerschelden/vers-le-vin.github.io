@@ -464,11 +464,12 @@ footer{
     font-size: 12px;
   }
 
-  .back-row::-webkit-scrollbar{ display: none; }
-  .back-row{ 
-    scrollbar-width: none; 
-    scroll-snap-stop: always;
+  .back-row::-webkit-scrollbar{ 
+    display: none; 
   }
+  .back-row{ scrollbar-width: none; }
+
+.back-item{ scroll-snap-stop: always; }
 
   footer{
     font-size: 12px;

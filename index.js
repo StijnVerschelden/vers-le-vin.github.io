@@ -113,13 +113,15 @@ document.addEventListener("DOMContentLoaded", () => {
     logoCard.classList.toggle("flipped", isFlipped);
     if (hint) hint.style.opacity = "0";
 
-    // center the 2nd item when flipped
-    if (isFlipped) {
+ // ✅ on flip: start at the FIRST item so it’s reachable and visible
+if (isFlipped) {
   requestAnimationFrame(() => {
-    const items = logoCard.querySelectorAll(".card-back .back-item");
-    items[1]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    const row = logoCard.querySelector(".card-back .back-row");
+    if (!row) return;
+    row.scrollLeft = 0; // most reliable (Safari/Chrome)
   });
 }
+
   }
 
   // Tap card to flip (but DON'T flip when swiping on media/captions)
