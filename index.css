@@ -257,7 +257,7 @@ nav li:focus-within > .dropdown{ display:block; }
   display: block;
   width: var(--logo-size);
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -459,7 +459,7 @@ footer{
 
   .back-item .title{
     width: var(--logo-size);
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .back-row::-webkit-scrollbar{ display: none; }
