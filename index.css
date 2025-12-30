@@ -443,7 +443,8 @@ footer{
   }
 
   .back-item{
-    flex: 0 0 auto;
+    flex: 0 0 var(--logo-size);
+    width: var(--logo-size);
     scroll-snap-align: center;
     text-align: center;
   }
@@ -451,21 +452,23 @@ footer{
   
   .back-item img,
   .back-item video{
+    width: 100%;
     height: var(--logo-size);
-      width: auto;
     object-fit: cover;
     border-radius: 8px;
     display: block;
-    max-width: none;
   }
 
-  .back-item .title{
-    width: var(--logo-size);
+   .back-item .title{
+    width: 100%;
     font-size: 12px;
   }
 
   .back-row::-webkit-scrollbar{ display: none; }
-  .back-row{ scrollbar-width: none; }
+  .back-row{ 
+    scrollbar-width: none; 
+    scroll-snap-stop: always;
+  }
 
   footer{
     font-size: 12px;
