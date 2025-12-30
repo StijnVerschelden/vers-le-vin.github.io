@@ -156,7 +156,6 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
   .logo-card {
   width: var(--logo-size);
-  height: var(--logo-size);
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1.3s ease; /* MATCH CONTACT PAGE */
@@ -248,15 +247,6 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
     .logo-card.flipped + .hover-hint { opacity: 0; }
 
-    @media (max-width: 900px) { 
-      :root { --logo-size: 260px; } 
-      .back-row img { height: var(--logo-size); } 
-    }
-
-    @media (max-width: 520px) { 
-      :root { --logo-size: 160px; } 
-      .back-row { gap:8px; } 
-    }
 
        footer {
       position: fixed;
@@ -433,7 +423,6 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   .back-item img,
   .back-item video{
     width: var(--logo-size);
-    height: var(--logo-size);
     object-fit: cover;
     border-radius: 8px;
     display: block;
