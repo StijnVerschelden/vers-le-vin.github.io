@@ -115,11 +115,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // center the 2nd item when flipped
     if (isFlipped) {
-      requestAnimationFrame(() => {
-        const items = logoCard.querySelectorAll(".card-back .back-item");
-        items[1]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-      });
-    }
+  requestAnimationFrame(() => {
+    const items = logoCard.querySelectorAll(".card-back .back-item");
+    items[1]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  });
+}
   }
 
   // Tap card to flip (but DON'T flip when swiping on media/captions)
