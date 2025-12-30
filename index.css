@@ -154,16 +154,16 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       z-index: 4;
     }
 
-  .logo-card {
+ .logo-card {
   width: var(--logo-size);
+  height: var(--logo-size);  
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 1.3s ease; /* MATCH CONTACT PAGE */
+  transition: transform 1.3s ease;
   cursor: pointer;
   margin: 0 auto;
   overflow: visible;
 }
-
  @media (hover: hover) {
   .logo-card:hover {
     transform: rotateY(180deg);
@@ -388,6 +388,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   .logo-card,
   .card-back {
     overflow: visible;
+    height: var(--logo-size); 
   }
 
  /* IMPORTANT: full-width scroller that escapes hero padding */
