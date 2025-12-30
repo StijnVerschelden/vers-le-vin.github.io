@@ -123,10 +123,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Tap card to flip (but DON'T flip when swiping on media/captions)
-  logoCard.addEventListener("touchstart", (e) => {
-    if (e.target.closest(".back-row") || e.target.closest(".back-item")) return;
-    flip(!isFlipped);
-  }, { passive: true });
+ logoCard.addEventListener("touchstart", (e) => {
+  // if user touches gallery, do NOT flip
+  if (e.target.closest(".back-row")) return;
+
+  isFlipped = !isFlipped;
+  logoCard.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+  logoCard.classList.toggle("flipped", isFlipped);
+
+  if (hint) hint.style.opacity = "0";
+}, { passive: true });
 
   // Desktop click just hides hint
   logoCard.addEventListener("click", () => {
@@ -135,10 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ Tap outside the card to flip back (red X zones)
   document.addEventListener("pointerdown", (e) => {
-    if (!isFlipped) return;
-    if (logoCard.contains(e.target)) return; // clicking on the card = ignore
-    flip(false);
-  });
+  if (!isFlipped) return;
+  if (logoCard.contains(e.target)) return;
+  isFlipped = false;
+  logoCard.style.transform = "rotateY(0deg)";
+  logoCard.classList.remove("flipped");
+});
+
 });
 
 
