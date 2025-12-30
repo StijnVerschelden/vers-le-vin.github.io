@@ -245,7 +245,7 @@ nav li:focus-within > .dropdown{ display:block; }
 
 .back-item img,
 .back-item video{
-  width: var(--logo-size);
+  width: auto;
   height: var(--logo-size);
   object-fit: cover;
   border-radius: 8px;
@@ -255,10 +255,9 @@ nav li:focus-within > .dropdown{ display:block; }
 
 .back-item .title{
   display: block;
-  width: var(--logo-size);
   margin-top: 10px;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 200;
   line-height: 1.2;
 }
 
@@ -410,7 +409,10 @@ footer{
   .brand-wrap{ padding: 10px; }
 
   /* make back side able to extend */
-  .logo-card{ width: var(--logo-size); height: var(--logo-size); }
+  .logo-card{ 
+    width: var(--logo-size); 
+    height: var(--logo-size); }
+
   .card-back{ overflow: visible; }
 
   /* full-viewport scroller with center snapping */
@@ -446,7 +448,7 @@ footer{
     text-align: center;
   }
 
-  /* keep mobile squares consistent */
+  
   .back-item img,
   .back-item video{
     height: var(--logo-size);
