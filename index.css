@@ -381,6 +381,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   /* IMPORTANT: keep logo-size responsive so padding never goes negative */
   :root {
     --logo-size: min(300px, 86vw);
+    --back-item-width: clamp(260px, 86vw, 420px);
   }
 
   .brand {
@@ -418,14 +419,14 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
     scroll-snap-type: x mandatory;
 
-    /* center item; clamp to avoid negative padding */
-    padding-left: max(12px, calc((100vw - var(--logo-size)) / 2));
-    padding-right: max(12px, calc((100vw - var(--logo-size)) / 2));
-    scroll-padding-left: max(12px, calc((100vw - var(--logo-size)) / 2));
-    scroll-padding-right: max(12px, calc((100vw - var(--logo-size)) / 2));
+    /* center the active item */
+    padding-left: max(12px, calc((100vw - var(--back-item-width)) / 2));
+    padding-right:max(12px, calc((100vw - var(--back-item-width)) / 2));
+    scroll-padding-left: max(12px, calc((100vw - var(--back-item-width)) / 2));
+    scroll-padding-right:max(12px, calc((100vw - var(--back-item-width)) / 2));
 
-    padding-bottom: 28px; /* ✅ space for captions */
-    box-sizing: border-box;
+    padding-bottom: 34px;             /* space for captions */
+    box-sizing:border-box;
 
     transform: translateZ(0);
     will-change: scroll-position;
@@ -439,19 +440,19 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
   .back-item img,
   .back-item video {
-    width: var(--logo-size);
-    height: var(--logo-size);
-    object-fit: cover;
+  width: var(--back-item-width);
+    height: auto;                      /* keeps original aspect ratio */
+    max-height: 55vh;                  /* prevents super-tall media */
+    object-fit: contain;               /* show full frame (no cropping) */
     border-radius: 8px;
-    display: block;
-    max-width: none;
+    display:block;
   }
 
   /* ✅ captions fully visible + wrap */
   .back-item span {
     display: block;
-    width: var(--logo-size);
-    margin-top: 8px;
+    width: var(--back-item-width);
+    margin-top: 10px;
     line-height: 1.2;
     white-space: normal;
     overflow-wrap: anywhere;

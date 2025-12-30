@@ -103,34 +103,41 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const logoCard = document.getElementById("logoCard");
   const hint = document.querySelector(".hover-hint");
-
-  if (!logoCard) return; // IMPORTANT: prevents JS crash on pages without logoCard
+  if (!logoCard) return;
 
   let isFlipped = false;
 
-logoCard.addEventListener("touchstart", (e) => {
-  // allow horizontal swipe on back images
-  if (e.target.closest(".back-item")) return;
+  function flip(toBack) {
+    isFlipped = toBack;
+    logoCard.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
+    logoCard.classList.toggle("flipped", isFlipped);
+    if (hint) hint.style.opacity = "0";
 
-  isFlipped = !isFlipped;
-  logoCard.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
-  logoCard.classList.toggle("flipped", isFlipped);
+    // center the 2nd item when flipped
+    if (isFlipped) {
+      requestAnimationFrame(() => {
+        const items = logoCard.querySelectorAll(".card-back .back-item");
+        items[1]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      });
+    }
+  }
 
-  if (hint) hint.style.opacity = "0";
+  // Tap card to flip (but DON'T flip when swiping on media/captions)
+  logoCard.addEventListener("touchstart", (e) => {
+    if (e.target.closest(".back-row") || e.target.closest(".back-item")) return;
+    flip(!isFlipped);
+  }, { passive: true });
 
-  // ⬇️ THIS IS WHERE YOUR QUOTED CODE GOES
- if (isFlipped) {
-  requestAnimationFrame(() => {
-    const items = logoCard.querySelectorAll(".card-back .back-item");
-    items[1]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-  });
-}
-
-}, { passive: true });
-
-  // Hide hint on desktop click as well
+  // Desktop click just hides hint
   logoCard.addEventListener("click", () => {
     if (hint) hint.style.opacity = "0";
+  });
+
+  // ✅ Tap outside the card to flip back (red X zones)
+  document.addEventListener("pointerdown", (e) => {
+    if (!isFlipped) return;
+    if (logoCard.contains(e.target)) return; // clicking on the card = ignore
+    flip(false);
   });
 });
 
