@@ -413,8 +413,13 @@ footer{
     width: var(--logo-size); 
     height: var(--logo-size); }
 
+    /* CLIP: make the card behave like a slideshow window */
+  .logo-card { overflow: hidden; }
+  .card-face { overflow: hidden; }
+
   .card-back{
     position: relative;  /* needed for arrow overlay */
+    justify-content: flex-start; /* important so row starts at left edge */
   }
 
   .back-row{
@@ -445,6 +450,7 @@ footer{
   .back-item{
     flex: 0 0 100%;
     width: 100%;
+    min-width: 100%;
     scroll-snap-align: center;
     scroll-snap-stop: always;
 
