@@ -443,6 +443,28 @@ footer{
   -webkit-transform: rotateY(0deg) translateZ(0);
   transform: rotateY(0deg) translateZ(0);
 }
+/* Ensure faces are positioned absolutely in 3D context */
+.logo-card .card-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(0deg) translateZ(1px);
+  transform: rotateY(0deg) translateZ(1px);
+}
+
+.logo-card .card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotateY(180deg) translateZ(1px);
+  transform: rotateY(180deg) translateZ(1px);
+}
+
+.logo-card .card-front,
+.logo-card .card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 
   /* do NOT clip the faces (iOS can "lose" the back face) */
   .card-face{
@@ -450,7 +472,7 @@ footer{
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
   }
-  
+
  .card-front, .card-back{
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
