@@ -211,7 +211,8 @@ nav li:focus-within > .dropdown{ display:block; }
 }
 
 /* Front */
-.card-front{ z-index: 2; }
+.card-front{ z-index: 2; 
+}
 
 .card-front img{
   width: 100%;
@@ -306,99 +307,99 @@ footer{
 
   /* show hamburger, hide desktop nav */
   .hamburger{
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    background: transparent;
-    border: none;
-    width: 44px;
-    height: 44px;
-    padding: 8px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    position: absolute;
-    left: 16px;
-    top: 12px;
-    z-index: 1100;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    background:transparent;
+    border:none;
+    width:44px;
+    height:44px;
+    padding:8px;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    position:absolute;
+    left:16px;
+    top:12px;
+    z-index:1100;
   }
 
   .hamburger .line{
-    width: 20px;
-    height: 4px;
-    background: #592C38;
-    border-radius: 3px;
-    transition: transform .25s ease, opacity .2s ease;
-    display: block;
+    width:20px;
+    height:4px;
+    background:#592C38;
+    border-radius:3px;
+    transition:transform .25s ease, opacity .2s ease;
+    display:block;
   }
 
   .hamburger[aria-expanded="true"] .line:nth-child(1){ transform: translateY(7px) rotate(45deg); }
   .hamburger[aria-expanded="true"] .line:nth-child(2){ opacity: 0; }
   .hamburger[aria-expanded="true"] .line:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-  nav ul{ display: none; }
+  nav ul{ display:none; }
 
   .nav-wrap.open::before{
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 900;
-    pointer-events: none;
+    content:'';
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    z-index:900;
+    pointer-events:none;
   }
 
   .nav-wrap.open nav ul{
-    display: flex;
-    position: fixed;
-    left: 0;
-    top: 60px;
-    bottom: 0;
-    width: 280px;
-    flex-direction: column;
-    gap: 8px;
-    padding: 16px;
-    background: var(--bg);
-    z-index: 950;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    align-items: flex-start;
+    display:flex;
+    position:fixed;
+    left:0;
+    top:60px;
+    bottom:0;
+    width:280px;
+    flex-direction:column;
+    gap:8px;
+    padding:16px;
+    background:var(--bg);
+    z-index:950;
+    box-shadow:2px 0 10px rgba(0,0,0,0.1);
+    overflow-y:auto;
+    align-items:flex-start;
   }
 
-  .nav-wrap.open nav ul li{ width: 100%; }
+  .nav-wrap.open nav ul li{ width:100%; }
 
   .nav-wrap.open nav ul a,
   .nav-wrap.open nav ul button{
-    display: block;
-    width: 100%;
-    padding: 12px 14px;
-    text-align: left;
-    font-size: 16px;
+    display:block;
+    width:100%;
+    padding:12px 14px;
+    text-align:left;
+    font-size:16px;
   }
 
   .nav-wrap.open nav ul .dropdown{
-    position: static;
-    transform: none;
-    background: rgba(89, 44, 56, 0.06);
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    display: flex !important;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 4px;
+    position:static;
+    transform:none;
+    background:rgba(89,44,56,0.06);
+    border:none;
+    box-shadow:none;
+    padding:0;
+    display:flex !important;
+    flex-direction:column;
+    width:100%;
+    margin-top:4px;
   }
 
   .nav-wrap.open nav ul .dropdown a{
-    padding: 8px 14px;
-    font-size: 14px;
+    padding:8px 14px;
+    font-size:14px;
   }
 
   /* hero adjustments */
   .hero{
-    padding: 30px 10px;
-    padding-top: 70px;
-    padding-bottom: 80px;
-    flex-direction: column;
+    padding:30px 10px;
+    padding-top:70px;
+    padding-bottom:80px;
+    flex-direction:column;
   }
 
   /* responsive size on mobile */
@@ -407,128 +408,147 @@ footer{
   }
 
   .brand{
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    text-align: center;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    text-align:center;
   }
 
-  .brand-wrap{ padding: 10px; }
+  .brand-wrap{ padding:10px; }
 
-  /* make back side able to extend */
-  .logo-card{ 
-    width: var(--logo-size); 
-    height: var(--logo-size); }
+  /* =========================
+     iOS / MOBILE FLIP FIXES
+     ========================= */
 
-    /* CLIP: make the card behave like a slideshow window */
-  .logo-card { overflow: hidden; }
-  .card-face { overflow: visible; }
+  /* clip only on the outer container */
+  .logo-card{
+    width: var(--logo-size);
+    height: var(--logo-size);
+    overflow:hidden;
 
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    /* GPU kick for iOS */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* do NOT clip the faces (iOS can "lose" the back face) */
+  .card-face{
+    overflow:visible;
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* when flipped, force back face above front face (fixes "front mirrored") */
+  .logo-card.flipped .card-front{ z-index:1; }
+  .logo-card.flipped .card-back { z-index:2; }
+
+  /* =========================
+     BACK SIDE SLIDESHOW
+     ========================= */
 
   .card-back{
-    position: relative;  /* needed for arrow overlay */
-    justify-content: flex-start; /* important so row starts at left edge */
+    position:relative;          /* for arrow overlay */
+    justify-content:flex-start; /* row starts at slide 1 */
+    align-items:stretch;
   }
 
   .back-row{
-   display: flex;
-    flex-direction: row;
-    gap: 0;
+    display:flex;
+    flex-direction:row;
+    gap:0;
 
-    width: 100%;
-    max-width: 100%;
-    justify-content: flex-start;
+    /* IMPORTANT: force strip to be 3 screens wide (3 slides) */
+    width:300%;
+    max-width:none;
 
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
+    justify-content:flex-start;
 
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
 
-    /* IMPORTANT: no centering paddings needed when items are 100% */
-    padding: 0;
-    scroll-padding: 0;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
 
-    /* hide scrollbar */
-    scrollbar-width: none;
+    padding:0;
+    margin:0;
+    scroll-padding:0;
+
+    scrollbar-width:none;
   }
   .back-row::-webkit-scrollbar{ display:none; }
 
-   /* each slide takes full viewport width */
   .back-item{
-    flex: 0 0 100%;
-    width: 100%;
-    min-width: 100%;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
+    flex:0 0 100%;
+    width:100%;
+    min-width:100%;
+    scroll-snap-align:center;
+    scroll-snap-stop:always;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
   }
 
-  
- /* keep media nicely centered and consistent size */
   .back-item img,
   .back-item video{
     width: var(--logo-size);
     height: var(--logo-size);
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
+    object-fit:cover;
+    border-radius:8px;
+    display:block;
   }
 
-   .back-item .title{
-    width: 100%;
-    font-size: 12px;
+  .back-item .title{
+    width:100%;
+    font-size:12px;
   }
 
-  /* subtle swipe arrow hint on the right */
+  /* swipe hint */
   .swipe-hint{
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 38px;
-    height: 38px;
-    border-radius: 999px;
-    background: rgba(0,0,0,0.18);
-    pointer-events: none;
-    opacity: 0;
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    width:38px;
+    height:38px;
+    border-radius:999px;
+    background:rgba(0,0,0,0.18);
+    pointer-events:none;
+    opacity:0;
     transition: opacity .25s ease;
   }
+
   .swipe-hint::before{
-    content: "›";
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    font-size: 26px;
-    line-height: 1;
-    color: rgba(255,255,255,0.85);
-    transform: translateX(1px);
+    content:"›";
+    position:absolute;
+    inset:0;
+    display:grid;
+    place-items:center;
+    font-size:26px;
+    line-height:1;
+    color:rgba(255,255,255,0.85);
     animation: swipeNudge 1.2s ease-in-out infinite;
   }
 
-  /* show hint only when flipped */
-  .logo-card.flipped .swipe-hint{
-    opacity: 1;
-  }
-
-    /* after user swipes once, JS will add .swiped to hide hint */
-  .logo-card.swiped .swipe-hint{
-    opacity: 0;
-  }
+  .logo-card.flipped .swipe-hint{ opacity:1; }
+  .logo-card.swiped .swipe-hint{ opacity:0; }
 
   @keyframes swipeNudge{
-    0%, 100% { transform: translateX(0); }
-    50%      { transform: translateX(4px); }
+    0%,100%{ transform: translateX(0); }
+    50%    { transform: translateX(4px); }
   }
 
   footer{
-    font-size: 12px;
-    bottom: 10px;
-    left: 10px;
+    font-size:12px;
+    bottom:10px;
+    left:10px;
   }
 }
+

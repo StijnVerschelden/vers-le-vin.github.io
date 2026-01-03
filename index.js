@@ -144,12 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
     row.addEventListener("scroll", onScrollOnce, { passive: true, once: true });
   }
 
-  // MOBILE: tap card to flip (but DON'T flip when swiping slideshow)
-  logoCard.addEventListener("touchstart", (e) => {
-    if (e.target.closest(".back-row")) return; // user interacting with slides
+logoCard.addEventListener("pointerup", (e) => {
+  if (e.target.closest(".back-row")) return;
+  setFlipped(!isFlipped);
+});
 
-    setFlipped(!isFlipped);
-  }, { passive: true });
 
   // desktop click just hides hint (keeps your original behavior)
   logoCard.addEventListener("click", () => {
