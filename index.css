@@ -424,7 +424,7 @@ footer{
 
   .brand-wrap{
   padding: 10px;
-  margin-top: -60px; /* move logo up */
+  margin-top: -10px; /* move logo up */
 }
 
   /* =========================
@@ -454,7 +454,7 @@ footer{
   flex-direction: column;
   gap: 28px;
   width: 100%;
-  margin-top: -24px;
+  margin-top: -10px;
   align-items: center;
 }
 
