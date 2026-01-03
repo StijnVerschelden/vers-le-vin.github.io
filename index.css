@@ -431,20 +431,19 @@ footer{
 /* keep flip working */
 .logo-card{
   width: var(--logo-size);
-  height: var(--logo-size);
+  height: auto;
+  min-height: var(--logo-size);
   overflow: visible;
   transform-style: preserve-3d;
 }
 
 /* back face positioning */
 .card-back{
-  position: absolute;
-  inset: 0;
+  position: relative;
   transform: rotateY(180deg);
   display: flex;
-  align-items: flex-start;
   justify-content: flex-start;
-  padding-top: 12px;
+  padding-top: 0;
 }
 
 /* vertical stack instead of slideshow */
@@ -453,7 +452,7 @@ footer{
   flex-direction: column;
   gap: 28px;
   width: 100%;
-  padding-top: 10px;
+  margin-top: -24px;
   align-items: center;
 }
 
@@ -486,11 +485,11 @@ footer{
   display: none !important;
 }
 
-
   footer{
     font-size:12px;
     bottom:10px;
     left:10px;
+    display: block;
   }
 }
 
