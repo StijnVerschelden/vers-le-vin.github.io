@@ -443,7 +443,8 @@ footer{
   transform: rotateY(180deg);
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 12px;
 }
 
 /* vertical stack instead of slideshow */
