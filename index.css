@@ -181,10 +181,12 @@ nav li:focus-within > .dropdown{ display:block; }
   margin: 0 auto;
   overflow: visible;
 }
+
 .logo-card.flipped{
   transform: rotateY(180deg);
 }
 
+.card-front{ transform: rotateY(0deg) translateZ(1px); }
 
 @media (hover: hover){
   .logo-card:hover{ transform: rotateY(180deg); }
@@ -221,7 +223,7 @@ nav li:focus-within > .dropdown{ display:block; }
 /* Back */
 .card-back{
   z-index: 1;
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(1px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -435,6 +437,7 @@ footer{
 
     width: 100%;
     max-width: 100%;
+    justify-content: flex-start;
 
     overflow-x: auto;
     overflow-y: hidden;
