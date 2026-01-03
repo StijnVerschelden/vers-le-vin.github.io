@@ -114,8 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // keep CSS + JS state in sync
     logoCard.classList.toggle("flipped", isFlipped);
 
-    // only force transform on touch devices (desktop hover handled by CSS)
-    logoCard.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
 
     if (hint) hint.style.opacity = "0";
 

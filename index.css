@@ -181,6 +181,10 @@ nav li:focus-within > .dropdown{ display:block; }
   margin: 0 auto;
   overflow: visible;
 }
+.logo-card.flipped{
+  transform: rotateY(180deg);
+}
+
 
 @media (hover: hover){
   .logo-card:hover{ transform: rotateY(180deg); }
@@ -191,6 +195,7 @@ nav li:focus-within > .dropdown{ display:block; }
     transition: opacity .3s ease, visibility .3s ease;
   }
 }
+
 
 .card-face{
   position: absolute;
@@ -415,7 +420,8 @@ footer{
 
     /* CLIP: make the card behave like a slideshow window */
   .logo-card { overflow: hidden; }
-  .card-face { overflow: hidden; }
+  .card-face { overflow: visible; }
+
 
   .card-back{
     position: relative;  /* needed for arrow overlay */
