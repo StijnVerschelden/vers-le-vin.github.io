@@ -425,167 +425,66 @@ footer{
   .brand-wrap{ padding:10px; }
 
   /* =========================
-     iOS / MOBILE FLIP FIXES
-     ========================= */
+   MOBILE FLIP + VERTICAL BACK
+   ========================= */
 
-  /* clip only on the outer container */
-  .logo-card{
+/* keep flip working */
+.logo-card{
   width: var(--logo-size);
   height: var(--logo-size);
-  overflow: hidden;
-
-  -webkit-transform-style: preserve-3d;
+  overflow: visible;
   transform-style: preserve-3d;
-
-  will-change: transform;
-
-  /* add this */
-  -webkit-transform: rotateY(0deg) translateZ(0);
-  transform: rotateY(0deg) translateZ(0);
 }
-/* Ensure faces are positioned absolutely in 3D context */
-.logo-card .card-front {
+
+/* back face positioning */
+.card-back{
   position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transform: rotateY(0deg) translateZ(1px);
-  transform: rotateY(0deg) translateZ(1px);
+  inset: 0;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-.logo-card .card-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transform: rotateY(180deg) translateZ(1px);
-  transform: rotateY(180deg) translateZ(1px);
+/* vertical stack instead of slideshow */
+.back-row{
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  padding-top: 10px;
+  align-items: center;
 }
 
-.logo-card .card-front,
-.logo-card .card-back {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+/* items slightly smaller than logo */
+.back-item{
+  width: 90%;
+  max-width: var(--logo-size);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-  /* do NOT clip the faces (iOS can "lose" the back face) */
-  .card-face{
-    overflow:visible;
-    -webkit-backface-visibility:hidden;
-    backface-visibility:hidden;
-  }
-
- .card-front, .card-back{
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+.back-item img,
+.back-item video{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
 }
 
-/* mobile flip transform (includes gpu kick) */
-.logo-card.flipped{
-  -webkit-transform: rotateY(180deg) translateZ(0);
-  transform: rotateY(180deg) translateZ(0);
+/* titles */
+.back-item .title{
+  margin-top: 8px;
+  font-size: 13px;
+  text-align: center;
 }
 
-  /* when flipped, force back face above front face (fixes "front mirrored") */
-  .logo-card.flipped .card-front{ z-index:1; }
-  .logo-card.flipped .card-back { z-index:2; }
+/* remove slideshow artifacts */
+.swipe-hint{
+  display: none !important;
+}
 
-  /* =========================
-     BACK SIDE SLIDESHOW
-     ========================= */
-
-  .card-back{
-    position:relative;          /* for arrow overlay */
-    justify-content:flex-start; /* row starts at slide 1 */
-    align-items:stretch;
-  }
-
-  .back-row{
-    display:flex;
-    flex-direction:row;
-    gap:0;
-
-    /* IMPORTANT: force strip to be 3 screens wide (3 slides) */
-    width:300%;
-    max-width:none;
-
-    justify-content:flex-start;
-
-    overflow-x:auto;
-    overflow-y:hidden;
-    -webkit-overflow-scrolling:touch;
-
-    scroll-snap-type:x mandatory;
-    scroll-behavior:smooth;
-
-    padding:0;
-    margin:0;
-    scroll-padding:0;
-
-    scrollbar-width:none;
-  }
-  .back-row::-webkit-scrollbar{ display:none; }
-
-  .back-item{
-    flex:0 0 100%;
-    width:100%;
-    min-width:100%;
-    scroll-snap-align:center;
-    scroll-snap-stop:always;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-  }
-
-  .back-item img,
-  .back-item video{
-    width: var(--logo-size);
-    height: var(--logo-size);
-    object-fit:cover;
-    border-radius:8px;
-    display:block;
-  }
-
-  .back-item .title{
-    width:100%;
-    font-size:12px;
-  }
- 
-
-  /* swipe hint */
-  .swipe-hint{
-    position:absolute;
-    right:10px;
-    top:50%;
-    transform:translateY(-50%);
-    width:38px;
-    height:38px;
-    border-radius:999px;
-    background:rgba(0,0,0,0.18);
-    pointer-events:none;
-    opacity:0;
-    transition: opacity .25s ease;
-  }
-
-  .swipe-hint::before{
-    content:"›";
-    position:absolute;
-    inset:0;
-    display:grid;
-    place-items:center;
-    font-size:26px;
-    line-height:1;
-    color:rgba(255,255,255,0.85);
-    animation: swipeNudge 1.2s ease-in-out infinite;
-  }
-
-  .logo-card.flipped .swipe-hint{ opacity:1; }
-  .logo-card.swiped .swipe-hint{ opacity:0; }
-
-  @keyframes swipeNudge{
-    0%,100%{ transform: translateX(0); }
-    50%    { transform: translateX(4px); }
-  }
 
   footer{
     font-size:12px;

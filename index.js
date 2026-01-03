@@ -98,75 +98,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   LOGO CARD FLIP + MOBILE SLIDESHOW RESET (ROBUST)
+   LOGO CARD FLIP (DESKTOP + MOBILE)
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const logoCard = document.getElementById("logoCard");
   const hint = document.querySelector(".hover-hint");
   if (!logoCard) return;
 
-  const row = logoCard.querySelector(".card-back .back-row");
   let isFlipped = false;
 
-  function setFlipped(toBack) {
-    isFlipped = toBack;
-
-    // keep CSS + JS state in sync
+  function setFlipped(state) {
+    isFlipped = state;
     logoCard.classList.toggle("flipped", isFlipped);
 
-
     if (hint) hint.style.opacity = "0";
-
-    if (isFlipped) {
-      resetToFirstSlide();
-      armSwipeHintAutoHide();
-    } else {
-      logoCard.classList.remove("swiped");
-    }
   }
 
-  function resetToFirstSlide() {
-    if (!row) return;
-
-    // show arrow again when opening
-    logoCard.classList.remove("swiped");
-
-    // hard reset (double rAF helps Safari)
-    row.scrollTo({ left: 0, behavior: "auto" });
-    requestAnimationFrame(() => row.scrollTo({ left: 0, behavior: "auto" }));
-  }
-
-  function armSwipeHintAutoHide() {
-    if (!row) return;
-
-    // hide arrow once user actually scrolls
-    const onScrollOnce = () => logoCard.classList.add("swiped");
-    row.addEventListener("scroll", onScrollOnce, { passive: true, once: true });
-  }
-
-logoCard.addEventListener("pointerup", (e) => {
-  if (e.target.closest(".back-row")) return;
-  setFlipped(!isFlipped);
-});
-
-
-  // desktop click just hides hint (keeps your original behavior)
-  logoCard.addEventListener("click", () => {
-    if (hint) hint.style.opacity = "0";
+  // Tap / click on card toggles flip
+  logoCard.addEventListener("pointerup", () => {
+    setFlipped(!isFlipped);
   });
 
-  // tap outside to flip back
+  // Tap outside card flips back
   document.addEventListener("pointerdown", (e) => {
     if (!isFlipped) return;
     if (logoCard.contains(e.target)) return;
     setFlipped(false);
-  });
-
-  // if you ever flip via CSS hover on some devices, still reset when flipped class appears
-  // (transitionend is a safe trigger when transform animation completes)
-  logoCard.addEventListener("transitionend", (e) => {
-    if (e.propertyName !== "transform") return;
-    if (logoCard.classList.contains("flipped")) resetToFirstSlide();
   });
 });
 
