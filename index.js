@@ -107,22 +107,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isFlipped = false;
 
-  function flip(toBack) {
+function flip(toBack) {
     isFlipped = toBack;
     logoCard.style.transform = isFlipped ? "rotateY(180deg)" : "rotateY(0deg)";
     logoCard.classList.toggle("flipped", isFlipped);
     if (hint) hint.style.opacity = "0";
 
- // ✅ on flip: start at the FIRST item so it’s reachable and visible
-if (isFlipped) {
-  requestAnimationFrame(() => {
-    const row = logoCard.querySelector(".card-back .back-row");
-    if (!row) return;
-    row.scrollLeft = 0; // most reliable (Safari/Chrome)
-  });
+ function resetBackToFirstSlide() {
+  const row = logoCard.querySelector(".card-back .back-row");
+  if (!row) return;
+
+  // hide arrow reset state (it will show again when flipped)
+  logoCard.classList.remove("swiped");
+
+  // snap to first slide reliably
+  row.scrollTo({ left: 0, behavior: "auto" });
+ }
+
+ function armSwipeHintAutoHide() {
+  const row = logoCard.querySelector(".card-back .back-row");
+  if (!row) return;
+
+  const onFirstUserScroll = () => {
+    logoCard.classList.add("swiped");      // hides arrow via CSS
+    row.removeEventListener("scroll", onFirstUserScroll, { passive: true });
+  };
+
+  row.addEventListener("scroll", onFirstUserScroll, { passive: true, once: true });
 }
 
-  }
+ // ✅ on flip: start at first slide + prepare swipe hint
+ if (isFlipped) {
+  requestAnimationFrame(() => {
+    resetBackToFirstSlide();
+    armSwipeHintAutoHide();
+  });
+ }
+}
 
   // Tap card to flip (but DON'T flip when swiping on media/captions)
  logoCard.addEventListener("touchstart", (e) => {
@@ -134,6 +155,18 @@ if (isFlipped) {
   logoCard.classList.toggle("flipped", isFlipped);
 
   if (hint) hint.style.opacity = "0";
+ if (isFlipped) {
+    requestAnimationFrame(() => {
+      const row = logoCard.querySelector(".card-back .back-row");
+      if (!row) return;
+      logoCard.classList.remove("swiped");
+      row.scrollTo({ left: 0, behavior: "auto" });
+
+      // hide arrow after first swipe
+      const onScrollOnce = () => logoCard.classList.add("swiped");
+      row.addEventListener("scroll", onScrollOnce, { passive: true, once: true });
+    });
+  }
 }, { passive: true });
 
   // Desktop click just hides hint
