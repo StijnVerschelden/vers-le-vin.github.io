@@ -423,7 +423,7 @@ footer{
   }
 
   .brand-wrap{
-  padding: 0;
+  padding: 10px;
   margin-top: -24px; /* move logo up */
 }
 
@@ -434,7 +434,7 @@ footer{
 /* keep flip working */
 .logo-card{
   width: var(--logo-size);
-  height: 100%;
+  height: var(--logo-size);
   overflow: visible;
   transform-style: preserve-3d;
 }
