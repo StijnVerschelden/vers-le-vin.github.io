@@ -494,13 +494,18 @@ footer{
   display: none !important;
 }
 
-  footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:12px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-    }
+ footer{
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  padding-right: 10px;
+  margin-top: auto;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.85;
+  z-index: 100;
+}
 }
 
