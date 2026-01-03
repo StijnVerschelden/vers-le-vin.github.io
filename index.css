@@ -494,12 +494,13 @@ footer{
   display: none !important;
 }
 
-  footer{
-  position: static;   /* stops sticking to the viewport */
-  width: 100%;
-  margin-top: 24px;   /* space above footer */
-  padding: 0 10px 14px;
-  opacity: 0.85;
-}
+  footer {
+      margin-top:auto;
+      padding:10px 20px;
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      opacity:0.85;
+    }
 }
 
