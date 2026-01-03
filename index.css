@@ -175,6 +175,7 @@ nav li:focus-within > .dropdown{ display:block; }
   width: var(--logo-size);
   height: var(--logo-size);
   position: relative;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   transition: transform 1.3s ease;
   cursor: pointer;
@@ -183,10 +184,15 @@ nav li:focus-within > .dropdown{ display:block; }
 }
 
 .logo-card.flipped{
+  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
-.card-front{ transform: rotateY(0deg) translateZ(1px); }
+.card-front{
+  -webkit-transform: rotateY(0deg) translateZ(1px);
+  transform: rotateY(0deg) translateZ(1px);
+}
+
 
 @media (hover: hover){
   .logo-card:hover{ transform: rotateY(180deg); }
@@ -224,12 +230,14 @@ nav li:focus-within > .dropdown{ display:block; }
 /* Back */
 .card-back{
   z-index: 1;
+  -webkit-transform: rotateY(180deg) translateZ(1px);
   transform: rotateY(180deg) translateZ(1px);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: visible;
 }
+
 
 .back-row{
   display: flex;
@@ -422,26 +430,37 @@ footer{
 
   /* clip only on the outer container */
   .logo-card{
-    width: var(--logo-size);
-    height: var(--logo-size);
-    overflow:hidden;
+  width: var(--logo-size);
+  height: var(--logo-size);
+  overflow: hidden;
 
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 
-    /* GPU kick for iOS */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
+  will-change: transform;
+
+  /* add this */
+  -webkit-transform: rotateY(0deg) translateZ(0);
+  transform: rotateY(0deg) translateZ(0);
+}
 
   /* do NOT clip the faces (iOS can "lose" the back face) */
   .card-face{
     overflow:visible;
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
   }
+  
+ .card-front, .card-back{
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* mobile flip transform (includes gpu kick) */
+.logo-card.flipped{
+  -webkit-transform: rotateY(180deg) translateZ(0);
+  transform: rotateY(180deg) translateZ(0);
+}
 
   /* when flipped, force back face above front face (fixes "front mirrored") */
   .logo-card.flipped .card-front{ z-index:1; }
@@ -509,6 +528,7 @@ footer{
     width:100%;
     font-size:12px;
   }
+ 
 
   /* swipe hint */
   .swipe-hint{
