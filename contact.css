@@ -272,9 +272,11 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     font-size: 14px;
   }
 
-  footer {
-    font-size: 12px;
-    bottom: 10px;
-    left: 10px;
-  }
+  footer{
+  position: static;   /* stops sticking to the viewport */
+  width: 100%;
+  margin-top: 24px;   /* space above footer */
+  padding: 0 10px 14px;
+  opacity: 0.85;
+}
 }
