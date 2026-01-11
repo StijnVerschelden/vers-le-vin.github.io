@@ -400,13 +400,12 @@ footer{
     font-size:14px;
   }
 
- /* hero adjustments */
+  /* hero adjustments */
   .hero{
     padding:30px 10px;
     padding-top:70px;
-    padding-bottom:260px;  /* ⬅ bigger bottom padding to clear the column */
+    padding-bottom:80px;
     flex-direction:column;
-    flex: 0 0 auto;        /* ⬅ stop flex:1 from forcing a fixed height */
   }
 
   /* responsive size on mobile */
@@ -433,16 +432,22 @@ footer{
 /* keep flip working */
 .logo-card{
   width: var(--logo-size);
-  height: var(--logo-size);
+  height: auto;
   overflow: visible;
   transform-style: preserve-3d;
 }
 
+.card-face{
+    position: relative;
+    inset: auto;
+    backface-visibility: visible;
+  }
+
 /* back face positioning */
 .card-back{
   position: relative;
-  transform: rotateY(180deg);
-  display: flex;
+  transform: none;
+  display: none;
   justify-content: flex-start;
   padding-top: 0;
 }
@@ -493,13 +498,12 @@ footer{
   display: none !important;
 }
 
+.logo-card.flipped .card-back{ display: flex; }
+  .logo-card.flipped .card-front{ display: none; }
+
   /* Footer flows after content on mobile */
   footer{
     position: static;                 /* <-- key change: no longer fixed */
-    width: calc(100% - 20px);
-    margin: 24px 10px 16px;
-    padding-right: 0;
-    font-size: 12px;
-    justify-content: space-between;
-  }
+    margin: auto 10px 16px; /* top auto lets it sit at the bottom when content is short */
+}
 }
