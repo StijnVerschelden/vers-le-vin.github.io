@@ -447,7 +447,8 @@ footer{
     align-items: flex-start;
     justify-content: flex-start;
     overflow-y: auto;              /* <-- scroll inside back side */
-    max-height: var(--logo-size);  /* or use 70vh if you prefer: max-height: 70vh; */
+    max-height: calc(var(--logo-size) * 1.4);  /* 40% taller */
+
     -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
     padding: 8px 0;
   }
