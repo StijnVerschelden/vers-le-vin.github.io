@@ -404,7 +404,7 @@ footer{
   .hero{
     padding:30px 10px;
     padding-top:70px;
-    padding-bottom:40px;  /* no huge padding; height comes from content */
+    padding-bottom:80px;
     flex-direction:column;
   }
 
@@ -421,97 +421,94 @@ footer{
   }
 
   .brand-wrap{
-    padding: 10px;
-    margin-top: -10px; /* move logo up */
-  }
+  padding: 10px;
+  margin-top: -10px; /* move logo up */
+}
 
   /* =========================
-     MOBILE FLIP + VERTICAL BACK
-     ========================= */
+   MOBILE FLIP + VERTICAL BACK
+   ========================= */
 
+  /* keep flip working */
   .logo-card{
-    position: relative;       /* so front can be absolute */
     width: var(--logo-size);
-    margin: 0 auto;
-  }
-
-  /* FRONT: absolutely positioned, flips away */
-  .card-front{
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transform-origin: center center;
-    transform: rotateY(0deg);
-    opacity: 1;
-    transition: transform 0.6s ease, opacity 0.6s ease;
-  }
-
-  /* When flipped, front rotates and fades out */
-  .logo-card.flipped .card-front{
-    transform: rotateY(90deg);
-    opacity: 0;
-  }
-
-  /* BACK: normal flow block under the logo area */
-  .card-back{
-    position: relative;
-    margin-top: var(--logo-size);  /* space where the logo sits */
-    /* no transform here → no mirroring, and full height */
-  }
-
-  /* vertical stack for back content */
-  .back-row{
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    width: 100%;
-    align-items: center;
-  }
-
-  .back-item{
-    width: 90%;
-    max-width: var(--logo-size);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .back-item img,
-  .back-item video{
-    width: 100%;
     height: auto;
-    border-radius: 10px;
-    display: block;
+    overflow: visible;
+    transform-style: preserve-3d;
+    transform: none;
   }
 
-  .back-item .title{
-    margin-top: 8px;
-    font-size: 13px;
-    text-align: center;
+  .logo-card.flipped{
+    transform: none;
   }
 
-  .hover-hint{
-    position: absolute;
-    margin-top: 12px;
-    font-size: 11px;
-    text-align: center;
+.card-face{
+    position: relative;
+    inset: auto;
+    backface-visibility: visible;
   }
 
-  .swipe-hint{
-    display: none !important;
-  }
+/* back face positioning */
+.card-back{
+  position: relative;
+  transform: none;
+  display: none;
+  justify-content: flex-start;
+  padding-top: 0;
+}
+
+/* vertical stack instead of slideshow */
+.back-row{
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  margin-top: -10px;
+  align-items: center;
+}
+
+/* items slightly smaller than logo */
+.back-item{
+  width: 90%;
+  max-width: var(--logo-size);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back-item img,
+.back-item video{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+/* titles */
+.back-item .title{
+  margin-top: 8px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.hover-hint{
+  position: absolute;
+  margin-top: 12px;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* remove slideshow artifacts */
+.swipe-hint{
+  display: none !important;
+}
+
+.logo-card.flipped .card-back{ display: flex; }
+  .logo-card.flipped .card-front{ display: none; }
 
   /* Footer flows after content on mobile */
   footer{
-    position: static;
-    width: calc(100% - 20px);
-    margin: 32px 10px 16px;
-    padding-right: 0;
-    font-size: 12px;
-    justify-content: space-between;
-  }
+    position: static;                 /* <-- key change: no longer fixed */
+    margin: auto 10px 16px; /* top auto lets it sit at the bottom when content is short */
+}
 }
