@@ -400,12 +400,13 @@ footer{
     font-size:14px;
   }
 
-  /* hero adjustments */
+ /* hero adjustments */
   .hero{
     padding:30px 10px;
     padding-top:70px;
-    padding-bottom:80px;
+    padding-bottom:260px;  /* ⬅ bigger bottom padding to clear the column */
     flex-direction:column;
+    flex: 0 0 auto;        /* ⬅ stop flex:1 from forcing a fixed height */
   }
 
   /* responsive size on mobile */
