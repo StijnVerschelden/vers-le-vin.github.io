@@ -429,13 +429,18 @@ footer{
    MOBILE FLIP + VERTICAL BACK
    ========================= */
 
-/* keep flip working */
-.logo-card{
-  width: var(--logo-size);
-  height: auto;
-  overflow: visible;
-  transform-style: preserve-3d;
-}
+  /* keep flip working */
+  .logo-card{
+    width: var(--logo-size);
+    height: auto;
+    overflow: visible;
+    transform-style: preserve-3d;
+    transform: none;
+  }
+
+  .logo-card.flipped{
+    transform: none;
+  }
 
 .card-face{
     position: relative;
