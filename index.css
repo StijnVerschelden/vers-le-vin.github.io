@@ -406,14 +406,16 @@ footer{
     font-size:14px;
   }
 
-  /* hero adjustments */
-  .hero{
+    .hero{
     padding:30px 10px;
-    padding-top:70px;
-    padding-bottom:320px;   /* extra room so footer clears tall back column */
+    padding-top:90px;       /* a bit more space from the top nav */
+    padding-bottom:320px;   /* room so footer clears the back column */
     flex-direction:column;
-    flex: 0 0 auto;         /* don't force hero to be 'flex:1' full-height */
+    flex: 0 0 auto;
+    align-items: flex-start;   /* ⬅ don't center vertically */
+    justify-content: flex-start;
   }
+
 
   /* responsive size on mobile */
   :root{
@@ -429,21 +431,20 @@ footer{
 
   .brand-wrap{
     padding: 10px;
-    margin-top: -10px; /* move logo up */
+    margin-top: 0px; /* move logo up */
   }
 
   /* =========================
      MOBILE BACK FACE LAYOUT ONLY
      (flip stays exactly as desktop)
      ========================= */
-
-  /* Make the back items stack in a column */
   .back-row{
     display:flex;
     flex-direction:column;
     gap:28px;
     width:100%;
     align-items:center;
+    margin-top: 12px;   /* ⬅ small positive margin to nudge it DOWN */
   }
 
   .back-item{
