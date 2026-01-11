@@ -291,9 +291,6 @@ nav li:focus-within > .dropdown{ display:block; }
 
 .logo-card.flipped + .hover-hint{ opacity: 0; }
 
-/* =========================
-   FOOTER
-   ========================= */
 footer{
   position: fixed;
   bottom: 10px;
@@ -341,9 +338,15 @@ footer{
     display:block;
   }
 
-  .hamburger[aria-expanded="true"] .line:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-  .hamburger[aria-expanded="true"] .line:nth-child(2){ opacity: 0; }
-  .hamburger[aria-expanded="true"] .line:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+  .hamburger[aria-expanded="true"] .line:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] .line:nth-child(2){
+    opacity: 0;
+  }
+  .hamburger[aria-expanded="true"] .line:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
+  }
 
   nav ul{ display:none; }
 
@@ -406,7 +409,7 @@ footer{
   .hero{
     padding:30px 10px;
     padding-top:70px;
-    padding-bottom:120px;
+    padding-bottom:40px; /* no need for huge padding now */
     flex-direction:column;
   }
 
@@ -423,82 +426,105 @@ footer{
   }
 
   .brand-wrap{
-  padding: 10px;
-  margin-top: -10px; /* move logo up */
-}
+    padding: 10px;
+    margin-top: -10px; /* move logo up */
+  }
 
   /* =========================
-   MOBILE FLIP + VERTICAL BACK
-   ========================= */
+     MOBILE FLIP + VERTICAL BACK
+     ========================= */
 
-/* keep flip working */
-.logo-card{
-  width: var(--logo-size);
-  height: var(--logo-size);
-  overflow: visible;
-  transform-style: preserve-3d;
-}
+  /* Make the card auto-height on mobile */
+  .logo-card{
+    width: 100%;
+    max-width: var(--logo-size);
+    height: auto;          /* grows with back content */
+    margin: 0 auto;
+    transform: none;       /* disable 3D rotation container */
+    perspective: none;
+  }
 
-/* back face positioning */
-.card-back{
-  position: relative;
-  transform: rotateY(180deg);
-  display: flex;
-  justify-content: flex-start;
-  padding-top: 0;
-}
+  /* Faces should be in normal flow, not absolute */
+  .card-face{
+    position: static;      /* override absolute */
+    inset: auto;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
 
-/* vertical stack instead of slideshow */
-.back-row{
-  display: flex;
-  margin-top: -40px; 
-  flex-direction: column;
-  gap: 28px;
-  width: 100%;
-  align-items: center;
-}
+  /* Default: show front, hide back */
+  .card-front{
+    display: block;
+  }
 
-/* items slightly smaller than logo */
-.back-item{
-  width: 90%;
-  max-width: var(--logo-size);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .card-back{
+    display: none;
+    transform: none;       /* no rotate on mobile */
+    padding-top: 0;
+  }
 
-.back-item img,
-.back-item video{
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  display: block;
-}
+  /* When the card is flipped on mobile, show back & hide front */
+  .logo-card.flipped .card-front{
+    display: none;
+  }
 
-/* titles */
-.back-item .title{
-  margin-top: 8px;
-  font-size: 13px;
-  text-align: center;
-}
+  .logo-card.flipped .card-back{
+    display: block;
+  }
 
-.hover-hint{
-  position: absolute;
-  margin-top: 12px;
-  font-size: 11px;
-  text-align: center;
-}
+  /* vertical stack instead of slideshow */
+  .back-row{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+    align-items: center;
+    margin-top: -10px;     /* small lift, adjust if needed */
+  }
 
-/* remove slideshow artifacts */
-.swipe-hint{
-  display: none !important;
-}
+  /* items slightly smaller than logo */
+  .back-item{
+    width: 90%;
+    max-width: var(--logo-size);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
- footer {
+  .back-item img,
+  .back-item video{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+  }
+
+  /* titles */
+  .back-item .title{
+    margin-top: 8px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .hover-hint{
+    position: absolute;
+    margin-top: 12px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  /* remove slideshow artifacts */
+  .swipe-hint{
+    display: none !important;
+  }
+
+  /* Footer flows after content on mobile */
+  footer{
+    position: static;                 /* no longer fixed */
+    width: calc(100% - 20px);
+    margin: 24px 10px 16px;           /* space above and below */
+    padding-right: 0;
     font-size: 12px;
-    bottom: 10px;
-    margin-top: auto;
-    left: 10px;
+    justify-content: space-between;
   }
 }
-
