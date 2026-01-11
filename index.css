@@ -495,12 +495,10 @@ footer{
 }
 
  footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:12px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-    }
+    font-size: 12px;
+    bottom: 10px;
+    margin-top: auto;
+    left: 10px;
+  }
 }
 
