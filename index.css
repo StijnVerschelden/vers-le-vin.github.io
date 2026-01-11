@@ -339,15 +339,9 @@ footer{
     display:block;
   }
 
-  .hamburger[aria-expanded="true"] .line:nth-child(1){
-    transform: translateY(7px) rotate(45deg);
-  }
-  .hamburger[aria-expanded="true"] .line:nth-child(2){
-    opacity: 0;
-  }
-  .hamburger[aria-expanded="true"] .line:nth-child(3){
-    transform: translateY(-7px) rotate(-45deg);
-  }
+  .hamburger[aria-expanded="true"] .line:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] .line:nth-child(2){ opacity: 0; }
+  .hamburger[aria-expanded="true"] .line:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
   nav ul{ display:none; }
 
@@ -410,7 +404,7 @@ footer{
   .hero{
     padding:30px 10px;
     padding-top:70px;
-    padding-bottom:40px; /* no huge bottom padding now */
+    padding-bottom:80px;
     flex-direction:column;
   }
 
@@ -427,76 +421,76 @@ footer{
   }
 
   .brand-wrap{
-    padding: 10px;
-    margin-top: -10px; /* move logo up */
-  }
+  padding: 10px;
+  margin-top: -10px; /* move logo up */
+}
 
   /* =========================
-     MOBILE FLIP + VERTICAL BACK
-     (keep 3D flip, only change layout)
-     ========================= */
+   MOBILE FLIP + VERTICAL BACK
+   ========================= */
 
-  .logo-card{
-    width: 100%;
-    max-width: var(--logo-size);
-    height: var(--logo-size);      /* keep fixed height for 3D card */
-    margin: 0 auto;
-    /* don't touch transform / perspective here:
-       they come from the desktop/base styles */
-    overflow: visible;
-  }
+/* keep flip working */
+.logo-card{
+  width: var(--logo-size);
+  height: var(--logo-size);
+  overflow: visible;
+  transform-style: preserve-3d;
+}
 
-  /* back face positioning for vertical stack */
-  .card-back{
-    position: relative;            /* allow height from content */
-    transform: rotateY(180deg);    /* still flipped for 3D */
-    display: flex;
-    justify-content: flex-start;
-    padding-top: 0;
-  }
+/* back face positioning */
+.card-back{
+  position: relative;
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 0;
+}
 
-  /* vertical stack of back items */
-  .back-row{
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    width: 100%;
-    align-items: center;
-    margin-top: -10px;             /* tweak if you want it higher/lower */
-  }
+/* vertical stack instead of slideshow */
+.back-row{
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  margin-top: -10px;
+  align-items: center;
+}
 
-  .back-item{
-    width: 90%;
-    max-width: var(--logo-size);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+/* items slightly smaller than logo */
+.back-item{
+  width: 90%;
+  max-width: var(--logo-size);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .back-item img,
-  .back-item video{
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    display: block;
-  }
+.back-item img,
+.back-item video{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
 
-  .back-item .title{
-    margin-top: 8px;
-    font-size: 13px;
-    text-align: center;
-  }
+/* titles */
+.back-item .title{
+  margin-top: 8px;
+  font-size: 13px;
+  text-align: center;
+}
 
-  .hover-hint{
-    position: absolute;
-    margin-top: 12px;
-    font-size: 11px;
-    text-align: center;
-  }
+.hover-hint{
+  position: absolute;
+  margin-top: 12px;
+  font-size: 11px;
+  text-align: center;
+}
 
-  .swipe-hint{
-    display: none !important;
-  }
+/* remove slideshow artifacts */
+.swipe-hint{
+  display: none !important;
+}
 
   /* Footer flows after content on mobile */
   footer{
