@@ -475,11 +475,9 @@ footer{
     opacity: 1;
     max-height: 4000px;       /* big so tall column can fully expand */
     overflow: visible;
+    margin bottom: 50px;
   }
 
-  .logo-card.flipped{
-  margin-bottom: 50px;
-}
 
   /* vertical stack for back content */
   .back-row{
