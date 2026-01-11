@@ -438,19 +438,20 @@ footer{
      MOBILE BACK FACE LAYOUT ONLY
      (flip stays exactly as desktop)
      ========================= */
-  .card-back{
-    /* IMPORTANT: do NOT override transform here
-       keep the desktop:
-       transform: rotateY(180deg) translateZ(1px); */
-
+  /* Back face scroll window (mobile) */
+   
+.card-back{
+    overflow-y: auto;
+    max-height: 95vh !important;     /* <-- enough to show full first image */
+    height: 95vh !important;         /* <-- force it, not just max-height */
+    -webkit-overflow-scrolling: touch;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    overflow-y: auto;              /* <-- scroll inside back side */
-    max-height: 85vh; 
-    -webkit-overflow-scrolling: touch;
-    padding: 8px 0;
-  }
+    padding-top: 0;
+    padding-bottom: 20px;
+}
+
    
   .back-row{
     display:flex;
