@@ -339,9 +339,15 @@ footer{
     display:block;
   }
 
-  .hamburger[aria-expanded="true"] .line:nth-child(1){ transform: translateY(7px) rotate(45deg); }
-  .hamburger[aria-expanded="true"] .line:nth-child(2){ opacity: 0; }
-  .hamburger[aria-expanded="true"] .line:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+  .hamburger[aria-expanded="true"] .line:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] .line:nth-child(2){
+    opacity: 0;
+  }
+  .hamburger[aria-expanded="true"] .line:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
+  }
 
   nav ul{ display:none; }
 
@@ -404,8 +410,9 @@ footer{
   .hero{
     padding:30px 10px;
     padding-top:70px;
-    padding-bottom:80px;
+    padding-bottom:320px;   /* extra room so footer clears tall back column */
     flex-direction:column;
+    flex: 0 0 auto;         /* don't force hero to be 'flex:1' full-height */
   }
 
   /* responsive size on mobile */
@@ -421,94 +428,65 @@ footer{
   }
 
   .brand-wrap{
-  padding: 10px;
-  margin-top: -10px; /* move logo up */
-}
+    padding: 10px;
+    margin-top: -10px; /* move logo up */
+  }
 
   /* =========================
-   MOBILE FLIP + VERTICAL BACK
-   ========================= */
+     MOBILE BACK FACE LAYOUT ONLY
+     (flip stays exactly as desktop)
+     ========================= */
 
-  /* keep flip working */
-  .logo-card{
-    width: var(--logo-size);
-    height: auto;
-    overflow: visible;
-    transform-style: preserve-3d;
-    transform: none;
+  /* Make the back items stack in a column */
+  .back-row{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    width:100%;
+    align-items:center;
   }
 
-  .logo-card.flipped{
-    transform: none;
+  .back-item{
+    width:90%;
+    max-width:var(--logo-size);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
 
-.card-face{
-    position: relative;
-    inset: auto;
-    backface-visibility: visible;
+  .back-item img,
+  .back-item video{
+    width:100%;
+    height:auto;
+    border-radius:8px;
+    display:block;
   }
 
-/* back face positioning */
-.card-back{
-  position: relative;
-  transform: none;
-  display: none;
-  justify-content: flex-start;
-  padding-top: 0;
-}
+  .back-item .title{
+    margin-top:8px;
+    font-size:13px;
+    text-align:center;
+  }
 
-/* vertical stack instead of slideshow */
-.back-row{
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  width: 100%;
-  margin-top: -10px;
-  align-items: center;
-}
+  .hover-hint{
+    position:absolute;
+    margin-top:12px;
+    font-size:11px;
+    text-align:center;
+  }
 
-/* items slightly smaller than logo */
-.back-item{
-  width: 90%;
-  max-width: var(--logo-size);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.back-item img,
-.back-item video{
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  display: block;
-}
-
-/* titles */
-.back-item .title{
-  margin-top: 8px;
-  font-size: 13px;
-  text-align: center;
-}
-
-.hover-hint{
-  position: absolute;
-  margin-top: 12px;
-  font-size: 11px;
-  text-align: center;
-}
-
-/* remove slideshow artifacts */
-.swipe-hint{
-  display: none !important;
-}
-
-.logo-card.flipped .card-back{ display: flex; }
-  .logo-card.flipped .card-front{ display: none; }
+  .swipe-hint{
+    display:none !important;
+  }
 
   /* Footer flows after content on mobile */
   footer{
-    position: static;                 /* <-- key change: no longer fixed */
-    margin: auto 10px 16px; /* top auto lets it sit at the bottom when content is short */
-}
+    position:static;                /* not fixed on mobile */
+    width:calc(100% - 20px);
+    margin:24px 10px 16px;
+    padding-right:0;
+    font-size:12px;
+    justify-content:space-between;
+    opacity:0.85;
+  }
 }
