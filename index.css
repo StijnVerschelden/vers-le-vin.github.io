@@ -409,7 +409,7 @@ footer{
     .hero{
     padding:30px 10px;
     padding-top:90px;       /* a bit more space from the top nav */
-    padding-bottom:320px;   /* room so footer clears the back column */
+    padding-bottom:380px;   /* room so footer clears the back column */
     flex-direction:column;
     flex: 0 0 auto;
     align-items: flex-start;   /* ⬅ don't center vertically */
@@ -449,7 +449,7 @@ footer{
     align-items: flex-start;
     justify-content: flex-start;
     padding-top: 0;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
 }
 
    
@@ -499,7 +499,7 @@ footer{
   footer{
     position:static;                /* not fixed on mobile */
     width:calc(100% - 20px);
-    margin:24px 10px 16px;
+    margin:50px 10px 40px;
     padding-right:0;
     font-size:12px;
     justify-content:space-between;
