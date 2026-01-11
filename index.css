@@ -305,6 +305,7 @@ footer{
   z-index: 100;
 }
 
+
 /* =========================
    MOBILE: 720px AND BELOW
    ========================= */
@@ -409,7 +410,7 @@ footer{
   .hero{
     padding:30px 10px;
     padding-top:70px;
-    padding-bottom:40px; /* no need for huge padding now */
+    padding-bottom:40px; /* no huge bottom padding now */
     flex-direction:column;
   }
 
@@ -432,57 +433,38 @@ footer{
 
   /* =========================
      MOBILE FLIP + VERTICAL BACK
+     (keep 3D flip, only change layout)
      ========================= */
 
-  /* Make the card auto-height on mobile */
   .logo-card{
     width: 100%;
     max-width: var(--logo-size);
-    height: auto;          /* grows with back content */
+    height: var(--logo-size);      /* keep fixed height for 3D card */
     margin: 0 auto;
-    transform: none;       /* disable 3D rotation container */
-    perspective: none;
+    /* don't touch transform / perspective here:
+       they come from the desktop/base styles */
+    overflow: visible;
   }
 
-  /* Faces should be in normal flow, not absolute */
-  .card-face{
-    position: static;      /* override absolute */
-    inset: auto;
-    backface-visibility: visible;
-    -webkit-backface-visibility: visible;
-  }
-
-  /* Default: show front, hide back */
-  .card-front{
-    display: block;
-  }
-
+  /* back face positioning for vertical stack */
   .card-back{
-    display: none;
-    transform: none;       /* no rotate on mobile */
+    position: relative;            /* allow height from content */
+    transform: rotateY(180deg);    /* still flipped for 3D */
+    display: flex;
+    justify-content: flex-start;
     padding-top: 0;
   }
 
-  /* When the card is flipped on mobile, show back & hide front */
-  .logo-card.flipped .card-front{
-    display: none;
-  }
-
-  .logo-card.flipped .card-back{
-    display: block;
-  }
-
-  /* vertical stack instead of slideshow */
+  /* vertical stack of back items */
   .back-row{
     display: flex;
     flex-direction: column;
     gap: 28px;
     width: 100%;
     align-items: center;
-    margin-top: -10px;     /* small lift, adjust if needed */
+    margin-top: -10px;             /* tweak if you want it higher/lower */
   }
 
-  /* items slightly smaller than logo */
   .back-item{
     width: 90%;
     max-width: var(--logo-size);
@@ -499,7 +481,6 @@ footer{
     display: block;
   }
 
-  /* titles */
   .back-item .title{
     margin-top: 8px;
     font-size: 13px;
@@ -513,16 +494,15 @@ footer{
     text-align: center;
   }
 
-  /* remove slideshow artifacts */
   .swipe-hint{
     display: none !important;
   }
 
   /* Footer flows after content on mobile */
   footer{
-    position: static;                 /* no longer fixed */
+    position: static;                 /* <-- key change: no longer fixed */
     width: calc(100% - 20px);
-    margin: 24px 10px 16px;           /* space above and below */
+    margin: 24px 10px 16px;
     padding-right: 0;
     font-size: 12px;
     justify-content: space-between;
