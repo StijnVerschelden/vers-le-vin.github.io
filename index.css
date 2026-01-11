@@ -477,6 +477,10 @@ footer{
     overflow: visible;
   }
 
+  .logo-card.flipped{
+  margin-bottom: 260px;
+}
+
   /* vertical stack for back content */
   .back-row{
     display: flex;
