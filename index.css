@@ -404,7 +404,7 @@ footer{
   .hero{
     padding:30px 10px;
     padding-top:70px;
-    padding-bottom:40px;  /* footer space comes from the card itself now */
+    padding-bottom:40px;  /* no huge padding; height comes from content */
     flex-direction:column;
   }
 
@@ -429,55 +429,39 @@ footer{
      MOBILE FLIP + VERTICAL BACK
      ========================= */
 
-  /* Card is just a container in normal flow */
   .logo-card{
+    position: relative;       /* so front can be absolute */
     width: var(--logo-size);
     margin: 0 auto;
-    perspective: 800px;
   }
 
-  /* Faces in normal flow, animated flip */
-  .card-face{
-    position: relative;
+  /* FRONT: absolutely positioned, flips away */
+  .card-front{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     transform-origin: center center;
-    transition: transform 0.6s ease, opacity 0.6s ease, max-height 0.6s ease;
-  }
-
-  /* FRONT: visible by default */
-  .card-front{
     transform: rotateY(0deg);
     opacity: 1;
-    max-height: 1000px;       /* enough for logo */
-    overflow: visible;
+    transition: transform 0.6s ease, opacity 0.6s ease;
   }
 
-  /* BACK: hidden & collapsed by default */
-  .card-back{
+  /* When flipped, front rotates and fades out */
+  .logo-card.flipped .card-front{
     transform: rotateY(90deg);
     opacity: 0;
-    max-height: 0;            /* collapsed so it doesn't affect layout */
-    overflow: hidden;
-    margin-top: 16px;         /* space from where logo was */
   }
 
-  /* When flipped: front flips out, back flips in & expands height */
-  .logo-card.flipped .card-front{
-    transform: rotateY(-90deg);
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
+  /* BACK: normal flow block under the logo area */
+  .card-back{
+    position: relative;
+    margin-top: var(--logo-size);  /* space where the logo sits */
+    /* no transform here → no mirroring, and full height */
   }
-
-  .logo-card.flipped .card-back{
-    transform: rotateY(0deg);
-    opacity: 1;
-    max-height: 4000px;       /* big so tall column can fully expand */
-    overflow: visible;
-    margin bottom: 50px;
-  }
-
 
   /* vertical stack for back content */
   .back-row{
@@ -525,7 +509,7 @@ footer{
   footer{
     position: static;
     width: calc(100% - 20px);
-    margin: 24px 10px 16px;
+    margin: 32px 10px 16px;
     padding-right: 0;
     font-size: 12px;
     justify-content: space-between;
