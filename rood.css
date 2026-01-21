@@ -264,7 +264,7 @@ main{
   .wine-grid{gap:100px;}
   .wine-info{bottom:-48px;}
 
-   /* show hamburger, hide desktop nav */
+  /* show hamburger, hide desktop nav */
 
     .hamburger {
   display: flex;
@@ -361,7 +361,6 @@ main{
     padding: 8px 14px;
     font-size: 14px;
   }
-
   
   footer {
       font-size:12px;
