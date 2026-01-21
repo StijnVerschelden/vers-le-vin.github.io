@@ -103,8 +103,8 @@ main{
   text-align: center;
   font-size: 12px;          /* smaller */
   letter-spacing: 0.12em;   /* elegant spacing */
-  opacity: 0.7;
-  margin-bottom: 18px;      /* space above first card */
+  opacity: 0.8;
+  margin-bottom: 12px;      /* space above first card */
   margin-top: 0;
   font-style: italic;
 }
