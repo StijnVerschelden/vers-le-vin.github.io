@@ -106,7 +106,7 @@ main{
   opacity: 0.8;
   margin-bottom: 10px;      /* space above first card */
   margin-top: 0;
-  font-style: italic;
+  font-style: normal;
 }
 
 .wine-grid{
