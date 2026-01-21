@@ -101,18 +101,15 @@ main{
 .wine-wrap{
   display:grid;
   width: 100%;
-  max-width: 700px; /* use whatever your grid max width is */
+  max-width: 700px; 
   margin: 0 auto;
 }
 
-.flip-hint {
-  width: 100%;
+.flip-hint{
   text-align: center;
-  font-size: 12px;          /* smaller */
-  opacity: 0.8;
-  margin-bottom: 5px;      /* space above first card */
-  margin-top: 0;
-  font-style: normal;
+  font-size: 12px;
+  opacity: .8;
+  margin: 0 0 8px 0;
 }
 
 .wine-grid{
