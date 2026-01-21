@@ -102,9 +102,8 @@ main{
   width: 100%;
   text-align: center;
   font-size: 12px;          /* smaller */
-  letter-spacing: 0.12em;   /* elegant spacing */
   opacity: 0.8;
-  margin-bottom: 10px;      /* space above first card */
+  margin-bottom: 5px;      /* space above first card */
   margin-top: 0;
   font-style: normal;
 }
