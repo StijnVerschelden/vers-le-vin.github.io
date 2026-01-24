@@ -112,6 +112,10 @@
       margin:32px 0;
       box-shadow:0 6px 25px rgba(0,0,0,0.08);
     }
+    
+    ol li::marker {
+    font-weight: bold;
+    }
 
     footer {
       margin-top:auto;
