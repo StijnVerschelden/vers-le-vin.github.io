@@ -164,9 +164,9 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     position: static !important;
     flex: 1;
     text-align: left;
-    line-height: 1.0;
+    line-height: 1.25;
     padding-top: 20px;
-    padding-left: 80px;
+    padding-left: 70px;
   }
 
    footer {
