@@ -11,6 +11,11 @@ html,body{
   height:100%;
   margin:0;
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 /* Use Caslon Antique globally */
 body {
   font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
@@ -173,7 +178,38 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       opacity:0.85;
     }
 
-    @media(max-width:720px){
+@media(max-width:720px){
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .content-wrap {
+    padding: 0 12px;
+  }
+
+  .contact-wrap {
+    width: 100%;
+    max-width: 100%;
+    margin: 12px auto !important;
+    padding: 16px 12px 0;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .flip-logo-container {
+    width: min(86vw, 320px);
+    height: min(86vw, 320px);
+    margin-inline: auto;
+  }
+
+  .contact-info {
+    width: min(92vw, 340px);
+    flex: none;
+    padding-left: 0;
+    padding-top: 10px;
+    margin: 0 auto;
+    line-height: 1.1;
+  }
  
   /* show hamburger, hide desktop nav */
 
