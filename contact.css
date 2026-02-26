@@ -161,7 +161,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     text-align: left;
     line-height: 1.0;
     padding-top: 20px;
-    padding-left: 50px;
+    padding-left: 80px;
   }
 
    footer {
