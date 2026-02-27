@@ -10,7 +10,7 @@
   --events-gap: 90px;            /* space between the two images (desktop) */
   --events-shift-left: 40px;     /* shift the whole pair slightly left (desktop) */
   --event-card-width: 300px;     /* both images width (desktop) */
-  --event-aspect: 1 / 1;         /* both images same aspect ratio */
+  --event-aspect: 4 / 3;         /* both images same aspect ratio */
 }
 
 body {
@@ -102,7 +102,7 @@ nav li:focus-within > .dropdown {
 .events-page h1{
   font-size:38px;
   font-weight:400;
-  margin: 10px 0 26px;
+  margin: 10px 0 26px 25px;
   text-align:left;
 }
 
