@@ -108,7 +108,7 @@ nav li:focus-within > .dropdown {
 
   /* push a bit right + align with nav block padding */
   margin: 10px 0 26px;
-  padding-left: calc(var(--page-pad) + 80px);
+  padding-left: calc(var(--page-pad) + 150px);
 
   text-align:left;
 }
