@@ -7,10 +7,13 @@
   --nav-font-size: 18px;
   --dropdown-bg: rgba(242,240,208,0.98);
   --dropdown-border: rgba(89,44,56,0.06);
-  --events-gap: 90px;            /* space between the two images (desktop) */
-  --events-shift-left: 40px;     /* shift the whole pair slightly left (desktop) */
-  --event-card-width: 300px;     /* both images width (desktop) */
-  --event-aspect: 4 / 3;         /* both images same aspect ratio */
+
+  /* shared horizontal padding so title aligns with nav content */
+  --page-pad: 24px;
+
+  /* Events layout */
+  --events-gap: 90px;         /* space between the two images (desktop) */
+  --event-card-width: 300px;  /* both images width (desktop) */
 }
 
 body {
@@ -34,7 +37,7 @@ nav ul, nav a, nav button {
 .nav-wrap {
   display:flex;
   justify-content:center;
-  padding: 18px 24px;
+  padding: 18px var(--page-pad);
   background: transparent;
 }
 
@@ -95,32 +98,33 @@ nav li:focus-within > .dropdown {
 /* EVENTS PAGE LAYOUT            */
 /* ----------------------------- */
 .events-page{
-  width: min(1100px, calc(100% - 48px));
+  width: min(1100px, calc(100% - (var(--page-pad) * 2)));
   margin: 28px auto 70px;
 }
 
 .events-page h1{
   font-size:38px;
   font-weight:400;
-  margin: 10px 0 26px 25px;
+
+  /* push a bit right + align with nav block padding */
+  margin: 10px 0 26px;
+  padding-left: var(--page-pad);
+
   text-align:left;
 }
 
 .events-row{
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:center;  /* centers the *pair* as one composition */
   gap: var(--events-gap);
-
-  /* Center-ish, but slightly left like your laptop screenshot */
-  transform: translateX(calc(-1 * var(--events-shift-left)));
+  transform: none;         /* remove the left shift */
 }
 
-/* Both images same size */
+/* Both images same displayed size, keep natural 3:4 proportions */
 .event-image{
   width: var(--event-card-width);
-  aspect-ratio: var(--event-aspect);
-  object-fit: cover;
+  height: auto;            /* preserves original proportions */
   border-radius: 12px;
   box-shadow: 0 6px 25px rgba(0,0,0,0.08);
   display:block;
@@ -139,11 +143,10 @@ footer {
 }
 
 /* ------------------------------------------------ */
-/* MOBILE: image on top, frame underneath           */
+/* MOBILE: stack image 1 then image 2 underneath    */
 /* ------------------------------------------------ */
 @media (max-width: 720px) {
 
-  /* Hamburger + slide-in menu (your original logic kept) */
   .hamburger {
     display: flex;
     flex-direction: column;
@@ -243,12 +246,12 @@ footer {
   .events-page h1{
     font-size:35px;
     margin-bottom: 18px;
+    padding-left: 0; /* usually looks better on mobile */
   }
 
   .events-row{
     flex-direction: column;
     gap: 18px;
-    transform: none; /* no left shift on mobile */
   }
 
   .event-image{
