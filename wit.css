@@ -23,6 +23,7 @@ body{
   display:flex;
   flex-direction:column;
   min-height:100vh;
+  overflow-x:hidden;
 }
 
     /*----------------------------*/
@@ -301,24 +302,25 @@ main{
     background: rgba(0, 0, 0, 0.4);
     z-index: 900;
   }
-   /* slide-in menu from left */
+   /* full-width menu below hamburger */
   .nav-wrap.open nav ul {
     display: flex;
     position: fixed;
     left: 0;
+    right: 0;
     top: 60px;
-    bottom: 0;
-    width: 280px;
+    max-height: calc(100vh - 60px);
+    width: 100%;
     flex-direction: column;
     gap: 8px;
     padding: 16px;
     background: var(--bg);
     z-index: 950;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
     overflow-y: auto;
-    align-items: flex-start;
+    overflow-x: hidden;
+    align-items: stretch;
   }
-
   .nav-wrap.open nav ul li {
     width: 100%;
   }
@@ -353,3 +355,5 @@ main{
     }
 }
   
+
+
