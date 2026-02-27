@@ -7,14 +7,10 @@
   --nav-font-size: 18px;
   --dropdown-bg: rgba(242,240,208,0.98);
   --dropdown-border: rgba(89,44,56,0.06);
-
-  /* Events layout knobs */
-  --events-gap: 90px;            /* space between image and frame (desktop) */
-  --events-shift-left: 40px;     /* how much the whole pair shifts left (desktop) */
-  --event-card-width: 300px;     /* image + frame width (desktop) */
-  --event-aspect: 1 / 1;         /* SAME aspect ratio for image + frame (desktop) */
-  --frame-radius: 18px;
-  --frame-border: 2px;
+  --events-gap: 90px;            /* space between the two images (desktop) */
+  --events-shift-left: 40px;     /* shift the whole pair slightly left (desktop) */
+  --event-card-width: 300px;     /* both images width (desktop) */
+  --event-aspect: 1 / 1;         /* both images same aspect ratio */
 }
 
 body {
@@ -107,7 +103,7 @@ nav li:focus-within > .dropdown {
   font-size:38px;
   font-weight:400;
   margin: 10px 0 26px;
-  text-align:left; /* matches your screenshot feel */
+  text-align:left;
 }
 
 .events-row{
@@ -120,7 +116,7 @@ nav li:focus-within > .dropdown {
   transform: translateX(calc(-1 * var(--events-shift-left)));
 }
 
-/* Image */
+/* Both images same size */
 .event-image{
   width: var(--event-card-width);
   aspect-ratio: var(--event-aspect);
@@ -128,31 +124,6 @@ nav li:focus-within > .dropdown {
   border-radius: 12px;
   box-shadow: 0 6px 25px rgba(0,0,0,0.08);
   display:block;
-}
-
-/* Frame next to it (same aspect ratio as image) */
-.event-frame{
-  width: var(--event-card-width);
-  aspect-ratio: var(--event-aspect);
-  border: var(--frame-border) solid var(--text-color);
-  border-radius: var(--frame-radius);
-  background: transparent;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding: 18px;
-  box-sizing:border-box;
-}
-
-.event-frame-text{
-  text-align:center;
-  font-size:18px;
-  line-height:1.55;
-  width:100%;
-}
-
-.event-frame-text p{
-  margin: 10px 0;
 }
 
 /* ----------------------------- */
@@ -264,7 +235,6 @@ footer {
     font-size: 14px;
   }
 
-  /* EVENTS: stack image then frame */
   .events-page{
     width: calc(100% - 32px);
     margin: 22px auto 60px;
@@ -281,16 +251,8 @@ footer {
     transform: none; /* no left shift on mobile */
   }
 
-  /* Keep same width for image and frame, centered */
-  .event-image,
-  .event-frame{
+  .event-image{
     width: min(340px, 100%);
-  }
-
-  /* Change the frame aspect ratio for mobile (shorter, better for text) */
-  .event-frame{
-    aspect-ratio: 4 / 3; /* adjust if you want taller: try 4/3 or 3/2 */
-    padding: 16px;
   }
 
   footer {
