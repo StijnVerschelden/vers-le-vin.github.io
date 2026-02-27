@@ -1,180 +1,215 @@
- @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
-    :root{
-      --text-color: #592C38;
-      --bg: #F3ECDC;
-      --nav-gap: 28px;
-      --nav-font-size: 18px;
-      --dropdown-bg: rgba(242,240,208,0.98);
-      --dropdown-border: rgba(89,44,56,0.06);
-    }
+:root{
+  --text-color: #592C38;
+  --bg: #F3ECDC;
+  --nav-gap: 28px;
+  --nav-font-size: 18px;
+  --dropdown-bg: rgba(242,240,208,0.98);
+  --dropdown-border: rgba(89,44,56,0.06);
 
-    body {
-      margin:0;
-      background-color: var(--bg);
-      color: var(--text-color);
-      font-family: 'CaslonAntiqueRegular','EB Garamond',serif;
-      -webkit-font-smoothing:antialiased;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      text-align: justify;
-    }
+  /* Events layout knobs */
+  --events-gap: 90px;            /* space between image and frame (desktop) */
+  --events-shift-left: 40px;     /* how much the whole pair shifts left (desktop) */
+  --event-card-width: 300px;     /* image + frame width (desktop) */
+  --event-aspect: 1 / 1;         /* SAME aspect ratio for image + frame (desktop) */
+  --frame-radius: 18px;
+  --frame-border: 2px;
+}
 
-    /* NAVIGATION (identical to index) */
-    nav ul, nav a, nav button {
-      font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
-    }
+body {
+  margin:0;
+  background-color: var(--bg);
+  color: var(--text-color);
+  font-family: 'CaslonAntiqueRegular','EB Garamond',serif;
+  -webkit-font-smoothing: antialiased;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
 
-    .nav-wrap {
-      display:flex;
-      justify-content:center;
-      padding: 18px 24px;
-      background: transparent;
-    }
+/* ----------------------------- */
+/* NAVIGATION (keep your theme)  */
+/* ----------------------------- */
+nav ul, nav a, nav button {
+  font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
+}
 
-    nav ul {
-      list-style:none;
-      margin:0;
-      padding:0;
-      display:flex;
-      gap:var(--nav-gap);
-      align-items:center;
-      font-size:var(--nav-font-size);
-    }
+.nav-wrap {
+  display:flex;
+  justify-content:center;
+  padding: 18px 24px;
+  background: transparent;
+}
 
-    nav li { position:relative; }
+nav ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:var(--nav-gap);
+  align-items:center;
+  font-size:var(--nav-font-size);
+}
 
-    nav a, nav button {
-      color:var(--text-color);
-      text-decoration:none;
-      background:none;
-      border:none;
-      padding:6px 8px;
-      cursor:pointer;
-      font:inherit;
-    }
+nav li { position:relative; }
 
-    nav a:hover, nav button:hover {
-      opacity:0.7;
-    }
+nav a, nav button {
+  color:var(--text-color);
+  text-decoration:none;
+  background:none;
+  border:none;
+  padding:6px 8px;
+  cursor:pointer;
+  font:inherit;
+}
 
-    .dropdown {
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      top:100%;
-      min-width:180px;
-      background:var(--dropdown-bg);
-      border:1px solid var(--dropdown-border);
-      border-radius:6px;
-      padding:8px 0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.04);
-      display:none;
-      z-index:200;
-    }
+nav a:hover, nav button:hover { opacity:0.7; }
 
-    .dropdown a {
-      display:block;
-      padding:8px 20px;
-      text-decoration:none;
-      color:var(--text-color);
-      font-size:16px;
-    }
-    .dropdown a:hover { background:rgba(89,44,56,0.06); }
+.dropdown {
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:100%;
+  min-width:180px;
+  background:var(--dropdown-bg);
+  border:1px solid var(--dropdown-border);
+  border-radius:6px;
+  padding:8px 0;
+  box-shadow:0 8px 20px rgba(0,0,0,0.04);
+  display:none;
+  z-index:200;
+}
 
-    nav li:hover > .dropdown,
-    nav li:focus-within > .dropdown {
-      display:block;
-    }
+.dropdown a {
+  display:block;
+  padding:8px 20px;
+  text-decoration:none;
+  color:var(--text-color);
+  font-size:16px;
+}
+.dropdown a:hover { background:rgba(89,44,56,0.06); }
 
+nav li:hover > .dropdown,
+nav li:focus-within > .dropdown {
+  display:block;
+}
 
+/* ----------------------------- */
+/* EVENTS PAGE LAYOUT            */
+/* ----------------------------- */
+.events-page{
+  width: min(1100px, calc(100% - 48px));
+  margin: 28px auto 70px;
+}
 
-    /* ABOUT PAGE CONTENT */
-    .content-wrap {
-      max-width: 860px;
-      margin: 40px auto 80px;
-      padding: 0 24px;
-      font-size:20px;
-      line-height:1.55;
-    }
+.events-page h1{
+  font-size:38px;
+  font-weight:400;
+  margin: 10px 0 26px;
+  text-align:left; /* matches your screenshot feel */
+}
 
-    .content-wrap h1 {
-      font-size:38px;
-      margin-bottom:20px;
-      text-align:center;
-      font-weight:400;
-    }
+.events-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: var(--events-gap);
 
-    .content-image {
-      width:100%;
-      border-radius:12px;
-      margin:32px 0;
-      box-shadow:0 6px 25px rgba(0,0,0,0.08);
-    }
-    
-    ol li::marker {
-    font-weight: bold;
-    }
+  /* Center-ish, but slightly left like your laptop screenshot */
+  transform: translateX(calc(-1 * var(--events-shift-left)));
+}
 
-    footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:14px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-    }
+/* Image */
+.event-image{
+  width: var(--event-card-width);
+  aspect-ratio: var(--event-aspect);
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+  display:block;
+}
 
-    /* ------------------------------------------------ */
-/* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
+/* Frame next to it (same aspect ratio as image) */
+.event-frame{
+  width: var(--event-card-width);
+  aspect-ratio: var(--event-aspect);
+  border: var(--frame-border) solid var(--text-color);
+  border-radius: var(--frame-radius);
+  background: transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+  box-sizing:border-box;
+}
+
+.event-frame-text{
+  text-align:center;
+  font-size:18px;
+  line-height:1.55;
+  width:100%;
+}
+
+.event-frame-text p{
+  margin: 10px 0;
+}
+
+/* ----------------------------- */
+/* FOOTER (keep your theme)      */
+/* ----------------------------- */
+footer {
+  margin-top:auto;
+  padding:10px 20px;
+  font-size:14px;
+  display:flex;
+  justify-content:space-between;
+  opacity:0.85;
+}
+
+/* ------------------------------------------------ */
+/* MOBILE: image on top, frame underneath           */
 /* ------------------------------------------------ */
 @media (max-width: 720px) {
 
-    /* show hamburger, hide desktop nav */
-
-    .hamburger {
-  display: flex;
-  flex-direction: column; /* stack the three lines */
-  gap: 3px;
-  background: transparent;
-  border: none;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  left: 16px;
-  top: 12px;
-  z-index: 1100;
-}
-.hamburger .line {
-  width: 20px;           /* fixed width for each bar */
-  height: 4px;
-  background: #592C38;   /* bar color */
-  border-radius: 3px;
-  transition: transform .25s ease, opacity .2s ease;
-  display: block;
-}
-.hamburger[aria-expanded="true"] .line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.hamburger[aria-expanded="true"] .line:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger[aria-expanded="true"] .line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-  nav ul {
-    display: none;
+  /* Hamburger + slide-in menu (your original logic kept) */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: transparent;
+    border: none;
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    left: 16px;
+    top: 12px;
+    z-index: 1100;
   }
 
-  /* transparent overlay when menu is open */
+  .hamburger .line {
+    width: 20px;
+    height: 4px;
+    background: #592C38;
+    border-radius: 3px;
+    transition: transform .25s ease, opacity .2s ease;
+    display: block;
+  }
+
+  .hamburger[aria-expanded="true"] .line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] .line:nth-child(2) { opacity: 0; }
+  .hamburger[aria-expanded="true"] .line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  nav ul { display: none; }
+
   .nav-wrap.open::before {
     content: '';
     position: fixed;
@@ -182,7 +217,7 @@
     background: rgba(0, 0, 0, 0.4);
     z-index: 900;
   }
-   /* slide-in menu from left */
+
   .nav-wrap.open nav ul {
     display: flex;
     position: fixed;
@@ -200,10 +235,9 @@
     align-items: flex-start;
   }
 
-  .nav-wrap.open nav ul li {
-    width: 100%;
-  }
-   .nav-wrap.open nav ul a,
+  .nav-wrap.open nav ul li { width: 100%; }
+
+  .nav-wrap.open nav ul a,
   .nav-wrap.open nav ul button {
     display: block;
     width: 100%;
@@ -224,37 +258,43 @@
     width: 100%;
     margin-top: 4px;
   }
+
   .nav-wrap.open nav ul .dropdown a {
     padding: 8px 14px;
     font-size: 14px;
   }
 
-   /* ABOUT PAGE CONTENT */
-    .content-wrap {
-      max-width: 860px;
-      margin: 40px auto 80px;
-      padding: 0 24px;
-      font-size:18px;
-      line-height:1.55;
-    }
+  /* EVENTS: stack image then frame */
+  .events-page{
+    width: calc(100% - 32px);
+    margin: 22px auto 60px;
+  }
 
-    .content-wrap h1 {
-      font-size:35px;
-      margin-bottom:20px;
-      text-align:center;
-      font-weight:400;
-    }
+  .events-page h1{
+    font-size:35px;
+    margin-bottom: 18px;
+  }
 
-    .content-image {
-      width:100%;
-      border-radius:12px;
-      margin:32px 0;
-      box-shadow:0 6px 25px rgba(0,0,0,0.08);
-    }
+  .events-row{
+    flex-direction: column;
+    gap: 18px;
+    transform: none; /* no left shift on mobile */
+  }
 
-   footer {
-      
-      font-size:12px;
-      opacity:0.85;
-    }
+  /* Keep same width for image and frame, centered */
+  .event-image,
+  .event-frame{
+    width: min(340px, 100%);
+  }
+
+  /* Change the frame aspect ratio for mobile (shorter, better for text) */
+  .event-frame{
+    aspect-ratio: 4 / 3; /* adjust if you want taller: try 4/3 or 3/2 */
+    padding: 16px;
+  }
+
+  footer {
+    font-size:12px;
+    opacity:0.85;
+  }
 }
