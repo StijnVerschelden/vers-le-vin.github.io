@@ -126,9 +126,8 @@ nav li:focus-within > .dropdown {
   display:block;
 }
 
-/* ----------------------------- */
+
 /* FOOTER (keep your theme)      */
-/* ----------------------------- */
 footer {
   margin-top:auto;
   padding:10px 20px;
@@ -136,6 +135,43 @@ footer {
   display:flex;
   justify-content:space-between;
   opacity:0.85;
+}
+
+/* LIGHTBOX OVERLAY */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  cursor: zoom-out;
+}
+
+.lightbox.open{
+  display:flex;
+}
+
+/* big image */
+.lightbox-img{
+  max-width: 85vw;
+  max-height: 85vh;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* make images feel clickable (desktop only) */
+@media (min-width: 721px){
+  .event-image{
+    cursor: zoom-in;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+
+  .event-image:hover{
+    transform: scale(1.03);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+  }
 }
 
 /* ------------------------------------------------ */
