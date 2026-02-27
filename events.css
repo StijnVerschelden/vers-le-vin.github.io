@@ -103,12 +103,12 @@ nav li:focus-within > .dropdown {
 }
 
 .events-page h1{
-  font-size:38px;
+  font-size:30px;
   font-weight:400;
 
   /* push a bit right + align with nav block padding */
   margin: 10px 0 26px;
-  padding-left: var(--page-pad);
+  padding-left: calc(var(--page-pad) + 80px);
 
   text-align:left;
 }
