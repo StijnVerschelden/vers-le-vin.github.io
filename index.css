@@ -439,7 +439,7 @@ footer{
    
 .card-back{
     overflow-y: auto;
-    max-height: 70vh !important;
+    max-height: 120vh !important;
     height: 100% !important;
     -webkit-overflow-scrolling: touch;
     display: flex;
