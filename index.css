@@ -439,7 +439,7 @@ footer{
    
 .card-back{
     overflow-y: auto;
-    max-height: 95vh !important;
+    max-height: 105vh !important;
     height: auto !important;
     -webkit-overflow-scrolling: touch;
     display: flex;
@@ -455,6 +455,7 @@ footer{
     gap:10px;
     width:100%;
     align-items:center;
+    justify-items: center;
     margin-top: 0;
   }
 
