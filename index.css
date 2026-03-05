@@ -445,21 +445,21 @@ footer{
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 12px 8px 20px;
+    padding: 10px 8px 14px;
   }
 
    
   .back-row{
     display:grid;
     grid-template-columns: 1fr;
-    gap:16px;
+    gap:13px;
     width:100%;
     align-items:center;
     margin-top: 0;
   }
 
   .back-item{
-    width: var(--logo-size);
+    width: min(78vw, 300px);
     max-width: 100%;
     display:flex;
     flex-direction:column;
@@ -476,7 +476,7 @@ footer{
   }
 
   .back-item .title{
-    margin-top:8px;
+    margin-top:6px;
     font-size:13px;
     text-align:center;
   }
