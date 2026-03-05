@@ -439,20 +439,20 @@ footer{
    
 .card-back{
     overflow-y: auto;
-    max-height: 120vh !important;
-    height: 100% !important;
+    max-height: 95vh !important;
+    height: auto !important;
     -webkit-overflow-scrolling: touch;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: 10px 8px 14px;
+    padding: 8px 8px 10px;
   }
 
    
   .back-row{
     display:grid;
     grid-template-columns: 1fr;
-    gap:13px;
+    gap:10px;
     width:100%;
     align-items:center;
     margin-top: 0;
