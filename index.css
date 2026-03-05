@@ -437,10 +437,18 @@ footer{
      ========================= */
   /* Back face scroll window (mobile) */
    
+   .logo-card{
+    height: var(--logo-size);
+  }
+
+  .logo-card.flipped{
+    height: min(88vh, calc(var(--logo-size) * 1.9)); /* taller when flipped */
+  }
+
 .card-back{
     overflow-y: auto;
-    max-height: 135vh !important;
-    height: auto !important;
+    max-height: none !important;
+    height: 100% !important;
     -webkit-overflow-scrolling: touch;
     display: flex;
     align-items: flex-start;
