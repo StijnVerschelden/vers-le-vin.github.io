@@ -442,7 +442,7 @@ footer{
   }
 
   .logo-card.flipped{
-    height: min(80vh, calc(var(--logo-size) * 1.7)); /* taller when flipped */
+    height: min(70vh, calc(var(--logo-size) * 1.5)); /* taller when flipped */
   }
 
 .card-back{
