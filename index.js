@@ -102,20 +102,38 @@ document.addEventListener("DOMContentLoaded", () => {
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const logoCard = document.getElementById("logoCard");
+  const backRow = document.getElementById("backRow");
   const hint = document.querySelector(".hover-hint");
   if (!logoCard) return;
 
   let isFlipped = false;
 
+  function scrollBackIntoView() {
+    if (!window.matchMedia("(max-width: 720px)").matches || !backRow) return;
+    setTimeout(() => {
+      backRow.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 140);
+  }
+
   function setFlipped(state) {
     isFlipped = state;
     logoCard.classList.toggle("flipped", isFlipped);
+    logoCard.setAttribute("aria-pressed", isFlipped ? "true" : "false");
 
     if (hint) hint.style.opacity = "0";
+    if (isFlipped) scrollBackIntoView();
   }
 
   // Tap / click on card toggles flip
-  logoCard.addEventListener("pointerup", () => {
+  logoCard.addEventListener("pointerup", (e) => {
+    if (isFlipped && e.target.closest("a")) return;
+    setFlipped(!isFlipped);
+  });
+
+  // Keyboard support for non-pointer users
+  logoCard.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
     setFlipped(!isFlipped);
   });
 
