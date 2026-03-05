@@ -439,16 +439,17 @@ footer{
    
    .logo-card{
     height: var(--logo-size);
+    transition: transform 1.1s ease; /* transform only */
   }
 
   .logo-card.flipped{
-    height: min(70vh, calc(var(--logo-size) * 1.5)); /* taller when flipped */
+    height: var(--logo-size); /* same as normal */
   }
 
 .card-back{
     overflow-y: auto;
-    max-height: none !important;
-    height: 100% !important;
+    max-height: 85vh !important;
+    height: 120% !important;
     -webkit-overflow-scrolling: touch;
     display: flex;
     align-items: flex-start;
