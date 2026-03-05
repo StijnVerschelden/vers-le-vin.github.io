@@ -126,6 +126,24 @@ nav li:focus-within > .dropdown {
   display:block;
 }
 
+.event-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-link-small{
+  font-size: 13px;
+  text-decoration: underline;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.event-link-small:hover{
+  opacity: 0.7;
+}
+
 
 /* FOOTER (keep your theme)      */
 footer {
