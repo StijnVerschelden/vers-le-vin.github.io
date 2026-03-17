@@ -93,10 +93,13 @@ nav li:focus-within > .dropdown {
 /* ----------------------------- */
 /* ESSAYS PAGE                   */
 /* ----------------------------- */
+main {
+  padding-top: 100px;
+}
 .essays-page {
   width: min(var(--content-width), calc(100% - (var(--page-pad) * 2)));
   margin: 0 auto 70px;
-  padding: 80px var(--page-pad) 0;
+  padding: 100px var(--page-pad) 0;
   box-sizing: border-box;
 }
 
