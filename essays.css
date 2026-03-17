@@ -36,10 +36,6 @@ nav ul, nav a, nav button {
   background: transparent;
 }
 
-nav {
-  width: min(var(--content-width), calc(100% - (var(--page-pad) * 2)));
-}
-
 nav ul {
   list-style: none;
   margin: 0;
@@ -47,13 +43,10 @@ nav ul {
   display: flex;
   gap: var(--nav-gap);
   align-items: center;
-  justify-content: center;
   font-size: var(--nav-font-size);
 }
 
-nav li { 
-  position: relative; 
-}
+nav li { position: relative; }
 
 nav a, nav button {
   color: var(--text-color);
@@ -65,9 +58,7 @@ nav a, nav button {
   font: inherit;
 }
 
-nav a:hover, nav button:hover { 
-  opacity: 0.7; 
-}
+nav a:hover, nav button:hover { opacity: 0.7; }
 
 .dropdown {
   position: absolute;
@@ -92,9 +83,7 @@ nav a:hover, nav button:hover {
   font-size: 16px;
 }
 
-.dropdown a:hover { 
-  background: rgba(89,44,56,0.06); 
-}
+.dropdown a:hover { background: rgba(89,44,56,0.06); }
 
 nav li:hover > .dropdown,
 nav li:focus-within > .dropdown {
