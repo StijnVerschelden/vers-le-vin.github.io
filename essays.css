@@ -358,7 +358,12 @@ footer {
     align-self: center;
   }
 
-  footer {
-    font-size: 12px;
-  }
+ footer {
+      margin-top:auto;
+      padding:10px 20px;
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      opacity:0.85;
+    }
 }
