@@ -91,7 +91,7 @@
 
 
 
-    /* ABOUT PAGE CONTENT */
+    /* essay text PAGE CONTENT */
     .content-wrap {
       max-width: 860px;
       margin: 40px auto 80px;
@@ -112,6 +112,15 @@
       border-radius:12px;
       margin:32px 0;
       box-shadow:0 6px 25px rgba(0,0,0,0.08);
+    }
+
+    .caption {
+        font-size: 14px;
+        font-style: italic;
+        opacity: 0.7;
+        text-align: center;
+        margin-top: -20px;
+        margin-bottom: 32px;
     }
 
     footer {
