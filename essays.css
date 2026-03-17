@@ -8,6 +8,7 @@
   --dropdown-bg: rgba(242,240,208,0.98);
   --dropdown-border: rgba(89,44,56,0.06);
   --page-pad: 24px;
+  --content-width: 1100px;
 }
 
 body {
@@ -35,6 +36,10 @@ nav ul, nav a, nav button {
   background: transparent;
 }
 
+nav {
+  width: min(var(--content-width), calc(100% - (var(--page-pad) * 2)));
+}
+
 nav ul {
   list-style: none;
   margin: 0;
@@ -42,6 +47,7 @@ nav ul {
   display: flex;
   gap: var(--nav-gap);
   align-items: center;
+  justify-content: flex-start; /* aligns nav to same left edge as page content */
   font-size: var(--nav-font-size);
 }
 
@@ -93,23 +99,25 @@ nav li:focus-within > .dropdown {
 /* ESSAYS PAGE                   */
 /* ----------------------------- */
 .essays-page {
-  width: min(1100px, calc(100% - (var(--page-pad) * 2)));
-  margin: 70px auto 70px;
+  width: min(var(--content-width), calc(100% - (var(--page-pad) * 2)));
+  margin: 100px auto 70px; /* pushed lower on desktop */
   padding: 0 var(--page-pad);
+  box-sizing: border-box;
 }
 
 .essays-page h1 {
   font-size: 30px;
   font-weight: 400;
-  margin: 10px 0 40px;
+  margin: 10px 0 50px;
   padding-left: 0;
 }
 
 .essay-entry {
   display: flex;
   align-items: flex-start;
+  justify-content: flex-start;
   gap: 60px;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 
 .essay-images {
@@ -117,6 +125,7 @@ nav li:focus-within > .dropdown {
   flex-shrink: 0;
   width: 400px;
   height: 450px;
+  margin-top: 18px; /* slightly lower */
 }
 
 .essay-img-back {
@@ -145,7 +154,7 @@ nav li:focus-within > .dropdown {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 10px;
+  padding-top: 28px; /* text sits a little lower too */
   max-width: 480px;
 }
 
@@ -236,6 +245,10 @@ footer {
     transform: translateY(-7px) rotate(-45deg);
   }
 
+  nav {
+    width: 100%;
+  }
+
   nav ul { display: none; }
 
   .nav-wrap.open::before {
@@ -294,12 +307,12 @@ footer {
 
   .essays-page {
     width: calc(100% - 32px);
-    margin: 22px auto 60px;
+    margin: 42px auto 60px; /* page lower on mobile */
   }
 
   .essays-page h1 {
     font-size: 28px;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     padding-left: 0;
   }
 
@@ -307,13 +320,13 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 0;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
   }
 
   .essay-images {
     width: 280px;
     height: 310px;
-    margin: 0 auto 24px;
+    margin: 24px auto 24px; /* pictures lower on mobile */
   }
 
   .essay-img-back {
@@ -331,6 +344,7 @@ footer {
     width: 100%;
     align-items: center;
     text-align: center;
+    padding-top: 0;
   }
 
   .essay-read-btn {
