@@ -100,6 +100,7 @@ nav li:focus-within > .dropdown {
 .events-page{
   width: min(1100px, calc(100% - (var(--page-pad) * 2)));
   margin: 28px auto 70px;
+  padding-top: 80px;
 }
 
 .events-page h1{
@@ -291,6 +292,8 @@ footer {
   .events-page{
     width: calc(100% - 32px);
     margin: 22px auto 60px;
+    padding-top: 45px;
+
   }
 
   .events-page h1{
