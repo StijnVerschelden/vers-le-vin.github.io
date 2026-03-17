@@ -94,7 +94,7 @@ nav li:focus-within > .dropdown {
 /* ----------------------------- */
 .essays-page {
   width: min(1100px, calc(100% - (var(--page-pad) * 2)));
-  margin: 28px auto 70px;
+  margin: 70px auto 70px;
 }
 
 .essays-page h1 {
@@ -108,21 +108,22 @@ nav li:focus-within > .dropdown {
   display: flex;
   align-items: flex-start;
   gap: 60px;
+  padding-left: 80px;
   margin-bottom: 80px;
 }
 
 .essay-images {
   position: relative;
   flex-shrink: 0;
-  width: 320px;
-  height: 360px;
+  width: 400px;
+  height: 450px;
 }
 
 .essay-img-back {
   position: absolute;
   top: 0;
   left: 0;
-  width: 240px;
+  width: 300px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 6px 25px rgba(0,0,0,0.10);
@@ -133,7 +134,7 @@ nav li:focus-within > .dropdown {
   position: absolute;
   top: 70px;
   left: 70px;
-  width: 240px;
+  width: 300px;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.14);
@@ -317,11 +318,13 @@ footer {
 
   .essay-img-back {
     width: 200px;
+    top: 100px;
+    left: 20px;
   }
 
   .essay-img-front {
     width: 200px;
-    top: 60px;
+    top: 160px;
     left: 60px;
   }
 
