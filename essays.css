@@ -311,7 +311,7 @@ footer {
     font-size: 14px;
   }
 
-  .essays-page {
+ .essays-page {
     width: calc(100% - 32px);
     margin: 42px auto 60px;
     padding: 0;
@@ -327,7 +327,7 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 0;
-    margin-bottom: 30px;
+    margin-bottom: 70px;
   }
 
   .essay-images {
@@ -337,11 +337,11 @@ footer {
   }
 
   .essay-img-back {
-    width: 230px;
+    width: 200px;
   }
 
   .essay-img-front {
-    width: 230px;
+    width: 200px;
     top: 60px;
     left: 60px;
   }
@@ -357,6 +357,7 @@ footer {
   .essay-read-btn {
     align-self: center;
   }
+
 
  footer {
       margin-top:auto;
