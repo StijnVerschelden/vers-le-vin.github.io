@@ -331,17 +331,17 @@ footer {
   }
 
   .essay-images {
-    width: 320px;
-    height: 350px;
+    width: 280px;
+    height: 310px;
     margin: 24px auto 24px;
   }
 
   .essay-img-back {
-    width: 320px;
+    width: 280px;
   }
 
   .essay-img-front {
-    width: 320px;
+    width: 280px;
     top: 60px;
     left: 60px;
   }
