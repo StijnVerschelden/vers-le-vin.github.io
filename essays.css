@@ -95,7 +95,7 @@ nav li:focus-within > .dropdown {
 /* ----------------------------- */
 .essays-page {
   width: min(var(--content-width), calc(100% - (var(--page-pad) * 2)));
-  margin: 0 auto 70px;
+  margin: 150px auto 70px;
   padding: 150px var(--page-pad) 0;
   box-sizing: border-box;
 }
@@ -103,7 +103,7 @@ nav li:focus-within > .dropdown {
 .essays-page h1 {
   font-size: 30px;
   font-weight: 400;
-  margin: 10px 0 50px;
+  margin: 150px 0 50px;
   padding-left: 0;
 }
 
