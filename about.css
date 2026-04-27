@@ -10,6 +10,11 @@
       --dropdown-border: rgba(89,44,56,0.06);
     }
 
+    html, body {
+  height: 100%;
+  margin: 0;
+}
+
     body {
       margin:0;
       background-color: var(--bg);
