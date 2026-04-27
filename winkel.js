@@ -1,7 +1,60 @@
 /* winkel.js — Vers Le Vin
-   Navigation only. Payment buttons are intentionally inactive
-   until a payment platform (Snipcart / Stripe / Mollie) is chosen.
+   Includes: age gate, hamburger nav, placeholder buy buttons.
    ---------------------------------------------------------------- */
+
+/* =========================
+   AGE GATE
+   Identical pattern to index.js — same localStorage key "ageVerified"
+   so verification on any page carries over to all other pages.
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+  // If already verified (on index or any other page), skip immediately
+  if (localStorage.getItem("ageVerified") === "true") return;
+
+  // Inject the gate element (same structure as index.js)
+  let gate = document.getElementById("ageGate");
+  if (!gate) {
+    gate = document.createElement("div");
+    gate.id = "ageGate";
+    gate.setAttribute("data-nosnippet", "");
+    gate.innerHTML = `
+      <div class="age-modal" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+        <h2 id="ageGateTitle">Are you 18 or older?</h2>
+        <p>You must be of legal drinking age to enter this website.</p>
+        <div class="age-actions">
+          <button type="button" id="enterBtn">Yes, I am 18+</button>
+          <button type="button" id="leaveBtn">No</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(gate);
+  }
+
+  gate.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+
+  // Same capture-phase listener as index.js
+  document.addEventListener("click", (e) => {
+    if (e.target.id === "enterBtn") {
+      localStorage.setItem("ageVerified", "true");
+      document.getElementById("ageGate")?.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+    if (e.target.id === "leaveBtn") {
+      window.location.href = "https://www.google.com";
+    }
+  }, true);
+
+  // ESC = leave (same as index.js)
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !gate.classList.contains("hidden")) {
+      window.location.href = "https://www.google.com";
+    }
+  });
+});
+/* ── END AGE GATE ─────────────────────────────────────────────── */
+
 
 // Mobile hamburger toggle — identical to wit.js
 (function () {

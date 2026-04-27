@@ -38,6 +38,52 @@ body {
 }
 
 /* ============================================================
+   AGE GATE — identical to index.css
+   ============================================================ */
+
+#ageGate {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2147483647;
+  pointer-events: auto;
+}
+
+#ageGate.hidden { display: none; }
+
+#ageGate .age-modal {
+  background: #F3ECDC;
+  color: #592C38;
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 360px;
+  font-family: 'EB Garamond', serif;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2147483647;
+  pointer-events: auto;
+}
+
+#ageGate button {
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background: #592C38;
+  color: white;
+  font-size: 16px;
+  font-family: inherit;
+  position: relative;
+  z-index: 2147483647;
+  pointer-events: auto;
+}
+
+/* ============================================================
    NAVIGATION — identical to wit.css
    ============================================================ */
 
