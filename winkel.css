@@ -28,7 +28,7 @@ html, body {
 }
 
 body {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-family: 'EB Garamond', serif;
   background: var(--bg);
   color: var(--text-color);
   display: flex;
@@ -88,7 +88,7 @@ body {
    ============================================================ */
 
 nav ul, nav a, nav button {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif !important;
+  font-family: 'EB Garamond', serif !important;
 }
 
 .nav-wrap {
@@ -349,7 +349,7 @@ main {
 
 /* BUTTONS */
 .btn-lees {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 13px;
   padding: 6px 12px;
   border: 1px solid var(--border);
@@ -367,7 +367,7 @@ main {
 }
 
 .btn-bestel {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 13px;
   padding: 6px 14px;
   border: 1px solid var(--accent);

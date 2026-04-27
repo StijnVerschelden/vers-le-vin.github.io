@@ -15,7 +15,7 @@
 html, body { height: 100%; margin: 0; }
 
 body {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-family: 'EB Garamond', serif;
   background: var(--bg);
   color: var(--text-color);
   display: flex;
@@ -30,7 +30,7 @@ body {
    ============================================================ */
 
 nav ul, nav a, nav button {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif !important;
+  font-family: 'EB Garamond', serif !important;
 }
 
 .nav-wrap {
@@ -188,7 +188,7 @@ nav li:focus-within > .dropdown { display: block; }
 .evt-card {
   position: relative;
   width: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 3 / 4;
   transform-style: preserve-3d;
   transition: transform 1s ease;
   cursor: pointer;
@@ -342,7 +342,7 @@ nav li:focus-within > .dropdown { display: block; }
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
-  font-family: sans-serif;
+  font-family: 'EB Garamond', serif;
 }
 
 .car-arr:hover {
@@ -384,7 +384,7 @@ nav li:focus-within > .dropdown { display: block; }
 }
 
 .btn-terug {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 12px;
   padding: 4px 14px;
   border: 1px solid var(--border);
