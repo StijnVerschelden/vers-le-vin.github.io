@@ -22,6 +22,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
 
 body {
   font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
@@ -463,7 +467,12 @@ footer {
   }
 
   .card-image {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 4;
+  }
+
+  .card-image img {
+    object-fit: contain;
+    object-position: center;
   }
 
   footer {
