@@ -9,6 +9,9 @@
       --dropdown-bg: rgba(242,240,208,0.98);
       --dropdown-border: rgba(89,44,56,0.06);
     }
+    html {
+      height: 100%;
+    }
 
     body {
       margin:0;
@@ -20,6 +23,7 @@
       display:flex;
       flex-direction:column;
       text-align: justify;
+      overflow-x: hidden;  /* add this */
     }
 
     /* NAVIGATION (identical to index) */
