@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Winkel – Vers Le Vin</title>
+
+<!-- Same fonts as existing pages -->
+<link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap">
+
+<link rel="stylesheet" href="winkel.css">
+</head>
+
+<body>
+
+<!-- NAV (identical structure to wit.html) -->
+<div class="nav-wrap">
+<nav>
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+  </button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <button id="lantBtn">Lantignié ▾</button>
+      <div class="dropdown">
+        <a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a>
+        <a href="Terroir.html">Terroir</a>
+        <a href="vtl.html">VTL (association)</a>
+        <a href="#">Wijnmakers</a>
+      </div>
+    </li>
+    <li>
+      <a href="wijnen.html">Wijnen ▾</a>
+      <div class="dropdown">
+        <a href="wit.html">Wit</a>
+        <a href="rood.html">Rood</a>
+      </div>
+    </li>
+    <li><a href="winkel.html" class="active">Winkel</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li>
+      <button id="blogBtn">Blog ▾</button>
+      <div class="dropdown">
+        <a href="essays.html">Essays</a>
+        <a href="pairing.html">Pairing</a>
+        <a href="#">Beelden</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+</div>
+
+<!-- MAIN SHOP VIEW -->
+<main id="shop-main">
+
+  <!-- PAGE HEADER -->
+  <div class="shop-header">
+    <h1>Winkel</h1>
+    <p class="shop-subtitle">Beaujolais Lantignié — rechtstreeks van de wijnmaker.<br>Afhalen of levering in België.</p>
+  </div>
+
+  <!-- SECTION: WIT -->
+  <section class="wine-section">
+    <div class="section-label">
+      <span class="section-line"></span>
+      <h2>Wit</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="shop-grid">
+
+      <!-- CARD 1: LE BLANC -->
+      <article class="shop-card">
+        <a href="winkel-leblanc.html" class="card-image-link" aria-label="Meer over Le Blanc 2024">
+          <div class="card-image">
+            <img src="images/cosimaface.jpg" alt="Château des Vergers – Le Blanc 2024">
+          </div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Château des Vergers</p>
+          <h3 class="card-name">Le Blanc 2024</h3>
+          <span class="card-style">Strak &amp; Mineraal</span>
+          <p class="card-short">Pierre bleue-terroir op 300m hoogte. Lentebloesem, frisse kruiden, lange minerale afdronk.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 21,50</span>
+            <div class="card-actions">
+              <a href="winkel-leblanc.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button" aria-label="Le Blanc 2024 toevoegen aan bestelling">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2: AXIOME -->
+      <article class="shop-card">
+        <a href="winkel-axiome.html" class="card-image-link" aria-label="Meer over Axiome 2024">
+          <div class="card-image">
+            <img src="images/axiome.jpg" alt="Domaine les Capréoles – Axiome 2024">
+          </div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine les Capréoles</p>
+          <h3 class="card-name">Axiome 2024</h3>
+          <span class="card-style">Fijn &amp; Mineraal</span>
+          <p class="card-short">Glaciaire morenes, 8–10 maand op eik. Peer, brioche, verfijnde mineraliteit.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 22,50</span>
+            <div class="card-actions">
+              <a href="winkel-axiome.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button" aria-label="Axiome 2024 toevoegen aan bestelling">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 3: BLANC FREDERIC BERNE -->
+      <article class="shop-card">
+        <a href="winkel-fblanc.html" class="card-image-link" aria-label="Meer over Blanc 2024">
+          <div class="card-image">
+            <img src="images/FBWIT1.jpg" alt="Domaine Frédéric Berne – Blanc 2024">
+          </div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine Frédéric Berne</p>
+          <h3 class="card-name">Blanc 2024</h3>
+          <span class="card-style">Fris &amp; Floraal</span>
+          <p class="card-short">Ongefilterd op glaciaire morenes. Peer, hooi, florale toetsen op eik en inox.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 21,90</span>
+            <div class="card-actions">
+              <a href="winkel-fblanc.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button" aria-label="Blanc 2024 toevoegen aan bestelling">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /.shop-grid -->
+  </section>
+
+  <!-- COMING SOON: ROOD -->
+  <section class="wine-section coming-soon-section">
+    <div class="section-label">
+      <span class="section-line"></span>
+      <h2>Rood</h2>
+      <span class="section-line"></span>
+    </div>
+    <p class="coming-soon-text">Binnenkort beschikbaar — rode wijnen worden toegevoegd aan de winkel.</p>
+  </section>
+
+  <!-- PICKUP/DELIVERY INFO -->
+  <div class="shop-info">
+    <div class="info-block">
+      <span class="info-icon">◆</span>
+      <div>
+        <strong>Afhalen</strong>
+        <p>Op afspraak in Gent of Oudenaarde. Gratis.</p>
+      </div>
+    </div>
+    <div class="info-block">
+      <span class="info-icon">◆</span>
+      <div>
+        <strong>Levering in België</strong>
+        <p>Verzending via .... Kosten op aanvraag.</p>
+      </div>
+    </div>
+    <div class="info-block">
+      <span class="info-icon">◆</span>
+      <div>
+        <strong>Betaling</strong>
+        <p>Veilige betaling via onze webshop. Binnenkort online.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- DETAIL OVERLAY (hidden by default, shown on "Lees meer" click if no separate page yet) -->
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Vers Le Vin</span>
+  <span>by Stijn Verschelden</span>
+</footer>
+
+<script src="winkel.js"></script>
+
+</body>
+</html>

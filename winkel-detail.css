@@ -1,0 +1,169 @@
+/* winkel-detail.css — Vers Le Vin
+   Styles for individual wine detail pages (winkel-leblanc.html etc.)
+   Imports winkel.css for nav/footer/base. Only adds detail layout.
+   ---------------------------------------------------------------- */
+
+/* BREADCRUMB */
+.breadcrumb {
+  padding: 0 0 32px;
+}
+
+.breadcrumb a {
+  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-size: 14px;
+  color: var(--text-color);
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+}
+
+.breadcrumb a:hover {
+  opacity: 1;
+}
+
+/* DETAIL LAYOUT */
+.detail-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  max-width: 960px;
+}
+
+/* IMAGE */
+.detail-image {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(89, 44, 56, 0.10);
+}
+
+.detail-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* INFO */
+.detail-domaine {
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin: 0 0 8px;
+}
+
+.detail-name {
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 6px;
+  line-height: 1.15;
+}
+
+.detail-appellation {
+  font-size: 15px;
+  opacity: 0.6;
+  margin: 0 0 28px;
+  font-style: italic;
+}
+
+/* TABLE */
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 28px;
+  font-size: 14px;
+}
+
+.detail-table td {
+  padding: 7px 0;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(89, 44, 56, 0.08);
+}
+
+.detail-table td:first-child {
+  font-weight: 600;
+  padding-right: 16px;
+  white-space: nowrap;
+  width: 44%;
+  opacity: 0.75;
+}
+
+.detail-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* DESCRIPTION */
+.detail-description {
+  margin-bottom: 32px;
+}
+
+.detail-description p {
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0 0 14px;
+  opacity: 0.82;
+}
+
+.detail-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* BUY ROW */
+.detail-buy {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(89, 44, 56, 0.15);
+}
+
+.detail-price {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.btn-bestel-lg {
+  font-size: 15px !important;
+  padding: 10px 22px !important;
+}
+
+.detail-note {
+  font-size: 12px;
+  opacity: 0.5;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .detail-wrap {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .detail-image {
+    max-width: 420px;
+  }
+
+  .detail-name {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 720px) {
+  .detail-image {
+    max-width: 100%;
+  }
+
+  .detail-name {
+    font-size: 22px;
+  }
+
+  .detail-price {
+    font-size: 22px;
+  }
+}
