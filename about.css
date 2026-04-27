@@ -44,7 +44,9 @@
       font-size:var(--nav-font-size);
     }
 
-    nav li { position:relative; }
+    nav li {
+  position: relative;
+}
 
     nav a, nav button {
       color:var(--text-color);
