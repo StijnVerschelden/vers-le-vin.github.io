@@ -1,201 +1,461 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
-:root{
+:root {
   --text-color: #592C38;
   --bg: #F3ECDC;
   --nav-gap: 28px;
   --nav-font-size: 18px;
-  --dropdown-bg: rgba(242,240,208,0.98);
-  --dropdown-border: rgba(89,44,56,0.06);
-
-  /* shared horizontal padding so title aligns with nav content */
-  --page-pad: 24px;
-
-  /* Events layout */
-  --events-gap: 90px;         /* space between the two images (desktop) */
-  --event-card-width: 300px;  /* both images width (desktop) */
+  --dropdown-bg: rgba(242, 240, 208, 0.98);
+  --dropdown-border: rgba(89, 44, 56, 0.06);
+  --border: rgba(89, 44, 56, 0.15);
 }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
 
 body {
-  margin:0;
-  background-color: var(--bg);
+  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  background: var(--bg);
   color: var(--text-color);
-  font-family: 'CaslonAntiqueRegular','EB Garamond',serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
 }
 
-/* ----------------------------- */
-/* NAVIGATION (keep your theme)  */
-/* ----------------------------- */
+/* ============================================================
+   NAVIGATION — identical to index.css
+   ============================================================ */
+
 nav ul, nav a, nav button {
-  font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
+  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif !important;
 }
 
 .nav-wrap {
-  display:flex;
-  justify-content:center;
-  padding: 18px var(--page-pad);
+  display: flex;
+  justify-content: center;
+  padding: 18px 24px;
   background: transparent;
 }
 
+.hamburger { display: none; }
+
 nav ul {
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:flex;
-  gap:var(--nav-gap);
-  align-items:center;
-  font-size:var(--nav-font-size);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--nav-gap);
+  align-items: center;
+  font-size: var(--nav-font-size);
 }
 
-nav li { position:relative; }
+nav li { position: relative; }
 
 nav a, nav button {
-  color:var(--text-color);
-  text-decoration:none;
-  background:none;
-  border:none;
-  padding:6px 8px;
-  cursor:pointer;
-  font:inherit;
+  color: var(--text-color);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 6px 8px;
+  cursor: pointer;
+  font: inherit;
 }
 
-nav a:hover, nav button:hover { opacity:0.7; }
+nav a:hover, nav button:hover { opacity: 0.7; }
+nav a.active { border-bottom: 1px solid var(--text-color); }
 
 .dropdown {
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  top:100%;
-  min-width:180px;
-  background:var(--dropdown-bg);
-  border:1px solid var(--dropdown-border);
-  border-radius:6px;
-  padding:8px 0;
-  box-shadow:0 8px 20px rgba(0,0,0,0.04);
-  display:none;
-  z-index:200;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  min-width: 180px;
+  background: var(--dropdown-bg);
+  border: 1px solid var(--dropdown-border);
+  border-radius: 6px;
+  padding: 8px 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  display: none;
+  z-index: 200;
 }
 
 .dropdown a {
-  display:block;
-  padding:8px 20px;
-  text-decoration:none;
-  color:var(--text-color);
-  font-size:16px;
+  display: block;
+  padding: 8px 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 16px;
 }
-.dropdown a:hover { background:rgba(89,44,56,0.06); }
+
+.dropdown a:hover { background: rgba(89, 44, 56, 0.06); }
 
 nav li:hover > .dropdown,
-nav li:focus-within > .dropdown {
-  display:block;
+nav li:focus-within > .dropdown { display: block; }
+
+/* ============================================================
+   PAGE LAYOUT
+   ============================================================ */
+
+.events-page {
+  flex: 1;
+  max-width: 1100px;
+  width: calc(100% - 48px);
+  margin: 0 auto;
+  padding: 48px 0 80px;
 }
 
-/* ----------------------------- */
-/* EVENTS PAGE LAYOUT            */
-/* ----------------------------- */
-.events-page{
-  width: min(1100px, calc(100% - (var(--page-pad) * 2)));
-  margin: 28px auto 70px;
-  padding-top: 80px;
+.events-page h1 {
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  margin: 0 0 36px;
 }
 
-.events-page h1{
-  font-size:30px;
-  font-weight:400;
-  margin: 10px 0 26px;
-  padding-left: var(--page-pad);
+/* ============================================================
+   SECTION LABELS
+   ============================================================ */
+
+.events-section {
+  margin-bottom: 52px;
 }
 
-.events-row{
-  display:flex;
-  align-items:center;
-  justify-content:center;  /* centers the *pair* as one composition */
-  gap: var(--events-gap);
-  transform: none;         /* remove the left shift */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-/* Both images same displayed size, keep natural 3:4 proportions */
-.event-image{
-  width: var(--event-card-width);
-  height: auto;            /* preserves original proportions */
-  border-radius: 12px;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
-  display:block;
+.section-label h2 {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin: 0;
+  white-space: nowrap;
 }
 
-.event-card{
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ============================================================
+   UPCOMING BOX
+   ============================================================ */
+
+.upcoming-box {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  background: rgba(243, 236, 220, 0.5);
+}
+
+.upcoming-box p {
+  font-size: 16px;
+  font-style: italic;
+  margin: 0 0 6px;
+  opacity: 0.75;
+}
+
+.upcoming-sub {
+  font-size: 13px;
+  opacity: 0.5 !important;
+}
+
+/* ============================================================
+   EVENTS GRID
+   ============================================================ */
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* ============================================================
+   EVENT FLIP CARD
+   ============================================================ */
+
+.evt-card-wrap {
+  perspective: 1000px;
+}
+
+.evt-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.evt-card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.evt-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 24px rgba(89, 44, 56, 0.08);
+}
+
+/* FRONT */
+.evt-front {
+  background: rgba(243, 236, 220, 0.6);
   display: flex;
   flex-direction: column;
+}
+
+.evt-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+.evt-cover-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: rgba(89, 44, 56, 0.06);
+  flex-shrink: 0;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
 }
 
-.event-link-small{
-  font-size: 13px;
-  text-decoration: underline;
-  color: var(--text-color);
-  opacity: 0.9;
+.evt-body {
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
 }
 
-.event-link-small:hover{
+.evt-date {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.evt-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.evt-desc {
+  font-size: 12px;
+  line-height: 1.55;
   opacity: 0.7;
+  flex: 1;
 }
 
-
-/* FOOTER (keep your theme)      */
-footer {
-  margin-top:auto;
-  padding:10px 20px;
-  font-size:14px;
-  display:flex;
-  justify-content:space-between;
-  opacity:0.85;
+.btn-lees {
+  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-size: 12px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: auto;
+  transition: background 0.2s;
 }
 
-/* LIGHTBOX OVERLAY */
-.lightbox{
-  position: fixed;
+.btn-lees:hover {
+  background: rgba(89, 44, 56, 0.06);
+}
+
+/* BACK */
+.evt-back {
+  transform: rotateY(180deg);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   CAROUSEL (back of card)
+   ============================================================ */
+
+.evt-carousel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: rgba(89, 44, 56, 0.04);
+}
+
+/* Real photo slides */
+.car-photo {
+  position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.car-photo.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Placeholder slides (when no real photos yet) */
+.car-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(89, 44, 56, 0.05);
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
-  cursor: zoom-out;
 }
 
-.lightbox.open{
-  display:flex;
+.car-photo-placeholder.active {
+  display: flex;
 }
 
-/* big image */
-.lightbox-img{
-  max-width: 85vw;
-  max-height: 85vh;
-  border-radius: 14px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+/* Arrow buttons — float over photo */
+.car-arrows {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  pointer-events: none;
+  z-index: 10;
 }
 
-/* make images feel clickable (desktop only) */
-@media (min-width: 721px){
-  .event-image{
-    cursor: zoom-in;
-    transition: transform .25s ease, box-shadow .25s ease;
-  }
-
-  .event-image:hover{
-    transform: scale(1.03);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
-  }
+.car-arr {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.30);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  font-family: sans-serif;
 }
 
-/* ------------------------------------------------ */
-/* MOBILE: stack image 1 then image 2 underneath    */
-/* ------------------------------------------------ */
+.car-arr:hover {
+  background: rgba(0, 0, 0, 0.50);
+}
+
+/* Dot indicators — bottom of photo */
+.car-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.car-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  transition: background 0.2s;
+}
+
+.car-dot.active {
+  background: #fff;
+}
+
+/* Back footer — just the terug button */
+.evt-back-foot {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.btn-terug {
+  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-size: 12px;
+  padding: 4px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.btn-terug:hover {
+  background: rgba(89, 44, 56, 0.06);
+  opacity: 1;
+}
+
+/* Flip hint */
+.flip-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-color);
+  opacity: 0.38;
+  margin: 8px 0 0;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+
+/* Focus ring */
+.evt-card:focus-within {
+  outline: 2px solid rgba(89, 44, 56, 0.2);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer {
+  margin-top: auto;
+  padding: 10px 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.85;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
 @media (max-width: 720px) {
 
   .hamburger {
@@ -225,13 +485,9 @@ footer {
     display: block;
   }
 
-  .hamburger[aria-expanded="true"] .line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
+  .hamburger[aria-expanded="true"] .line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger[aria-expanded="true"] .line:nth-child(2) { opacity: 0; }
-  .hamburger[aria-expanded="true"] .line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
+  .hamburger[aria-expanded="true"] .line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   nav ul { display: none; }
 
@@ -241,6 +497,7 @@ footer {
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
     z-index: 900;
+    pointer-events: none;
   }
 
   .nav-wrap.open nav ul {
@@ -289,30 +546,32 @@ footer {
     font-size: 14px;
   }
 
-  .events-page{
+  .events-page {
     width: calc(100% - 32px);
-    margin: 22px auto 60px;
-    padding-top: 45px;
-
+    padding: 32px 0 60px;
   }
 
-  .events-page h1{
-    font-size:35px;
-    margin-bottom: 18px;
-    padding-left: 0; /* usually looks better on mobile */
+  .events-page h1 {
+    font-size: 26px;
+    margin-bottom: 24px;
   }
 
-  .events-row{
-    flex-direction: column;
-    gap: 18px;
+  .section-label h2 {
+    font-size: 15px;
   }
 
-  .event-image{
-    width: min(340px, 100%);
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 360px;
+    margin: 0 auto;
   }
 
-  footer {
-    font-size:12px;
-    opacity:0.85;
+  footer { font-size: 12px; }
+}
+
+@media (max-width: 900px) and (min-width: 721px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

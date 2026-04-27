@@ -1,17 +1,15 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Events – Vers Le Vin</title>
 
-<!-- Caslon Antique -->
 <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
-
-<!-- External CSS for style -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="events.css">
-
 </head>
 
 <body>
@@ -19,81 +17,182 @@
 <!-- NAV -->
 <div class="nav-wrap">
 <nav>
-   <!-- HAMBURGER (mobile) -->
   <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
-  <span class="line"></span>
-  <span class="line"></span>
-  <span class="line"></span>
-</button>
-<ul>
-
-<li><a href="index.html">Home</a></li>
-<li>
-<button id="lantBtn">Lantignié ▾</button>
-<div class="dropdown">
-<a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a> 
- <a href="Terroir.html">Terroir</a>
- <a href="vtl.html">VTL (association)</a>
- <a href="#">Wijnmakers</a>
-</div>
-</li>
-<li>
-          <button id="wijnBtn">Wijnen ▾</button>
-          <div class="dropdown" role="menu">
-            <a role="menuitem" href="wit.html">Wit</a>
-            <a role="menuitem" href="rood.html">Rood</a>
-          </div>
-        </li>
-        <li>
-        <a href="winkel.html">Winkel</a>
-        </li> 
-<li>
-<a href="events.html">Events</a>
-</li>
-<li>
-<button id="blogBtn">Blog ▾</button>
-<div class="dropdown">
-<a href="essays.html">Essays</a>
-<a href="pairing.html">Pairing</a>
-<a href="#">Beelden</a>
-</div>
-</li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+  </button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <button id="lantBtn">Lantignié ▾</button>
+      <div class="dropdown">
+        <a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a>
+        <a href="Terroir.html">Terroir</a>
+        <a href="vtl.html">VTL (association)</a>
+        <a href="#">Wijnmakers</a>
+      </div>
+    </li>
+    <li>
+      <button id="wijnBtn">Wijnen ▾</button>
+      <div class="dropdown">
+        <a href="wit.html">Wit</a>
+        <a href="rood.html">Rood</a>
+      </div>
+    </li>
+    <li><a href="winkel.html">Winkel</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+    <li>
+      <button id="blogBtn">Blog ▾</button>
+      <div class="dropdown">
+        <a href="essays.html">Essays</a>
+        <a href="pairing.html">Pairing</a>
+        <a href="#">Beelden</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 </div>
 
-
-<!-- MAIN -->
 <main class="events-page">
 
+  <h1>Events</h1>
 
-  <section class="events-row">
-    <img class="event-image" src="images/wijnenkaas-site.jpeg" alt="Event image left">
-
-    <div class="event-card">
-    <img class="event-image event-image--right" src="images/wijnenkaas-note.jpeg" alt="Event image right">
-    <a class="event-link-small" href="https://forms.gle/b8k7dBg2kRpZ2EU36" target="_blank" rel="noopener noreferrer">
-      Kaas - en Wijnpairing Form
-    </a>
-  </div>
-  
+  <!-- AANKOMENDE EVENTS -->
+  <section class="events-section">
+    <div class="section-label">
+      <span class="section-line"></span>
+      <h2>Aankomende events</h2>
+      <span class="section-line"></span>
+    </div>
+    <div class="upcoming-box">
+      <p>Momenteel geen geplande events.</p>
+      <p class="upcoming-sub">Volg ons voor aankondigingen van nieuwe avonden.</p>
+    </div>
   </section>
+
+  <!-- VOORBIJE EVENTS -->
+  <section class="events-section">
+    <div class="section-label">
+      <span class="section-line"></span>
+      <h2>Voorbije events</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="events-grid">
+
+      <!-- EVENT 1: WIJN EN KAAS -->
+      <div class="evt-card-wrap">
+        <div class="evt-card" id="evt1" tabindex="0" role="button" aria-label="Wijn en Kaas Pairing — klik voor foto's">
+          <!-- FRONT -->
+          <div class="evt-face evt-front">
+            <img class="evt-cover" src="images/wijnenkaas-site.jpeg" alt="Wijn en Kaas Pairing">
+            <div class="evt-body">
+              <span class="evt-date">Maart 2026</span>
+              <h3 class="evt-title">Wijn &amp; Kaas Pairing</h3>
+              <p class="evt-desc">Lantignié blanc en rood gecombineerd met artisanale kazen uit de regio.</p>
+              <button class="btn-lees" type="button">Lees meer</button>
+            </div>
+          </div>
+          <!-- BACK: photo carousel -->
+          <div class="evt-face evt-back">
+            <div class="evt-carousel">
+              <!-- Photos: replace src with your real event images -->
+              <img class="car-photo active" src="images/wijnenkaas-site.jpeg" alt="Wijn en Kaas foto 1">
+              <img class="car-photo" src="images/wijnenkaas-note.jpeg" alt="Wijn en Kaas foto 2">
+              <!-- Add more <img class="car-photo"> lines here for more photos -->
+              <div class="car-arrows">
+                <button class="car-arr" type="button" aria-label="Vorige foto">‹</button>
+                <button class="car-arr" type="button" aria-label="Volgende foto">›</button>
+              </div>
+              <div class="car-dots"></div>
+            </div>
+            <div class="evt-back-foot">
+              <button class="btn-terug" type="button">← Terug</button>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik om foto's te zien ▾</p>
+      </div>
+
+      <!-- EVENT 2 -->
+      <div class="evt-card-wrap">
+        <div class="evt-card" id="evt2" tabindex="0" role="button" aria-label="Event 2 — klik voor foto's">
+          <div class="evt-face evt-front">
+            <div class="evt-cover evt-cover-placeholder">
+              <!-- Replace with: <img class="evt-cover" src="images/event2.jpg" alt="Event 2"> -->
+            </div>
+            <div class="evt-body">
+              <span class="evt-date">Datum</span>
+              <h3 class="evt-title">Event 2</h3>
+              <p class="evt-desc">Korte beschrijving van het event. Twee regels tekst.</p>
+              <button class="btn-lees" type="button">Lees meer</button>
+            </div>
+          </div>
+          <div class="evt-face evt-back">
+            <div class="evt-carousel">
+              <!-- Replace with your real photos -->
+              <div class="car-photo-placeholder active"></div>
+              <div class="car-photo-placeholder"></div>
+              <div class="car-arrows">
+                <button class="car-arr" type="button" aria-label="Vorige foto">‹</button>
+                <button class="car-arr" type="button" aria-label="Volgende foto">›</button>
+              </div>
+              <div class="car-dots"></div>
+            </div>
+            <div class="evt-back-foot">
+              <button class="btn-terug" type="button">← Terug</button>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik om foto's te zien ▾</p>
+      </div>
+
+      <!-- EVENT 3 -->
+      <div class="evt-card-wrap">
+        <div class="evt-card" id="evt3" tabindex="0" role="button" aria-label="Event 3 — klik voor foto's">
+          <div class="evt-face evt-front">
+            <div class="evt-cover evt-cover-placeholder">
+              <!-- Replace with: <img class="evt-cover" src="images/event3.jpg" alt="Event 3"> -->
+            </div>
+            <div class="evt-body">
+              <span class="evt-date">Datum</span>
+              <h3 class="evt-title">Event 3</h3>
+              <p class="evt-desc">Korte beschrijving van het event. Twee regels tekst.</p>
+              <button class="btn-lees" type="button">Lees meer</button>
+            </div>
+          </div>
+          <div class="evt-face evt-back">
+            <div class="evt-carousel">
+              <div class="car-photo-placeholder active"></div>
+              <div class="car-photo-placeholder"></div>
+              <div class="car-photo-placeholder"></div>
+              <div class="car-arrows">
+                <button class="car-arr" type="button" aria-label="Vorige foto">‹</button>
+                <button class="car-arr" type="button" aria-label="Volgende foto">›</button>
+              </div>
+              <div class="car-dots"></div>
+            </div>
+            <div class="evt-back-foot">
+              <button class="btn-terug" type="button">← Terug</button>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik om foto's te zien ▾</p>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
-<div class="lightbox" id="lightbox">
-  <img class="lightbox-img" id="lightbox-img" src="" alt="">
-</div>
-
-<!-- FOOTER -->
 <footer>
-<span>© 2026 Vers Le Vin</span>
-<span>by Stijn Verschelden</span>
+  <span>© 2026 Vers Le Vin</span>
+  <span>by Stijn Verschelden</span>
 </footer>
 
-  <!-- External JavaScript -->
-  <script src="events.js"></script>
-
+<script src="events.js"></script>
 </body>
 </html>
