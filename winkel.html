@@ -4,25 +4,18 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Winkel – Vers Le Vin</title>
-
-<!-- Same fonts as existing pages -->
 <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap">
-
 <link rel="stylesheet" href="winkel.css">
 </head>
-
 <body>
 
-<!-- NAV (identical structure to wit.html) -->
 <div class="nav-wrap">
 <nav>
   <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
-    <span class="line"></span>
-    <span class="line"></span>
-    <span class="line"></span>
+    <span class="line"></span><span class="line"></span><span class="line"></span>
   </button>
   <ul>
     <li><a href="index.html">Home</a></li>
@@ -36,13 +29,12 @@
       </div>
     </li>
     <li>
-          <button id="wijnBtn">Wijnen ▾</button>
-          <div class="dropdown" role="menu">
-            <a role="menuitem" href="wit.html">Wit</a>
-            <a role="menuitem" href="rood.html">Rood</a>
-          </div>
-        </li>
-      
+      <button id="wijnBtn">Wijnen ▾</button>
+      <div class="dropdown">
+        <a href="wit.html">Wit</a>
+        <a href="rood.html">Rood</a>
+      </div>
+    </li>
     <li><a href="winkel.html" class="active">Winkel</a></li>
     <li><a href="events.html">Events</a></li>
     <li>
@@ -59,53 +51,41 @@
 </nav>
 </div>
 
-<!-- MAIN SHOP VIEW -->
-<main id="shop-main">
-
-  <!-- PAGE HEADER -->
+<main>
   <div class="shop-header">
     <h1>Winkel</h1>
     <p class="shop-subtitle">Beaujolais Lantignié — rechtstreeks van de wijnmaker.<br>Afhalen of levering in België.</p>
   </div>
 
-  <!-- SECTION: WIT -->
+  <!-- WIT -->
   <section class="wine-section">
     <div class="section-label">
-      <span class="section-line"></span>
-      <h2>Wit</h2>
-      <span class="section-line"></span>
+      <span class="section-line"></span><h2>Wit</h2><span class="section-line"></span>
     </div>
-
     <div class="shop-grid">
 
-      <!-- CARD 1: LE BLANC -->
       <article class="shop-card">
-        <a href="winkel-leblanc.html" class="card-image-link" aria-label="Meer over Le Blanc 2024">
-          <div class="card-image">
-            <img src="images/cosimaface.jpg" alt="Château des Vergers – Le Blanc 2024">
-          </div>
+        <a href="winkel-leblanc.html" class="card-image-link">
+          <div class="card-image"><img src="images/cosimaface.jpg" alt="Château des Vergers – Le Blanc 2024"></div>
         </a>
         <div class="card-body">
           <p class="card-domaine">Château des Vergers</p>
           <h3 class="card-name">Le Blanc 2024</h3>
           <span class="card-style">Strak &amp; Mineraal</span>
-          <p class="card-short">Pierre bleue-terroir op 300m hoogte. Lentebloesem, frisse kruiden, lange minerale afdronk.</p>
+          <p class="card-short">Pierre bleue op 300m hoogte. Lentebloesem, frisse kruiden, lange minerale afdronk.</p>
           <div class="card-footer">
             <span class="card-price">€ 21,50</span>
             <div class="card-actions">
               <a href="winkel-leblanc.html" class="btn-lees">Lees meer</a>
-              <button class="btn-bestel" type="button" aria-label="Le Blanc 2024 toevoegen aan bestelling">In de winkel</button>
+              <button class="btn-bestel" type="button">In de winkel</button>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- CARD 2: AXIOME -->
       <article class="shop-card">
-        <a href="winkel-axiome.html" class="card-image-link" aria-label="Meer over Axiome 2024">
-          <div class="card-image">
-            <img src="images/axiome.jpg" alt="Domaine les Capréoles – Axiome 2024">
-          </div>
+        <a href="winkel-axiome.html" class="card-image-link">
+          <div class="card-image"><img src="images/axiome.jpg" alt="Domaine les Capréoles – Axiome 2024"></div>
         </a>
         <div class="card-body">
           <p class="card-domaine">Domaine les Capréoles</p>
@@ -116,18 +96,15 @@
             <span class="card-price">€ 22,50</span>
             <div class="card-actions">
               <a href="winkel-axiome.html" class="btn-lees">Lees meer</a>
-              <button class="btn-bestel" type="button" aria-label="Axiome 2024 toevoegen aan bestelling">In de winkel</button>
+              <button class="btn-bestel" type="button">In de winkel</button>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- CARD 3: BLANC FREDERIC BERNE -->
       <article class="shop-card">
-        <a href="winkel-fblanc.html" class="card-image-link" aria-label="Meer over Blanc 2024">
-          <div class="card-image">
-            <img src="images/FBWIT1.jpg" alt="Domaine Frédéric Berne – Blanc 2024">
-          </div>
+        <a href="winkel-fblanc.html" class="card-image-link">
+          <div class="card-image"><img src="images/FBWIT1.jpg" alt="Domaine Frédéric Berne – Blanc 2024"></div>
         </a>
         <div class="card-body">
           <p class="card-domaine">Domaine Frédéric Berne</p>
@@ -138,61 +115,236 @@
             <span class="card-price">€ 21,90</span>
             <div class="card-actions">
               <a href="winkel-fblanc.html" class="btn-lees">Lees meer</a>
-              <button class="btn-bestel" type="button" aria-label="Blanc 2024 toevoegen aan bestelling">In de winkel</button>
+              <button class="btn-bestel" type="button">In de winkel</button>
             </div>
           </div>
         </div>
       </article>
 
-    </div><!-- /.shop-grid -->
-  </section>
-
-  <!-- COMING SOON: ROOD -->
-  <section class="wine-section coming-soon-section">
-    <div class="section-label">
-      <span class="section-line"></span>
-      <h2>Rood</h2>
-      <span class="section-line"></span>
     </div>
-    <p class="coming-soon-text">Binnenkort beschikbaar — rode wijnen worden toegevoegd aan de winkel.</p>
   </section>
 
-  <!-- PICKUP/DELIVERY INFO -->
+  <!-- ROOD -->
+  <section class="wine-section">
+    <div class="section-label">
+      <span class="section-line"></span><h2>Rood</h2><span class="section-line"></span>
+    </div>
+    <div class="shop-grid">
+
+      <article class="shop-card">
+        <a href="winkel-colette.html" class="card-image-link">
+          <div class="card-image"><img src="images/COLE1.jpg" alt="Domaine de Colette 2023"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine de Colette</p>
+          <h3 class="card-name">2023</h3>
+          <span class="card-style">Fruitig &amp; Soepel</span>
+          <p class="card-short">Granit rose, geen sulfiet. Kers, rode besjes, framboos. Ideale zomerwijn.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 15,90</span>
+            <div class="card-actions">
+              <a href="winkel-colette.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-spes.html" class="card-image-link">
+          <div class="card-image"><img src="images/spec.jpg" alt="Domaine les Vignes en M – Spes 2024"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine les Vignes en M</p>
+          <h3 class="card-name">Spes 2024</h3>
+          <span class="card-style">Licht &amp; Fruitig</span>
+          <p class="card-short">Bijna zonder tannine. Rode bes, kers, aardbei. Perfect gekoeld als aperitief.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 16,90</span>
+            <div class="card-actions">
+              <a href="winkel-spes.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-filrouge.html" class="card-image-link">
+          <div class="card-image"><img src="images/lefilrouge.jpg" alt="Domaine de La Roche – Le Fil Rouge 2023"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine de La Roche</p>
+          <h3 class="card-name">Le Fil Rouge 2023</h3>
+          <span class="card-style">Fruitig &amp; Soepel</span>
+          <p class="card-short">16 dagen macération carbonique, inox. Sappig, fruitig, lange afdronk.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 18,00</span>
+            <div class="card-actions">
+              <a href="winkel-filrouge.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-auxvergers.html" class="card-image-link">
+          <div class="card-image"><img src="images/cosimalandscape.jpg" alt="Château des Vergers – Aux Vergers 2023"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Château des Vergers</p>
+          <h3 class="card-name">Aux Vergers 2023</h3>
+          <span class="card-style">Kruidig &amp; Fruitig</span>
+          <p class="card-short">Pierre bleue, 8 maand beton. Donkere kers, zwarte peper, kaneel en eucalyptus.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 18,00</span>
+            <div class="card-actions">
+              <a href="winkel-auxvergers.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-mi.html" class="card-image-link">
+          <div class="card-image"><img src="images/pi.jpg" alt="Domaine de Romarand – Mi 2023"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine de Romarand</p>
+          <h3 class="card-name">Mi 2023</h3>
+          <span class="card-style">Fruitig, Kruidig &amp; Fluweel</span>
+          <p class="card-short">Pierre bleue, 7 maand glasvezel. Braambes, kers, violet, kaneel.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 18,00</span>
+            <div class="card-actions">
+              <a href="winkel-mi.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-alpha.html" class="card-image-link">
+          <div class="card-image"><img src="images/alfa.jpg" alt="Domaine de Romarand – Alpha 2023"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine de Romarand</p>
+          <h3 class="card-name">Alpha 2023</h3>
+          <span class="card-style">Geconcentreerd &amp; Aromatisch</span>
+          <p class="card-short">11 maand eivormig beton. Braam, cassis, peper, kruidnagel. Tot 7 jaar bewaren.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 24,90</span>
+            <div class="card-actions">
+              <a href="winkel-alpha.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-fbrood.html" class="card-image-link">
+          <div class="card-image"><img src="images/FBROOD1.jpg" alt="Domaine Frédéric Berne – Aux Vergers 2023"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine Frédéric Berne</p>
+          <h3 class="card-name">Aux Vergers 2023</h3>
+          <span class="card-style">Elegant &amp; Kruidig</span>
+          <p class="card-short">Pierre bleue, 1 jaar oud eik. Donkere kers, cassis, peper. Tot 10 jaar bewaren.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 22,00</span>
+            <div class="card-actions">
+              <a href="winkel-fbrood.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-croixblanche.html" class="card-image-link">
+          <div class="card-image"><img src="images/lacroixblanche.jpg" alt="Domaine de La Roche – La Croix Blanche 2020"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine de La Roche</p>
+          <h3 class="card-name">La Croix Blanche 2020</h3>
+          <span class="card-style">Complex &amp; Vol</span>
+          <p class="card-short">2 jaar eik + 3 jaar fles. Chocolade, leer, kers. Nu mooi in evenwicht.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 21,00</span>
+            <div class="card-actions">
+              <a href="winkel-croixblanche.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-aliopacto.html" class="card-image-link">
+          <div class="card-image"><img src="images/aliopacto.jpg" alt="Domaine les Capréoles – Alio Pacto 2023"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine les Capréoles</p>
+          <h3 class="card-name">Alio Pacto 2023</h3>
+          <span class="card-style">Elegant &amp; Karaktervol</span>
+          <p class="card-short">16 maand eik, granit rose. Kers, framboos, cederhout. Tot 8 jaar bewaren.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 32,00</span>
+            <div class="card-actions">
+              <a href="winkel-aliopacto.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="shop-card">
+        <a href="winkel-diaclase.html" class="card-image-link">
+          <div class="card-image"><img src="images/DIA1.jpg" alt="Domaine les Capréoles – Diaclase 2023"></div>
+        </a>
+        <div class="card-body">
+          <p class="card-domaine">Domaine les Capréoles</p>
+          <h3 class="card-name">Diaclase 2023</h3>
+          <span class="card-style">Soepel &amp; Fruitig</span>
+          <p class="card-short">Regnié, oude stokken, 12 maand eik + 4 maand beton. Kers, violet, braam.</p>
+          <div class="card-footer">
+            <span class="card-price">€ 22,00</span>
+            <div class="card-actions">
+              <a href="winkel-diaclase.html" class="btn-lees">Lees meer</a>
+              <button class="btn-bestel" type="button">In de winkel</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
   <div class="shop-info">
     <div class="info-block">
       <span class="info-icon">◆</span>
-      <div>
-        <strong>Afhalen</strong>
-        <p>Op afspraak in Gent of Oudenaarde. Gratis.</p>
-      </div>
+      <div><strong>Afhalen</strong><p>Op afspraak in Brussel. Gratis.</p></div>
     </div>
     <div class="info-block">
       <span class="info-icon">◆</span>
-      <div>
-        <strong>Levering in België</strong>
-        <p>Verzending via .... Kosten op aanvraag.</p>
-      </div>
+      <div><strong>Levering in België</strong><p>Verzending via DPD of Bpost. Kosten op aanvraag.</p></div>
     </div>
     <div class="info-block">
       <span class="info-icon">◆</span>
-      <div>
-        <strong>Betaling</strong>
-        <p>Veilige betaling via onze webshop. Binnenkort online.</p>
-      </div>
+      <div><strong>Betaling</strong><p>Veilige betaling via onze webshop. Binnenkort online.</p></div>
     </div>
   </div>
 
 </main>
 
-<!-- DETAIL OVERLAY (hidden by default, shown on "Lees meer" click if no separate page yet) -->
-
-<!-- FOOTER -->
 <footer>
   <span>© 2026 Vers Le Vin</span>
   <span>by Stijn Verschelden</span>
 </footer>
-
 <script src="winkel.js"></script>
-
 </body>
 </html>
