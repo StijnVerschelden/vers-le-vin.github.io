@@ -84,10 +84,25 @@ body{
     nav li:hover > .dropdown,
     nav li:focus-within > .dropdown { display:block; }
 
+    /* Hide hamburger on desktop — prevents ghost spacing */
+    .hamburger { display: none; }
+
     @media(max-width:720px){
       nav ul { flex-wrap:wrap; gap:12px; }
       .dropdown { left:0; transform:none; min-width:150px; }
     }
+
+/* ---------------- FLIP HINT ---------------- */
+.flip-hint {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-color);
+  opacity: 0.42;
+  margin: 10px 0 0;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  user-select: none;
+}
 
 
 /* ---------------- MAIN ---------------- */
@@ -350,6 +365,3 @@ main{
       font-size:12px;
     }
 }
-  
-
-
