@@ -17,7 +17,7 @@
 html,body{height:100%;margin:0;}
 
 body{
-  font-family:'CaslonAntiqueRegular','EB Garamond',serif;
+  font-family:'EB Garamond', serif;
   background:var(--bg);
   color:var(--text-color);
   display:flex;
@@ -30,7 +30,7 @@ body{
     /*      NAVIGATION COPY       */
     /*----------------------------*/
     nav ul, nav a, nav button {
-      font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
+      font-family: 'EB Garamond', serif !important;
     }
     .nav-wrap {
       display:flex;
@@ -365,3 +365,6 @@ main{
       font-size:12px;
     }
 }
+  
+
+
