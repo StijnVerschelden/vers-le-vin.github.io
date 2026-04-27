@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const card = wrap.querySelector('.evt-card');
     const front = card.querySelector('.evt-front');
     const back = card.querySelector('.evt-back');
-    const btnLees = front.querySelector('.btn-lees');
     const btnTerug = back.querySelector('.btn-terug');
     const carousel = back.querySelector('.evt-carousel');
 
@@ -69,12 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btnTerug.addEventListener('click', e => {
       e.stopPropagation();
       card.classList.remove('is-flipped');
-    });
-
-    btnLees.addEventListener('click', e => {
-      e.stopPropagation();
-      card.classList.add('is-flipped');
-      goTo(0);
     });
   });
 
