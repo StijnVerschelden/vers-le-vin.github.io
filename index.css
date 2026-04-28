@@ -177,6 +177,7 @@ nav li:focus-within > .dropdown { display: block; }
   user-select: none;
   position: relative;
   z-index: 4;
+  perspective: 1400px;
 }
 
 /* =========================
@@ -191,13 +192,24 @@ nav li:focus-within > .dropdown { display: block; }
   overflow: hidden;
 }
 
-/* media (img or video) fills any card face */
+/* media (img or video) fills any card face — cover by default */
 .card-media {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 8px;
+}
+
+/* video on side card fronts — contain so full video visible, not cropped */
+.side-front .card-media {
+  object-fit: contain;
+  background: #000;
+}
+
+/* centre card back image — contain so it fits within card bounds */
+.card-back .card-media {
+  object-fit: contain;
+  background: var(--bg);
 }
 
 /* =========================
@@ -209,6 +221,7 @@ nav li:focus-within > .dropdown { display: block; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  perspective: 1000px;
 }
 
 .side-card {
@@ -356,7 +369,7 @@ nav li:focus-within > .dropdown { display: block; }
   transform-style: preserve-3d;
   transition: transform 1.3s ease;
   cursor: pointer;
-  overflow: visible;
+  overflow: hidden;
   border-radius: 8px;
 }
 
