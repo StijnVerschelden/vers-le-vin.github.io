@@ -369,7 +369,6 @@ nav li:focus-within > .dropdown { display: block; }
   transform-style: preserve-3d;
   transition: transform 1.3s ease;
   cursor: pointer;
-  overflow: hidden;
   border-radius: 8px;
 }
 
