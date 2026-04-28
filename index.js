@@ -1,12 +1,9 @@
 /* =========================
-   AGE GATE (ROBUST + CLICKABLE)
+   AGE GATE
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // If user already verified, do nothing
   if (localStorage.getItem("ageVerified") === "true") return;
 
-  // Create/inject gate if missing
   let gate = document.getElementById("ageGate");
   if (!gate) {
     gate = document.createElement("div");
@@ -25,26 +22,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(gate);
   }
 
-  // Make sure it's visible (CSS controls layout)
   gate.classList.remove("hidden");
-
-
-  // Prevent background scrolling while gate is open
   document.body.style.overflow = "hidden";
 
   document.addEventListener("click", (e) => {
-  if (e.target.id === "enterBtn") {
-    localStorage.setItem("ageVerified", "true");
-    document.getElementById("ageGate")?.classList.add("hidden");
-    document.body.style.overflow = "";
-  }
+    if (e.target.id === "enterBtn") {
+      localStorage.setItem("ageVerified", "true");
+      document.getElementById("ageGate")?.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+    if (e.target.id === "leaveBtn") {
+      window.location.href = "https://www.google.com";
+    }
+  }, true);
 
-  if (e.target.id === "leaveBtn") {
-    window.location.href = "https://www.google.com";
-  }
-}, true); // capture phase
-
-  // Accessibility: ESC = leave
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !gate.classList.contains("hidden")) {
       window.location.href = "https://www.google.com";
@@ -57,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
    DROPDOWN CONTROLS
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const controls = [{ btnId: "lantBtn" }, { btnId: "blogBtn" }];
+  const controls = [{ btnId: "lantBtn" }, { btnId: "blogBtn" }, { btnId: "wijnBtn" }];
 
   controls.forEach((c) => {
     const btn = document.getElementById(c.btnId);
@@ -84,10 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
     controls.forEach((c) => {
       const btn = document.getElementById(c.btnId);
       if (!btn) return;
-
       const menu = btn.nextElementSibling;
       if (!menu) return;
-
       if (!btn.contains(e.target) && !menu.contains(e.target)) {
         btn.setAttribute("aria-expanded", "false");
         menu.style.display = "none";
@@ -98,7 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   LOGO CARD FLIP (DESKTOP + MOBILE)
+   CENTRE LOGO CARD FLIP
+   (existing behaviour — unchanged)
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const logoCard = document.getElementById("logoCard");
@@ -119,25 +109,21 @@ document.addEventListener("DOMContentLoaded", () => {
     isFlipped = state;
     logoCard.classList.toggle("flipped", isFlipped);
     logoCard.setAttribute("aria-pressed", isFlipped ? "true" : "false");
-
     if (hint) hint.style.opacity = "0";
     if (isFlipped) scrollBackIntoView();
   }
 
-  // Tap / click on card toggles flip
   logoCard.addEventListener("pointerup", (e) => {
     if (isFlipped && e.target.closest("a")) return;
     setFlipped(!isFlipped);
   });
 
-  // Keyboard support for non-pointer users
   logoCard.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
     e.preventDefault();
     setFlipped(!isFlipped);
   });
 
-  // Tap outside card flips back
   document.addEventListener("pointerdown", (e) => {
     if (!isFlipped) return;
     if (logoCard.contains(e.target)) return;
@@ -146,9 +132,52 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+/* =========================
+   SIDE CARDS FLIP
+   (winkelCard + aboutCard)
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  ["winkelCard", "aboutCard"].forEach((id) => {
+    const card = document.getElementById(id);
+    if (!card) return;
+
+    let flipped = false;
+
+    function setFlipped(state) {
+      flipped = state;
+      card.classList.toggle("is-flipped", flipped);
+      card.setAttribute("aria-pressed", flipped ? "true" : "false");
+    }
+
+    card.addEventListener("pointerup", (e) => {
+      // Allow clicks on links inside the back face
+      if (flipped && e.target.closest("a")) return;
+      setFlipped(!flipped);
+    });
+
+    card.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      setFlipped(!flipped);
+    });
+  });
+
+  // Click outside any side card → flip it back
+  document.addEventListener("pointerdown", (e) => {
+    ["winkelCard", "aboutCard"].forEach((id) => {
+      const card = document.getElementById(id);
+      if (!card) return;
+      if (!card.contains(e.target) && card.classList.contains("is-flipped")) {
+        card.classList.remove("is-flipped");
+        card.setAttribute("aria-pressed", "false");
+      }
+    });
+  });
+});
+
 
 /* =========================
-   MOBILE HAMBURGER TOGGLE
+   MOBILE HAMBURGER
    ========================= */
 (function () {
   const navWrap = document.querySelector(".nav-wrap");

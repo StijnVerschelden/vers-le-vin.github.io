@@ -1,106 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Vers Le Vin by Stijn Verschelden — Wijnhandel gespecialiseerd in Lantignié wijnen. Ontdek onze wijnen, evenementen en informatie over het terroir.">
-
   <link rel="icon" href="/favicon.png" sizes="48x48" type="image/png">
- <link rel="icon" href="/favicon.svg" type="image/svg+xml">
- <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <title>Vers Le Vin</title>
-
-  <!-- Caslon Antique -->
-  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
-
- <!-- External CSS for style -->
- <link rel="stylesheet" href="index.css">
-  
-
+  <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
 
-   <!-- NAV -->
+<!-- NAV -->
 <div class="nav-wrap">
 <nav aria-label="Main Navigation">
-  <!-- HAMBURGER (mobile) -->
   <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
-  <span class="line"></span>
-  <span class="line"></span>
-  <span class="line"></span>
+    <span class="line"></span><span class="line"></span><span class="line"></span>
   </button>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li>
-<button id="lantBtn">Lantignié ▾</button>
-<div class="dropdown">
- <a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a> 
- <a href="Terroir.html">Terroir</a>
- <a href="vtl.html">VTL (association)</a>
- <a href="#">Wijnmakers</a>
-</div>
-</li>
-<li>
-<button id="wijnBtn">Wijnen ▾</button>
-<div class="dropdown">
-<a href="wit.html">Wit</a>
-<a href="rood.html">Rood</a>
-</div>
-</li>
-<li>
-<a href="winkel.html">Winkel</a>
-</li>
-<li>
-<a href="events.html">Events</a>
-</li>
-<li>
-<button id="blogBtn">Blog ▾</button>
-<div class="dropdown">
-<a href="essays.html">Essays</a>
-<a href="pairing.html">Pairing</a>
-<a href="#">Beelden</a>
-</div>
-</li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <button id="lantBtn">Lantignié ▾</button>
+      <div class="dropdown">
+        <a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a>
+        <a href="Terroir.html">Terroir</a>
+        <a href="vtl.html">VTL (association)</a>
+        <a href="#">Wijnmakers</a>
+      </div>
+    </li>
+    <li>
+      <button id="wijnBtn">Wijnen ▾</button>
+      <div class="dropdown">
+        <a href="wit.html">Wit</a>
+        <a href="rood.html">Rood</a>
+      </div>
+    </li>
+    <li><a href="winkel.html">Winkel</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li>
+      <button id="blogBtn">Blog ▾</button>
+      <div class="dropdown">
+        <a href="essays.html">Essays</a>
+        <a href="pairing.html">Pairing</a>
+        <a href="#">Beelden</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 </div>
 
-  <main class="hero">
-    <div class="brand-wrap" id="brandWrap">
+<main class="hero">
+  <div class="brand-wrap">
+    <div class="brand">
 
-      <div class="brand">
+      <!-- LEFT: Winkel video card -->
+      <div class="side-card-wrap">
+        <div class="side-card" id="winkelCard" tabindex="0" role="button" aria-label="Winkel">
+          <div class="card-face side-front side-front--winkel">
+            <video autoplay muted loop playsinline class="winkel-video">
+              <source src="videos/winkel.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-face side-back">
+            <div class="side-back-inner">
+              <p class="side-back-label">Winkel</p>
+              <p class="side-back-text">13 wijnen rechtstreeks van de wijnmaker. Afhalen of levering in België.</p>
+              <a href="winkel.html" class="side-back-btn">Bekijk onze wijnen →</a>
+            </div>
+          </div>
+        </div>
+        <span class="side-hint">Klik of flip ▲</span>
+      </div>
 
-        <div class="logo-card" id="logoCard" tabindex="0" role="button">
+      <!-- CENTRE: Logo card (existing behaviour preserved) -->
+      <div class="logo-card-wrap">
+        <div class="logo-card" id="logoCard" tabindex="0" role="button" aria-pressed="false">
           <div class="card-face card-front">
             <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
           </div>
-
           <div class="card-face card-back">
             <div class="back-row" id="backRow">
-              
               <div class="back-item">
                 <a href="events.html">
                   <img src="images/wijnenkaas-site.jpeg" alt="Events">
                 </a>
                 <span class="title">Wijn en Kaas Pairing Degustatie</span>
               </div>
-              
               <div class="back-item">
-
-                <a href="https://www.youtube.com/watch?v=wr4tJoFjI2w"> 
-                 <video autoplay muted loop playsinline> 
-                  <source src="videos/Terroir.mp4" type="video/mp4"> 
-                 </video> 
-                </a> 
+                <a href="https://www.youtube.com/watch?v=wr4tJoFjI2w">
+                  <video autoplay muted loop playsinline>
+                    <source src="videos/Terroir.mp4" type="video/mp4">
+                  </video>
+                </a>
                 <span class="title">Terroir</span>
               </div>
-
               <div class="back-item">
                 <a href="about.html">
                   <img src="images/intro.jpg" alt="Vers le Vin">
@@ -108,30 +104,41 @@
                 <span class="title">Vers le Vin</span>
               </div>
             </div>
-
-              <!-- swipe hint (mobile only via CSS) -->
-              <div class="swipe-hint" aria-hidden="true">
-              </div>
-              
+            <div class="swipe-hint" aria-hidden="true"></div>
           </div>
         </div>
-
-        <span class="hover-hint">Click or Flip ▲</span>
-
+        <span class="hover-hint">Klik of Flip ▲</span>
       </div>
+
+      <!-- RIGHT: About card -->
+      <div class="side-card-wrap">
+        <div class="side-card" id="aboutCard" tabindex="0" role="button" aria-label="Over Vers Le Vin">
+          <div class="card-face side-front side-front--about">
+            <img src="images/intro.jpg" alt="Vers Le Vin" class="about-cover">
+            <div class="about-front-overlay">
+              <p class="about-front-quote">Wijn als spiegel<br>van het terroir</p>
+            </div>
+          </div>
+          <div class="card-face side-back">
+            <div class="side-back-inner">
+              <p class="side-back-label">Vers Le Vin</p>
+              <p class="side-back-text">Gespecialiseerd in Beaujolais Lantignié. Rechtstreeks van kleine, onafhankelijke wijnmakers in Brussel.</p>
+              <a href="about.html" class="side-back-btn">Meer over ons →</a>
+            </div>
+          </div>
+        </div>
+        <span class="side-hint">Klik of flip ▲</span>
+      </div>
+
     </div>
-  </main>
+  </div>
+</main>
 
-  <footer>
-    <span>© 2026 Vers Le Vin</span>
-    <span>by Stijn Verschelden</span>
-  </footer>
+<footer>
+  <span>© 2026 Vers Le Vin</span>
+  <span>by Stijn Verschelden</span>
+</footer>
 
-
- <!-- External JavaScript -->
-  <script src="index.js"></script>
-
-
-
+<script src="index.js"></script>
 </body>
 </html>
