@@ -56,58 +56,81 @@
   <div class="brand-wrap">
     <div class="brand">
 
-      <!-- LEFT: Winkel video card -->
+      <!-- ═══════════════════════════════
+           LEFT — Winkel (video front)
+           ═══════════════════════════════ -->
       <div class="side-card-wrap">
         <div class="side-card" id="winkelCard" tabindex="0" role="button" aria-label="Winkel">
-          <div class="card-face side-front side-front--winkel">
-            <video autoplay muted loop playsinline class="winkel-video">
+
+          <!-- FRONT: Winkel.mp4 looping, cropped to 3:4 -->
+          <div class="card-face side-front">
+            <video autoplay muted loop playsinline class="card-media">
               <source src="videos/Winkel.mp4" type="video/mp4">
             </video>
           </div>
+
+          <!-- BACK: info + link -->
           <div class="card-face side-back">
             <div class="side-back-inner">
               <p class="side-back-label">Winkel</p>
-              <p class="side-back-text">13 wijnen rechtstreeks van de wijnmaker. Afhalen of levering in België.</p>
+              <p class="side-back-text">Lantignié wijnen rechtstreeks van de wijnmaker. Afhalen of levering in België.</p>
               <a href="winkel.html" class="side-back-btn">Bekijk onze wijnen →</a>
             </div>
           </div>
+
         </div>
       </div>
 
-      <!-- CENTRE: Logo card (existing behaviour preserved) -->
+      <!-- ═══════════════════════════════
+           CENTRE — Logo (slightly larger, same ratio)
+           ═══════════════════════════════ -->
       <div class="logo-card-wrap">
         <div class="logo-card" id="logoCard" tabindex="0" role="button" aria-pressed="false">
+
+          <!-- FRONT: logo image -->
           <div class="card-face card-front">
-            <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
+            <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo" class="card-media">
           </div>
+
+          <!-- BACK: single image wine.jpg -->
           <div class="card-face card-back">
-            <div class="back-row" id="backRow">
-              <div class="back-item">
-                <a href="https://www.youtube.com/watch?v=wr4tJoFjI2w">
-                  <video autoplay muted loop playsinline>
-                    <source src="videos/Terroir.mp4" type="video/mp4">
-                  </video>
-                </a>
-              </div>
-            </div>
+            <img src="images/essay3.jpg" alt="Vers Le Vin" class="card-media">
           </div>
+
         </div>
-        <span class="hover-hint">Klik of Flip ▲</span>
+        <span class="hover-hint">Klik n’ Flip voor Meer ▲</span>
       </div>
 
-      <!-- RIGHT: About card -->
+      <!-- ═══════════════════════════════
+           RIGHT — Terroir (video front, video+text back)
+           ═══════════════════════════════ -->
       <div class="side-card-wrap">
-        <div class="side-card" id="aboutCard" tabindex="0" role="button" aria-label="Over Vers Le Vin">
-          <div class="card-face side-front side-front--about">
-            <img src="images/intro.jpg" alt="Vers Le Vin" class="about-cover">
+        <div class="side-card" id="terriorCard" tabindex="0" role="button" aria-label="Terroir">
+
+          <!-- FRONT: Terroir.mp4 cropped to 3:4 -->
+          <div class="card-face side-front">
+            <video autoplay muted loop playsinline class="card-media">
+              <source src="videos/Terroir.mp4" type="video/mp4">
+            </video>
           </div>
-          <div class="card-face side-back">
-            <div class="side-back-inner">
-              <p class="side-back-label">Vers Le Vin</p>
-              <p class="side-back-text">Gespecialiseerd in Beaujolais Lantignié. Rechtstreeks van kleine, onafhankelijke wijnmakers in Brussel.</p>
-              <a href="about.html" class="side-back-btn">Meer over ons →</a>
+
+          <!-- BACK: video in 16:9 strip + text + YouTube button -->
+          <div class="card-face side-back side-back--terroir">
+            <div class="terroir-video-strip">
+              <video autoplay muted loop playsinline class="terroir-strip-video">
+                <source src="videos/Terroir.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="terroir-back-body">
+              <p class="side-back-label">Terroir</p>
+              <p class="side-back-text">The trailer from Terroir (2025) by Stijn Verschelden.
+A sommelier student observes the work of winemakers around Lantignié for a year.  The seasons change, and with them the colors, the sounds, the rhythm of nature and human activities.</p>
+              <a href="https://www.youtube.com/watch?v=wr4tJoFjI2w"
+                 target="_blank" rel="noopener noreferrer"
+                 class="side-back-btn">Bekijk de film →</a>
             </div>
           </div>
+
         </div>
       </div>
 

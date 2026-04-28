@@ -134,10 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =========================
    SIDE CARDS FLIP
-   (winkelCard + aboutCard)
+   (winkelCard + terriorCard)
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  ["winkelCard", "aboutCard"].forEach((id) => {
+  ["winkelCard", "terriorCard"].forEach((id) => {
     const card = document.getElementById(id);
     if (!card) return;
 
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Click outside any side card → flip it back
   document.addEventListener("pointerdown", (e) => {
-    ["winkelCard", "aboutCard"].forEach((id) => {
+    ["winkelCard", "terriorCard"].forEach((id) => {
       const card = document.getElementById(id);
       if (!card) return;
       if (!card.contains(e.target) && card.classList.contains("is-flipped")) {
