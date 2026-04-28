@@ -149,6 +149,45 @@ nav li:hover > .dropdown,
 nav li:focus-within > .dropdown { display: block; }
 
 /* =========================
+   FLIP HINT BAR
+   ========================= */
+.flip-hint-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 20px 6px;
+  border-bottom: 0.5px solid rgba(89, 44, 56, 0.10);
+  font-family: 'EB Garamond', serif;
+}
+
+.flip-hint-text {
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(89, 44, 56, 0.50);
+  letter-spacing: 0.04em;
+}
+
+.flip-hint-drop {
+  width: 5px;
+  height: 7px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: rgba(89, 44, 56, 0.38);
+  animation: dropFall 2.2s ease-in-out infinite;
+}
+
+.flip-hint-drop--2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes dropFall {
+  0%   { opacity: 0; transform: translateY(-3px) scale(0.7); }
+  25%  { opacity: 1; transform: translateY(0)    scale(1);   }
+  70%  { opacity: 1; transform: translateY(0)    scale(1);   }
+  100% { opacity: 0; transform: translateY(4px)  scale(0.8); }
+}
+
+/* =========================
    HERO
    ========================= */
 .hero {
