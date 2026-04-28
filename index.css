@@ -355,7 +355,7 @@ nav li:focus-within > .dropdown { display: block; }
   border-radius: 8px;
 }
 
-/* ABOUT front — photo + overlay */
+/* ABOUT front — plain photo */
 .side-front--about {
   background: #1a0a0e;
 }
@@ -366,27 +366,6 @@ nav li:focus-within > .dropdown { display: block; }
   object-fit: cover;
   display: block;
   border-radius: 8px;
-  opacity: 0.75;
-}
-
-.about-front-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  padding: 20px 16px;
-  background: linear-gradient(to top, rgba(89,44,56,0.55) 0%, transparent 55%);
-  border-radius: 8px;
-}
-
-.about-front-quote {
-  font-family: 'EB Garamond', serif;
-  font-size: clamp(13px, 1.4vw, 16px);
-  font-style: italic;
-  color: #F3ECDC;
-  line-height: 1.4;
-  margin: 0;
-  opacity: 0.92;
 }
 
 /* Side card back content */
