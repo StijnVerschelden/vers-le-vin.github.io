@@ -33,15 +33,13 @@
   banner.innerHTML = `
     <div class="cookie-inner">
       <p class="cookie-text">
-        Vers Le Vin gebruikt cookies voor ingebedde video's (YouTube) en later
-        voor betalingsverwerking. Strikt noodzakelijke opslag (leeftijdsverificatie)
-        is altijd actief. Geeft u toestemming voor de overige cookies?
+        Deze website gebruikt cookies voor een betere werking en externe diensten.
+        Meer info in ons <a href="privacy.html" class="cookie-privacy">privacybeleid</a>.
       </p>
       <div class="cookie-actions">
         <button type="button" id="cookieRefuse">Weigeren</button>
         <button type="button" id="cookieAccept">Accepteren</button>
       </div>
-      <a href="privacy.html" class="cookie-privacy">Privacybeleid</a>
     </div>
   `;
 
