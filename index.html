@@ -9,6 +9,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <title>Vers Le Vin</title>
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="cookie-consent.css">
 </head>
 <body>
 
@@ -69,16 +70,18 @@
       <div class="side-card-wrap">
         <div class="side-card" id="winkelCard" tabindex="0" role="button" aria-label="Winkel">
 
-          <!-- FRONT: Winkel image -->
-          <div class="card-face card-front">
-            <img src="images/Winkel-minimal.jpeg" alt="Winkel" class="card-media">
+          <!-- FRONT: Winkel.mp4 looping, cropped to 3:4 -->
+          <div class="card-face side-front">
+            <video autoplay muted loop playsinline class="card-media">
+              <source src="videos/Winkel.mp4" type="video/mp4">
+            </video>
           </div>
 
           <!-- BACK: info + link -->
           <div class="card-face side-back">
             <div class="side-back-inner">
               <p class="side-back-label">Winkel</p>
-              <p class="side-back-text">Diverse wijnen rechtstreeks van de wijnmaker. Afhalen of levering in België.</p>
+              <p class="side-back-text">13 wijnen rechtstreeks van de wijnmaker. Afhalen of levering in België.</p>
               <a href="winkel.html" class="side-back-btn">Bekijk onze wijnen →</a>
             </div>
           </div>
@@ -94,12 +97,12 @@
 
           <!-- FRONT: logo image -->
           <div class="card-face card-front">
-            <img src="images/Logo-minimal.png" alt="Vers Le Vin logo" class="card-media">
+            <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo" class="card-media">
           </div>
 
           <!-- BACK: single image wine.jpg -->
           <div class="card-face card-back">
-            <img src="images/intro.jpg" alt="Vers Le Vin" class="card-media">
+            <img src="images/wine.jpg" alt="Vers Le Vin" class="card-media">
           </div>
 
         </div>
@@ -111,24 +114,24 @@
       <div class="side-card-wrap">
         <div class="side-card" id="terriorCard" tabindex="0" role="button" aria-label="Terroir">
 
-          <!-- FRONT: Terroir image -->
-          <div class="card-face card-front">
-            <img src="images/Terroir-minimal.png" alt="Terroir" class="card-media">
+          <!-- FRONT: Terroir.mp4 cropped to 3:4 -->
+          <div class="card-face side-front">
+            <video autoplay muted loop playsinline class="card-media">
+              <source src="videos/Terroir.mp4" type="video/mp4">
+            </video>
           </div>
 
           <!-- BACK: video in 16:9 strip + text + YouTube button -->
           <div class="card-face side-back side-back--terroir">
             <div class="terroir-video-strip">
-              <video autoplay muted loop playsinline class="terroir-strip-video">
-                <source src="videos/Terroir.mp4" type="video/mp4">
-              </video>
+              <div data-youtube-id="wr4tJoFjI2w" style="width:100%;height:100%"></div>
             </div>
             <div class="terroir-back-body">
               <p class="side-back-label">Terroir</p>
-              <p class="side-back-text">A sommelier student observes the work of winemakers around Lantignié for a year.  The seasons change, and with them the colors, the sounds, the rhythm ... .</p>
+              <p class="side-back-text">Beaujolais Lantignié — het landschap en de wijnmakers die er werken.</p>
               <a href="https://www.youtube.com/watch?v=wr4tJoFjI2w"
                  target="_blank" rel="noopener noreferrer"
-                 class="side-back-btn">Bekijk de trailer →</a>
+                 class="side-back-btn">Bekijk de film →</a>
             </div>
           </div>
 
@@ -145,5 +148,6 @@
 </footer>
 
 <script src="index.js"></script>
+<script src="cookie-consent.js"></script>
 </body>
 </html>
