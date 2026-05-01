@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
     gate.setAttribute("data-nosnippet", "");
     gate.innerHTML = `
       <div class="age-modal" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
-        <h2 id="ageGateTitle">Are you 18 or older?</h2>
-        <p>You must be of legal drinking age to enter this website.</p>
+        <h2 id="ageGateTitle">Bent u 18 jaar of ouder?</h2>
+        <p>U moet de wettelijke leeftijd hebben om alcohol te kopen.</p>
         <div class="age-actions">
-          <button type="button" id="enterBtn">Yes, I am 18+</button>
-          <button type="button" id="leaveBtn">No</button>
+          <button type="button" id="enterBtn">Ja, ik ben 18+</button>
+          <button type="button" id="leaveBtn">Nee</button>
         </div>
       </div>
     `;
