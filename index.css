@@ -90,7 +90,7 @@ nav ul, nav a, nav button {
 .nav-wrap {
   display: flex;
   justify-content: center;
-  padding: 18px 24px;
+  padding: 24px 24px;
   background: transparent;
 }
 
