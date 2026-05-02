@@ -7,14 +7,37 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ============================================================
      LIGHTBOX
      ============================================================ */
-  const lightbox    = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
+  const lightbox      = document.getElementById('lightbox');
+  const lightboxImg   = document.getElementById('lightboxImg');
+  const lightboxCounter = document.getElementById('lightboxCounter');
   const lightboxClose = lightbox?.querySelector('.lightbox-close');
+  const lightboxPrev  = lightbox?.querySelector('.lightbox-prev');
+  const lightboxNext  = lightbox?.querySelector('.lightbox-next');
 
-  function openLightbox(src, alt) {
+  // current set of photos and index for the lightbox
+  let lbPhotos  = [];
+  let lbCurrent = 0;
+
+  function updateLightbox() {
+    const photo = lbPhotos[lbCurrent];
+    lightboxImg.src = photo.src;
+    lightboxImg.alt = photo.alt || '';
+    // counter
+    if (lbPhotos.length > 1) {
+      lightboxCounter.textContent = `${lbCurrent + 1} / ${lbPhotos.length}`;
+    } else {
+      lightboxCounter.textContent = '';
+    }
+    // hide arrows if only one photo
+    lightboxPrev.classList.toggle('hidden', lbPhotos.length <= 1);
+    lightboxNext.classList.toggle('hidden', lbPhotos.length <= 1);
+  }
+
+  function openLightbox(photos, startIndex) {
     if (!lightbox) return;
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || '';
+    lbPhotos  = photos;
+    lbCurrent = startIndex;
+    updateLightbox();
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -23,23 +46,51 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!lightbox) return;
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
-    // clear src after transition so no flash on next open
     setTimeout(() => { lightboxImg.src = ''; }, 320);
   }
 
-  // close on backdrop or image click
+  function lbGoTo(idx) {
+    lbCurrent = (idx + lbPhotos.length) % lbPhotos.length;
+    updateLightbox();
+  }
+
+  // close on backdrop click
   lightbox?.addEventListener('click', e => {
-    if (e.target === lightbox || e.target === lightboxImg) closeLightbox();
+    if (e.target === lightbox) closeLightbox();
   });
+
+  // close on image click
+  lightboxImg?.addEventListener('click', closeLightbox);
 
   lightboxClose?.addEventListener('click', e => {
     e.stopPropagation();
     closeLightbox();
   });
 
-  // close on ESC
+  lightboxPrev?.addEventListener('click', e => {
+    e.stopPropagation();
+    lbGoTo(lbCurrent - 1);
+  });
+
+  lightboxNext?.addEventListener('click', e => {
+    e.stopPropagation();
+    lbGoTo(lbCurrent + 1);
+  });
+
+  // keyboard navigation
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
+    if (!lightbox?.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')   lbGoTo(lbCurrent - 1);
+    if (e.key === 'ArrowRight')  lbGoTo(lbCurrent + 1);
+  });
+
+  // swipe in lightbox
+  let lbTouchX = 0;
+  lightbox?.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+  lightbox?.addEventListener('touchend', e => {
+    const diff = lbTouchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) lbGoTo(diff > 0 ? lbCurrent + 1 : lbCurrent - 1);
   });
 
 
@@ -91,12 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
     });
 
-    // zoom — click on active real photo opens lightbox
+    // zoom — click on active real photo opens lightbox with all photos from this card
     carousel.addEventListener('click', e => {
       const photo = e.target.closest('.car-photo');
       if (!photo || !photo.classList.contains('active')) return;
       e.stopPropagation();
-      openLightbox(photo.src, photo.alt);
+      // collect all real photos from this carousel
+      const allPhotos = Array.from(carousel.querySelectorAll('.car-photo'));
+      const startIdx  = allPhotos.indexOf(photo);
+      openLightbox(allPhotos, startIdx);
     });
 
     // flip card open
