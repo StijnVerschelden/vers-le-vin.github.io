@@ -103,15 +103,11 @@ main{
   margin: 0 auto;
 }
 
-.flip-hint {
+.flip-hint{
   text-align: center;
   font-size: 12px;
-  color: var(--text-color);
-  opacity: 0.42;
-  margin: 10px 0 0;
-  letter-spacing: 0.03em;
-  pointer-events: none;
-  user-select: none;
+  opacity: .8;
+  margin: 0 0 8px 0;
 }
 
 .wine-grid{
@@ -188,10 +184,9 @@ main{
   transform:rotateY(180deg);
   background: rgba(243,236,220,0.98);
   display:flex;
-  align-items:center;
+  align-items: flex-start;    /* fix: was 'center' — caused scroll cut-off on long content */
   justify-content:center;
-  padding:20px 18px;
-
+  padding: 0 18px;            /* top/bottom padding moved to .back-inner below */
   overflow:auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -200,11 +195,11 @@ main{
 .wine-back .back-inner{
   width: 100%;
   text-align: center;
-  padding: 20px 0;
+  padding: 24px 0;            /* top and bottom space — scrolls with content */
 }
 
 .wine-back h3{
-  margin: 10px 0 10px;
+  margin: 0 0 10px;
   font-size: 14px;
   font-weight: 600;
 }
