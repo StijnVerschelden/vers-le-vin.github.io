@@ -636,7 +636,6 @@ footer {
   font-family: sans-serif;
   line-height: 1;
   flex-shrink: 0;
-  /* ensure they are always tappable */
   position: relative;
   z-index: 10;
 }
@@ -648,7 +647,36 @@ footer {
 
 .lightbox-prev.hidden,
 .lightbox-next.hidden {
-  visibility: hidden;   /* hidden but keeps space so image stays centred */
+  visibility: hidden;
+}
+
+/* on mobile — make arrows smaller and overlay them on the image edges */
+@media (max-width: 720px) {
+  .lightbox-row {
+    position: relative;
+    gap: 0;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 20;
+  }
+
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+
+  .lightbox-img {
+    max-width: 96vw;
+    max-height: 72vh;
+  }
 }
 
 /* counter and hint below image */
