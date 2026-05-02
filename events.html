@@ -179,9 +179,11 @@
 <!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Foto vergroot">
   <button class="lightbox-close" type="button" aria-label="Sluiten">✕</button>
-  <button class="lightbox-prev" type="button" aria-label="Vorige foto">‹</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt="">
-  <button class="lightbox-next" type="button" aria-label="Volgende foto">›</button>
+  <div class="lightbox-row">
+    <button class="lightbox-prev" type="button" aria-label="Vorige foto">‹</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-next" type="button" aria-label="Volgende foto">›</button>
+  </div>
   <p class="lightbox-counter" id="lightboxCounter"></p>
   <p class="lightbox-hint">Klik of tik om te sluiten</p>
 </div>

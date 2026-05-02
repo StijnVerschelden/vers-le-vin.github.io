@@ -54,13 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLightbox();
   }
 
-  // close on backdrop click
+  // close on backdrop click only (not on image or arrows)
   lightbox?.addEventListener('click', e => {
     if (e.target === lightbox) closeLightbox();
   });
 
   // close on image click
-  lightboxImg?.addEventListener('click', closeLightbox);
+  lightboxImg?.addEventListener('click', e => {
+    e.stopPropagation();
+    closeLightbox();
+  });
 
   lightboxClose?.addEventListener('click', e => {
     e.stopPropagation();
@@ -85,12 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowRight')  lbGoTo(lbCurrent + 1);
   });
 
-  // swipe in lightbox
+  // swipe in lightbox — only on the image, not on arrows
   let lbTouchX = 0;
-  lightbox?.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
-  lightbox?.addEventListener('touchend', e => {
+  lightboxImg?.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+  lightboxImg?.addEventListener('touchend', e => {
     const diff = lbTouchX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) lbGoTo(diff > 0 ? lbCurrent + 1 : lbCurrent - 1);
+    if (Math.abs(diff) > 50) {
+      e.stopPropagation();
+      lbGoTo(diff > 0 ? lbCurrent + 1 : lbCurrent - 1);
+    }
   });
 
 
@@ -153,8 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
       openLightbox(allPhotos, startIdx);
     });
 
-    // flip card open
+    // flip card open — but not if clicking a photo (that opens lightbox instead)
     function openCard(e) {
+      if (e.target.closest('.car-photo')) return; // let carousel handler take it
       e.stopPropagation();
       card.classList.add('is-flipped');
       goTo(0);
