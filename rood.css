@@ -103,11 +103,15 @@ main{
   margin: 0 auto;
 }
 
-.flip-hint{
+.flip-hint {
   text-align: center;
   font-size: 12px;
-  opacity: .8;
-  margin: 2px 0 8px 0;
+  color: var(--text-color);
+  opacity: 0.42;
+  margin: 10px 0 0;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  user-select: none;
 }
 
 .wine-grid{
