@@ -190,7 +190,7 @@ main{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:14px 18px;
+  padding:28px 18px;
 
   overflow:auto;
   -webkit-overflow-scrolling: touch;
