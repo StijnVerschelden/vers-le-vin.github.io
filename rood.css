@@ -190,7 +190,7 @@ main{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:0px 18px;
+  padding:20px 18px;
 
   overflow:auto;
   -webkit-overflow-scrolling: touch;
@@ -200,11 +200,11 @@ main{
 .wine-back .back-inner{
   width: 100%;
   text-align: center;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 
 .wine-back h3{
-  margin: 0 0 10px;
+  margin: 10px 0 10px;
   font-size: 14px;
   font-weight: 600;
 }
