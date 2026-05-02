@@ -1,16 +1,54 @@
 /* events.js — Vers Le Vin
-   Handles: flip cards, photo carousel, hamburger nav, dropdown buttons.
-   -------------------------------------------------------------------- */
+   Handles: flip cards, photo carousel, lightbox zoom, hamburger nav, dropdowns.
+   ---------------------------------------------------------------------------- */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* ============================================================
+     LIGHTBOX
+     ============================================================ */
+  const lightbox    = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = lightbox?.querySelector('.lightbox-close');
+
+  function openLightbox(src, alt) {
+    if (!lightbox) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    // clear src after transition so no flash on next open
+    setTimeout(() => { lightboxImg.src = ''; }, 320);
+  }
+
+  // close on backdrop or image click
+  lightbox?.addEventListener('click', e => {
+    if (e.target === lightbox || e.target === lightboxImg) closeLightbox();
+  });
+
+  lightboxClose?.addEventListener('click', e => {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  // close on ESC
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
+  });
+
 
   /* ============================================================
      FLIP CARDS + CAROUSEL INIT
      ============================================================ */
   document.querySelectorAll('.evt-card-wrap').forEach(wrap => {
-    const card = wrap.querySelector('.evt-card');
-    const front = card.querySelector('.evt-front');
-    const back = card.querySelector('.evt-back');
+    const card    = wrap.querySelector('.evt-card');
+    const back    = card.querySelector('.evt-back');
     const btnTerug = back.querySelector('.btn-terug');
     const carousel = back.querySelector('.evt-carousel');
 
@@ -21,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const arrBtns = carousel.querySelectorAll('.car-arr');
     let current = 0;
 
+    // build dots
     if (slides.length > 1) {
       slides.forEach((_, i) => {
         const dot = document.createElement('span');
@@ -38,11 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dots[current]) dots[current].classList.add('active');
     }
 
+    // arrow buttons
     if (arrBtns.length === 2) {
       arrBtns[0].addEventListener('click', e => { e.stopPropagation(); goTo(current - 1); });
       arrBtns[1].addEventListener('click', e => { e.stopPropagation(); goTo(current + 1); });
     }
 
+    // swipe
     let touchStartX = 0;
     carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     carousel.addEventListener('touchend', e => {
@@ -50,6 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
     });
 
+    // zoom — click on active real photo opens lightbox
+    carousel.addEventListener('click', e => {
+      const photo = e.target.closest('.car-photo');
+      if (!photo || !photo.classList.contains('active')) return;
+      e.stopPropagation();
+      openLightbox(photo.src, photo.alt);
+    });
+
+    // flip card open
     function openCard(e) {
       e.stopPropagation();
       card.classList.add('is-flipped');
@@ -71,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // click outside all cards — flip back
   document.addEventListener('click', e => {
     if (!e.target.closest('.evt-card-wrap')) {
       document.querySelectorAll('.evt-card.is-flipped').forEach(c => c.classList.remove('is-flipped'));
@@ -120,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
      MOBILE HAMBURGER
      ============================================================ */
   (function () {
-    const navWrap = document.querySelector('.nav-wrap');
+    const navWrap  = document.querySelector('.nav-wrap');
     const hamburger = document.querySelector('.hamburger');
     if (!navWrap || !hamburger) return;
 

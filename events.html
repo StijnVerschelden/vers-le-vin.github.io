@@ -4,22 +4,18 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Events – Vers Le Vin</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="events.css">
 </head>
-
 <body>
 
 <!-- NAV -->
 <div class="nav-wrap">
 <nav>
   <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
-    <span class="line"></span>
-    <span class="line"></span>
-    <span class="line"></span>
+    <span class="line"></span><span class="line"></span><span class="line"></span>
   </button>
   <ul>
     <li><a href="index.html">Home</a></li>
@@ -85,27 +81,26 @@
       <!-- EVENT 1: WIJN EN KAAS -->
       <div class="evt-card-wrap">
         <div class="evt-card" id="evt1" tabindex="0" role="button" aria-label="Wijn en Kaas Pairing — klik voor foto's">
-          <!-- FRONT -->
           <div class="evt-face evt-front">
             <img class="evt-cover" src="images/wijnenkaas-site.jpeg" alt="Wijn en Kaas Pairing">
             <div class="evt-body">
               <span class="evt-date">Maart 2026</span>
               <h3 class="evt-title">Kaas en Wijn Pairing</h3>
-              <p class="evt-desc">Wijnhandel Vers le Vin en @kaasmeester_callebaut_vanhaver nodigen u uit voor een exclusieve kaas - en wijnpairing op 29 maart 2026.</p>            </div>
+              <p class="evt-desc">Wijnhandel Vers le Vin en @kaasmeester_callebaut_vanhaver nodigen u uit voor een exclusieve kaas - en wijnpairing op 29 maart 2026.</p>
+            </div>
           </div>
-          <!-- BACK: photo carousel -->
           <div class="evt-face evt-back">
             <div class="evt-carousel">
-              <!-- Photos: replace src with your real event images -->
               <img class="car-photo active" src="images/wijnenkaas-site.jpeg" alt="Wijn en Kaas foto 1">
               <img class="car-photo" src="images/kaaswijn-01.jpg" alt="Wijn en Kaas foto 2">
               <img class="car-photo" src="images/kaaswijn-02.jpg" alt="Wijn en Kaas foto 3">
-              <!-- Add more <img class="car-photo"> lines here for more photos -->
               <div class="car-arrows">
                 <button class="car-arr" type="button" aria-label="Vorige foto">‹</button>
                 <button class="car-arr" type="button" aria-label="Volgende foto">›</button>
               </div>
               <div class="car-dots"></div>
+              <!-- zoom hint -->
+              <div class="zoom-hint">Tik op foto om te vergroten</div>
             </div>
             <div class="evt-back-foot">
               <button class="btn-terug" type="button">← Terug</button>
@@ -119,17 +114,15 @@
       <div class="evt-card-wrap">
         <div class="evt-card" id="evt2" tabindex="0" role="button" aria-label="Event 2 — klik voor foto's">
           <div class="evt-face evt-front">
-            <div class="evt-cover evt-cover-placeholder">
-              <!-- Replace with: <img class="evt-cover" src="images/event2.jpg" alt="Event 2"> -->
-            </div>
+            <div class="evt-cover evt-cover-placeholder"></div>
             <div class="evt-body">
               <span class="evt-date">Maart 2026</span>
               <h3 class="evt-title">Terroir + Les raisins de la mort + attack of the killer tomatoes!</h3>
-              <p class="evt-desc">Terroir film met Lantignié wijnen degustatie</p>             </div>
+              <p class="evt-desc">Terroir film met Lantignié wijnen degustatie</p>
+            </div>
           </div>
           <div class="evt-face evt-back">
             <div class="evt-carousel">
-              <!-- Replace with your real photos -->
               <div class="car-photo-placeholder active"></div>
               <div class="car-photo-placeholder"></div>
               <div class="car-arrows">
@@ -137,6 +130,7 @@
                 <button class="car-arr" type="button" aria-label="Volgende foto">›</button>
               </div>
               <div class="car-dots"></div>
+              <div class="zoom-hint">Tik op foto om te vergroten</div>
             </div>
             <div class="evt-back-foot">
               <button class="btn-terug" type="button">← Terug</button>
@@ -150,13 +144,12 @@
       <div class="evt-card-wrap">
         <div class="evt-card" id="evt3" tabindex="0" role="button" aria-label="Event 3 — klik voor foto's">
           <div class="evt-face evt-front">
-            <div class="evt-cover evt-cover-placeholder">
-              <!-- Replace with: <img class="evt-cover" src="images/event3.jpg" alt="Event 3"> -->
-            </div>
+            <div class="evt-cover evt-cover-placeholder"></div>
             <div class="evt-body">
               <span class="evt-date">November 2025</span>
-            <h3 class="evt-title">Wij(n)ste Woensdag, Terroir @ Barmazém</h3>
-              <p class="evt-desc">Barmazém en Ver le Vin in Oudenaarde</p>            </div>
+              <h3 class="evt-title">Wij(n)ste Woensdag, Terroir @ Barmazém</h3>
+              <p class="evt-desc">Barmazém en Ver le Vin in Oudenaarde</p>
+            </div>
           </div>
           <div class="evt-face evt-back">
             <div class="evt-carousel">
@@ -168,6 +161,7 @@
                 <button class="car-arr" type="button" aria-label="Volgende foto">›</button>
               </div>
               <div class="car-dots"></div>
+              <div class="zoom-hint">Tik op foto om te vergroten</div>
             </div>
             <div class="evt-back-foot">
               <button class="btn-terug" type="button">← Terug</button>
@@ -181,6 +175,13 @@
   </section>
 
 </main>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Foto vergroot">
+  <button class="lightbox-close" type="button" aria-label="Sluiten">✕</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <p class="lightbox-hint">Klik of tik om te sluiten</p>
+</div>
 
 <footer>
   <span>© 2026 Vers Le Vin</span>
