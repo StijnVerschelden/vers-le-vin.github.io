@@ -88,7 +88,6 @@ body{
     .hamburger { display: none; }
 
     @media(max-width:720px){
-      nav ul { flex-wrap:wrap; gap:12px; }
       .dropdown { left:0; transform:none; min-width:150px; }
     }
 
@@ -365,6 +364,3 @@ main{
       font-size:12px;
     }
 }
-  
-
-
