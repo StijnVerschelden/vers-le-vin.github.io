@@ -275,6 +275,29 @@ main {
   transition: transform 0.5s ease;
 }
 
+/* ── SOLD OUT state ── */
+.shop-card.sold-out .card-image img {
+  opacity: 0.35;
+  filter: grayscale(60%);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.shop-card.sold-out .card-image-link {
+  pointer-events: none;  /* disable click on image when sold out */
+  cursor: default;
+}
+
+.btn-bestel.sold-out {
+  background: transparent;
+  border: 1px solid rgba(89, 44, 56, 0.35);
+  color: rgba(89, 44, 56, 0.5);
+  cursor: default;
+  opacity: 1;
+}
+
+.btn-bestel.sold-out:hover {
+  opacity: 1;  /* no hover effect */
+}
 .shop-card:hover .card-image img {
   transform: scale(1.03);
 }
