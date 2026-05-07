@@ -91,7 +91,23 @@ nav li:hover > .dropdown,
 nav li:focus-within > .dropdown { display: block; }
 
 
+.page-subtitle {
+  font-size: 15px;
+  opacity: 0.65;
+  margin: 0;
+  font-style: italic;
+}
 
+.page-subtitle a {
+  color: var(--text-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.75;
+}
+
+.page-subtitle a:hover {
+  opacity: 1;
+}
     /* essay text PAGE CONTENT */
     .content-wrap {
       max-width: 860px;
@@ -123,24 +139,8 @@ nav li:focus-within > .dropdown { display: block; }
         margin-top: -20px;
         margin-bottom: 20px;
     }
+
     
-    .page-subtitle {
-  font-size: 15px;
-  opacity: 0.65;
-  margin: 0;
-  font-style: italic;
-}
-
-.page-subtitle a {
-  color: var(--text-color);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  opacity: 0.75;
-}
-
-.page-subtitle a:hover {
-  opacity: 1;
-}
     footer {
       margin-top:auto;
       padding:10px 20px;
