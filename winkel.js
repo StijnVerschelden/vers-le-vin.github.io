@@ -108,6 +108,6 @@ document.querySelectorAll('.btn-bestel').forEach(btn => {
   btn.addEventListener('click', () => {
     // Temporary: inform the visitor the shop is coming soon.
     // Remove this listener once your payment platform is connected.
-    alert('De webshop opent binnenkort. Neem contact op via vers-le-vin.be/contact voor bestellingen.');
+    alert('De webshop opent binnenkort. Neem contact op via info@vers-le-vin.be voor bestellingen.');
   });
 });
