@@ -119,6 +119,17 @@ main {
   font-style: italic;
 }
 
+.page-subtitle a {
+  color: var(--text-color);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.75;
+}
+
+.page-subtitle a:hover {
+  opacity: 1;
+}
+
 /* ── SECTION LABELS ── */
 .wine-section {
   margin-bottom: 64px;
