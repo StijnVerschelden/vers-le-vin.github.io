@@ -9,7 +9,7 @@
 }
 
 .breadcrumb a {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  font-family: 'EB Garamond', Georgia, serif;
   font-size: 14px;
   color: var(--text-color);
   text-decoration: none;
