@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chablis – Vers Le Vin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="wijnen.css">
+</head>
+<body>
+
+<div class="nav-wrap">
+<nav>
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
+    <span class="line"></span><span class="line"></span><span class="line"></span>
+  </button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <button id="lantBtn">Lantignié ▾</button>
+      <div class="dropdown">
+        <a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a>
+        <a href="Terroir.html">Terroir</a>
+        <a href="vtl.html">VTL (association)</a>
+        <a href="#">Wijnmakers</a>
+      </div>
+    </li>
+    <li>
+      <button id="wijnBtn">Wijnen ▾</button>
+      <div class="dropdown">
+        <a href="wijnenBLantignié.html">Beaujolais Lantignié</a>
+        <a href="chablis.html">Chablis</a>
+        <a href="irancy.html">Irancy</a>
+      </div>
+    </li>
+    <li><a href="winkel.html">Winkel</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li>
+      <button id="blogBtn">Blog ▾</button>
+      <div class="dropdown">
+        <a href="essays.html">Essays</a>
+        <a href="pairing.html">Pairing</a>
+        <a href="#">Beelden</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+</div>
+
+<main>
+  <div class="page-header">
+    <h1>Chablis</h1>
+    <p class="page-subtitle">Bourgogne — Chardonnay op kimmeridgische klei en kalksteen. Klik of tik op een wijn om meer te lezen.</p>
+  </div>
+
+  <section class="wine-section">
+    <div class="section-label">
+      <span class="section-line"></span>
+      <h2>Wit</h2>
+      <span class="section-line"></span>
+    </div>
+    <div class="wine-grid">
+
+      <!-- CHABLIS 1 -->
+      <div class="wine-card-wrap">
+        <div class="wine-card" tabindex="0" role="button" aria-label="[NAAM WIJN 1] — klik voor details">
+          <div class="wine-face wine-front">
+            <img src="images/chablis-01.jpg" alt="[DOMAINE 1] — [NAAM WIJN 1]">
+            <div class="wine-info">
+              <h3>[DOMAINE 1] <!-- vervang door echte naam --></h3>
+              <p>[NAAM WIJN 1] [JAAR] <!-- vervang --></p>
+            </div>
+          </div>
+          <div class="wine-face wine-back">
+            <div class="back-inner">
+              <h3>[DOMAINE 1]</h3>
+              <table class="wine-table">
+                <tbody>
+                  <tr><td>Appellation</td><td>Chablis <!-- of Chablis Premier Cru etc. --></td></tr>
+                  <tr><td>Vintage</td><td>[JAAR]</td></tr>
+                  <tr><td>Stijl</td><td>[STIJL bijv. Strak &amp; Mineraal]</td></tr>
+                  <tr><td>Bodem</td><td>Kimmeridgisch kalksteen</td></tr>
+                  <tr><td>Druivenras</td><td>Chardonnay</td></tr>
+                  <tr><td>Aroma's</td><td>[AROMA'S bijv. Groene appel, citroen, krijt]</td></tr>
+                  <tr><td>Opvoeding</td><td>[OPVOEDING bijv. Inox]</td></tr>
+                  <tr><td>Bewaarpotentieel</td><td>[X–X jaar]</td></tr>
+                  <tr><td>Serveren</td><td>[X–X °C]</td></tr>
+                  <tr><td>Alcohol</td><td>[X]%</td></tr>
+                  <tr><td>Prijs</td><td>€[X]</td></tr>
+                </tbody>
+              </table>
+              <p class="wine-description">[BESCHRIJVING — vervang door echte tekst over de wijn, de wijnmaker, het terroir en de smaakindruk.]</p>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik of tik om meer te lezen ▴</p>
+      </div>
+
+      <!-- CHABLIS 2 -->
+      <div class="wine-card-wrap">
+        <div class="wine-card" tabindex="0" role="button" aria-label="[NAAM WIJN 2] — klik voor details">
+          <div class="wine-face wine-front">
+            <img src="images/chablis-02.jpg" alt="[DOMAINE 2] — [NAAM WIJN 2]">
+            <div class="wine-info">
+              <h3>[DOMAINE 2]</h3>
+              <p>[NAAM WIJN 2] [JAAR]</p>
+            </div>
+          </div>
+          <div class="wine-face wine-back">
+            <div class="back-inner">
+              <h3>[DOMAINE 2]</h3>
+              <table class="wine-table">
+                <tbody>
+                  <tr><td>Appellation</td><td>Chablis</td></tr>
+                  <tr><td>Vintage</td><td>[JAAR]</td></tr>
+                  <tr><td>Stijl</td><td>[STIJL]</td></tr>
+                  <tr><td>Bodem</td><td>Kimmeridgisch kalksteen</td></tr>
+                  <tr><td>Druivenras</td><td>Chardonnay</td></tr>
+                  <tr><td>Aroma's</td><td>[AROMA'S]</td></tr>
+                  <tr><td>Opvoeding</td><td>[OPVOEDING]</td></tr>
+                  <tr><td>Bewaarpotentieel</td><td>[X–X jaar]</td></tr>
+                  <tr><td>Serveren</td><td>[X–X °C]</td></tr>
+                  <tr><td>Alcohol</td><td>[X]%</td></tr>
+                  <tr><td>Prijs</td><td>€[X]</td></tr>
+                </tbody>
+              </table>
+              <p class="wine-description">[BESCHRIJVING]</p>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik of tik om meer te lezen ▴</p>
+      </div>
+
+      <!-- CHABLIS 3 -->
+      <div class="wine-card-wrap">
+        <div class="wine-card" tabindex="0" role="button" aria-label="[NAAM WIJN 3] — klik voor details">
+          <div class="wine-face wine-front">
+            <img src="images/chablis-03.jpg" alt="[DOMAINE 3] — [NAAM WIJN 3]">
+            <div class="wine-info">
+              <h3>[DOMAINE 3]</h3>
+              <p>[NAAM WIJN 3] [JAAR]</p>
+            </div>
+          </div>
+          <div class="wine-face wine-back">
+            <div class="back-inner">
+              <h3>[DOMAINE 3]</h3>
+              <table class="wine-table">
+                <tbody>
+                  <tr><td>Appellation</td><td>Chablis</td></tr>
+                  <tr><td>Vintage</td><td>[JAAR]</td></tr>
+                  <tr><td>Stijl</td><td>[STIJL]</td></tr>
+                  <tr><td>Bodem</td><td>Kimmeridgisch kalksteen</td></tr>
+                  <tr><td>Druivenras</td><td>Chardonnay</td></tr>
+                  <tr><td>Aroma's</td><td>[AROMA'S]</td></tr>
+                  <tr><td>Opvoeding</td><td>[OPVOEDING]</td></tr>
+                  <tr><td>Bewaarpotentieel</td><td>[X–X jaar]</td></tr>
+                  <tr><td>Serveren</td><td>[X–X °C]</td></tr>
+                  <tr><td>Alcohol</td><td>[X]%</td></tr>
+                  <tr><td>Prijs</td><td>€[X]</td></tr>
+                </tbody>
+              </table>
+              <p class="wine-description">[BESCHRIJVING]</p>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik of tik om meer te lezen ▴</p>
+      </div>
+
+      <!-- CHABLIS 4 -->
+      <div class="wine-card-wrap">
+        <div class="wine-card" tabindex="0" role="button" aria-label="[NAAM WIJN 4] — klik voor details">
+          <div class="wine-face wine-front">
+            <img src="images/chablis-04.jpg" alt="[DOMAINE 4] — [NAAM WIJN 4]">
+            <div class="wine-info">
+              <h3>[DOMAINE 4]</h3>
+              <p>[NAAM WIJN 4] [JAAR]</p>
+            </div>
+          </div>
+          <div class="wine-face wine-back">
+            <div class="back-inner">
+              <h3>[DOMAINE 4]</h3>
+              <table class="wine-table">
+                <tbody>
+                  <tr><td>Appellation</td><td>Chablis</td></tr>
+                  <tr><td>Vintage</td><td>[JAAR]</td></tr>
+                  <tr><td>Stijl</td><td>[STIJL]</td></tr>
+                  <tr><td>Bodem</td><td>Kimmeridgisch kalksteen</td></tr>
+                  <tr><td>Druivenras</td><td>Chardonnay</td></tr>
+                  <tr><td>Aroma's</td><td>[AROMA'S]</td></tr>
+                  <tr><td>Opvoeding</td><td>[OPVOEDING]</td></tr>
+                  <tr><td>Bewaarpotentieel</td><td>[X–X jaar]</td></tr>
+                  <tr><td>Serveren</td><td>[X–X °C]</td></tr>
+                  <tr><td>Alcohol</td><td>[X]%</td></tr>
+                  <tr><td>Prijs</td><td>€[X]</td></tr>
+                </tbody>
+              </table>
+              <p class="wine-description">[BESCHRIJVING]</p>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik of tik om meer te lezen ▴</p>
+      </div>
+
+      <!-- CHABLIS 5 -->
+      <div class="wine-card-wrap">
+        <div class="wine-card" tabindex="0" role="button" aria-label="[NAAM WIJN 5] — klik voor details">
+          <div class="wine-face wine-front">
+            <img src="images/chablis-05.jpg" alt="[DOMAINE 5] — [NAAM WIJN 5]">
+            <div class="wine-info">
+              <h3>[DOMAINE 5]</h3>
+              <p>[NAAM WIJN 5] [JAAR]</p>
+            </div>
+          </div>
+          <div class="wine-face wine-back">
+            <div class="back-inner">
+              <h3>[DOMAINE 5]</h3>
+              <table class="wine-table">
+                <tbody>
+                  <tr><td>Appellation</td><td>Chablis</td></tr>
+                  <tr><td>Vintage</td><td>[JAAR]</td></tr>
+                  <tr><td>Stijl</td><td>[STIJL]</td></tr>
+                  <tr><td>Bodem</td><td>Kimmeridgisch kalksteen</td></tr>
+                  <tr><td>Druivenras</td><td>Chardonnay</td></tr>
+                  <tr><td>Aroma's</td><td>[AROMA'S]</td></tr>
+                  <tr><td>Opvoeding</td><td>[OPVOEDING]</td></tr>
+                  <tr><td>Bewaarpotentieel</td><td>[X–X jaar]</td></tr>
+                  <tr><td>Serveren</td><td>[X–X °C]</td></tr>
+                  <tr><td>Alcohol</td><td>[X]%</td></tr>
+                  <tr><td>Prijs</td><td>€[X]</td></tr>
+                </tbody>
+              </table>
+              <p class="wine-description">[BESCHRIJVING]</p>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik of tik om meer te lezen ▴</p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 Vers Le Vin</span>
+  <span>by Stijn Verschelden</span>
+</footer>
+<script src="wijnen.js"></script>
+</body>
+</html>
