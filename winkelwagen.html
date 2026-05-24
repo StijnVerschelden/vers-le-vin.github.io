@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Winkelwagen – Vers Le Vin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="winkel.css">
+<link rel="stylesheet" href="winkelwagen.css">
+<link rel="stylesheet" href="cookie-consent.css">
+</head>
+<body>
+
+<div class="nav-wrap">
+<nav>
+  <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
+    <span class="line"></span><span class="line"></span><span class="line"></span>
+  </button>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <button id="lantBtn">Lantignié ▾</button>
+      <div class="dropdown">
+        <a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a>
+        <a href="Terroir.html">Terroir</a>
+        <a href="vtl.html">VTL (association)</a>
+        <a href="#">Wijnmakers</a>
+      </div>
+    </li>
+    <li>
+      <button id="wijnBtn">Wijnen ▾</button>
+      <div class="dropdown">
+        <a href="wijnenBLantignié.html">Beaujolais Lantignié</a>
+        <a href="chablis.html">Chablis</a>
+        <a href="irancy.html">Irancy</a>
+      </div>
+    </li>
+    <li><a href="winkel.html">Winkel</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li>
+      <button id="blogBtn">Blog ▾</button>
+      <div class="dropdown">
+        <a href="essays.html">Essays</a>
+        <a href="pairing.html">Pairing</a>
+        <a href="#">Beelden</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+</div>
+
+<main class="cart-main">
+
+  <div class="cart-layout">
+
+    <!-- LEFT: cart items -->
+    <div class="cart-left">
+      <div class="cart-header">
+        <h1>Winkelwagen</h1>
+        <a href="winkel.html" class="btn-back-shop">← Terug naar winkel</a>
+      </div>
+
+      <div id="cartEmpty" class="cart-empty" style="display:none">
+        <p>Uw winkelwagen is leeg.</p>
+        <a href="winkel.html" class="btn-bestel" style="display:inline-block;margin-top:16px;text-decoration:none">Bekijk onze wijnen →</a>
+      </div>
+
+      <div id="cartItemsWrap">
+        <div class="cart-items-header">
+          <span>Wijn</span>
+          <span>Aantal</span>
+          <span>Prijs</span>
+        </div>
+        <div id="cartItems"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: order summary + form -->
+    <div class="cart-right" id="cartRight">
+      <div class="order-summary-box">
+        <h2>Overzicht</h2>
+        <div id="summaryLines"></div>
+        <div class="summary-total">
+          <span>Totaal</span>
+          <span id="summaryTotal">€ 0,00</span>
+        </div>
+        <p class="summary-note">Verzendkosten op aanvraag. Gratis afhalen in Gent of Oudenaarde.</p>
+      </div>
+
+      <!-- ORDER FORM -->
+      <div class="order-form-box">
+        <h2>Uw gegevens</h2>
+        <p class="form-intro">Vul uw gegevens in. Wij sturen u een betalingslink per e-mail.</p>
+
+        <div class="form-field">
+          <label for="fName">Naam *</label>
+          <input type="text" id="fName" placeholder="Voor- en achternaam" required>
+        </div>
+
+        <div class="form-field">
+          <label for="fEmail">E-mailadres *</label>
+          <input type="email" id="fEmail" placeholder="uw@email.be" required>
+        </div>
+
+        <div class="form-field">
+          <label for="fPhone">Telefoonnummer</label>
+          <input type="tel" id="fPhone" placeholder="+32 ...">
+        </div>
+
+        <div class="form-field">
+          <label for="fDelivery">Levering of afhalen? *</label>
+          <select id="fDelivery">
+            <option value="">— Kies een optie —</option>
+            <option value="Afhalen Gent">Afhalen in Gent (gratis)</option>
+            <option value="Afhalen Oudenaarde">Afhalen in Oudenaarde (gratis)</option>
+            <option value="Levering België">Levering in België (kosten op aanvraag)</option>
+          </select>
+        </div>
+
+        <div id="addressFields" style="display:none">
+          <div class="form-field">
+            <label for="fStreet">Straat en nummer</label>
+            <input type="text" id="fStreet" placeholder="Voorbeeldstraat 1">
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fZip">Postcode</label>
+              <input type="text" id="fZip" placeholder="9000">
+            </div>
+            <div class="form-field">
+              <label for="fCity">Gemeente</label>
+              <input type="text" id="fCity" placeholder="Gent">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="fNote">Opmerking</label>
+          <textarea id="fNote" placeholder="Vragen, opmerkingen..."></textarea>
+        </div>
+
+        <button class="btn-bestel btn-order-submit" id="btnSubmit" type="button" onclick="submitOrder()">
+          Bestelling plaatsen →
+        </button>
+        <p class="form-note">U ontvangt een bevestiging en betalingslink per e-mail.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- SUCCESS MESSAGE (hidden until submitted) -->
+<div id="orderSuccess" class="order-success" style="display:none">
+  <div class="success-inner">
+    <div class="success-check">✓</div>
+    <h2>Bestelling ontvangen!</h2>
+    <p>Bedankt voor uw bestelling. U ontvangt binnen 24 uur een bevestiging en betalingslink op <strong id="successEmail"></strong>.</p>
+    <div class="success-steps">
+      <div class="success-step"><span>1</span>U ontvangt een e-mail met overzicht van uw bestelling</div>
+      <div class="success-step"><span>2</span>Wij sturen u een betalingslink</div>
+      <div class="success-step"><span>3</span>Na betaling bevestigen wij uw afhaalmoment of levering</div>
+    </div>
+    <a href="winkel.html" class="btn-bestel" style="display:inline-block;text-decoration:none;margin-top:24px">← Terug naar winkel</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Vers Le Vin</span>
+  <span>by Stijn Verschelden</span>
+</footer>
+
+<script src="winkel.js"></script>
+<script src="winkelwagen.js"></script>
+<script src="cookie-consent.js"></script>
+</body>
+</html>

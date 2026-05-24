@@ -1,18 +1,14 @@
 /* winkel.js — Vers Le Vin
-   Includes: age gate, hamburger nav, placeholder buy buttons.
+   Includes: age gate, hamburger nav, cart system.
    ---------------------------------------------------------------- */
 
 /* =========================
    AGE GATE
-   Identical pattern to index.js — same localStorage key "ageVerified"
-   so verification on any page carries over to all other pages.
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
 
-  // If already verified (on index or any other page), skip immediately
   if (localStorage.getItem("ageVerified") === "true") return;
 
-  // Inject the gate element (same structure as index.js)
   let gate = document.getElementById("ageGate");
   if (!gate) {
     gate = document.createElement("div");
@@ -34,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
   gate.classList.remove("hidden");
   document.body.style.overflow = "hidden";
 
-  // Same capture-phase listener as index.js
   document.addEventListener("click", (e) => {
     if (e.target.id === "enterBtn") {
       localStorage.setItem("ageVerified", "true");
@@ -46,19 +41,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, true);
 
-  // ESC = leave (same as index.js)
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !gate.classList.contains("hidden")) {
       window.location.href = "https://www.google.com";
     }
   });
 });
-/* ── END AGE GATE ─────────────────────────────────────────────── */
 
 
-// Mobile hamburger toggle — identical to wit.js
+/* =========================
+   MOBILE HAMBURGER
+   ========================= */
 (function () {
-  const navWrap = document.querySelector('.nav-wrap');
+  const navWrap  = document.querySelector('.nav-wrap');
   const hamburger = document.querySelector('.hamburger');
   if (!navWrap || !hamburger) return;
 
@@ -82,32 +77,127 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 
-/* ----------------------------------------------------------------
-   "In de winkel" buttons — placeholder notice
-   When you choose your payment platform, replace this block:
+/* =========================
+   DROPDOWN BUTTONS
+   ========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  ['lantBtn', 'wijnBtn', 'blogBtn'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
 
-   SNIPCART example:
-     <button class="btn-bestel snipcart-add-item"
-       data-item-id="le-blanc-2024"
-       data-item-name="Le Blanc 2024"
-       data-item-price="21.50"
-       data-item-url="/winkel.html"
-       data-item-description="Château des Vergers, Beaujolais Lantignié"
-       data-item-image="/images/cosimaface.jpg">
-       In de winkel
-     </button>
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      const menu = btn.nextElementSibling;
+      if (menu) menu.style.display = expanded ? 'none' : 'block';
+    });
+  });
 
-   STRIPE PAYMENT LINK example:
-     <a href="https://buy.stripe.com/YOUR_LINK" class="btn-bestel">
-       In de winkel
-     </a>
+  document.addEventListener('click', (e) => {
+    ['lantBtn', 'wijnBtn', 'blogBtn'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      const menu = btn.nextElementSibling;
+      if (!menu) return;
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.style.display = 'none';
+      }
+    });
+  });
+});
 
-   ---------------------------------------------------------------- */
 
-document.querySelectorAll('.btn-bestel').forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Temporary: inform the visitor the shop is coming soon.
-    // Remove this listener once your payment platform is connected.
-    alert('De webshop opent binnenkort. Contacteer via info@vers-le-vin.be voor bestellingen.');
+/* =========================
+   CART SYSTEM
+   ========================= */
+
+/* wine ID is read from data-wine-id attribute on each btn-bestel button */
+
+function getCart() {
+  try { return JSON.parse(localStorage.getItem('vlv_cart') || '{}'); }
+  catch { return {}; }
+}
+
+function saveCart(cart) {
+  localStorage.setItem('vlv_cart', JSON.stringify(cart));
+}
+
+function getCartCount() {
+  const cart = getCart();
+  return Object.values(cart).reduce((s, q) => s + q, 0);
+}
+
+function updateNavCartBadge() {
+  const badge = document.getElementById('navCartBadge');
+  if (!badge) return;
+  const count = getCartCount();
+  badge.textContent = count;
+  badge.style.display = count > 0 ? 'flex' : 'none';
+}
+
+function addToCart(wineId, btn) {
+  if (!wineId) return;
+  const cart = getCart();
+  cart[wineId] = (cart[wineId] || 0) + 1;
+  saveCart(cart);
+  updateNavCartBadge();
+
+  /* Visual feedback on the button */
+  const original = btn.textContent;
+  btn.textContent = '✓ Toegevoegd';
+  btn.style.opacity = '0.7';
+  setTimeout(() => {
+    btn.textContent = original;
+    btn.style.opacity = '';
+  }, 1200);
+}
+
+/* Inject nav cart icon after nav is ready */
+document.addEventListener('DOMContentLoaded', () => {
+  const navUl = document.querySelector('.nav-wrap nav ul');
+  if (navUl) {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <a href="winkelwagen.html" class="nav-cart-link" aria-label="Winkelwagen">
+        🛒
+        <span class="nav-cart-badge" id="navCartBadge" style="display:none">0</span>
+      </a>`;
+    navUl.appendChild(li);
+  }
+  updateNavCartBadge();
+
+  /* Bind all "In de winkel" buttons */
+  document.querySelectorAll('.btn-bestel:not(.sold-out)').forEach(btn => {
+    /* Get wine ID from the article's data attribute, or fall back to href of sibling btn-lees */
+    const article = btn.closest('article');
+    const leesLink = article?.querySelector('.btn-lees');
+    let wineId = article?.dataset?.wineId;
+
+    if (!wineId && leesLink) {
+      /* Derive ID from the lees-meer href, e.g. winkel-leblanc.html → leblanc */
+      const href = leesLink.getAttribute('href') || '';
+      wineId = href.replace('winkel-', '').replace('.html', '');
+    }
+
+    btn.addEventListener('click', () => addToCart(wineId, btn));
+  });
+});
+
+
+/* =========================
+   WINKEL-DETAIL PAGE SUPPORT
+   (for individual wine pages like winkel-leblanc.html)
+   ========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const detailBtn = document.querySelector('.btn-bestel-lg');
+  if (!detailBtn) return;
+
+  /* Read wine ID from body data attribute set on detail pages */
+  const wineId = document.body.dataset.wineId;
+  if (!wineId) return;
+
+  detailBtn.addEventListener('click', () => {
+    addToCart(wineId, detailBtn);
   });
 });
