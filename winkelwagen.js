@@ -140,14 +140,50 @@ function goToForm() {
   }
 
   /* ================================================================
-     Paste your Google Form shareable URL here.
-     Go to your form → click Send → copy the link.
-     It looks like: https://forms.gle/xxxxxxxxx
-     or: https://docs.google.com/forms/d/e/YOUR_ID/viewform
-     ================================================================ */
-  const GOOGLE_FORM_URL = 'https://forms.gle/YOUR_FORM_LINK_HERE';
+     HOW TO SET UP (one-time, takes 5 minutes):
 
-  window.open(GOOGLE_FORM_URL, '_blank', 'noopener,noreferrer');
+     1. Go to forms.google.com → create a new form.
+        Add these fields:
+        — Bestelling    (paragraph)  ← this gets pre-filled with the cart
+        — Naam          (short text)
+        — E-mailadres   (short text)
+        — Telefoonnummer (short text)
+        — Levering of afhalen? (multiple choice)
+        — Adres         (short text)
+        — Opmerking     (paragraph)
+
+     2. Click the three-dot menu (⋮) → "Get pre-filled link"
+        Fill a dummy value ONLY in the "Bestelling" field → click
+        "Get link" → copy it.
+
+        It looks like:
+        https://docs.google.com/forms/d/.../viewform?usp=pp_url&entry.XXXXXXXXX=dummy
+
+     3. From that URL, copy only the entry ID for Bestelling
+        (e.g. entry.123456789) and paste it below as ENTRY_BESTELLING.
+
+     4. Paste your form's base URL below as GOOGLE_FORM_URL
+        (everything before the ? in the pre-filled link).
+     ================================================================ */
+
+  const GOOGLE_FORM_URL  = 'https://docs.google.com/forms/d/e/1FAIpQLScVzUTyWpEcJkF4mEwqY1LXvhC6v-1BD93jAwdbxOczIASZZQ/viewform';
+  const ENTRY_BESTELLING = 'entry.1000025'; /* ← replace with your real entry ID */
+
+  /* Build the order text that pre-fills the Bestelling field */
+  const orderLines = entries.map(([id, qty]) => {
+    const w = WINE_CATALOGUE[id];
+    return `${qty}x ${w.domaine} – ${w.name} (${fmt(w.price)})`;
+  }).join('\n');
+
+  const orderText = orderLines + '\n\nTotaal: ' + fmt(cartTotal(cart));
+
+  const params  = new URLSearchParams();
+  params.set(ENTRY_BESTELLING, orderText);
+  params.set('usp', 'pp_url');
+
+  const formUrl = GOOGLE_FORM_URL + '?' + params.toString();
+
+  window.open(formUrl, '_blank', 'noopener,noreferrer');
 }
 
 /* ── NAV BADGE ── */
