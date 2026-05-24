@@ -140,48 +140,44 @@ function goToForm() {
   }
 
   /* ================================================================
-     HOW TO SET UP (one-time, takes 5 minutes):
+     HOW TO SET UP (one-time, 5 minutes):
 
      1. Go to forms.google.com → create a new form.
-        Add these fields:
-        — Bestelling    (paragraph)  ← this gets pre-filled with the cart
-        — Naam          (short text)
-        — E-mailadres   (short text)
-        — Telefoonnummer (short text)
-        — Levering of afhalen? (multiple choice)
-        — Adres         (short text)
-        — Opmerking     (paragraph)
+        Add "Bestelling" as the FIRST field (paragraph type).
+        Then add your other fields: Naam, E-mail, Telefoon, etc.
 
-     2. Click the three-dot menu (⋮) → "Get pre-filled link"
-        Fill a dummy value ONLY in the "Bestelling" field → click
-        "Get link" → copy it.
+     2. Click ⋮ → "Get pre-filled link"
+        Type anything in "Bestelling" only → click "Get link" → copy URL.
 
-        It looks like:
-        https://docs.google.com/forms/d/.../viewform?usp=pp_url&entry.XXXXXXXXX=dummy
+        Example URL:
+        https://docs.google.com/forms/d/e/ABCDEF/viewform
+          ?usp=pp_url&entry.123456789=dummy
 
-     3. From that URL, copy only the entry ID for Bestelling
-        (e.g. entry.123456789) and paste it below as ENTRY_BESTELLING.
+     3. From that URL:
+        — Copy everything before the ? as GOOGLE_FORM_URL
+        — Copy entry.123456789 as ENTRY_BESTELLING
 
-     4. Paste your form's base URL below as GOOGLE_FORM_URL
-        (everything before the ? in the pre-filled link).
+     IMPORTANT: Until you fill in the real values below, the form
+     will open without any pre-fill. Do NOT leave entry.000000000
+     in place — either use the real ID or remove the pre-fill block.
      ================================================================ */
 
   const GOOGLE_FORM_URL  = 'https://docs.google.com/forms/d/e/1FAIpQLScVzUTyWpEcJkF4mEwqY1LXvhC6v-1BD93jAwdbxOczIASZZQ/viewform';
-  const ENTRY_BESTELLING = 'entry.1000025'; /* ← replace with your real entry ID */
+  const ENTRY_BESTELLING = 'entry.2055232012'; /* ← real ID from step 2 */
 
-  /* Build the order text that pre-fills the Bestelling field */
+  /* Build readable order text */
   const orderLines = entries.map(([id, qty]) => {
     const w = WINE_CATALOGUE[id];
-    return `${qty}x ${w.domaine} – ${w.name} (${fmt(w.price)})`;
+    return `${qty}x ${w.domaine} \u2013 ${w.name} (${fmt(w.price)})`;
   }).join('\n');
 
   const orderText = orderLines + '\n\nTotaal: ' + fmt(cartTotal(cart));
 
-  const params  = new URLSearchParams();
-  params.set(ENTRY_BESTELLING, orderText);
-  params.set('usp', 'pp_url');
-
-  const formUrl = GOOGLE_FORM_URL + '?' + params.toString();
+  /* Use encodeURIComponent — NOT URLSearchParams — so Google Forms
+     receives the text correctly (spaces as %20, newlines as %0A) */
+  const formUrl = GOOGLE_FORM_URL
+    + '?usp=pp_url'
+    + '&' + ENTRY_BESTELLING + '=' + encodeURIComponent(orderText);
 
   window.open(formUrl, '_blank', 'noopener,noreferrer');
 }
