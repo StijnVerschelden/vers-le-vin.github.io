@@ -1,5 +1,5 @@
 /* winkel.js — Vers Le Vin
-   Includes: age gate, hamburger nav, cart system.
+   Includes: age gate, hamburger nav, cart system, floating cart button.
    ---------------------------------------------------------------- */
 
 /* =========================
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
    MOBILE HAMBURGER
    ========================= */
 (function () {
-  const navWrap  = document.querySelector('.nav-wrap');
+  const navWrap   = document.querySelector('.nav-wrap');
   const hamburger = document.querySelector('.hamburger');
   if (!navWrap || !hamburger) return;
 
@@ -112,8 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
    CART SYSTEM
    ========================= */
 
-/* wine ID is read from data-wine-id attribute on each btn-bestel button */
-
 function getCart() {
   try { return JSON.parse(localStorage.getItem('vlv_cart') || '{}'); }
   catch { return {}; }
@@ -129,11 +127,20 @@ function getCartCount() {
 }
 
 function updateNavCartBadge() {
-  const badge = document.getElementById('navCartBadge');
-  if (!badge) return;
   const count = getCartCount();
-  badge.textContent = count;
-  badge.style.display = count > 0 ? 'flex' : 'none';
+
+  /* ── nav badge ── */
+  const badge = document.getElementById('navCartBadge');
+  if (badge) {
+    badge.textContent   = count;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+  }
+
+  /* ── floating button ── */
+  const floatBtn   = document.querySelector('.cart-float');
+  const floatCount = document.getElementById('floatCartCount');
+  if (floatCount) floatCount.textContent = count;
+  if (floatBtn)   floatBtn.classList.toggle('visible', count > 0);
 }
 
 function addToCart(wineId, btn) {
@@ -143,18 +150,22 @@ function addToCart(wineId, btn) {
   saveCart(cart);
   updateNavCartBadge();
 
-  /* Visual feedback on the button */
+  /* visual feedback */
   const original = btn.textContent;
-  btn.textContent = '✓ Toegevoegd';
+  btn.textContent  = '✓ Toegevoegd';
   btn.style.opacity = '0.7';
   setTimeout(() => {
-    btn.textContent = original;
+    btn.textContent  = original;
     btn.style.opacity = '';
   }, 1200);
 }
 
-/* Inject nav cart icon after nav is ready */
+/* =========================
+   DOM READY — inject UI + bind buttons
+   ========================= */
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── nav cart icon ── */
   const navUl = document.querySelector('.nav-wrap nav ul');
   if (navUl) {
     const li = document.createElement('li');
@@ -165,17 +176,28 @@ document.addEventListener('DOMContentLoaded', () => {
       </a>`;
     navUl.appendChild(li);
   }
+
+  /* ── floating cart button ── */
+  const floatBtn = document.createElement('a');
+  floatBtn.href      = 'winkelwagen.html';
+  floatBtn.className = 'cart-float';
+  floatBtn.setAttribute('aria-label', 'Winkelwagen bekijken');
+  floatBtn.innerHTML = `
+    <span class="cart-float-icon">🛒</span>
+    <span class="cart-float-label">Winkelwagen</span>
+    <span class="cart-float-count" id="floatCartCount">0</span>`;
+  document.body.appendChild(floatBtn);
+
+  /* ── initialise badges ── */
   updateNavCartBadge();
 
-  /* Bind all "In de winkel" buttons */
+  /* ── bind "In de winkel" buttons ── */
   document.querySelectorAll('.btn-bestel:not(.sold-out)').forEach(btn => {
-    /* Get wine ID from the article's data attribute, or fall back to href of sibling btn-lees */
-    const article = btn.closest('article');
+    const article  = btn.closest('article');
     const leesLink = article?.querySelector('.btn-lees');
-    let wineId = article?.dataset?.wineId;
+    let wineId     = article?.dataset?.wineId;
 
     if (!wineId && leesLink) {
-      /* Derive ID from the lees-meer href, e.g. winkel-leblanc.html → leblanc */
       const href = leesLink.getAttribute('href') || '';
       wineId = href.replace('winkel-', '').replace('.html', '');
     }
@@ -187,13 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* =========================
    WINKEL-DETAIL PAGE SUPPORT
-   (for individual wine pages like winkel-leblanc.html)
    ========================= */
 document.addEventListener('DOMContentLoaded', () => {
   const detailBtn = document.querySelector('.btn-bestel-lg');
   if (!detailBtn) return;
 
-  /* Read wine ID from body data attribute set on detail pages */
   const wineId = document.body.dataset.wineId;
   if (!wineId) return;
 
