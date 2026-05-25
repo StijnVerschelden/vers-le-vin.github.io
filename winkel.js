@@ -177,16 +177,18 @@ document.addEventListener('DOMContentLoaded', () => {
     navUl.appendChild(li);
   }
 
-  /* ── floating cart button ── */
-  const floatBtn = document.createElement('a');
-  floatBtn.href      = 'winkelwagen.html';
-  floatBtn.className = 'cart-float';
-  floatBtn.setAttribute('aria-label', 'Winkelwagen bekijken');
-  floatBtn.innerHTML = `
-    <span class="cart-float-icon">🛒</span>
-    <span class="cart-float-label">Winkelwagen</span>
-    <span class="cart-float-count" id="floatCartCount">0</span>`;
-  document.body.appendChild(floatBtn);
+  /* ── floating cart button — hidden on winkelwagen.html ── */
+  if (!window.location.pathname.includes('winkelwagen')) {
+    const floatBtn = document.createElement('a');
+    floatBtn.href      = 'winkelwagen.html';
+    floatBtn.className = 'cart-float';
+    floatBtn.setAttribute('aria-label', 'Winkelwagen bekijken');
+    floatBtn.innerHTML = `
+      <span class="cart-float-icon">🛒</span>
+      <span class="cart-float-label">Winkelwagen</span>
+      <span class="cart-float-count" id="floatCartCount">0</span>`;
+    document.body.appendChild(floatBtn);
+  }
 
   /* ── initialise badges ── */
   updateNavCartBadge();
