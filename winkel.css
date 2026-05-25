@@ -402,7 +402,7 @@ footer {
   pointer-events: auto;
   transform: translateY(0);
 }
-.cart-float:hover { opacity: 0.88; }
+.cart-float:hover { opacity: 0.75; }
 .cart-float-icon { font-size: 17px; line-height: 1; }
 .cart-float-label { letter-spacing: 0.02em; }
 .cart-float-count {
@@ -440,8 +440,8 @@ footer {
 
   /* floating button — icon + count only, no label */
   .cart-float {
-    bottom: 20px;
-    right: 16px;
+    bottom: 25px;
+    right: 20px;
     padding: 10px 12px;
     gap: 6px;
   }
