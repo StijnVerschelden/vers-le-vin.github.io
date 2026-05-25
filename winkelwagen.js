@@ -19,6 +19,7 @@ const WINE_CATALOGUE = {
   'irancy-rood':         { domaine: 'William Charriat',          name: 'Irancy 2021 & 2022',          price: 22.00, img: 'images/irancy03.png' },
   'irancy-rose':         { domaine: 'William Charriat',          name: 'Bourgogne Rosé 2023',         price: 16.00, img: 'images/irancy01.jpg' },
   'leblanc':             { domaine: 'Château des Vergers',       name: 'Le Blanc 2024',               price: 21.50, img: 'images/cosimaface.jpg' },
+  'axiome':             { domaine: 'Domaine les Capréoles',     name: 'Axiome 2025',                price: 22.50, img: 'images/axiom25.jpg' },
   'fblanc':              { domaine: 'Domaine Frédéric Berne',    name: 'Blanc 2024',                  price: 21.90, img: 'images/FBWIT1.jpg' },
   'chablis-grandchaume': { domaine: 'Château de Fleys',         name: 'La Grand Chaume 2023',        price: 22.00, img: 'images/chablis01.jpg' },
   'chablis-2024':        { domaine: 'Château de Fleys',         name: 'Chablis 2024',                price: 21.00, img: 'images/chablis05.jpg' },

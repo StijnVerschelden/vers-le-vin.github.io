@@ -50,7 +50,7 @@
       opacity: 0.85;
     }
     .privacy-wrap ul li {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .privacy-wrap a {
       color: #592C38;
@@ -58,6 +58,29 @@
       text-underline-offset: 2px;
     }
     .privacy-wrap a:hover { opacity: 1; }
+
+    /* warning box */
+    .privacy-warning {
+      background: rgba(89,44,56,0.06);
+      border-left: 3px solid #592C38;
+      border-radius: 0 4px 4px 0;
+      padding: 16px 20px;
+      margin: 16px 0 20px;
+      font-size: 15px;
+      line-height: 1.65;
+      opacity: 1;
+    }
+    .privacy-warning strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .privacy-warning ul {
+      margin: 8px 0 0;
+      opacity: 1;
+      font-size: 15px;
+    }
+
     .privacy-wrap .reset-btn {
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 14px;
@@ -136,30 +159,43 @@
   <ul>
     <li><strong>Leeftijdsverificatie:</strong> wij slaan lokaal in uw browser op dat u de leeftijdscontrole heeft doorlopen. Dit verlaat uw apparaat niet en is strikt noodzakelijk voor de wettelijke toegangsbeperking tot alcoholgerelateerde inhoud.</li>
     <li><strong>Cookie-voorkeur:</strong> uw keuze om cookies te accepteren of te weigeren wordt lokaal opgeslagen in uw browser. Geen persoonsgegevens worden hierbij verzameld of doorgestuurd.</li>
+    <li><strong>Winkelmandje:</strong> de inhoud van uw winkelmandje (geselecteerde wijnen en hoeveelheden) wordt tijdelijk opgeslagen in uw eigen browser via localStorage. Deze gegevens verlaten uw apparaat niet en worden niet door Vers Le Vin verwerkt of opgeslagen.</li>
+    <li><strong>Bestelaanvraag via Google Forms:</strong> wanneer u een bestelling plaatst, wordt u doorgestuurd naar een extern Google Form. Alle persoonsgegevens die u daar invult (naam, e-mailadres, adres, enz.) worden rechtstreeks door Google verwerkt en ontvangen wij via Google als formulierrespons. Vers Le Vin slaat deze gegevens uitsluitend op voor de verwerking van uw bestelling en verwijdert ze daarna.</li>
     <li><strong>Contactformulier:</strong> indien u ons contacteert, verwerken wij uw naam en e-mailadres uitsluitend om uw bericht te beantwoorden.</li>
-    <li><strong>Bestellingen (binnenkort):</strong> bij de lancering van onze webshop zullen naam, adres en betalingsgegevens worden verwerkt via een gecertificeerde betalingsprovider (.....). Deze providers voldoen aan PCI-DSS en GDPR. Wij slaan zelf geen betalingsgegevens op.</li>
   </ul>
 
-  <h2>3. Cookies en lokale opslag</h2>
+  <h2>3. Belangrijke waarschuwing — bestelaanvraagformulier</h2>
+
+  <div class="privacy-warning">
+    <strong>⚠ Vul nooit gevoelige informatie in op het bestelformulier.</strong>
+    Ons bestelformulier via Google Forms is uitsluitend bedoeld voor het doorgeven van uw contactgegevens en gewenste wijnen. Vul daar nooit het volgende in:
+    <ul>
+      <li>Wachtwoorden of pincodes</li>
+      <li>Bankrekeningnummers of creditcardgegevens</li>
+      <li>Rijksregisternummer of paspoortnummer</li>
+      <li>Medische of andere zeer persoonlijke gegevens</li>
+    </ul>
+    Betalingen worden altijd apart en veilig afgehandeld via een betalingslink die wij u na ontvangst van uw bestelling per e-mail toesturen. Wij vragen u nooit om betalingsgegevens in te vullen op een formulier.
+  </div>
+
+  <h2>4. Cookies en lokale opslag</h2>
   <p>Deze website maakt gebruik van de volgende opslag in uw browser:</p>
   <ul>
-    <li><strong>Strikt noodzakelijk (geen toestemming vereist):</strong> lokale opslag voor leeftijdsverificatie en cookie-voorkeur.</li>
-    <li><strong>Optionele cookies (toestemming vereist):</strong> bij het laden van ingebedde video's van YouTube kan YouTube cookies plaatsen. Wij gebruiken de privacyvriendelijke modus van YouTube (youtube-nocookie.com) waar mogelijk. Bij de integratie van een betalingsprovider kunnen technische cookies worden geplaatst die noodzakelijk zijn voor de transactie.</li>
+    <li><strong>Strikt noodzakelijk (geen toestemming vereist):</strong> lokale opslag voor leeftijdsverificatie, cookie-voorkeur en winkelmandje.</li>
+    <li><strong>Optionele cookies (toestemming vereist):</strong> bij het laden van ingebedde video's van YouTube kan YouTube cookies plaatsen. Wij gebruiken de privacyvriendelijke modus van YouTube (youtube-nocookie.com) waar mogelijk.</li>
   </ul>
   <p>U kunt uw cookie-voorkeur op elk moment wijzigen:</p>
   <button class="reset-btn" onclick="cookieConsentReset()">Cookie-instellingen wijzigen</button>
 
-  <h2>4. Rechtsgrondslag</h2>
-  <p>
-    De verwerking van persoonsgegevens is gebaseerd op:
-  </p>
+  <h2>5. Rechtsgrondslag</h2>
+  <p>De verwerking van persoonsgegevens is gebaseerd op:</p>
   <ul>
     <li>Uw toestemming (art. 6.1.a GDPR) — voor optionele cookies.</li>
     <li>Uitvoering van een overeenkomst (art. 6.1.b GDPR) — voor bestellingen.</li>
     <li>Gerechtvaardigd belang (art. 6.1.f GDPR) — voor de werking van de website.</li>
   </ul>
 
-  <h2>5. Uw rechten</h2>
+  <h2>6. Uw rechten</h2>
   <p>Onder de Algemene Verordening Gegevensbescherming (AVG/GDPR) heeft u de volgende rechten:</p>
   <ul>
     <li>Recht op inzage van uw persoonsgegevens</li>
@@ -175,23 +211,24 @@
     Wij reageren binnen 30 dagen.
   </p>
 
-  <h2>6. Derde partijen</h2>
+  <h2>7. Derde partijen</h2>
   <p>
     Vers Le Vin deelt geen persoonsgegevens met derden voor commerciële doeleinden.
     Technische dienstverleners die mogelijk gegevens verwerken:
   </p>
   <ul>
     <li><strong>GitHub Pages:</strong> hosting van de website. Zie <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>.</li>
+    <li><strong>Google Forms &amp; Google LLC:</strong> verwerking van bestelaanvragen. Persoonsgegevens die u invult op het bestelformulier worden opgeslagen op servers van Google. Zie <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacybeleid</a>. Vers Le Vin verwijdert ontvangen bestelgegevens na verwerking.</li>
     <li><strong>YouTube (Google LLC):</strong> ingebedde video's, uitsluitend na uw toestemming. Zie <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacybeleid</a>.</li>
-    <li><strong>Betalingsprovider (binnenkort):</strong> ... of ... (België) . Beide voldoen aan GDPR en PCI-DSS.</li>
+    <li><strong>Betalingsprovider (binnenkort):</strong> betalingen worden afgehandeld via een externe, gecertificeerde betalingsprovider die voldoet aan GDPR en PCI-DSS. Vers Le Vin slaat zelf geen betalingsgegevens op.</li>
   </ul>
 
-  <h2>7. Bewaartermijn</h2>
+  <h2>8. Bewaartermijn</h2>
   <p>
-    Gegevens uit het contactformulier worden bewaard zolang noodzakelijk voor de afhandeling van uw verzoek en daarna verwijderd. Bestelgegevens worden bewaard conform de Belgische boekhoudkundige verplichtingen (7 jaar).
+    Gegevens uit het contactformulier worden bewaard zolang noodzakelijk voor de afhandeling van uw verzoek en daarna verwijderd. Bestelgegevens ontvangen via Google Forms worden verwijderd na verwerking van de bestelling. Boekhoudkundige gegevens worden bewaard conform de Belgische verplichtingen (7 jaar).
   </p>
 
-  <h2>8. Klachten</h2>
+  <h2>9. Klachten</h2>
   <p>
     Indien u van mening bent dat uw persoonsgegevens niet correct worden verwerkt,
     heeft u het recht een klacht in te dienen bij de Belgische toezichthoudende autoriteit:
@@ -202,7 +239,7 @@
     <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener noreferrer">www.gegevensbeschermingsautoriteit.be</a>
   </p>
 
-  <h2>9. Wijzigingen</h2>
+  <h2>10. Wijzigingen</h2>
   <p>
     Dit privacybeleid kan worden bijgewerkt. De datum bovenaan deze pagina geeft de meest recente versie aan. Wij raden u aan deze pagina periodiek te raadplegen.
   </p>
