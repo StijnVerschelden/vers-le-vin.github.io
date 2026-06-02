@@ -131,6 +131,13 @@ nav li:focus-within > .dropdown { display: block; }
       box-shadow:0 6px 25px rgba(0,0,0,0.08);
     }
 
+    .content-image-vertical {
+      width:50%;
+      border-radius:12px;
+      margin:32px 0;
+      box-shadow:0 6px 25px rgba(0,0,0,0.08);
+    }
+
     .caption {
         font-size: 12px;
         font-style: italic;
@@ -281,7 +288,7 @@ nav li:focus-within > .dropdown { display: block; }
       box-shadow:0 6px 25px rgba(0,0,0,0.08);
     }
     .content-image-vertical {
-      width:25%;
+      width:100%;
       border-radius:12px;
       margin:32px 0;
       box-shadow:0 6px 25px rgba(0,0,0,0.08);
