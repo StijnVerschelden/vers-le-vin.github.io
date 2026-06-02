@@ -131,23 +131,21 @@ nav li:focus-within > .dropdown { display: block; }
       box-shadow:0 6px 25px rgba(0,0,0,0.08);
     }
 
-    /* Create two equal columns that floats next to each other */
-  .column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  }
+    .image-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 32px 0;
+}
 
-  .column img {
-  margin-top: 12px;
-  }
+.image-pair img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+  display: block;
+}
 
-/* Clear floats after the columns */
-  .row:after {
-  content: "";
-  display: table;
-  clear: both;
-  }
 
     .caption {
         font-size: 12px;
