@@ -117,8 +117,8 @@ main {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 60px;
-  margin-bottom: 3px;
+  gap: 30px;
+  margin-bottom: 30px;
 }
 
 .essay-images {
@@ -312,7 +312,7 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 0;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
   }
 
   .essay-images {
