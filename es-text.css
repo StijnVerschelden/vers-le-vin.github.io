@@ -139,8 +139,13 @@ nav li:focus-within > .dropdown { display: block; }
         margin-top: -20px;
         margin-bottom: 20px;
     }
+    .poem {
+      font-style: italic;
+      font-size: 16px;
+      text-align: center;
+      margin: 12px 0;
+    }
 
-    
     footer {
       margin-top:auto;
       padding:10px 20px;
