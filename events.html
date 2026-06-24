@@ -63,11 +63,38 @@
       <h2>Aankomende events</h2>
       <span class="section-line"></span>
     </div>
-    <div class="upcoming-box">
-      <p>Momenteel geen geplande events.</p>
-      <p class="upcoming-sub">Volg ons voor aankondigingen van nieuwe avonden.</p>
-    </div>
-  </section>
+    <div class="events-grid">
+
+      <!-- EVENT 1: WIJN EN FILM -->
+      <div class="evt-card-wrap">
+        <div class="evt-card" id="evt1" tabindex="0" role="button" aria-label="Wijn en Film Pairing — klik voor foto's">
+          <div class="evt-face evt-front">
+            <img class="evt-cover" src="images/sphinx.JPG" alt="Wijn en Film Pairing">
+            <div class="evt-body">
+              <span class="evt-date">Juli 2026</span>
+              <h3 class="evt-title">Movie en Degustatie</h3>
+              <p class="evt-desc">Sphinx cinema Terroir en wijntasting</p>
+            </div>
+          </div>
+          <div class="evt-face evt-back">
+            <div class="evt-carousel">
+              <img class="car-photo active" src="images/sphinx2.jpg" alt="Sphinx">
+              
+              <div class="car-arrows">
+                <button class="car-arr" type="button" aria-label="Vorige foto">‹</button>
+                <button class="car-arr" type="button" aria-label="Volgende foto">›</button>
+              </div>
+              <div class="car-dots"></div>
+              <!-- zoom hint -->
+              <div class="zoom-hint">Tik op foto om te vergroten</div>
+            </div>
+            <div class="evt-back-foot">
+              <button class="btn-terug" type="button">← Terug</button>
+            </div>
+          </div>
+        </div>
+        <p class="flip-hint">Klik of tik om meer te lezen ▴</p>
+      </div>
 
   <!-- VOORBIJE EVENTS -->
   <section class="events-section">
