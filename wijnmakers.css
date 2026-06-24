@@ -122,7 +122,7 @@ main {
 /* ── GRID ── */
 .wijnmaker-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
 
@@ -272,12 +272,6 @@ footer {
   opacity: 0.85;
 }
 
-/* ── DESKTOP — slightly smaller below 1100px ── */
-@media (max-width: 1100px) {
-  .wijnmaker-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
 
 /* ── TABLET ── */
 @media (max-width: 900px) {
