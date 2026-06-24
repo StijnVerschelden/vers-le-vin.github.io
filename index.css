@@ -456,6 +456,52 @@ nav li:focus-within > .dropdown { display: block; }
 .logo-card.flipped ~ .hover-hint { opacity: 0; }
 
 /* =========================
+   MARQUEE — HORIZONTAL (desktop, above footer)
+   ========================= */
+.marquee-h {
+  width: 100%;
+  overflow: hidden;
+  border-top: 0.5px solid rgba(89, 44, 56, 0.12);
+  border-bottom: 0.5px solid rgba(89, 44, 56, 0.12);
+  padding: 10px 0;
+  background: var(--bg);
+}
+
+.marquee-h-track {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  animation: scrollH 28s linear infinite;
+}
+
+.marquee-h-track span {
+  font-size: 13px;
+  color: rgba(89, 44, 56, 0.55);
+  letter-spacing: 0.04em;
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  font-family: 'EB Garamond', serif;
+}
+
+.marquee-h-track span::after {
+  content: '◆';
+  font-size: 7px;
+  opacity: 0.4;
+}
+
+@keyframes scrollH {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* MARQUEE — VERTICAL (mobile only, hidden on desktop) */
+.marquee-v {
+  display: none;
+}
+
+/* =========================
    FOOTER
    ========================= */
 footer {
@@ -586,6 +632,8 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 32px;
+    position: relative;
+    padding-right: 30px; /* room for the vertical marquee strip */
   }
 
   /* On mobile all cards same full width, same ratio */
@@ -604,6 +652,58 @@ footer {
     margin-top: 10px;
     display: block;
     text-align: center;
+  }
+
+  /* Hide horizontal desktop marquee on mobile */
+  .marquee-h {
+    display: none;
+  }
+
+  /* Show vertical marquee on mobile, fixed to the right edge of the viewport */
+  .marquee-v {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 26px;
+    overflow: hidden;
+    border-left: 0.5px solid rgba(89, 44, 56, 0.12);
+    background: var(--bg);
+    z-index: 50;
+  }
+
+  .marquee-v-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    animation: scrollV 22s linear infinite;
+  }
+
+  .marquee-v-track span {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 11px;
+    color: rgba(89, 44, 56, 0.55);
+    letter-spacing: 0.04em;
+    padding: 16px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'EB Garamond', serif;
+  }
+
+  .marquee-v-track span::after {
+    content: '◆';
+    font-size: 6px;
+    opacity: 0.4;
+    writing-mode: horizontal-tb;
+  }
+
+  @keyframes scrollV {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
   }
 
   footer {
