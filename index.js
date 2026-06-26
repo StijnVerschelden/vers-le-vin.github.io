@@ -167,12 +167,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =========================
    TERROIR CARD — CONTINUOUS TWO-FACE IMAGE CYCLE
-   The card has two physical faces (A = front, B = back).
-   It just keeps flipping between them forever. Each time a
-   face is hidden (facing away from the viewer), we quietly
-   update its image to the NEXT one in the sequence — so when
-   it swings back around, it shows new content. This gives a
-   continuous slideshow with no "video/info" side at all.
+   (rewritten with simpler, correct logic)
+
+   Instead of juggling two separate "next index" trackers for
+   face A and face B (which was error-prone), we now keep ONE
+   single counter for "which slide should be visible next",
+   and a single boolean for which physical face is currently
+   front-facing. Whichever face is about to be HIDDEN gets its
+   image updated mid-flip to the slide that will be needed
+   the NEXT time it comes back around.
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const card = document.getElementById("terroirCard");
@@ -186,9 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const counterB = document.getElementById("terroirCounterB");
   if (!imgA || !imgB) return;
 
-  /* ─── IMAGES + KEYWORDS — add as many as you like here ───
-     Later you can swap any "img" value for a short video or GIF
-     by changing the markup; the cycling logic stays the same. */
+  /* ─── IMAGES + KEYWORDS — add as many as you like ─── */
   const slides = [
     { img: "images/beelden/wijnenik.jpg",     keyword: "Wijn en Ik" },
     { img: "images/beelden/arthistory.jpg",   keyword: "Art History" },
@@ -196,20 +197,18 @@ document.addEventListener("DOMContentLoaded", () => {
     { img: "images/beelden/naturrenik.jpg",   keyword: "Nature" }
   ];
 
-  /* ─── TIMING ───
-     SECONDS_PER_SLIDE: how long each image stays visible —
-       keep this generous enough that the keyword text is readable.
-     FLIP_DURATION_MS: must match the CSS transition duration above
-       (.side-card.multi-flip transition). */
   const SECONDS_PER_SLIDE = 5;
   const FLIP_DURATION_MS = 1400;
 
-  /* index of the slide currently shown on face A, and on face B */
-  let indexA = 0;
-  let indexB = 1 % slides.length;
-  let showingA = true; // true = face A is facing the viewer right now
+  /* "cursor" = index of the NEXT slide to be assigned to whichever
+     face is currently hidden. Starts at 2 because faces A and B
+     already hold slides 0 and 1 from the initial paint below. */
+  let cursor = 2 % slides.length;
+
+  /* true = face A is currently the one facing the viewer (card NOT flipped) */
+  let frontIsA = true;
+
   let autoplayTimer = null;
-  let paused = false;
 
   function paint(imgEl, keywordEl, counterEl, slideIndex) {
     const slide = slides[slideIndex % slides.length];
@@ -218,30 +217,28 @@ document.addEventListener("DOMContentLoaded", () => {
     counterEl.textContent = (slideIndex % slides.length + 1) + "/" + slides.length;
   }
 
-  function nextIndex(current) {
-    return (current + 2) % slides.length; // skip by 2 since A and B alternate
-  }
-
   function flipOnce() {
-    card.classList.toggle("is-flipped", showingA);
-    // The face now going OUT of view is the one that was showing;
-    // wait until it's fully turned away, then update it to the
-    // slide that will be needed two flips from now.
+    /* Flip the card: if A is currently front, flipping shows B (and vice versa) */
+    card.classList.toggle("is-flipped", frontIsA);
+
+    /* The face that is now becoming HIDDEN (the one that was front a
+       moment ago) gets repainted partway through the flip, once it's
+       turned away from the viewer. */
+    const hiddenIsA = frontIsA; // the face going out of view
+
     setTimeout(() => {
-      if (showingA) {
-        indexB = nextIndex(indexB);
-        paint(imgB, keywordB, counterB, indexB);
+      if (hiddenIsA) {
+        paint(imgA, keywordA, counterA, cursor);
       } else {
-        indexA = nextIndex(indexA);
-        paint(imgA, keywordA, counterA, indexA);
+        paint(imgB, keywordB, counterB, cursor);
       }
-      showingA = !showingA;
+      cursor = (cursor + 1) % slides.length;
+      frontIsA = !frontIsA;
     }, FLIP_DURATION_MS * 0.55);
   }
 
   function startAutoplay() {
     stopAutoplay();
-    if (paused) return;
     autoplayTimer = setInterval(flipOnce, SECONDS_PER_SLIDE * 1000);
   }
 
@@ -250,7 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
     autoplayTimer = null;
   }
 
-  /* Manual click advances immediately and resets the timer */
   card.addEventListener("pointerup", () => {
     flipOnce();
     startAutoplay();
@@ -263,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoplay();
   });
 
-  /* Pause/resume when the browser tab is hidden/visible */
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       stopAutoplay();
@@ -272,9 +267,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* Initial paint */
-  paint(imgA, keywordA, counterA, indexA);
-  paint(imgB, keywordB, counterB, indexB);
+  /* Initial paint: face A = slide 0, face B = slide 1 */
+  paint(imgA, keywordA, counterA, 0);
+  paint(imgB, keywordB, counterB, 1);
   startAutoplay();
 });
 
