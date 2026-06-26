@@ -273,9 +273,19 @@ nav li:focus-within > .dropdown { display: block; }
   -webkit-transform: rotateY(180deg);
 }
 
-/* Multi-flip card (Terroir) uses a slightly slower, more deliberate flip */
+/* Multi-flip card (Terroir) uses a slightly slower, more deliberate flip
+   so visitors have time to read the keyword on each image */
 .side-card.multi-flip {
-  transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Terroir card has TWO image faces (A and B) that alternate —
+   both behave like a normal front face, no video/info side anymore */
+.side-card.multi-flip .card-front,
+.side-card.multi-flip .side-back {
+  background: #000;
+  box-shadow: 0 8px 30px rgba(89,44,56,0.10);
+  display: block;
 }
 
 .side-front {
@@ -298,9 +308,10 @@ nav li:focus-within > .dropdown { display: block; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-/* Photo counter badge — bottom right of the multi-flip card front */
+/* Photo counter badge — bottom right of a multi-flip face */
 .photo-counter {
   position: absolute;
   bottom: 10px;
@@ -315,7 +326,7 @@ nav li:focus-within > .dropdown { display: block; }
   letter-spacing: 0.02em;
 }
 
-/* Keyword badge — bottom left of the multi-flip card front, opposite the counter */
+/* Keyword badge — bottom left of a multi-flip face, opposite the counter */
 .photo-keyword {
   position: absolute;
   bottom: 10px;
@@ -376,42 +387,6 @@ nav li:focus-within > .dropdown { display: block; }
 }
 
 .side-back-btn:hover { background: rgba(89,44,56,0.07); }
-
-.side-back--terroir {
-  justify-content: flex-start;
-  align-items: stretch;
-  padding: 0;
-}
-
-.terroir-video-strip {
-  flex-shrink: 0;
-  width: 100%;
-  height: calc(var(--card-w) * 9 / 16);
-  overflow: hidden;
-  background: #000;
-  border-bottom: 1px solid rgba(89,44,56,0.12);
-}
-
-.terroir-strip-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.terroir-back-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 14px 16px;
-  gap: 8px;
-}
-
-.terroir-back-body .side-back-label { text-align: left; }
-.terroir-back-body .side-back-text { text-align: left; }
-.terroir-back-body .side-back-btn { margin-top: 4px; }
 
 .side-hint {
   font-size: 12px;
@@ -535,10 +510,7 @@ nav li:focus-within > .dropdown { display: block; }
   to   { transform: translateX(-50%); }
 }
 
-/* MARQUEE — VERTICAL (mobile only, hidden on desktop) */
-.marquee-v {
-  display: none;
-}
+.marquee-v { display: none; }
 
 /* =========================
    FOOTER
@@ -680,10 +652,6 @@ footer {
     --logo-w: min(80vw, 320px);
   }
 
-  .terroir-video-strip {
-    height: calc(var(--card-w) * 9 / 16);
-  }
-
   .hover-hint {
     position: static;
     transform: none;
@@ -692,12 +660,8 @@ footer {
     text-align: center;
   }
 
-  /* Hide horizontal desktop marquee on mobile */
-  .marquee-h {
-    display: none;
-  }
+  .marquee-h { display: none; }
 
-  /* Show vertical marquee on mobile, fixed to the right edge of the viewport */
   .marquee-v {
     display: block;
     position: fixed;

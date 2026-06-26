@@ -66,32 +66,25 @@
     <div class="brand">
 
       <!-- ═══════════════════════════════
-           LEFT — Terroir (autoplay multi-photo flip)
+           LEFT — Terroir (continuous autoplay image flip,
+           front and back faces both just show images,
+           no video/info side anymore)
            ═══════════════════════════════ -->
       <div class="side-card-wrap">
-        <div class="side-card multi-flip" id="terroirCard" tabindex="0" role="button" aria-label="Terroir — klik om te onderbreken">
+        <div class="side-card multi-flip" id="terroirCard" tabindex="0" role="button" aria-label="Terroir — beeldenreeks, klik om te onderbreken">
 
-          <!-- FRONT: cycles through multiple photos automatically -->
-          <div class="card-face card-front" id="terroirFront">
-            <span class="photo-keyword" id="terroirKeyword">Wijn en Ik</span>
-            <img src="images/wijnenik.jpg" alt="Terroir" class="card-media" id="terroirFrontImg">
-            <span class="photo-counter" id="terroirCounter">1/4</span>
+          <!-- FACE A -->
+          <div class="card-face card-front" id="terroirFaceA">
+            <span class="photo-keyword" id="terroirKeywordA">Wijn en Ik</span>
+            <img src="images/beelden/wijnenik.jpg" alt="" class="card-media" id="terroirImgA">
+            <span class="photo-counter" id="terroirCounterA">1/4</span>
           </div>
 
-          <!-- BACK: video in 16:9 strip + text + YouTube button -->
-          <div class="card-face side-back side-back--terroir">
-            <div class="terroir-video-strip">
-              <video autoplay muted loop playsinline class="terroir-strip-video">
-                <source src="videos/Terroir.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="terroir-back-body">
-              <p class="side-back-label">Terroir</p>
-              <p class="side-back-text">A sommelier student observes the work of winemakers around Lantignié for a year. The seasons change, and with them the colors, the sounds, the rhythm ... .</p>
-              <a href="https://www.youtube.com/watch?v=wr4tJoFjI2w"
-                 target="_blank" rel="noopener noreferrer"
-                 class="side-back-btn">Bekijk de trailer →</a>
-            </div>
+          <!-- FACE B -->
+          <div class="card-face side-back" id="terroirFaceB">
+            <span class="photo-keyword" id="terroirKeywordB">Art History</span>
+            <img src="images/arthistory.jpg" alt="" class="card-media" id="terroirImgB">
+            <span class="photo-counter" id="terroirCounterB">2/4</span>
           </div>
 
         </div>
@@ -142,8 +135,6 @@
 
       <!-- ═══════════════════════════════
            MARQUEE — vertical on mobile only
-           Lives inside .brand so it sits to the
-           right of the cards on small screens.
            ═══════════════════════════════ -->
       <div class="marquee-v" aria-hidden="true">
         <div class="marquee-v-track">

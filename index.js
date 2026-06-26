@@ -166,53 +166,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   TERROIR CARD — AUTOPLAY MULTI-PHOTO FLIP
-   Front cycles through several photos automatically,
-   each paired with a keyword. Clicking advances early.
-   Double-click flips to the back (video + info).
+   TERROIR CARD — CONTINUOUS TWO-FACE IMAGE CYCLE
+   The card has two physical faces (A = front, B = back).
+   It just keeps flipping between them forever. Each time a
+   face is hidden (facing away from the viewer), we quietly
+   update its image to the NEXT one in the sequence — so when
+   it swings back around, it shows new content. This gives a
+   continuous slideshow with no "video/info" side at all.
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const card = document.getElementById("terroirCard");
-  const frontImg = document.getElementById("terroirFrontImg");
-  const counter = document.getElementById("terroirCounter");
-  const keywordEl = document.getElementById("terroirKeyword");
-  if (!card || !frontImg || !counter || !keywordEl) return;
+  if (!card) return;
 
-  /* ─── PHOTOS + KEYWORDS — edit this list to add your own ─── */
+  const imgA = document.getElementById("terroirImgA");
+  const imgB = document.getElementById("terroirImgB");
+  const keywordA = document.getElementById("terroirKeywordA");
+  const keywordB = document.getElementById("terroirKeywordB");
+  const counterA = document.getElementById("terroirCounterA");
+  const counterB = document.getElementById("terroirCounterB");
+  if (!imgA || !imgB) return;
+
+  /* ─── IMAGES + KEYWORDS — add as many as you like here ───
+     Later you can swap any "img" value for a short video or GIF
+     by changing the markup; the cycling logic stays the same. */
   const slides = [
-    { img: "images/wijnenik.jpg", keyword: "Wijn en Ik" },
-    { img: "images/arthistory.jpg",       keyword: "Art History" },
-    { img: "images/wijnenmensen.jpg",       keyword: "Wine" },
-    { img: "images/naturrenik.jpg",       keyword: "Nature" }
+    { img: "images/beelden/wijnenik.jpg",     keyword: "Wijn en Ik" },
+    { img: "images/beelden/arthistory.jpg",   keyword: "Art History" },
+    { img: "images/beelden/wijnenmensen.jpg", keyword: "Wine" },
+    { img: "images/beelden/naturrenik.jpg",   keyword: "Nature" }
   ];
 
-  /* Fixed timing — 5s per photo, 1.3s flip (matches the CSS transition) */
-  const SECONDS_PER_PHOTO = 5;
-  const FLIP_DURATION_MS = 1300;
+  /* ─── TIMING ───
+     SECONDS_PER_SLIDE: how long each image stays visible —
+       keep this generous enough that the keyword text is readable.
+     FLIP_DURATION_MS: must match the CSS transition duration above
+       (.side-card.multi-flip transition). */
+  const SECONDS_PER_SLIDE = 5.5;
+  const FLIP_DURATION_MS = 1400;
 
-  let index = 0;
-  let isShowingBack = false;
+  /* index of the slide currently shown on face A, and on face B */
+  let indexA = 0;
+  let indexB = 1 % slides.length;
+  let showingA = true; // true = face A is facing the viewer right now
   let autoplayTimer = null;
+  let paused = false;
 
-  function showSlide(i) {
-    index = ((i % slides.length) + slides.length) % slides.length;
-    frontImg.src = slides[index].img;
-    keywordEl.textContent = slides[index].keyword;
-    counter.textContent = (index + 1) + "/" + slides.length;
+  function paint(imgEl, keywordEl, counterEl, slideIndex) {
+    const slide = slides[slideIndex % slides.length];
+    imgEl.src = slide.img;
+    keywordEl.textContent = slide.keyword;
+    counterEl.textContent = (slideIndex % slides.length + 1) + "/" + slides.length;
   }
 
-  function advanceSlide() {
-    card.classList.add("is-flipped");
+  function nextIndex(current) {
+    return (current + 2) % slides.length; // skip by 2 since A and B alternate
+  }
+
+  function flipOnce() {
+    card.classList.toggle("is-flipped", showingA);
+    // The face now going OUT of view is the one that was showing;
+    // wait until it's fully turned away, then update it to the
+    // slide that will be needed two flips from now.
     setTimeout(() => {
-      showSlide(index + 1);
-      card.classList.remove("is-flipped");
+      if (showingA) {
+        indexB = nextIndex(indexB);
+        paint(imgB, keywordB, counterB, indexB);
+      } else {
+        indexA = nextIndex(indexA);
+        paint(imgA, keywordA, counterA, indexA);
+      }
+      showingA = !showingA;
     }, FLIP_DURATION_MS * 0.55);
   }
 
   function startAutoplay() {
     stopAutoplay();
-    if (isShowingBack) return;
-    autoplayTimer = setInterval(advanceSlide, SECONDS_PER_PHOTO * 1000);
+    if (paused) return;
+    autoplayTimer = setInterval(flipOnce, SECONDS_PER_SLIDE * 1000);
   }
 
   function stopAutoplay() {
@@ -220,53 +250,31 @@ document.addEventListener("DOMContentLoaded", () => {
     autoplayTimer = null;
   }
 
-  card.addEventListener("pointerup", (e) => {
-    if (isShowingBack && e.target.closest("a")) return;
-
-    if (!isShowingBack) {
-      advanceSlide();
-      startAutoplay();
-    } else {
-      isShowingBack = false;
-      card.classList.remove("is-flipped");
-      startAutoplay();
-    }
-  });
-
-  card.addEventListener("dblclick", (e) => {
-    e.preventDefault();
-    isShowingBack = true;
-    stopAutoplay();
-    card.classList.add("is-flipped");
+  /* Manual click advances immediately and resets the timer */
+  card.addEventListener("pointerup", () => {
+    flipOnce();
+    startAutoplay();
   });
 
   card.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
     e.preventDefault();
-    if (!isShowingBack) {
-      advanceSlide();
-      startAutoplay();
-    }
+    flipOnce();
+    startAutoplay();
   });
 
-  document.addEventListener("pointerdown", (e) => {
-    if (card.contains(e.target)) return;
-    if (isShowingBack) {
-      isShowingBack = false;
-      card.classList.remove("is-flipped");
-      startAutoplay();
-    }
-  });
-
+  /* Pause/resume when the browser tab is hidden/visible */
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       stopAutoplay();
-    } else if (!isShowingBack) {
+    } else {
       startAutoplay();
     }
   });
 
-  showSlide(0);
+  /* Initial paint */
+  paint(imgA, keywordA, counterA, indexA);
+  paint(imgB, keywordB, counterB, indexB);
   startAutoplay();
 });
 
