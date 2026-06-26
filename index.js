@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
        keep this generous enough that the keyword text is readable.
      FLIP_DURATION_MS: must match the CSS transition duration above
        (.side-card.multi-flip transition). */
-  const SECONDS_PER_SLIDE = 5.5;
+  const SECONDS_PER_SLIDE = 5;
   const FLIP_DURATION_MS = 1400;
 
   /* index of the slide currently shown on face A, and on face B */
