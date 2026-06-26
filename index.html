@@ -45,7 +45,7 @@
       <div class="dropdown">
         <a href="essays.html">Essays</a>
         <a href="pairing.html">Pairing</a>
-        <a href="#">Beelden</a>
+        <a href="beelden.html">Beelden</a>
       </div>
     </li>
     <li><a href="about.html">About</a></li>
@@ -66,26 +66,36 @@
     <div class="brand">
 
       <!-- ═══════════════════════════════
-           LEFT — Winkel (video front)
+           LEFT — Terroir (autoplay multi-photo flip)
            ═══════════════════════════════ -->
       <div class="side-card-wrap">
-        <div class="side-card" id="winkelCard" tabindex="0" role="button" aria-label="Winkel">
+        <div class="side-card multi-flip" id="terroirCard" tabindex="0" role="button" aria-label="Terroir — klik om te onderbreken">
 
-                    <!-- FRONT: Winkel image -->
-          <div class="card-face card-front">
-            <img src="images/Winkel-minimal.jpeg" alt="Winkel" class="card-media">
+          <!-- FRONT: cycles through multiple photos automatically -->
+          <div class="card-face card-front" id="terroirFront">
+            <span class="photo-keyword" id="terroirKeyword">Wijn en Ik</span>
+            <img src="images/wijnenik.jpg" alt="Terroir" class="card-media" id="terroirFrontImg">
+            <span class="photo-counter" id="terroirCounter">1/4</span>
           </div>
 
-          <!-- BACK: info + link -->
-          <div class="card-face side-back">
-            <div class="side-back-inner">
-              <p class="side-back-label">Winkel</p>
-              <p class="side-back-text">Diverse wijnen rechtstreeks van de wijnmaker. Afhalen of levering in België.</p>
-              <a href="winkel.html" class="side-back-btn">Bekijk onze wijnen →</a>
+          <!-- BACK: video in 16:9 strip + text + YouTube button -->
+          <div class="card-face side-back side-back--terroir">
+            <div class="terroir-video-strip">
+              <video autoplay muted loop playsinline class="terroir-strip-video">
+                <source src="videos/Terroir.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="terroir-back-body">
+              <p class="side-back-label">Terroir</p>
+              <p class="side-back-text">A sommelier student observes the work of winemakers around Lantignié for a year. The seasons change, and with them the colors, the sounds, the rhythm ... .</p>
+              <a href="https://www.youtube.com/watch?v=wr4tJoFjI2w"
+                 target="_blank" rel="noopener noreferrer"
+                 class="side-back-btn">Bekijk de trailer →</a>
             </div>
           </div>
 
         </div>
+        <p class="side-hint">Klik om te onderbreken · <a href="beelden.html">beelden.html</a></p>
       </div>
 
       <!-- ═══════════════════════════════
@@ -108,29 +118,22 @@
       </div>
 
       <!-- ═══════════════════════════════
-           RIGHT — Terroir (video front, video+text back)
+           RIGHT — Winkel (image front)
            ═══════════════════════════════ -->
       <div class="side-card-wrap">
-        <div class="side-card" id="terriorCard" tabindex="0" role="button" aria-label="Terroir">
+        <div class="side-card" id="winkelCard" tabindex="0" role="button" aria-label="Winkel">
 
-         <!-- FRONT: Terroir image -->
+          <!-- FRONT: Winkel image -->
           <div class="card-face card-front">
-            <img src="images/Terroir-minimal.png" alt="Terroir" class="card-media">
+            <img src="images/Winkel-minimal.jpeg" alt="Winkel" class="card-media">
           </div>
 
-          <!-- BACK: video in 16:9 strip + text + YouTube button -->
-          <div class="card-face side-back side-back--terroir">
-            <div class="terroir-video-strip">
-              <video autoplay muted loop playsinline class="terroir-strip-video">
-                <source src="videos/Terroir.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="terroir-back-body">
-              <p class="side-back-label">Terroir</p>
-              <p class="side-back-text">A sommelier student observes the work of winemakers around Lantignié for a year.  The seasons change, and with them the colors, the sounds, the rhythm ... .</p>
-              <a href="https://www.youtube.com/watch?v=wr4tJoFjI2w"
-                 target="_blank" rel="noopener noreferrer"
-                 class="side-back-btn">Bekijk de trailer →</a>
+          <!-- BACK: info + link -->
+          <div class="card-face side-back">
+            <div class="side-back-inner">
+              <p class="side-back-label">Winkel</p>
+              <p class="side-back-text">Diverse wijnen rechtstreeks van de wijnmaker. Afhalen of levering in België.</p>
+              <a href="winkel.html" class="side-back-btn">Bekijk onze wijnen →</a>
             </div>
           </div>
 
@@ -144,7 +147,9 @@
            ═══════════════════════════════ -->
       <div class="marquee-v" aria-hidden="true">
         <div class="marquee-v-track">
-         <span>Te vinden bij onze partners: restaurants, bars en winkels:<span>GENT:</span><span>Publiek</span><span>Dolfijn</span><span>Sphinx Cafe</span><span>Footnote</span><span>Terroir</span><span>Den Hoek af</span><span>ONA</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span></span> <span>Te vinden bij onze partners: restaurants, bars en winkels:<span>GENT:</span><span>Publiek</span><span>Dolfijn</span><span>Sphinx Cafe</span><span>Footnote</span><span>Terroir</span><span>Den Hoek af</span><span>ONA</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span></span>
+          <span>Te vinden bij onze partners: restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
+          <span>Te vinden bij onze partners: restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
+        </div>
       </div>
 
     </div>
@@ -154,7 +159,8 @@
 <!-- MARQUEE — horizontal on desktop, just above the footer -->
 <div class="marquee-h" aria-hidden="true">
   <div class="marquee-h-track">
-    <span>Te vinden bij onze partners: restaurants, bars en winkels:<span>GENT:</span><span>Publiek</span><span>Dolfijn</span><span>Sphinx Cafe</span><span>Footnote</span><span>Terroir</span><span>Den Hoek af</span><span>ONA</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span></span> <span>Te vinden bij onze partners: restaurants, bars en winkels:<span>GENT:</span><span>Publiek</span><span>Dolfijn</span><span>Sphinx Cafe</span><span>Footnote</span><span>Terroir</span><span>Den Hoek af</span><span>ONA</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span></span>
+    <span>Te vinden bij onze partners: restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
+    <span>Te vinden bij onze partners: restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
   </div>
 </div>
 

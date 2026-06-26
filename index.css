@@ -55,9 +55,6 @@
   --dropdown-bg: rgba(242,240,208,0.98);
   --dropdown-border: rgba(89,44,56,0.06);
 
-  /* Card dimensions — all share the same 3:4 ratio (1706:2331 = 0.7322)
-     Side cards:   --card-w wide, height = --card-w / 0.7322
-     Centre card:  --logo-w wide, slightly larger, same ratio            */
   --card-w: clamp(180px, 20vw, 260px);
   --card-h: calc(var(--card-w) / 0.7322);
   --logo-w: clamp(200px, 24vw, 300px);
@@ -231,7 +228,6 @@ nav li:focus-within > .dropdown { display: block; }
   overflow: hidden;
 }
 
-/* media (img or video) fills any card face — cover by default */
 .card-media {
   width: 100%;
   height: 100%;
@@ -239,13 +235,11 @@ nav li:focus-within > .dropdown { display: block; }
   display: block;
 }
 
-/* video on side card fronts — contain so full video visible, not cropped */
 .side-front .card-media {
   object-fit: contain;
   background: #000;
 }
 
-/* centre card back image — contain so it fits within card bounds */
 .card-back .card-media {
   object-fit: contain;
   background: var(--bg);
@@ -279,12 +273,18 @@ nav li:focus-within > .dropdown { display: block; }
   -webkit-transform: rotateY(180deg);
 }
 
+/* Multi-flip card (Terroir) uses a slightly slower, more deliberate flip */
+.side-card.multi-flip {
+  transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .side-front {
   z-index: 2;
   transform: rotateY(0deg) translateZ(1px);
   -webkit-transform: rotateY(0deg) translateZ(1px);
   background: #000;
   box-shadow: 0 8px 30px rgba(89,44,56,0.10);
+  position: relative;
 }
 
 .side-back {
@@ -300,7 +300,41 @@ nav li:focus-within > .dropdown { display: block; }
   justify-content: center;
 }
 
-/* Standard back inner (Winkel) */
+/* Photo counter badge — bottom right of the multi-flip card front */
+.photo-counter {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.45);
+  color: var(--bg);
+  font-size: 11px;
+  font-family: 'EB Garamond', serif;
+  padding: 3px 9px;
+  border-radius: 12px;
+  z-index: 3;
+  letter-spacing: 0.02em;
+}
+
+/* Keyword badge — bottom left of the multi-flip card front, opposite the counter */
+.photo-keyword {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.45);
+  color: var(--bg);
+  font-size: 11px;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  padding: 3px 10px;
+  border-radius: 12px;
+  z-index: 3;
+  letter-spacing: 0.02em;
+  max-width: calc(100% - 70px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .side-back-inner {
   display: flex;
   flex-direction: column;
@@ -343,7 +377,6 @@ nav li:focus-within > .dropdown { display: block; }
 
 .side-back-btn:hover { background: rgba(89,44,56,0.07); }
 
-/* Terroir back: video strip on top, text below */
 .side-back--terroir {
   justify-content: flex-start;
   align-items: stretch;
@@ -353,7 +386,6 @@ nav li:focus-within > .dropdown { display: block; }
 .terroir-video-strip {
   flex-shrink: 0;
   width: 100%;
-  /* 16:9 strip height relative to card width */
   height: calc(var(--card-w) * 9 / 16);
   overflow: hidden;
   background: #000;
@@ -377,21 +409,28 @@ nav li:focus-within > .dropdown { display: block; }
   gap: 8px;
 }
 
-.terroir-back-body .side-back-label {
-  text-align: left;
+.terroir-back-body .side-back-label { text-align: left; }
+.terroir-back-body .side-back-text { text-align: left; }
+.terroir-back-body .side-back-btn { margin-top: 4px; }
+
+.side-hint {
+  font-size: 12px;
+  color: rgba(89, 44, 56, 0.5);
+  margin-top: 10px;
+  text-align: center;
+  letter-spacing: 0.02em;
 }
 
-.terroir-back-body .side-back-text {
-  text-align: left;
+.side-hint a {
+  color: rgba(89, 44, 56, 0.65);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-.terroir-back-body .side-back-btn {
-  margin-top: 4px;
-}
+.side-hint a:hover { color: var(--text-color); }
 
 /* =========================
    CENTRE LOGO CARD
-   Slightly larger, same 3:4 ratio
    ========================= */
 .logo-card-wrap {
   position: relative;
@@ -471,7 +510,7 @@ nav li:focus-within > .dropdown { display: block; }
   display: flex;
   white-space: nowrap;
   width: max-content;
-  animation: scrollH 28s linear infinite;
+  animation: scrollH 32s linear infinite;
 }
 
 .marquee-h-track span {
@@ -633,10 +672,9 @@ footer {
     align-items: center;
     gap: 32px;
     position: relative;
-    padding-right: 30px; /* room for the vertical marquee strip */
+    padding-right: 30px;
   }
 
-  /* On mobile all cards same full width, same ratio */
   :root {
     --card-w: min(80vw, 320px);
     --logo-w: min(80vw, 320px);

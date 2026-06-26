@@ -88,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =========================
    CENTRE LOGO CARD FLIP
-   (existing behaviour — unchanged)
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const logoCard = document.getElementById("logoCard");
@@ -133,46 +132,142 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   SIDE CARDS FLIP
-   (winkelCard + terriorCard)
+   WINKEL CARD FLIP (simple single flip)
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  ["winkelCard", "terriorCard"].forEach((id) => {
-    const card = document.getElementById(id);
-    if (!card) return;
+  const card = document.getElementById("winkelCard");
+  if (!card) return;
 
-    let flipped = false;
+  let flipped = false;
 
-    function setFlipped(state) {
-      flipped = state;
-      card.classList.toggle("is-flipped", flipped);
-      card.setAttribute("aria-pressed", flipped ? "true" : "false");
-    }
+  function setFlipped(state) {
+    flipped = state;
+    card.classList.toggle("is-flipped", flipped);
+    card.setAttribute("aria-pressed", flipped ? "true" : "false");
+  }
 
-    card.addEventListener("pointerup", (e) => {
-      // Allow clicks on links inside the back face
-      if (flipped && e.target.closest("a")) return;
-      setFlipped(!flipped);
-    });
-
-    card.addEventListener("keydown", (e) => {
-      if (e.key !== "Enter" && e.key !== " ") return;
-      e.preventDefault();
-      setFlipped(!flipped);
-    });
+  card.addEventListener("pointerup", (e) => {
+    if (flipped && e.target.closest("a")) return;
+    setFlipped(!flipped);
   });
 
-  // Click outside any side card → flip it back
+  card.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    setFlipped(!flipped);
+  });
+
   document.addEventListener("pointerdown", (e) => {
-    ["winkelCard", "terriorCard"].forEach((id) => {
-      const card = document.getElementById(id);
-      if (!card) return;
-      if (!card.contains(e.target) && card.classList.contains("is-flipped")) {
-        card.classList.remove("is-flipped");
-        card.setAttribute("aria-pressed", "false");
-      }
-    });
+    if (!flipped) return;
+    if (card.contains(e.target)) return;
+    setFlipped(false);
   });
+});
+
+
+/* =========================
+   TERROIR CARD — AUTOPLAY MULTI-PHOTO FLIP
+   Front cycles through several photos automatically,
+   each paired with a keyword. Clicking advances early.
+   Double-click flips to the back (video + info).
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const card = document.getElementById("terroirCard");
+  const frontImg = document.getElementById("terroirFrontImg");
+  const counter = document.getElementById("terroirCounter");
+  const keywordEl = document.getElementById("terroirKeyword");
+  if (!card || !frontImg || !counter || !keywordEl) return;
+
+  /* ─── PHOTOS + KEYWORDS — edit this list to add your own ─── */
+  const slides = [
+    { img: "images/wijnenik.jpg", keyword: "Wijn en Ik" },
+    { img: "images/arthistory.jpg",       keyword: "Art History" },
+    { img: "images/wijnenmensen.jpg",       keyword: "Wine" },
+    { img: "images/naturrenik.jpg",       keyword: "Nature" }
+  ];
+
+  /* Fixed timing — 5s per photo, 1.3s flip (matches the CSS transition) */
+  const SECONDS_PER_PHOTO = 5;
+  const FLIP_DURATION_MS = 1300;
+
+  let index = 0;
+  let isShowingBack = false;
+  let autoplayTimer = null;
+
+  function showSlide(i) {
+    index = ((i % slides.length) + slides.length) % slides.length;
+    frontImg.src = slides[index].img;
+    keywordEl.textContent = slides[index].keyword;
+    counter.textContent = (index + 1) + "/" + slides.length;
+  }
+
+  function advanceSlide() {
+    card.classList.add("is-flipped");
+    setTimeout(() => {
+      showSlide(index + 1);
+      card.classList.remove("is-flipped");
+    }, FLIP_DURATION_MS * 0.55);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    if (isShowingBack) return;
+    autoplayTimer = setInterval(advanceSlide, SECONDS_PER_PHOTO * 1000);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  }
+
+  card.addEventListener("pointerup", (e) => {
+    if (isShowingBack && e.target.closest("a")) return;
+
+    if (!isShowingBack) {
+      advanceSlide();
+      startAutoplay();
+    } else {
+      isShowingBack = false;
+      card.classList.remove("is-flipped");
+      startAutoplay();
+    }
+  });
+
+  card.addEventListener("dblclick", (e) => {
+    e.preventDefault();
+    isShowingBack = true;
+    stopAutoplay();
+    card.classList.add("is-flipped");
+  });
+
+  card.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    if (!isShowingBack) {
+      advanceSlide();
+      startAutoplay();
+    }
+  });
+
+  document.addEventListener("pointerdown", (e) => {
+    if (card.contains(e.target)) return;
+    if (isShowingBack) {
+      isShowingBack = false;
+      card.classList.remove("is-flipped");
+      startAutoplay();
+    }
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAutoplay();
+    } else if (!isShowingBack) {
+      startAutoplay();
+    }
+  });
+
+  showSlide(0);
+  startAutoplay();
 });
 
 
