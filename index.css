@@ -207,7 +207,7 @@ nav li:focus-within > .dropdown { display: block; }
 
 .brand {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: clamp(14px, 2.5vw, 36px);
   justify-content: center;
   user-select: none;
