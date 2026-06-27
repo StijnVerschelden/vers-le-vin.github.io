@@ -199,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { img: "images/beelden/filmmaker2.jpg", keyword: "Filmmaker"},
     {img: "images/beelden/filmposter.png", keyword: "Short Film"},
     { img: "images/beelden/photography2.jpg", keyword: "Travelogue"},
+  ];
     
 
   const SECONDS_PER_SLIDE = 3.5;
