@@ -55,7 +55,7 @@
   --dropdown-bg: rgba(242,240,208,0.98);
   --dropdown-border: rgba(89,44,56,0.06);
 
-  --card-w: clamp(180px, 20vw, 260px);
+  --card-w: clamp(200px, 24vw, 300px);
   --card-h: calc(var(--card-w) / 0.7322);
   --logo-w: clamp(200px, 24vw, 300px);
   --logo-h: calc(var(--logo-w) / 0.7322);

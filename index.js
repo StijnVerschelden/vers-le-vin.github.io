@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {img: "images/beelden/shortfilm2.png", keyword: "Short Film"},
   ];
 
-  const SECONDS_PER_SLIDE = 5;
+  const SECONDS_PER_SLIDE = 3.5;
   const FLIP_DURATION_MS = 1400;
 
   /* "cursor" = index of the NEXT slide to be assigned to whichever
