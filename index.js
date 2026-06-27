@@ -191,10 +191,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ─── IMAGES + KEYWORDS — add as many as you like ─── */
   const slides = [
-    { img: "images/beelden/wijnenik.jpg",     keyword: "Wijn en Ik" },
+    { img: "images/beelden/wijnenik.jpg",     keyword: "Wine" },
     { img: "images/beelden/arthistory.jpg",   keyword: "Art History" },
-    { img: "images/beelden/wijnenmensen.jpg", keyword: "Wine" },
-    { img: "images/beelden/naturrenik.jpg",   keyword: "Nature" }
+    { img: "images/beelden/wijnenmensen.jpg", keyword: "Wine Travel" },
+    { img: "images/beelden/natuurenik.jpg",   keyword: "Nature" }
+    { img: "images/beelden/photography1.jpg", keyword: "Analog Photography"}
+    { img: "images/beelden/filmmaker1.jpg", keyword: "Filmmaker"}
+    { img: "images/beelden/photography2.jpg", keyword: "Photography"}
+    {img: "images/beelden/fimposter.jpg", keyword: "Short Film"}
   ];
 
   const SECONDS_PER_SLIDE = 5;
