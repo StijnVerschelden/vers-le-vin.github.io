@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { img: "images/beelden/photography1.jpg", keyword: "Analog Photography"},
     { img: "images/beelden/filmmaker1.jpg", keyword: "Filmmaker"},
     { img: "images/beelden/photography2.jpg", keyword: "Photography"},
-    {img: "images/beelden/fimposter.jpg", keyword: "Short Film"},
+    {img: "images/beelden/filmposter.jpg", keyword: "Short Film"},
     {img: "images/beelden/shortfilm2.png", keyword: "Short Film"},
   ];
 
