@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { img: "images/beelden/wijnenmensen.jpg", keyword: "Wine Travel" },
     { img: "images/beelden/natuurenik.jpg",   keyword: "Nature" },
     { img: "images/beelden/photography1.jpg", keyword: "Analog Photography"},
-    { img: "images/beelden/filmmaker1.jpg", keyword: "Filmmaker"},
+    { img: "images/beelden/filmmaker2.jpg", keyword: "Filmmaker"},
     { img: "images/beelden/photography2.jpg", keyword: "Photography"},
     {img: "images/beelden/filmposter.jpg", keyword: "Short Film"},
     {img: "images/beelden/shortfilm2.png", keyword: "Short Film"},
