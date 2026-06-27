@@ -199,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { img: "images/beelden/filmmaker2.jpg", keyword: "Filmmaker"},
     { img: "images/beelden/photography2.jpg", keyword: "Photography"},
     {img: "images/beelden/filmposter.jpg", keyword: "Short Film"},
-    {img: "images/beelden/shortfilm2.png", keyword: "Short Film"},
   ];
 
   const SECONDS_PER_SLIDE = 3.5;
