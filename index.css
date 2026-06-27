@@ -55,10 +55,11 @@
   --dropdown-bg: rgba(242,240,208,0.98);
   --dropdown-border: rgba(89,44,56,0.06);
 
-  --card-w: clamp(180px, 20vw, 260px);
+  /* SINGLE shared size driving ALL THREE cards (Winkel, Logo, Terroir).
+     Same width variable used everywhere below — guarantees identical
+     vertical 3:4 dimensions across the whole row. */
+  --card-w: clamp(190px, 21vw, 270px);
   --card-h: calc(var(--card-w) / 0.7322);
-  --logo-w: clamp(200px, 24vw, 300px);
-  --logo-h: calc(var(--logo-w) / 0.7322);
 }
 
 html, body { height: 100%; margin: 0; }
@@ -235,19 +236,15 @@ nav li:focus-within > .dropdown { display: block; }
   display: block;
 }
 
-.side-front .card-media {
-  object-fit: contain;
-  background: #000;
-}
-
-.card-back .card-media {
+/* Logo card back (single image) — fits within frame, doesn't crop */
+.logo-card .card-back .card-media {
   object-fit: contain;
   background: var(--bg);
 }
 
 /* =========================
-   SIDE CARDS (left + right)
-   Same 3:4 ratio as logo
+   SIDE CARDS — Winkel + Terroir
+   Both use --card-w / --card-h, identical size
    ========================= */
 .side-card-wrap {
   position: relative;
@@ -279,16 +276,7 @@ nav li:focus-within > .dropdown { display: block; }
   transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Terroir card has TWO image faces (A and B) that alternate —
-   both behave like a normal front face, no video/info side anymore */
-.side-card.multi-flip .card-front,
-.side-card.multi-flip .side-back {
-  background: #000;
-  box-shadow: 0 8px 30px rgba(89,44,56,0.10);
-  display: block;
-}
-
-.side-front {
+.card-front {
   z-index: 2;
   transform: rotateY(0deg) translateZ(1px);
   -webkit-transform: rotateY(0deg) translateZ(1px);
@@ -309,6 +297,25 @@ nav li:focus-within > .dropdown { display: block; }
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+/* Terroir card: BOTH faces (card-front AND side-back) hold images and
+   must crop consistently to fill the fixed card frame — this is the
+   rule that was missing before (selector mismatch), causing each
+   photo to display at its own native size instead of the card's. */
+.side-card.multi-flip .card-front .card-media,
+.side-card.multi-flip .side-back .card-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.side-card.multi-flip .card-front,
+.side-card.multi-flip .side-back {
+  background: #000;
+  display: block;
 }
 
 /* Photo counter badge — bottom right of a multi-flip face */
@@ -406,6 +413,8 @@ nav li:focus-within > .dropdown { display: block; }
 
 /* =========================
    CENTRE LOGO CARD
+   Now uses the SAME --card-w/--card-h as the side cards,
+   so all three cards are identical in size.
    ========================= */
 .logo-card-wrap {
   position: relative;
@@ -415,8 +424,8 @@ nav li:focus-within > .dropdown { display: block; }
 }
 
 .logo-card {
-  width: var(--logo-w);
-  height: var(--logo-h);
+  width: var(--card-w);
+  height: var(--card-h);
   position: relative;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -440,19 +449,22 @@ nav li:focus-within > .dropdown { display: block; }
   }
 }
 
-.card-front {
-  z-index: 2;
-  transform: rotateY(0deg) translateZ(1px);
-  -webkit-transform: rotateY(0deg) translateZ(1px);
-  box-shadow: 0 8px 30px rgba(89,44,56,0.10);
+.logo-card .card-front {
+  background: var(--bg);
 }
 
-.card-back {
+.logo-card .card-back {
   z-index: 1;
   transform: rotateY(180deg) translateZ(1px);
   -webkit-transform: rotateY(180deg) translateZ(1px);
   background: var(--bg);
   box-shadow: 0 8px 30px rgba(89,44,56,0.10);
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .hover-hint {
@@ -529,8 +541,7 @@ footer {
    ========================= */
 @media (max-width: 900px) {
   :root {
-    --card-w: clamp(140px, 26vw, 200px);
-    --logo-w: clamp(160px, 30vw, 230px);
+    --card-w: clamp(150px, 27vw, 210px);
   }
 }
 
@@ -649,7 +660,6 @@ footer {
 
   :root {
     --card-w: min(80vw, 320px);
-    --logo-w: min(80vw, 320px);
   }
 
   .hover-hint {
