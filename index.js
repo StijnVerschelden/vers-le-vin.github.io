@@ -305,3 +305,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", () => setOpen(false));
 })();
+
+/* =========================
+   WINKEL CARD — autoplay wine photo flip
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const card     = document.getElementById("winkelCard");
+  const imgA     = document.getElementById("winkelImgA");
+  const imgB     = document.getElementById("winkelImgB");
+  const kwA      = document.getElementById("winkelKeywordA");
+  const kwB      = document.getElementById("winkelKeywordB");
+  const ctA      = document.getElementById("winkelCounterA");
+  const ctB      = document.getElementById("winkelCounterB");
+  if (!card || !imgA || !imgB) return;
+
+  /* ── add your real filenames here ── */
+  const slides = [
+    { img: "images/FBWIT1.jpg", keyword: "Wit" },
+    { img: "images/FBROOD1.jpg", keyword: "Rood" },
+    { img: "images/FBWIT2.jpg", keyword: "Wit" },
+    { img: "images/FBROOD2.jpg", keyword: "Rood" },
+    { img: "images/FBWIT3.jpg", keyword: "Wit" },
+    { img: "images/FBROOD3.jpg", keyword: "Rood" },
+    { img: "images/FBWIT4.jpg", keyword: "Wit" },
+    { img: "images/FBROOD4.jpg", keyword: "Rood" }
+  ];
+
+  const SECONDS_PER_SLIDE = 5;
+  const FLIP_DURATION_MS  = 1400;
+  const total = slides.length;
+  let cursor   = 2 % total;
+  let frontIsA = true;
+  let timer    = null;
+
+  function paint(imgEl, kwEl, ctEl, i) {
+    const s = slides[i % total];
+    imgEl.src           = s.img;
+    kwEl.textContent    = s.keyword;
+    ctEl.textContent    = (i % total + 1) + "/" + total;
+  }
+
+  function flipOnce() {
+    card.classList.toggle("is-flipped", frontIsA);
+    const hiddenIsA = frontIsA;
+    setTimeout(() => {
+      if (hiddenIsA) { paint(imgA, kwA, ctA, cursor); }
+      else           { paint(imgB, kwB, ctB, cursor); }
+      cursor   = (cursor + 1) % total;
+      frontIsA = !frontIsA;
+    }, FLIP_DURATION_MS * 0.55);
+  }
+
+  function start() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(flipOnce, SECONDS_PER_SLIDE * 1000);
+  }
+
+  card.addEventListener("pointerup", () => { flipOnce(); start(); });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) { clearInterval(timer); } else { start(); }
+  });
+
+  paint(imgA, kwA, ctA, 0);
+  paint(imgB, kwB, ctB, 1);
+  start();
+});
