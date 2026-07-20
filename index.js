@@ -323,50 +323,86 @@ document.addEventListener("DOMContentLoaded", () => {
   const slides = [
     { img: "images/FBWIT1.jpg", keyword: "Wit" },
     { img: "images/FBROOD1.jpg", keyword: "Rood" },
-    { img: "images/FBWIT2.jpg", keyword: "Wit" },
-    { img: "images/FBROOD2.jpg", keyword: "Rood" },
-    { img: "images/FBWIT3.jpg", keyword: "Wit" },
-    { img: "images/FBROOD3.jpg", keyword: "Rood" },
-    { img: "images/FBWIT4.jpg", keyword: "Wit" },
-    { img: "images/FBROOD4.jpg", keyword: "Rood" }
+    { img: "images/cosimaface.jpg", keyword: "Wit" },
+    { img: "images/cosimalandscape.jpg", keyword: "Rood" },
+    { img: "images/axiom25.jpg", keyword: "Wit" },
+    { img: "images/aliopacto.jpg", keyword: "Rood" },
+    { img: "images/alba.jpg", keyword: "Wit" },
+    { img: "images/mi.jpg", keyword: "Rood" }
   ];
 
-  const SECONDS_PER_SLIDE = 5;
-  const FLIP_DURATION_MS  = 1400;
-  const total = slides.length;
-  let cursor   = 2 % total;
-  let frontIsA = true;
-  let timer    = null;
+  const SECONDS_PER_SLIDE = 3.5;
+  const FLIP_DURATION_MS = 1400;
 
-  function paint(imgEl, kwEl, ctEl, i) {
-    const s = slides[i % total];
-    imgEl.src           = s.img;
-    kwEl.textContent    = s.keyword;
-    ctEl.textContent    = (i % total + 1) + "/" + total;
+  /* "cursor" = index of the NEXT slide to be assigned to whichever
+     face is currently hidden. Starts at 2 because faces A and B
+     already hold slides 0 and 1 from the initial paint below. */
+  let cursor = 2 % slides.length;
+
+  /* true = face A is currently the one facing the viewer (card NOT flipped) */
+  let frontIsA = true;
+
+  let autoplayTimer = null;
+
+  function paint(imgEl, keywordEl, counterEl, slideIndex) {
+    const slide = slides[slideIndex % slides.length];
+    imgEl.src = slide.img;
+    keywordEl.textContent = slide.keyword;
+    counterEl.textContent = (slideIndex % slides.length + 1) + "/" + slides.length;
   }
 
   function flipOnce() {
+    /* Flip the card: if A is currently front, flipping shows B (and vice versa) */
     card.classList.toggle("is-flipped", frontIsA);
-    const hiddenIsA = frontIsA;
+
+    /* The face that is now becoming HIDDEN (the one that was front a
+       moment ago) gets repainted partway through the flip, once it's
+       turned away from the viewer. */
+    const hiddenIsA = frontIsA; // the face going out of view
+
     setTimeout(() => {
-      if (hiddenIsA) { paint(imgA, kwA, ctA, cursor); }
-      else           { paint(imgB, kwB, ctB, cursor); }
-      cursor   = (cursor + 1) % total;
+      if (hiddenIsA) {
+        paint(imgA, keywordA, counterA, cursor);
+      } else {
+        paint(imgB, keywordB, counterB, cursor);
+      }
+      cursor = (cursor + 1) % slides.length;
       frontIsA = !frontIsA;
     }, FLIP_DURATION_MS * 0.55);
   }
 
-  function start() {
-    if (timer) clearInterval(timer);
-    timer = setInterval(flipOnce, SECONDS_PER_SLIDE * 1000);
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(flipOnce, SECONDS_PER_SLIDE * 1000);
   }
 
-  card.addEventListener("pointerup", () => { flipOnce(); start(); });
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) { clearInterval(timer); } else { start(); }
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  }
+
+  card.addEventListener("pointerup", () => {
+    flipOnce();
+    startAutoplay();
   });
 
-  paint(imgA, kwA, ctA, 0);
-  paint(imgB, kwB, ctB, 1);
-  start();
+  card.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    flipOnce();
+    startAutoplay();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAutoplay();
+    } else {
+      startAutoplay();
+    }
+  });
+
+  /* Initial paint: face A = slide 0, face B = slide 1 */
+  paint(imgA, keywordA, counterA, 0);
+  paint(imgB, keywordB, counterB, 1);
+  startAutoplay();
 });
