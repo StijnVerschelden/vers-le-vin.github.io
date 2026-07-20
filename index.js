@@ -330,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { img: "images/axiom25.jpg", keyword: "Wit" },
     { img: "images/aliopacto.jpg", keyword: "Rood" },
     { img: "images/alba.jpg", keyword: "Wit" },
-    { img: "images/mi.jpg", keyword: "Rood" }
+    { img: "images/pi.jpg", keyword: "Rood" }
   ];
 
   const SECONDS_PER_SLIDE = 3.5;
