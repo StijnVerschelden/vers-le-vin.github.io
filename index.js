@@ -132,150 +132,153 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   WINKEL CARD FLIP (simple single flip)
+   SHARED FLIP CYCLE FACTORY
+   Creates an autoplay two-face image cycle for any card.
+   Used for both the Terroir card and the Winkel card —
+   same proven logic, no duplication.
+
+   Options:
+     cardId        — id of the .side-card element
+     imgAId        — id of the <img> on face A
+     imgBId        — id of the <img> on face B
+     keywordAId    — id of the keyword <span> on face A
+     keywordBId    — id of the keyword <span> on face B
+     counterAId    — id of the counter <span> on face A
+     counterBId    — id of the counter <span> on face B
+     slides        — array of { img, keyword } objects
+     secondsPerSlide  — how long each photo stays visible
+     flipDurationMs   — must match the CSS transition duration
    ========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const card = document.getElementById("winkelCard");
-  if (!card) return;
+function createFlipCycle({
+  cardId,
+  imgAId, imgBId,
+  keywordAId, keywordBId,
+  counterAId, counterBId,
+  slides,
+  secondsPerSlide = 5,
+  flipDurationMs = 1400,
+}) {
+  const card     = document.getElementById(cardId);
+  const imgA     = document.getElementById(imgAId);
+  const imgB     = document.getElementById(imgBId);
+  const kwA      = document.getElementById(keywordAId);
+  const kwB      = document.getElementById(keywordBId);
+  const ctA      = document.getElementById(counterAId);
+  const ctB      = document.getElementById(counterBId);
+  if (!card || !imgA || !imgB) return;
 
-  let flipped = false;
+  const total = slides.length;
+  let cursor   = 2 % total;   // next index to assign to the hidden face
+  let frontIsA = true;        // true = face A is currently facing viewer
+  let timer    = null;
 
-  function setFlipped(state) {
-    flipped = state;
-    card.classList.toggle("is-flipped", flipped);
-    card.setAttribute("aria-pressed", flipped ? "true" : "false");
+  function paint(imgEl, kwEl, ctEl, i) {
+    const s = slides[i % total];
+    imgEl.src        = s.img;
+    if (kwEl) kwEl.textContent = s.keyword;
+    if (ctEl) ctEl.textContent = (i % total + 1) + "/" + total;
   }
 
-  card.addEventListener("pointerup", (e) => {
-    if (flipped && e.target.closest("a")) return;
-    setFlipped(!flipped);
-  });
+  function flipOnce() {
+    card.classList.toggle("is-flipped", frontIsA);
+    const hiddenIsA = frontIsA;
 
+    setTimeout(() => {
+      if (hiddenIsA) {
+        paint(imgA, kwA, ctA, cursor);
+      } else {
+        paint(imgB, kwB, ctB, cursor);
+      }
+      cursor   = (cursor + 1) % total;
+      frontIsA = !frontIsA;
+    }, flipDurationMs * 0.55);
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(flipOnce, secondsPerSlide * 1000);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  card.addEventListener("pointerup", () => { flipOnce(); start(); });
   card.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
     e.preventDefault();
-    setFlipped(!flipped);
+    flipOnce();
+    start();
   });
 
-  document.addEventListener("pointerdown", (e) => {
-    if (!flipped) return;
-    if (card.contains(e.target)) return;
-    setFlipped(false);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop(); else start();
+  });
+
+  /* Initial paint */
+  paint(imgA, kwA, ctA, 0);
+  paint(imgB, kwB, ctB, 1);
+  start();
+}
+
+
+/* =========================
+   TERROIR CARD — images from beelden/ folder
+   NOTE: every entry must end with a comma except the last one.
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  createFlipCycle({
+    cardId:      "terroirCard",
+    imgAId:      "terroirImgA",
+    imgBId:      "terroirImgB",
+    keywordAId:  "terroirKeywordA",
+    keywordBId:  "terroirKeywordB",
+    counterAId:  "terroirCounterA",
+    counterBId:  "terroirCounterB",
+    secondsPerSlide: 5,
+    flipDurationMs:  1400,
+    slides: [
+      { img: "images/beelden/wijnenik.jpg",     keyword: "Wine" },
+      { img: "images/beelden/arthistory.jpg",   keyword: "Art History" },
+      { img: "images/beelden/wijnenmensen.jpg", keyword: "Wine Travel" },
+      { img: "images/beelden/natuurenik.jpg",   keyword: "Nature" },
+      { img: "images/beelden/photography1.jpg", keyword: "Analog Photography" },
+      { img: "images/beelden/filmmaker1.jpg",   keyword: "Filmmaker" },
+      { img: "images/beelden/photography2.jpg", keyword: "Photography" },
+      { img: "images/beelden/fimposter.jpg",    keyword: "Short Film" },
+      { img: "images/beelden/shortfilm2.png",   keyword: "Short Film" }
+    ],
   });
 });
 
 
 /* =========================
-   TERROIR CARD — CONTINUOUS TWO-FACE IMAGE CYCLE
-   (rewritten with simpler, correct logic)
-
-   Instead of juggling two separate "next index" trackers for
-   face A and face B (which was error-prone), we now keep ONE
-   single counter for "which slide should be visible next",
-   and a single boolean for which physical face is currently
-   front-facing. Whichever face is about to be HIDDEN gets its
-   image updated mid-flip to the slide that will be needed
-   the NEXT time it comes back around.
+   WINKEL CARD — wine bottle images wijn1–wijn8
+   NOTE: every entry must end with a comma except the last one.
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const card = document.getElementById("terroirCard");
-  if (!card) return;
-
-  const imgA = document.getElementById("terroirImgA");
-  const imgB = document.getElementById("terroirImgB");
-  const keywordA = document.getElementById("terroirKeywordA");
-  const keywordB = document.getElementById("terroirKeywordB");
-  const counterA = document.getElementById("terroirCounterA");
-  const counterB = document.getElementById("terroirCounterB");
-  if (!imgA || !imgB) return;
-
-  /* ─── IMAGES + KEYWORDS — add as many as you like ─── */
-  const slides = [
-    { img: "images/beelden/wijnenik.jpg",     keyword: "Wine" },
-    { img: "images/beelden/arthistory.jpg",   keyword: "Art History" },
-    { img: "images/beelden/wijnenmensen.jpg", keyword: "Wine Travel" },
-    { img: "images/beelden/natuurenik.jpg",   keyword: "Nature" },
-    { img: "images/beelden/photography1.jpg", keyword: "Analog Photography"},
-    { img: "images/beelden/filmmaker2.jpg", keyword: "Filmmaker"},
-    {img: "images/beelden/filmposter.JPG", keyword: "Short Film"},
-    { img: "images/beelden/photography2.jpg", keyword: "Travelogue"},
-  ];
-    
-
-  const SECONDS_PER_SLIDE = 3.5;
-  const FLIP_DURATION_MS = 1400;
-
-  /* "cursor" = index of the NEXT slide to be assigned to whichever
-     face is currently hidden. Starts at 2 because faces A and B
-     already hold slides 0 and 1 from the initial paint below. */
-  let cursor = 2 % slides.length;
-
-  /* true = face A is currently the one facing the viewer (card NOT flipped) */
-  let frontIsA = true;
-
-  let autoplayTimer = null;
-
-  function paint(imgEl, keywordEl, counterEl, slideIndex) {
-    const slide = slides[slideIndex % slides.length];
-    imgEl.src = slide.img;
-    keywordEl.textContent = slide.keyword;
-    counterEl.textContent = (slideIndex % slides.length + 1) + "/" + slides.length;
-  }
-
-  function flipOnce() {
-    /* Flip the card: if A is currently front, flipping shows B (and vice versa) */
-    card.classList.toggle("is-flipped", frontIsA);
-
-    /* The face that is now becoming HIDDEN (the one that was front a
-       moment ago) gets repainted partway through the flip, once it's
-       turned away from the viewer. */
-    const hiddenIsA = frontIsA; // the face going out of view
-
-    setTimeout(() => {
-      if (hiddenIsA) {
-        paint(imgA, keywordA, counterA, cursor);
-      } else {
-        paint(imgB, keywordB, counterB, cursor);
-      }
-      cursor = (cursor + 1) % slides.length;
-      frontIsA = !frontIsA;
-    }, FLIP_DURATION_MS * 0.55);
-  }
-
-  function startAutoplay() {
-    stopAutoplay();
-    autoplayTimer = setInterval(flipOnce, SECONDS_PER_SLIDE * 1000);
-  }
-
-  function stopAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-    autoplayTimer = null;
-  }
-
-  card.addEventListener("pointerup", () => {
-    flipOnce();
-    startAutoplay();
+  createFlipCycle({
+    cardId:      "winkelCard",
+    imgAId:      "winkelImgA",
+    imgBId:      "winkelImgB",
+    keywordAId:  "winkelKeywordA",
+    keywordBId:  "winkelKeywordB",
+    counterAId:  "winkelCounterA",
+    counterBId:  "winkelCounterB",
+    secondsPerSlide: 5,
+    flipDurationMs:  1400,
+    slides: [
+      { img: "images/FBWIT1.jpg", keyword: "Wit" },
+      { img: "images/FBROOD1.jpg", keyword: "Rood" },
+      { img: "images/lefilrouge.jpg", keyword: "Rood" },
+      { img: "images/lacroixblanche.jpg", keyword: "Rood" },
+      { img: "images/pi.jpg", keyword: "Rood" },
+      { img: "images/assam.jpg", keyword: "Wit" },
+      { img: "images/axiome.jpg", keyword: "Wit" },
+      { img: "images/alba.jpg", keyword: "Wit" }
+    ],
   });
-
-  card.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
-    flipOnce();
-    startAutoplay();
-  });
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      stopAutoplay();
-    } else {
-      startAutoplay();
-    }
-  });
-
-  /* Initial paint: face A = slide 0, face B = slide 1 */
-  paint(imgA, keywordA, counterA, 0);
-  paint(imgB, keywordB, counterB, 1);
-  startAutoplay();
 });
 
 
@@ -283,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
    MOBILE HAMBURGER
    ========================= */
 (function () {
-  const navWrap = document.querySelector(".nav-wrap");
+  const navWrap   = document.querySelector(".nav-wrap");
   const hamburger = document.querySelector(".hamburger");
   if (!navWrap || !hamburger) return;
 

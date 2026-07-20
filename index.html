@@ -54,7 +54,7 @@
 </nav>
 </div>
 
-<!-- FLIP HINT — visible on all screen sizes, just below nav -->
+<!-- FLIP HINT BAR -->
 <div class="flip-hint-bar" id="flipHintBar">
   <div class="flip-hint-drop"></div>
   <span class="flip-hint-text">klik of flip om te ontdekken</span>
@@ -66,80 +66,74 @@
     <div class="brand">
 
       <!-- ═══════════════════════════════
-           LEFT — Terroir (continuous autoplay image flip,
-           front and back faces both just show images,
-           no video/info side anymore)
+           LEFT — Terroir (continuous autoplay image flip)
            ═══════════════════════════════ -->
       <div class="side-card-wrap">
-        <div class="side-card multi-flip" id="terroirCard" tabindex="0" role="button" aria-label="Terroir — beeldenreeks, klik om te onderbreken">
+        <div class="side-card multi-flip" id="terroirCard" tabindex="0" role="button" aria-label="Terroir — beeldenreeks">
 
           <!-- FACE A -->
           <div class="card-face card-front" id="terroirFaceA">
             <span class="photo-keyword" id="terroirKeywordA">Wine</span>
             <img src="images/beelden/wijnenik.jpg" alt="" class="card-media" id="terroirImgA">
-            <span class="photo-counter" id="terroirCounterA">1/4</span>
+            <span class="photo-counter" id="terroirCounterA">1/9</span>
           </div>
 
           <!-- FACE B -->
           <div class="card-face side-back" id="terroirFaceB">
             <span class="photo-keyword" id="terroirKeywordB">Art History</span>
             <img src="images/beelden/arthistory.jpg" alt="" class="card-media" id="terroirImgB">
-            <span class="photo-counter" id="terroirCounterB">2/4</span>
+            <span class="photo-counter" id="terroirCounterB">2/9</span>
           </div>
 
         </div>
-        <p class="side-hint">Wie is <a href="about.html">Vers Le Vin</a></p>
+        <p class="side-hint">Wie is · <a href="about.html">Vers Le Vin</a></p>
       </div>
 
       <!-- ═══════════════════════════════
-           CENTRE — Logo (slightly larger, same ratio)
+           CENTRE — Logo card
            ═══════════════════════════════ -->
       <div class="logo-card-wrap">
         <div class="logo-card" id="logoCard" tabindex="0" role="button" aria-pressed="false">
-
-           <!-- FRONT: logo image -->
           <div class="card-face card-front">
             <img src="images/Logo-minimal.png" alt="Vers Le Vin logo" class="card-media">
           </div>
-
-       <!-- BACK: single image wine.jpg -->
           <div class="card-face card-back">
             <img src="images/intro.jpg" alt="Vers Le Vin" class="card-media">
           </div>
-
         </div>
       </div>
 
       <!-- ═══════════════════════════════
-           RIGHT — Winkel (image front)
+           RIGHT — Winkel (autoplay wine bottle photos)
+           Exactly the same two-face flip system as the Terroir card,
+           cycling through 8 wine bottle images.
            ═══════════════════════════════ -->
       <div class="side-card-wrap">
-        <div class="side-card" id="winkelCard" tabindex="0" role="button" aria-label="Winkel">
+        <div class="side-card multi-flip" id="winkelCard" tabindex="0" role="button" aria-label="Winkel — wijnen">
 
-          <!-- FRONT: Winkel image -->
-          <div class="card-face card-front">
-            <img src="images/Winkel-minimal.jpeg" alt="Winkel" class="card-media">
+          <!-- FACE A -->
+          <div class="card-face card-front" id="winkelFaceA">
+            <span class="photo-keyword" id="winkelKeywordA">Wit</span>
+            <img src="images/FBWIT1.jpg" alt="" class="card-media" id="winkelImgA">
+            <span class="photo-counter" id="winkelCounterA">1/8</span>
           </div>
 
-          <!-- BACK: info + link -->
-          <div class="card-face card-back">
-            <div class="side-back-inner">
-              <p class="side-back-label">Winkel</p>
-              <p class="side-back-text">Diverse wijnen rechtstreeks van de wijnmaker. Afhalen of levering in België.</p>
-              <a href="winkel.html" class="side-back-btn">Bekijk onze wijnen →</a>
-            </div>
+          <!-- FACE B -->
+          <div class="card-face side-back" id="winkelFaceB">
+            <span class="photo-keyword" id="winkelKeywordB">Rood</span>
+            <img src="images/FBROOD1.jpg" alt="" class="card-media" id="winkelImgB">
+            <span class="photo-counter" id="winkelCounterB">2/8</span>
           </div>
 
         </div>
+        <p class="side-hint">Ontdek · <a href="winkel.html">onze wijnen</a></p>
       </div>
 
-      <!-- ═══════════════════════════════
-           MARQUEE — vertical on mobile only
-           ═══════════════════════════════ -->
+      <!-- MARQUEE — vertical on mobile only -->
       <div class="marquee-v" aria-hidden="true">
         <div class="marquee-v-track">
-          <span>Te vinden bij onze partners, restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
-          <span>Te vinden bij onze partners, restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
+          <span>Te vinden bij onze partners: restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
+          <span>Te vinden bij onze partners: restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
         </div>
       </div>
 
@@ -147,11 +141,11 @@
   </div>
 </main>
 
-<!-- MARQUEE — horizontal on desktop, just above the footer -->
+<!-- MARQUEE — horizontal on desktop -->
 <div class="marquee-h" aria-hidden="true">
   <div class="marquee-h-track">
-    <span>Te vinden bij onze partners, restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
-    <span>Te vinden bij onze partners, restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
+    <span>Te vinden bij onze partners: restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
+    <span>Te vinden bij onze partners: restaurants, bars en winkels:</span><span>GENT:</span><span>Restaurant Publiek</span><span>Dolfijn</span><span>Sphinx Café</span><span>Footnote Gallery</span><span>Bar Terroir</span><span>Den Hoek af</span><span>ONA Wijnbar</span><span>OUDENAARDE:</span><span>The Fox</span><span>Markt 30</span><span>Atelier Unique</span><span>AALTER:</span><span>Palet.Wine</span>
   </div>
 </div>
 
