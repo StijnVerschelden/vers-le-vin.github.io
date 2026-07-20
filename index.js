@@ -310,7 +310,9 @@ document.addEventListener("DOMContentLoaded", () => {
    WINKEL CARD — autoplay wine photo flip
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
- 
+  const card = document.getElementById("winkelCard");   // <-- add this
+  if (!card) return;
+
   const imgA     = document.getElementById("winkelImgA");
   const imgB     = document.getElementById("winkelImgB");
   const kwA      = document.getElementById("winkelKeywordA");
