@@ -231,6 +231,8 @@ nav li:focus-within > .dropdown { display: block; }
 .card-media {
   width: 100%;
   height: 100%;
+   max-width: 100%;   /* add */
+  max-height: 100%;  /* add */
   object-fit: cover;
   display: block;
 }
@@ -308,6 +310,8 @@ nav li:focus-within > .dropdown { display: block; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
+   min-width: 0;   /* add */
+  min-height: 0;  /* add */
   position: relative;
 }
 
