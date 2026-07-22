@@ -15,6 +15,7 @@ const WINE_CATALOGUE = {
   'rochebl':             { domaine: 'Domaine de La Roche',       name: 'Beaujolais Lantignié 2023',   price: 14.90, img: 'images/rocheb.jpg' },
   'diaclase':            { domaine: 'Domaine les Capréoles',     name: 'Diaclase 2023',               price: 22.00, img: 'images/DIA1.jpg' },
   'vignes':              { domaine: 'Les Vignes de M',           name: 'Vernus 2024',                 price: 21.00, img: 'images/vignes.jpg' },
+  'fbbleue':        { domaine: 'Domaine Frédéric Berne',           name: 'Pierre Bleue 2023',                 price: 16.50, img: 'images/bernepierrebleue.jpg' },
   'irancy-mouroux':      { domaine: 'William Charriat',          name: 'Mouroux 2019',                price: 29.00, img: 'images/irancy2019.jpg' },
   'irancy-rood':         { domaine: 'William Charriat',          name: 'Irancy 2021 & 2022',          price: 23.00, img: 'images/irancy2122.jpg' },
   'irancy-rose':         { domaine: 'William Charriat',          name: 'Bourgogne Rosé 2023',         price: 16.00, img: 'images/irancy01.jpg' },
