@@ -23,6 +23,7 @@ const WINE_CATALOGUE = {
   'axiome':             { domaine: 'Domaine les Capréoles',     name: 'Axiome 2025',                price: 22.50, img: 'images/axiom25.jpg' },
   'fblanc':              { domaine: 'Domaine Frédéric Berne',    name: 'Blanc 2024',                  price: 21.90, img: 'images/FBWIT1.jpg' },
   'chenin':              { domaine: 'Domaine Terres Vivantes',   name: 'Chenin 2024',                 price: 18.00, img: 'images/chenin.jpg' },
+  'alba':              { domaine: 'Les Vignes de M',           name: 'Alba 2025',                 price: 18.00, img: 'images/alba.jpg' },
   'chablis-grandchaume': { domaine: 'Château de Fleys',         name: 'La Grand Chaume 2023',        price: 22.00, img: 'images/chablis01.jpg' },
   'chablis-2024':        { domaine: 'Château de Fleys',         name: 'Chablis 2024',                price: 21.00, img: 'images/chablis05.jpg' },
   'chablis-leclos':      { domaine: 'Château de Fleys',         name: "Monopole 'Le Clos' 2024",     price: 27.00, img: 'images/chablis04.jpg' },
