@@ -19,6 +19,7 @@ const WINE_CATALOGUE = {
   'irancy-mouroux':      { domaine: 'William Charriat',          name: 'Mouroux 2019',                price: 29.00, img: 'images/irancy2019.jpg' },
   'irancy-rood':         { domaine: 'William Charriat',          name: 'Irancy 2021 & 2022',          price: 23.00, img: 'images/irancy2122.jpg' },
   'irancy-rose':         { domaine: 'William Charriat',          name: 'Bourgogne Rosé 2023',         price: 16.00, img: 'images/irancy01.jpg' },
+  'fbrose':              { domaine: 'Domaine Frédéric Berne',    name: 'L’Optimiste Rosé 2024',       price: 15.00, img: 'images/bernerose.jpg' },
   'leblanc':             { domaine: 'Château des Vergers',       name: 'Le Blanc 2024',               price: 21.50, img: 'images/cosimaface.jpg' },
   'axiome':             { domaine: 'Domaine les Capréoles',     name: 'Axiome 2025',                price: 22.50, img: 'images/axiom25.jpg' },
   'fblanc':              { domaine: 'Domaine Frédéric Berne',    name: 'Blanc 2024',                  price: 21.90, img: 'images/FBWIT1.jpg' },
@@ -29,7 +30,7 @@ const WINE_CATALOGUE = {
   'chablis-leclos':      { domaine: 'Château de Fleys',         name: "Monopole 'Le Clos' 2024",     price: 27.00, img: 'images/chablis04.jpg' },
   'chablis-montmilieux': { domaine: 'Château de Fleys',         name: '1er Cru Mont de Milieu 2023', price: 31.50, img: 'images/chablis03.jpg' },
   'chablis-vv':          { domaine: 'Château de Fleys',         name: '1er Cru Mont de Milieu VV 2023', price: 34.00, img: 'images/chablis02.jpg' },
-  'fbrose':              { domaine: 'Domaine Frédéric Berne',    name: 'L’Optimiste Rosé 2024',       price: 15.00, img: 'images/bernerose.jpg' }
+  
 };
 
 /* ── HELPERS ── */
