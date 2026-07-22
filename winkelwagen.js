@@ -29,6 +29,7 @@ const WINE_CATALOGUE = {
   'chablis-leclos':      { domaine: 'Château de Fleys',         name: "Monopole 'Le Clos' 2024",     price: 27.00, img: 'images/chablis04.jpg' },
   'chablis-montmilieux': { domaine: 'Château de Fleys',         name: '1er Cru Mont de Milieu 2023', price: 31.50, img: 'images/chablis03.jpg' },
   'chablis-vv':          { domaine: 'Château de Fleys',         name: '1er Cru Mont de Milieu VV 2023', price: 34.00, img: 'images/chablis02.jpg' },
+  'fbrose':              { domaine: 'Domaine Frédéric Berne',    name: 'L’Optimiste Rosé 2024',       price: 15.00, img: 'images/bernerose.jpg' }
 };
 
 /* ── HELPERS ── */
