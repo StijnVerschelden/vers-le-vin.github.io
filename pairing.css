@@ -21,10 +21,7 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   color: var(--text-color);
-  background-color: var(--bg);
-  background-image:
-    radial-gradient(circle at 12% 22%, rgba(255,255,255,0.24), transparent 31%),
-    radial-gradient(circle at 86% 72%, rgba(255,255,255,0.16), transparent 28%);
+  background-image: url('images/background2.jpg');
   font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
   -webkit-font-smoothing: antialiased;
 }
