@@ -352,7 +352,7 @@ nav button:hover {
   inset: 10px 9px 10px 8px;
   z-index: 2;
 
-  background: rgba(89, 44, 56, 0.3);
+  background: rgba(89, 44, 56, 0.1);
   border-radius: 12px;
   mix-blend-mode: multiply;
   pointer-events: none;
@@ -371,7 +371,7 @@ nav button:hover {
   border: 0;
   border-radius: 12px;
 
-  opacity: 0.75;
+  opacity: 0.70;
   filter:
     sepia(0.35)
     saturate(0.82)
