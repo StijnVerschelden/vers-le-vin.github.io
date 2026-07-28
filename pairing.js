@@ -2,61 +2,60 @@
    Navigation controls and category filtering for pairing.html.
    ---------------------------------------------------------------- */
 
+'use strict';
+
 /* =========================
    DROPDOWN CONTROLS
    ========================= */
 document.addEventListener('DOMContentLoaded', () => {
-  const buttonIds = ['lantBtn', 'wijnBtn', 'blogBtn'];
+  const dropdownButtonIds = ['lantBtn', 'wijnBtn', 'blogBtn'];
 
-  buttonIds.forEach((id) => {
+  function closeDropdown(button) {
+    const menu = button?.nextElementSibling;
+    if (!button || !menu) return;
+
+    button.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('is-open');
+  }
+
+  function closeAllDropdowns(exceptButton = null) {
+    dropdownButtonIds.forEach((id) => {
+      const button = document.getElementById(id);
+      if (button !== exceptButton) closeDropdown(button);
+    });
+  }
+
+  dropdownButtonIds.forEach((id) => {
     const button = document.getElementById(id);
-    if (!button) return;
+    const menu = button?.nextElementSibling;
+    if (!button || !menu) return;
 
     button.addEventListener('click', (event) => {
       event.stopPropagation();
 
-      const menu = button.nextElementSibling;
-      if (!menu) return;
+      const willOpen = !menu.classList.contains('is-open');
+      closeAllDropdowns(button);
 
-      const isOpen = menu.classList.contains('is-open');
-
-      buttonIds.forEach((otherId) => {
-        const otherButton = document.getElementById(otherId);
-        const otherMenu = otherButton?.nextElementSibling;
-
-        if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
-        if (otherMenu) otherMenu.classList.remove('is-open');
-      });
-
-      button.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-      menu.classList.toggle('is-open', !isOpen);
+      button.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      menu.classList.toggle('is-open', willOpen);
     });
   });
 
   document.addEventListener('click', (event) => {
-    buttonIds.forEach((id) => {
+    dropdownButtonIds.forEach((id) => {
       const button = document.getElementById(id);
       const menu = button?.nextElementSibling;
       if (!button || !menu) return;
 
       if (!button.contains(event.target) && !menu.contains(event.target)) {
-        button.setAttribute('aria-expanded', 'false');
-        menu.classList.remove('is-open');
+        closeDropdown(button);
       }
     });
   });
 
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
-
-    buttonIds.forEach((id) => {
-      const button = document.getElementById(id);
-      const menu = button?.nextElementSibling;
-      if (!button || !menu) return;
-
-      button.setAttribute('aria-expanded', 'false');
-      menu.classList.remove('is-open');
-    });
+    closeAllDropdowns();
   });
 });
 
@@ -99,22 +98,28 @@ document.addEventListener('DOMContentLoaded', () => {
    PAIRING CATEGORY FILTERS
    ========================= */
 document.addEventListener('DOMContentLoaded', () => {
-  const filterButtons = [...document.querySelectorAll('.pairing-filter')];
-  const pairingCards = [...document.querySelectorAll('.pairing-card')];
+  const filterButtons = Array.from(document.querySelectorAll('.pairing-filter'));
+  const pairingRows = Array.from(document.querySelectorAll('.pairing-row'));
+  const emptyMessage = document.getElementById('pairingEmpty');
 
-  if (!filterButtons.length || !pairingCards.length) return;
+  if (!filterButtons.length || !pairingRows.length) return;
 
-  function applyFilter(selectedCategory) {
-    pairingCards.forEach((card) => {
-      const cardCategory = card.dataset.category;
-      card.hidden = selectedCategory !== 'all' && cardCategory !== selectedCategory;
+  function applyFilter(category) {
+    let visibleCount = 0;
+
+    pairingRows.forEach((row) => {
+      const shouldShow = category === 'all' || row.dataset.category === category;
+      row.hidden = !shouldShow;
+      if (shouldShow) visibleCount += 1;
     });
 
     filterButtons.forEach((button) => {
-      const isActive = button.dataset.filter === selectedCategory;
+      const isActive = button.dataset.filter === category;
       button.classList.toggle('is-active', isActive);
       button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
+
+    if (emptyMessage) emptyMessage.hidden = visibleCount !== 0;
   }
 
   filterButtons.forEach((button) => {
@@ -122,4 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
       applyFilter(button.dataset.filter || 'all');
     });
   });
+
+  applyFilter('all');
 });

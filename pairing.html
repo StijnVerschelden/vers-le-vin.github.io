@@ -61,114 +61,146 @@
 
 <!-- MAIN -->
 <main class="pairing-main">
-  <header class="pairing-intro">
-    <h1>Moodboard - Pairing</h1>
-    <p>
-      Wine speaks to more than the palate. It carries memory, place and feeling —
-      and can be paired with many forms of culture and atmosphere.
-      Music, architecture, paintings, cinema, literature, and more.
-    </p>
-  </header>
 
-  <div class="pairing-filters" role="group" aria-label="Filter pairings by category">
-    <button class="pairing-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-    <button class="pairing-filter" type="button" data-filter="music" aria-pressed="false">Music</button>
-    <button class="pairing-filter" type="button" data-filter="architecture" aria-pressed="false">Architecture</button>
-    <button class="pairing-filter" type="button" data-filter="paintings" aria-pressed="false">Paintings</button>
-    <button class="pairing-filter" type="button" data-filter="cinema" aria-pressed="false">Cinema</button>
-  </div>
+  <section class="pairing-top" aria-labelledby="pairingTitle">
+    <header class="pairing-intro">
+      <h1 id="pairingTitle">Pairing - Moodboard</h1>
+      <p>
+        Wine speaks to more than the palate. It carries memory, place and feeling —
+        and can be paired with many forms of culture and atmosphere.<br>
+        Music, architecture, paintings, cinema, literature, and more.
+      </p>
+    </header>
 
-  <section class="pairing-list" aria-live="polite">
+    <div class="pairing-filters" role="group" aria-label="Filter pairings by category">
+      <button class="pairing-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="pairing-filter" type="button" data-filter="music" aria-pressed="false">Music</button>
+      <button class="pairing-filter" type="button" data-filter="architecture" aria-pressed="false">Architecture</button>
+      <button class="pairing-filter" type="button" data-filter="paintings" aria-pressed="false">Paintings</button>
+      <button class="pairing-filter" type="button" data-filter="cinema" aria-pressed="false">Cinema</button>
+    </div>
+  </section>
 
-    <article class="pairing-card" data-category="music">
-      <div class="pairing-photo-wrap">
-        <img class="pairing-photo" src="images/pi.jpg" alt="Wijn 1" loading="lazy">
-      </div>
+  <section class="pairing-list" aria-live="polite" aria-label="Wine pairings">
 
-      <div class="pairing-copy">
-        <p class="pairing-category">Music</p>
+    <article class="pairing-row" data-category="music">
+      <a class="pairing-image-link" href="pairing-wijn1.html" aria-label="Open the full pairing page for Wijn 1">
+        <img class="pairing-image" src="images/wijn1.jpg" alt="Wijn 1" loading="lazy">
+      </a>
+
+      <div class="pairing-details">
         <h2>Wijn 1</h2>
-
-        <div class="winemaker-suggestion">
-          <p class="winemaker-label">Winemaker’s suggestion</p>
-          <blockquote>
-            “A wine of threads and contrasts. Light in colour, deep in feeling.
-            It moves with a quiet rhythm.”
-          </blockquote>
-          <p class="winemaker-name">— Winemaker 1</p>
-        </div>
-
-        <a class="pairing-link" href="pairing-wijn1.html">See full pairing &amp; discussion <span aria-hidden="true">→</span></a>
+        <p class="pairing-category">Music</p>
+        <p class="pairing-summary">
+          “A wine of threads and contrasts.<br>
+          Light in colour, deep in feeling.<br>
+          It moves with a quiet rhythm.”
+        </p>
+        <a class="pairing-link" href="pairing-wijn1.html">
+          See full pairing &amp; discussion <span aria-hidden="true">→</span>
+        </a>
       </div>
+
+      <aside class="winemaker-box" aria-label="Winemaker suggestion for Wijn 1">
+        <p class="winemaker-heading"><span aria-hidden="true">◇</span> Winemaker’s suggestion</p>
+        <blockquote>
+          “I hear this wine with a solo piano at dusk.<br>
+          Melancholy, delicate, and full of space.”
+        </blockquote>
+        <p class="winemaker-name">— Winemaker 1</p>
+      </aside>
     </article>
 
-    <article class="pairing-card" data-category="cinema">
-      <div class="pairing-photo-wrap">
-        <img class="pairing-photo" src="images/axiom25.jpg" alt="Wijn 2" loading="lazy">
-      </div>
+    <article class="pairing-row" data-category="cinema">
+      <a class="pairing-image-link" href="pairing-wijn2.html" aria-label="Open the full pairing page for Wijn 2">
+        <img class="pairing-image" src="images/wijn2.jpg" alt="Wijn 2" loading="lazy">
+      </a>
 
-      <div class="pairing-copy">
-        <p class="pairing-category">Cinema</p>
+      <div class="pairing-details">
         <h2>Wijn 2</h2>
-
-        <div class="winemaker-suggestion">
-          <p class="winemaker-label">Winemaker’s suggestion</p>
-          <blockquote>
-            “This wine belongs in a road movie — windows down, somewhere warm,
-            with everything still possible.”
-          </blockquote>
-          <p class="winemaker-name">— Winemaker 2</p>
-        </div>
-
-        <a class="pairing-link" href="pairing-wijn2.html">See full pairing &amp; discussion <span aria-hidden="true">→</span></a>
+        <p class="pairing-category">Cinema</p>
+        <p class="pairing-summary">
+          “Light, joyful and a little mischievous.<br>
+          A wine for warm light, movement,<br>
+          and a story still unfolding.”
+        </p>
+        <a class="pairing-link" href="pairing-wijn2.html">
+          See full pairing &amp; discussion <span aria-hidden="true">→</span>
+        </a>
       </div>
+
+      <aside class="winemaker-box" aria-label="Winemaker suggestion for Wijn 2">
+        <p class="winemaker-heading"><span aria-hidden="true">◇</span> Winemaker’s suggestion</p>
+        <blockquote>
+          “This wine belongs in a road movie —<br>
+          windows down, somewhere warm,<br>
+          everything still possible.”
+        </blockquote>
+        <p class="winemaker-name">— Winemaker 2</p>
+      </aside>
     </article>
 
-    <article class="pairing-card" data-category="paintings">
-      <div class="pairing-photo-wrap">
-        <img class="pairing-photo" src="images/alba.jpg" alt="Wijn 3" loading="lazy">
-      </div>
+    <article class="pairing-row" data-category="paintings">
+      <a class="pairing-image-link" href="pairing-wijn3.html" aria-label="Open the full pairing page for Wijn 3">
+        <img class="pairing-image" src="images/wijn3.jpg" alt="Wijn 3" loading="lazy">
+      </a>
 
-      <div class="pairing-copy">
-        <p class="pairing-category">Paintings</p>
+      <div class="pairing-details">
         <h2>Wijn 3</h2>
-
-        <div class="winemaker-suggestion">
-          <p class="winemaker-label">Winemaker’s suggestion</p>
-          <blockquote>
-            “A wine of balance and light. Its soft tones invite contemplation,
-            like a landscape remembered rather than seen.”
-          </blockquote>
-          <p class="winemaker-name">— Winemaker 3</p>
-        </div>
-
-        <a class="pairing-link" href="pairing-wijn3.html">See full pairing &amp; discussion <span aria-hidden="true">→</span></a>
+        <p class="pairing-category">Paintings</p>
+        <p class="pairing-summary">
+          “A wine of balance and light.<br>
+          Quiet tones, gentle movement,<br>
+          and an invitation to contemplate.”
+        </p>
+        <a class="pairing-link" href="pairing-wijn3.html">
+          See full pairing &amp; discussion <span aria-hidden="true">→</span>
+        </a>
       </div>
+
+      <aside class="winemaker-box" aria-label="Winemaker suggestion for Wijn 3">
+        <p class="winemaker-heading"><span aria-hidden="true">◇</span> Winemaker’s suggestion</p>
+        <blockquote>
+          “Like a landscape painted in soft light —<br>
+          quiet tones, a hazy horizon,<br>
+          and so much left unsaid.”
+        </blockquote>
+        <p class="winemaker-name">— Winemaker 3</p>
+      </aside>
     </article>
 
-    <article class="pairing-card" data-category="architecture">
-      <div class="pairing-photo-wrap">
-        <img class="pairing-photo" src="images/cosimaface.jpg" alt="Wijn 4" loading="lazy">
-      </div>
+    <article class="pairing-row" data-category="architecture">
+      <a class="pairing-image-link" href="pairing-wijn4.html" aria-label="Open the full pairing page for Wijn 4">
+        <img class="pairing-image" src="images/wijn4.jpg" alt="Wijn 4" loading="lazy">
+      </a>
 
-      <div class="pairing-copy">
-        <p class="pairing-category">Architecture</p>
+      <div class="pairing-details">
         <h2>Wijn 4</h2>
-
-        <div class="winemaker-suggestion">
-          <p class="winemaker-label">Winemaker’s suggestion</p>
-          <blockquote>
-            “Stone, tension and balance. This wine feels constructed like a landscape:
-            precise, grounded and quietly expressive.”
-          </blockquote>
-          <p class="winemaker-name">— Winemaker 4</p>
-        </div>
-
-        <a class="pairing-link" href="pairing-wijn4.html">See full pairing &amp; discussion <span aria-hidden="true">→</span></a>
+        <p class="pairing-category">Architecture</p>
+        <p class="pairing-summary">
+          “Stone, tension and balance.<br>
+          A precise wine with a grounded,<br>
+          quietly expressive structure.”
+        </p>
+        <a class="pairing-link" href="pairing-wijn4.html">
+          See full pairing &amp; discussion <span aria-hidden="true">→</span>
+        </a>
       </div>
+
+      <aside class="winemaker-box" aria-label="Winemaker suggestion for Wijn 4">
+        <p class="winemaker-heading"><span aria-hidden="true">◇</span> Winemaker’s suggestion</p>
+        <blockquote>
+          “This wine has the silence of stone.<br>
+          It echoes in concrete, in shadow,<br>
+          in lines that last.”
+        </blockquote>
+        <p class="winemaker-name">— Winemaker 4</p>
+      </aside>
     </article>
 
   </section>
+
+  <p class="pairing-empty" id="pairingEmpty" hidden>No pairings are available in this category yet.</p>
 </main>
 
 <!-- FOOTER -->
@@ -179,6 +211,5 @@
 
 <!-- External JavaScript -->
 <script src="pairing.js"></script>
-
 </body>
 </html>
