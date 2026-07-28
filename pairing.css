@@ -32,7 +32,6 @@ body {
   /* Same textured-paper atmosphere as the index page */
   background-color: var(--bg);
   background-image: url('images/background2.jpg');
-  filter: saturate(0.75);
   background-position: center top;
   background-repeat: repeat-y;
   background-size: 100% auto;
