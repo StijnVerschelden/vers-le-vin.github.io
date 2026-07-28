@@ -22,6 +22,7 @@ body {
   overflow-x: hidden;
   color: var(--text-color);
   background-image: url('images/background2.jpg');
+  background-size: cover;
   font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
   -webkit-font-smoothing: antialiased;
 }
