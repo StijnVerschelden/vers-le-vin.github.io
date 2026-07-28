@@ -240,12 +240,12 @@ nav button:hover {
 }
 
 /*
-  All wines use the same four-column structure:
-  photo | wine text | pairing media | winemaker suggestion
+  All wines use the original four-column proportions:
+  photo 34% | wine text 21% | pairing media 27% | winemaker suggestion 18%
 */
 .pairing-row {
   display: grid;
-  grid-template-columns: 32% 20% 31% 17%;
+  grid-template-columns: 34% 21% 27% 18%;
   gap: 0;
   align-items: stretch;
   min-height: 180px;
