@@ -260,6 +260,53 @@ nav button:hover {
   display: none;
 }
 
+/* Music row: wine photo, wine text, Spotify track, winemaker note */
+.pairing-row.has-spotify {
+  grid-template-columns: 34% 21% 27% 18%;
+}
+
+.spotify-embed-wrap {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 14px 10px 14px 8px;
+}
+
+.spotify-embed {
+  width: 100%;
+  height: 152px;
+  display: block;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+}
+
+.pairing-row.has-spotify .winemaker-box {
+  width: calc(100% - 20px);
+  margin-left: 8px;
+  padding: 12px 13px 11px;
+}
+
+.pairing-row.has-spotify .winemaker-heading {
+  font-size: 10px;
+  letter-spacing: 0.075em;
+}
+
+.pairing-row.has-spotify .winemaker-heading span {
+  margin-right: 4px;
+}
+
+.pairing-row.has-spotify .winemaker-box blockquote {
+  font-size: clamp(12px, 0.94vw, 14px);
+  line-height: 1.22;
+}
+
+.pairing-row.has-spotify .winemaker-name {
+  margin-top: 7px;
+  font-size: clamp(12px, 0.94vw, 14px);
+}
+
 /* Wide, horizontal photograph */
 .pairing-image-link {
   display: block;
@@ -443,6 +490,25 @@ footer {
       "photo suggestion";
     min-height: 232px;
     padding: 7px 0;
+  }
+
+  .pairing-row.has-spotify {
+    grid-template-columns: minmax(310px, 1fr) minmax(270px, 0.9fr);
+    grid-template-areas:
+      "photo details"
+      "photo spotify"
+      "photo suggestion";
+  }
+
+  .pairing-row.has-spotify .spotify-embed-wrap {
+    grid-area: spotify;
+    padding: 6px 18px 10px 28px;
+  }
+
+  .pairing-row.has-spotify .winemaker-box {
+    width: auto;
+    margin: 0 18px 17px 28px;
+    padding: 13px 17px;
   }
 
   .pairing-image-link {
@@ -634,6 +700,15 @@ footer {
     padding: 14px 0 18px;
   }
 
+  .pairing-row.has-spotify {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photo"
+      "details"
+      "spotify"
+      "suggestion";
+  }
+
   .pairing-image-link {
     grid-area: photo;
     height: auto;
@@ -649,6 +724,17 @@ footer {
   .pairing-details {
     grid-area: details;
     padding: 17px 2px 12px;
+  }
+
+  .spotify-embed-wrap {
+    grid-area: spotify;
+    width: 100%;
+    padding: 4px 0 14px;
+  }
+
+  .spotify-embed {
+    height: 152px;
+    border-radius: 10px;
   }
 
   .pairing-details h2 {
@@ -671,6 +757,22 @@ footer {
     margin: 0;
     padding: 17px 18px;
     border-radius: 7px;
+  }
+
+  .pairing-row.has-spotify .winemaker-box {
+    width: 100%;
+    margin: 0;
+    padding: 17px 18px;
+  }
+
+  .pairing-row.has-spotify .winemaker-heading {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .pairing-row.has-spotify .winemaker-box blockquote,
+  .pairing-row.has-spotify .winemaker-name {
+    font-size: 16px;
   }
 
   .winemaker-box blockquote {
