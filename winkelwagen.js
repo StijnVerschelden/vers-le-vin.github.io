@@ -185,21 +185,14 @@ function goToForm() {
   + '?usp=pp_url'
   + '&' + ENTRY_BESTELLING + '=' + encodeURIComponent(orderText);
 
-const formWindow = window.open(
-  formUrl,
-  '_blank',
-  'noopener,noreferrer'
-);
+window.open(formUrl, '_blank', 'noopener,noreferrer');
 
-if (formWindow) {
-  localStorage.removeItem('vlv_cart');
-  renderCart();
-  updateNavBadge();
-} else {
-  alert(
-    'Het bestelformulier kon niet worden geopend. Sta pop-ups toe en probeer opnieuw.'
-  );
-}
+// Empty the cart
+localStorage.removeItem('vlv_cart');
+
+// Refresh what the customer sees
+renderCart();
+updateNavBadge();
 }
 
 /* ── NAV BADGE ── */
