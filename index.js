@@ -374,3 +374,155 @@ document.addEventListener("DOMContentLoaded", () => {
   paint(imgB, kwB, ctB, 1);
   start();
 });
+
+/* =========================
+   NEWSLETTER POPUP
+
+   The popup appears on every home-page load. To collect addresses,
+   connect it to a Google Form by filling in the two constants below.
+
+   GOOGLE_FORM_ACTION example:
+   https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse
+
+   GOOGLE_FORM_EMAIL_ENTRY example:
+   entry.123456789
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("newsletterOverlay");
+  const modal = overlay?.querySelector(".newsletter-modal");
+  const closeBtn = document.getElementById("newsletterClose");
+  const laterBtn = document.getElementById("newsletterLater");
+  const form = document.getElementById("newsletterForm");
+  const emailInput = document.getElementById("newsletterEmail");
+  const submitBtn = document.getElementById("newsletterSubmit");
+  const status = document.getElementById("newsletterStatus");
+
+  if (!overlay || !modal || !closeBtn || !laterBtn || !form || !emailInput || !submitBtn || !status) {
+    return;
+  }
+
+  /* Replace these two empty values with your newsletter Google Form details. */
+  const GOOGLE_FORM_ACTION = "";
+  const GOOGLE_FORM_EMAIL_ENTRY = "";
+
+  const OPEN_DELAY_MS = 900;
+  let previouslyFocusedElement = null;
+
+  function openNewsletter() {
+    if (!overlay.hidden) return;
+
+    previouslyFocusedElement = document.activeElement;
+    overlay.hidden = false;
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("newsletter-open");
+
+    window.setTimeout(() => emailInput.focus(), 80);
+  }
+
+  function closeNewsletter() {
+    overlay.hidden = true;
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("newsletter-open");
+    status.textContent = "";
+    emailInput.classList.remove("is-invalid");
+
+    if (previouslyFocusedElement instanceof HTMLElement) {
+      previouslyFocusedElement.focus();
+    }
+  }
+
+  function scheduleNewsletter() {
+    window.setTimeout(openNewsletter, OPEN_DELAY_MS);
+  }
+
+  /* If the age gate is visible, wait until the visitor confirms 18+. */
+  const ageGate = document.getElementById("ageGate");
+  const ageGateVisible = ageGate && !ageGate.classList.contains("hidden");
+
+  if (ageGateVisible) {
+    const enterBtn = document.getElementById("enterBtn");
+    if (enterBtn) {
+      enterBtn.addEventListener("click", scheduleNewsletter, { once: true });
+    }
+  } else {
+    scheduleNewsletter();
+  }
+
+  closeBtn.addEventListener("click", closeNewsletter);
+  laterBtn.addEventListener("click", closeNewsletter);
+
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) closeNewsletter();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (overlay.hidden) return;
+
+    if (event.key === "Escape") {
+      closeNewsletter();
+      return;
+    }
+
+    /* Keep keyboard focus inside the open modal. */
+    if (event.key === "Tab") {
+      const focusable = modal.querySelectorAll(
+        'button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+    emailInput.classList.remove("is-invalid");
+    status.textContent = "";
+
+    if (!emailInput.checkValidity() || !email) {
+      emailInput.classList.add("is-invalid");
+      status.textContent = "Please enter a valid email address.";
+      emailInput.focus();
+      return;
+    }
+
+    if (!GOOGLE_FORM_ACTION || !GOOGLE_FORM_EMAIL_ENTRY) {
+      status.textContent = "The signup form still needs to be connected in index.js.";
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Signing up…";
+
+    try {
+      const formData = new FormData();
+      formData.append(GOOGLE_FORM_EMAIL_ENTRY, email);
+
+      await fetch(GOOGLE_FORM_ACTION, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      });
+
+      status.textContent = "Thank you — you are on the list.";
+      form.reset();
+      window.setTimeout(closeNewsletter, 1300);
+    } catch (error) {
+      console.error("Newsletter signup failed:", error);
+      status.textContent = "Something went wrong. Please try again.";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Sign up";
+    }
+  });
+});
+
