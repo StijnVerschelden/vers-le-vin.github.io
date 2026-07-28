@@ -241,11 +241,11 @@ nav button:hover {
 
 /*
   All wines use the original four-column proportions:
-  photo 34% | wine text 21% | pairing media 27% | winemaker suggestion 18%
+  photo 34% | wine text 25% | pairing media 23% | winemaker suggestion 18%
 */
 .pairing-row {
   display: grid;
-  grid-template-columns: 34% 21% 27% 18%;
+  grid-template-columns: 34% 25% 23% 18%;
   gap: 0;
   align-items: stretch;
   min-height: 180px;
@@ -261,7 +261,7 @@ nav button:hover {
 .pairing-image-link {
   display: block;
   min-width: 0;
-  height: 175px;
+  height: 180px;
   align-self: center;
   overflow: hidden;
   background: rgba(89, 44, 56, 0.05);
@@ -345,7 +345,7 @@ nav button:hover {
 
 .spotify-embed {
   width: 100%;
-  height: 175px;
+  height: 180px;
   display: block;
   border: 0;
   border-radius: 12px;
@@ -354,7 +354,7 @@ nav button:hover {
 
 .pairing-media-placeholder {
   width: 100%;
-  height: 175px;
+  height: 180px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -516,7 +516,7 @@ footer {
 
   .spotify-embed,
   .pairing-media-placeholder {
-    height: 175px;
+    height: 180px;
   }
 
   .winemaker-box {
@@ -744,7 +744,7 @@ footer {
 
   .spotify-embed,
   .pairing-media-placeholder {
-    height: 175px;
+    height: 180px;
     border-radius: 10px;
   }
 
