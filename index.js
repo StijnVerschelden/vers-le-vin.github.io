@@ -323,6 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ── add your real filenames here ── */
   const slides = [
+    { img: "images/Winkel-minimal.jpeg", keyword: "Winkel" },
     { img: "images/FBWIT1.jpg", keyword: "Wit" },
     { img: "images/FBROOD1.jpg", keyword: "Rood" },
     { img: "images/cosimaface.jpg", keyword: "Wit" },
