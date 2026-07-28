@@ -350,6 +350,7 @@ nav button:hover {
   border: 0;
   border-radius: 12px;
   background: transparent;
+   opacity: 0.70;
 }
 
 .pairing-media-placeholder {
