@@ -19,7 +19,7 @@ html,body{
 /* Use Caslon Antique globally */
 body {
   font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
-  background-color: var(--bg);
+  background-image: url('images/background2.jpg');
   color: var(--text-color);
   display:flex;
   flex-direction:column;
