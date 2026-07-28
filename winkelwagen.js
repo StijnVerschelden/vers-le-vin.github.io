@@ -182,10 +182,24 @@ function goToForm() {
   /* Use encodeURIComponent — NOT URLSearchParams — so Google Forms
      receives the text correctly (spaces as %20, newlines as %0A) */
   const formUrl = GOOGLE_FORM_URL
-    + '?usp=pp_url'
-    + '&' + ENTRY_BESTELLING + '=' + encodeURIComponent(orderText);
+  + '?usp=pp_url'
+  + '&' + ENTRY_BESTELLING + '=' + encodeURIComponent(orderText);
 
-  window.open(formUrl, '_blank', 'noopener,noreferrer');
+const formWindow = window.open(
+  formUrl,
+  '_blank',
+  'noopener,noreferrer'
+);
+
+if (formWindow) {
+  localStorage.removeItem('vlv_cart');
+  renderCart();
+  updateNavBadge();
+} else {
+  alert(
+    'Het bestelformulier kon niet worden geopend. Sta pop-ups toe en probeer opnieuw.'
+  );
+}
 }
 
 /* ── NAV BADGE ── */
