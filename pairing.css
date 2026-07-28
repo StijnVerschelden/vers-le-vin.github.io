@@ -1,35 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
-    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+:root {
+  --text-color: #592C38;
+  --bg: #F3ECDC;
+  --nav-gap: 28px;
+  --nav-font-size: 18px;
+  --dropdown-bg: rgba(242, 240, 208, 0.98);
+  --dropdown-border: rgba(89, 44, 56, 0.06);
+  --line: rgba(89, 44, 56, 0.22);
+  --soft-line: rgba(89, 44, 56, 0.14);
+  --paper: rgba(255, 252, 244, 0.22);
+}
 
-    :root{
-      --text-color: #592C38;
-      --bg: #F3ECDC;
-      --nav-gap: 28px;
-      --nav-font-size: 18px;
-      --dropdown-bg: rgba(242,240,208,0.98);
-      --dropdown-border: rgba(89,44,56,0.06);
-    }
-    html {
-      height: 100%;
-    }
+html { height: 100%; }
 
-    body {
-      margin:0;
-      background-color: var(--bg);
-      color: var(--text-color);
-      font-family: 'CaslonAntiqueRegular','EB Garamond',serif;
-      -webkit-font-smoothing:antialiased;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      text-align: justify;
-      overflow-x: hidden;  /* add this */
-    }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text-color);
+  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
 
-   /* =========================
+/* =========================
    NAVIGATION
    ========================= */
-nav ul, nav a, nav button {
+nav ul,
+nav a,
+nav button {
   font-family: 'EB Garamond', serif !important;
 }
 
@@ -54,7 +56,8 @@ nav ul {
 
 nav li { position: relative; }
 
-nav a, nav button {
+nav a,
+nav button {
   color: var(--text-color);
   text-decoration: none;
   background: none;
@@ -64,7 +67,8 @@ nav a, nav button {
   font: inherit;
 }
 
-nav a:hover, nav button:hover { opacity: 0.7; }
+nav a:hover,
+nav button:hover { opacity: 0.7; }
 
 .dropdown {
   position: absolute;
@@ -76,7 +80,7 @@ nav a:hover, nav button:hover { opacity: 0.7; }
   border: 1px solid var(--dropdown-border);
   border-radius: 6px;
   padding: 8px 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
   display: none;
   z-index: 200;
 }
@@ -89,93 +93,251 @@ nav a:hover, nav button:hover { opacity: 0.7; }
   font-size: 16px;
 }
 
-.dropdown a:hover { background: rgba(89,44,56,0.06); }
+.dropdown a:hover { background: rgba(89, 44, 56, 0.06); }
 
 nav li:hover > .dropdown,
 nav li:focus-within > .dropdown { display: block; }
 
+/* =========================
+   PAIRING PAGE
+   ========================= */
+.pairing-main {
+  width: min(1180px, calc(100% - 48px));
+  margin: 34px auto 80px;
+}
 
-    /* ABOUT PAGE CONTENT */
-    .content-wrap {
-      max-width: 860px;
-      margin: 40px auto 80px;
-      padding: 0 24px;
-      font-size:20px;
-      line-height:1.55;
-    }
+.pairing-intro {
+  max-width: 630px;
+  margin-bottom: 26px;
+}
 
-    .content-wrap h1 {
-      font-size:38px;
-      margin-bottom:20px;
-      text-align:center;
-      font-weight:400;
-    }
+.pairing-intro h1 {
+  margin: 0 0 8px;
+  font-size: clamp(42px, 5vw, 62px);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
 
-    .content-image {
-      width:100%;
-      border-radius:12px;
-      margin:32px 0;
-      box-shadow:0 6px 25px rgba(0,0,0,0.08);
-    }
+.pairing-intro p {
+  margin: 0;
+  max-width: 610px;
+  font-family: 'EB Garamond', serif;
+  font-size: 17px;
+  line-height: 1.42;
+  text-align: left;
+}
 
-    footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:14px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-    }
-
-    /* ------------------------------------------------ */
-/* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
-/* ------------------------------------------------ */
-@media (max-width: 720px) {
-
-    /* show hamburger, hide desktop nav */
-
-    .hamburger {
+.pairing-filters {
   display: flex;
-  flex-direction: column; /* stack the three lines */
-  gap: 3px;
-  background: transparent;
-  border: none;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
   align-items: center;
-  justify-content: center;
+  gap: clamp(14px, 4vw, 54px);
+  padding: 0 0 16px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.pairing-filters::-webkit-scrollbar { display: none; }
+
+.pairing-filter {
+  flex: 0 0 auto;
+  min-width: 78px;
+  padding: 8px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-color);
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
   cursor: pointer;
-  position: absolute;
-  left: 16px;
-  top: 12px;
-  z-index: 1100;
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
-.hamburger .line {
-  width: 20px;           /* fixed width for each bar */
-  height: 4px;
-  background: #592C38;   /* bar color */
-  border-radius: 3px;
-  transition: transform .25s ease, opacity .2s ease;
+
+.pairing-filter:hover { background: rgba(89, 44, 56, 0.06); }
+
+.pairing-filter.is-active {
+  background: var(--text-color);
+  color: var(--bg);
+}
+
+.pairing-list {
+  border-top: 0;
+}
+
+.pairing-card {
+  display: grid;
+  grid-template-columns: minmax(310px, 0.9fr) minmax(390px, 1.45fr);
+  min-height: 285px;
+  border-bottom: 1px solid var(--line);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.pairing-card[hidden] { display: none; }
+
+.pairing-photo-wrap {
+  min-height: 285px;
+  overflow: hidden;
+  background: rgba(89, 44, 56, 0.05);
+}
+
+.pairing-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 285px;
   display: block;
-}
-.hamburger[aria-expanded="true"] .line:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.hamburger[aria-expanded="true"] .line:nth-child(2) {
-  opacity: 0;
+  object-fit: cover;
+  filter: saturate(0.82) contrast(0.95) sepia(0.08);
+  transition: transform 0.7s ease;
 }
 
-.hamburger[aria-expanded="true"] .line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+.pairing-card:hover .pairing-photo { transform: scale(1.015); }
+
+.pairing-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 26px clamp(26px, 4vw, 56px);
+  background: var(--paper);
 }
 
-  nav ul {
-    display: none;
+.pairing-category {
+  order: 2;
+  margin: 7px 0 12px;
+  font-family: 'EB Garamond', serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.pairing-copy h2 {
+  order: 1;
+  margin: 0;
+  font-size: clamp(27px, 2.8vw, 38px);
+  line-height: 1.05;
+  font-weight: 400;
+  text-align: left;
+}
+
+.winemaker-suggestion {
+  order: 3;
+  position: relative;
+  max-width: 620px;
+  padding: 15px 18px 15px 22px;
+  border-left: 1px solid rgba(89, 44, 56, 0.38);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.winemaker-label {
+  margin: 0 0 6px;
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.winemaker-suggestion blockquote {
+  margin: 0;
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.winemaker-name {
+  margin: 8px 0 0;
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+}
+
+.pairing-link {
+  order: 4;
+  align-self: flex-start;
+  margin-top: 16px;
+  color: var(--text-color);
+  font-family: 'EB Garamond', serif;
+  font-size: 16px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.pairing-link:hover {
+  border-bottom-color: var(--text-color);
+  opacity: 0.76;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+footer {
+  margin-top: auto;
+  padding: 10px 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.85;
+}
+
+/* =========================
+   TABLET
+   ========================= */
+@media (max-width: 900px) {
+  .pairing-card {
+    grid-template-columns: minmax(260px, 0.85fr) minmax(330px, 1.15fr);
   }
 
-  /* transparent overlay when menu is open */
+  .pairing-copy {
+    padding: 24px 28px;
+  }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+@media (max-width: 720px) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: transparent;
+    border: none;
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    left: 16px;
+    top: 12px;
+    z-index: 1100;
+  }
+
+  .hamburger .line {
+    width: 20px;
+    height: 4px;
+    background: #592C38;
+    border-radius: 3px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    display: block;
+  }
+
+  .hamburger[aria-expanded="true"] .line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger[aria-expanded="true"] .line:nth-child(2) { opacity: 0; }
+
+  .hamburger[aria-expanded="true"] .line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  nav ul { display: none; }
+
   .nav-wrap.open::before {
     content: '';
     position: fixed;
@@ -183,7 +345,7 @@ nav li:focus-within > .dropdown { display: block; }
     background: rgba(0, 0, 0, 0.4);
     z-index: 900;
   }
-   /* slide-in menu from left */
+
   .nav-wrap.open nav ul {
     display: flex;
     position: fixed;
@@ -201,10 +363,9 @@ nav li:focus-within > .dropdown { display: block; }
     align-items: flex-start;
   }
 
-  .nav-wrap.open nav ul li {
-    width: 100%;
-  }
-   .nav-wrap.open nav ul a,
+  .nav-wrap.open nav ul li { width: 100%; }
+
+  .nav-wrap.open nav ul a,
   .nav-wrap.open nav ul button {
     display: block;
     width: 100%;
@@ -220,46 +381,104 @@ nav li:focus-within > .dropdown { display: block; }
     border: none;
     box-shadow: none;
     padding: 0;
-    display: flex !important;
+    display: none;
     flex-direction: column;
     width: 100%;
     margin-top: 4px;
   }
+
+  .nav-wrap.open nav ul .dropdown.is-open { display: flex; }
+
   .nav-wrap.open nav ul .dropdown a {
     padding: 8px 14px;
     font-size: 14px;
   }
 
-   /* ABOUT PAGE CONTENT */
-    .content-wrap {
-      max-width: 860px;
-      margin: 40px auto 80px;
-      padding: 0 24px;
-      font-size:18px;
-      line-height:1.55;
-    }
+  .pairing-main {
+    width: calc(100% - 32px);
+    margin: 54px auto 56px;
+  }
 
-    .content-wrap h1 {
-      font-size:35px;
-      margin-bottom:20px;
-      text-align:center;
-      font-weight:400;
-    }
+  .pairing-intro {
+    margin-bottom: 24px;
+  }
 
-    .content-image {
-      width:100%;
-      border-radius:12px;
-      margin:32px 0;
-      box-shadow:0 6px 25px rgba(0,0,0,0.08);
-    }
+  .pairing-intro h1 {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
 
-   footer {
-      margin-top:auto;
-      padding:10px 20px;
-      font-size:12px;
-      display:flex;
-      justify-content:space-between;
-      opacity:0.85;
-    }
+  .pairing-intro p {
+    font-size: 17px;
+    line-height: 1.38;
+  }
+
+  .pairing-filters {
+    gap: 8px;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+  }
+
+  .pairing-filter {
+    min-width: auto;
+    padding: 8px 17px;
+    font-size: 16px;
+  }
+
+  .pairing-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    margin-bottom: 18px;
+    border: 1px solid var(--soft-line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .pairing-photo-wrap,
+  .pairing-photo {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .pairing-copy {
+    padding: 20px 20px 22px;
+  }
+
+  .pairing-copy h2 {
+    font-size: 29px;
+  }
+
+  .pairing-category {
+    margin-top: 8px;
+  }
+
+  .winemaker-suggestion {
+    padding: 13px 0 3px;
+    border-left: 0;
+    background: transparent;
+  }
+
+  .winemaker-label {
+    font-size: 16px;
+  }
+
+  .winemaker-suggestion blockquote {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  .pairing-link {
+    margin-top: 16px;
+    font-size: 16px;
+  }
+
+  footer {
+    padding: 10px 20px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.85;
+  }
 }
-  

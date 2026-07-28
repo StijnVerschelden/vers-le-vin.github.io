@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,76 +10,175 @@
 
 <!-- External CSS for style -->
 <link rel="stylesheet" href="pairing.css">
-
 </head>
 
 <body>
 
 <!-- NAV -->
 <div class="nav-wrap">
-<nav>
-   <!-- HAMBURGER (mobile) -->
+<nav aria-label="Main navigation">
+  <!-- HAMBURGER (mobile) -->
   <button class="hamburger" aria-label="Open menu" aria-expanded="false" type="button">
-  <span class="line"></span>
-  <span class="line"></span>
-  <span class="line"></span>
-</button>
-<ul>
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+  </button>
 
-<li><a href="index.html">Home</a></li>
-<li>
-<button id="lantBtn">Lantignié ▾</button>
-<div class="dropdown">
-<a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a> 
- <a href="Terroir.html">Terroir</a>
- <a href="vtl.html">VTL (association)</a>
- <a href="wijnmakers.html">Wijnmakers</a>
-</div>
-</li>
-<li>
-          <button id="wijnBtn">Wijnen ▾</button>
-          <div class="dropdown" role="menu">
-            <a role="menuitem" href="wijnenBLantignié.html">Beaujolais Lantignié</a>
-            <a role="menuitem" href="chablis.html">Chablis</a>
-            <a role="menuitem" href="irancy.html">Irancy</a>
-          </div>
-        </li>
-        <li>
-        <a href="winkel.html">Winkel</a>
-        </li> 
-<li>
-<a href="events.html">Events</a>
-</li>
-<li>
-<button id="blogBtn">Blog ▾</button>
-<div class="dropdown">
-<a href="essays.html">Essays</a>
-<a href="pairing.html">Pairing</a>
-<a href="#">Beelden</a>
-</div>
-</li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <button id="lantBtn" type="button" aria-expanded="false">Lantignié ▾</button>
+      <div class="dropdown">
+        <a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a>
+        <a href="Terroir.html">Terroir</a>
+        <a href="vtl.html">VTL (association)</a>
+        <a href="wijnmakers.html">Wijnmakers</a>
+      </div>
+    </li>
+    <li>
+      <button id="wijnBtn" type="button" aria-expanded="false">Wijnen ▾</button>
+      <div class="dropdown" role="menu">
+        <a role="menuitem" href="wijnenBLantignié.html">Beaujolais Lantignié</a>
+        <a role="menuitem" href="chablis.html">Chablis</a>
+        <a role="menuitem" href="irancy.html">Irancy</a>
+      </div>
+    </li>
+    <li><a href="winkel.html">Winkel</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li>
+      <button id="blogBtn" type="button" aria-expanded="false">Blog ▾</button>
+      <div class="dropdown">
+        <a href="essays.html">Essays</a>
+        <a href="pairing.html" aria-current="page">Pairing</a>
+        <a href="#">Beelden</a>
+      </div>
+    </li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
 </nav>
 </div>
 
-
 <!-- MAIN -->
-<main>
-<h1>Pairing</h1>
-<p>Coming soon...</p>
+<main class="pairing-main">
+  <header class="pairing-intro">
+    <h1>Moodboard - Pairing</h1>
+    <p>
+      Wine speaks to more than the palate. It carries memory, place and feeling —
+      and can be paired with many forms of culture and atmosphere.
+      Music, architecture, paintings, cinema, literature, and more.
+    </p>
+  </header>
+
+  <div class="pairing-filters" role="group" aria-label="Filter pairings by category">
+    <button class="pairing-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+    <button class="pairing-filter" type="button" data-filter="music" aria-pressed="false">Music</button>
+    <button class="pairing-filter" type="button" data-filter="architecture" aria-pressed="false">Architecture</button>
+    <button class="pairing-filter" type="button" data-filter="paintings" aria-pressed="false">Paintings</button>
+    <button class="pairing-filter" type="button" data-filter="cinema" aria-pressed="false">Cinema</button>
+  </div>
+
+  <section class="pairing-list" aria-live="polite">
+
+    <article class="pairing-card" data-category="music">
+      <div class="pairing-photo-wrap">
+        <img class="pairing-photo" src="images/pi.jpg" alt="Wijn 1" loading="lazy">
+      </div>
+
+      <div class="pairing-copy">
+        <p class="pairing-category">Music</p>
+        <h2>Wijn 1</h2>
+
+        <div class="winemaker-suggestion">
+          <p class="winemaker-label">Winemaker’s suggestion</p>
+          <blockquote>
+            “A wine of threads and contrasts. Light in colour, deep in feeling.
+            It moves with a quiet rhythm.”
+          </blockquote>
+          <p class="winemaker-name">— Winemaker 1</p>
+        </div>
+
+        <a class="pairing-link" href="pairing-wijn1.html">See full pairing &amp; discussion <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <article class="pairing-card" data-category="cinema">
+      <div class="pairing-photo-wrap">
+        <img class="pairing-photo" src="images/axiom25.jpg" alt="Wijn 2" loading="lazy">
+      </div>
+
+      <div class="pairing-copy">
+        <p class="pairing-category">Cinema</p>
+        <h2>Wijn 2</h2>
+
+        <div class="winemaker-suggestion">
+          <p class="winemaker-label">Winemaker’s suggestion</p>
+          <blockquote>
+            “This wine belongs in a road movie — windows down, somewhere warm,
+            with everything still possible.”
+          </blockquote>
+          <p class="winemaker-name">— Winemaker 2</p>
+        </div>
+
+        <a class="pairing-link" href="pairing-wijn2.html">See full pairing &amp; discussion <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <article class="pairing-card" data-category="paintings">
+      <div class="pairing-photo-wrap">
+        <img class="pairing-photo" src="images/alba.jpg" alt="Wijn 3" loading="lazy">
+      </div>
+
+      <div class="pairing-copy">
+        <p class="pairing-category">Paintings</p>
+        <h2>Wijn 3</h2>
+
+        <div class="winemaker-suggestion">
+          <p class="winemaker-label">Winemaker’s suggestion</p>
+          <blockquote>
+            “A wine of balance and light. Its soft tones invite contemplation,
+            like a landscape remembered rather than seen.”
+          </blockquote>
+          <p class="winemaker-name">— Winemaker 3</p>
+        </div>
+
+        <a class="pairing-link" href="pairing-wijn3.html">See full pairing &amp; discussion <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <article class="pairing-card" data-category="architecture">
+      <div class="pairing-photo-wrap">
+        <img class="pairing-photo" src="images/cosimaface.jpg" alt="Wijn 4" loading="lazy">
+      </div>
+
+      <div class="pairing-copy">
+        <p class="pairing-category">Architecture</p>
+        <h2>Wijn 4</h2>
+
+        <div class="winemaker-suggestion">
+          <p class="winemaker-label">Winemaker’s suggestion</p>
+          <blockquote>
+            “Stone, tension and balance. This wine feels constructed like a landscape:
+            precise, grounded and quietly expressive.”
+          </blockquote>
+          <p class="winemaker-name">— Winemaker 4</p>
+        </div>
+
+        <a class="pairing-link" href="pairing-wijn4.html">See full pairing &amp; discussion <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+  </section>
 </main>
 
 <!-- FOOTER -->
 <footer>
-<span>© 2026 Vers Le Vin</span>
-<span>by Stijn Verschelden</span>
+  <span>© 2026 Vers Le Vin</span>
+  <span>by Stijn Verschelden</span>
 </footer>
 
-  <!-- External JavaScript -->
-  <script src="pairing.js"></script>
-
+<!-- External JavaScript -->
+<script src="pairing.js"></script>
 
 </body>
 </html>
