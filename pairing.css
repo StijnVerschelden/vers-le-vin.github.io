@@ -603,6 +603,123 @@ nav button:hover {
   text-align: center;
 }
 
+.artwork-reference {
+  width: 100%;
+  height: 180px;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  color: var(--text-color);
+  background: rgba(255, 252, 244, 0.3);
+  border: 1px solid rgba(89, 44, 56, 0.14);
+  border-radius: 12px;
+  text-decoration: none;
+
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.artwork-reference:hover {
+  opacity: 0.82;
+  border-color: rgba(89, 44, 56, 0.3);
+}
+
+.artwork-reference:focus-visible {
+  outline: 2px solid rgba(89, 44, 56, 0.48);
+  outline-offset: 3px;
+}
+
+/*
+  Original CSS abstraction—not a reproduction
+  or crop of the Rothko artwork.
+*/
+.artwork-reference-visual {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px;
+
+  background: rgba(89, 44, 56, 0.05);
+  border-right: 1px solid rgba(89, 44, 56, 0.12);
+}
+
+.artwork-reference-field {
+  display: block;
+  width: 100%;
+  background: rgba(24, 20, 22, 0.91);
+}
+
+.artwork-reference-field--top {
+  flex: 0.42;
+  border: 5px solid rgba(83, 39, 91, 0.66);
+}
+
+.artwork-reference-field--middle {
+  flex: 1.4;
+  border: 5px solid rgba(83, 39, 91, 0.66);
+}
+
+.artwork-reference-field--bottom {
+  flex: 0.68;
+  border: 5px solid rgba(83, 39, 91, 0.66);
+}
+
+.artwork-reference-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 14px 15px;
+}
+
+.artwork-reference-type {
+  margin-bottom: 11px;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.artwork-reference-title {
+  font-family:
+    'CaslonAntiqueRegular',
+    'EB Garamond',
+    serif;
+  font-size: clamp(17px, 1.35vw, 21px);
+  line-height: 1.05;
+}
+
+.artwork-reference-artist {
+  margin-top: 4px;
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+}
+
+.artwork-reference-collection {
+  margin-top: 2px;
+  font-family: 'EB Garamond', serif;
+  font-size: 11px;
+  font-style: italic;
+  opacity: 0.72;
+}
+
+.artwork-reference-source {
+  margin-top: 13px;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 11px;
+  line-height: 1.2;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* =========================
    FOOTER
    ========================= */
@@ -938,6 +1055,27 @@ footer {
     -webkit-line-clamp: 2;
     line-clamp: 2;
   }
+
+  .artwork-reference {
+  height: 180px;
+  grid-template-columns: 38% 62%;
+}
+
+.artwork-reference-content {
+  padding: 14px;
+}
+
+.artwork-reference-title {
+  font-size: 21px;
+}
+
+.artwork-reference-artist {
+  font-size: 14px;
+}
+
+.artwork-reference-source {
+  font-size: 12px;
+}
 
   footer {
     padding: 10px 14px;
