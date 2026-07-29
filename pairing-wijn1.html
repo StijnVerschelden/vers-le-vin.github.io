@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Wijn 2 Pairings – Vers Le Vin</title>
+  <meta
+    name="description"
+    content="Explore the music, painting, cinema and literature pairings for Wijn 2, and join the discussion."
+  >
+
+  <!-- Caslon Antique -->
+  <link
+    rel="stylesheet"
+    media="screen"
+    href="https://fontlibrary.org//face/caslon-antique"
+    type="text/css"
+  >
+
+  <link rel="stylesheet" href="pairing-wijn2.css">
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <div class="nav-wrap">
+    <nav aria-label="Main navigation">
+      <button
+        class="hamburger"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+
+      <ul>
+        <li><a href="index.html">Home</a></li>
+
+        <li>
+          <button id="lantBtn" type="button" aria-expanded="false">
+            Lantignié ▾
+          </button>
+
+          <div class="dropdown">
+            <a href="BeaujolaisLantignié.html">Beaujolais Lantignié</a>
+            <a href="Terroir.html">Terroir</a>
+            <a href="vtl.html">VTL (association)</a>
+            <a href="wijnmakers.html">Wijnmakers</a>
+          </div>
+        </li>
+
+        <li>
+          <button id="wijnBtn" type="button" aria-expanded="false">
+            Wijnen ▾
+          </button>
+
+          <div class="dropdown" role="menu">
+            <a role="menuitem" href="wijnenBLantignié.html">
+              Beaujolais Lantignié
+            </a>
+            <a role="menuitem" href="chablis.html">Chablis</a>
+            <a role="menuitem" href="irancy.html">Irancy</a>
+          </div>
+        </li>
+
+        <li><a href="winkel.html">Winkel</a></li>
+        <li><a href="events.html">Events</a></li>
+
+        <li>
+          <button id="blogBtn" type="button" aria-expanded="false">
+            Blog ▾
+          </button>
+
+          <div class="dropdown">
+            <a href="essays.html">Essays</a>
+            <a href="pairing.html" aria-current="page">Pairing</a>
+            <a href="beelden.html">Beelden</a>
+          </div>
+        </li>
+
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- MAIN -->
+  <main class="wine-page">
+    <a class="back-link" href="pairing.html">
+      <span aria-hidden="true">←</span>
+      Back to all pairings
+    </a>
+
+    <section class="wine-hero" aria-labelledby="wineTitle">
+
+      <!-- AUTOMATIC THREE-IMAGE SLIDESHOW -->
+      <section
+        class="wine-gallery"
+        aria-label="Wijn 2 image gallery"
+        data-slideshow
+      >
+        <div class="wine-gallery-stage">
+          <img
+            class="wine-slide is-active"
+            src="images/wijn1.jpg"
+            alt="Wijn 2 bottle in a warm interior"
+            data-caption="Bottle and atmosphere"
+          >
+
+          <img
+            class="wine-slide"
+            src="images/wijn2-detail.jpg"
+            alt="Close detail of the Wijn 2 bottle and label"
+            data-caption="Bottle detail"
+          >
+
+          <img
+            class="wine-slide"
+            src="images/wijn2-table.jpg"
+            alt="Wijn 2 served at a softly lit table"
+            data-caption="At the table"
+          >
+
+          <div class="wine-gallery-shade" aria-hidden="true"></div>
+
+          <p class="wine-gallery-caption" id="wineGalleryCaption">
+            Bottle and atmosphere
+          </p>
+
+          <p class="wine-gallery-counter" aria-live="polite">
+            <span data-current-slide>1</span>
+            /
+            <span data-total-slides>3</span>
+          </p>
+
+          <button
+            class="gallery-control gallery-control--previous"
+            type="button"
+            aria-label="Show previous image"
+            data-gallery-previous
+          >
+            ‹
+          </button>
+
+          <button
+            class="gallery-control gallery-control--next"
+            type="button"
+            aria-label="Show next image"
+            data-gallery-next
+          >
+            ›
+          </button>
+        </div>
+
+        <div
+          class="gallery-dots"
+          role="group"
+          aria-label="Choose gallery image"
+          data-gallery-dots
+        ></div>
+      </section>
+
+      <!-- WINE INFORMATION + PAIRING PANELS -->
+      <section class="wine-workspace">
+
+        <div class="wine-workspace-grid">
+          <header class="wine-identity">
+            <p class="wine-domain">Domaine de Lantignié</p>
+
+            <h1 id="wineTitle">Wijn 2</h1>
+
+            <p class="wine-vintage">2023</p>
+
+            <span class="wine-rule" aria-hidden="true"></span>
+
+            <blockquote class="wine-character">
+              “A thread of light through quiet earth.
+              Soft and persistent, it lingers long after
+              the last sip.”
+            </blockquote>
+
+            <p class="wine-signature">Winemaker’s note</p>
+          </header>
+
+          <div class="pairing-explorer">
+            <div
+              class="pairing-tabs"
+              role="tablist"
+              aria-label="Explore pairings for Wijn 2"
+            >
+              <button
+                class="pairing-tab is-active"
+                id="musicTab"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="musicPanel"
+                tabindex="0"
+                data-pairing-tab="music"
+              >
+                Music
+              </button>
+
+              <button
+                class="pairing-tab"
+                id="paintingTab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="paintingPanel"
+                tabindex="-1"
+                data-pairing-tab="painting"
+              >
+                Painting
+              </button>
+
+              <button
+                class="pairing-tab"
+                id="cinemaTab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="cinemaPanel"
+                tabindex="-1"
+                data-pairing-tab="cinema"
+              >
+                Cinema
+              </button>
+
+              <button
+                class="pairing-tab"
+                id="literatureTab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="literaturePanel"
+                tabindex="-1"
+                data-pairing-tab="literature"
+              >
+                Literature
+              </button>
+            </div>
+
+            <div class="pairing-panels">
+
+              <!-- MUSIC -->
+              <section
+                class="pairing-panel is-active"
+                id="musicPanel"
+                role="tabpanel"
+                aria-labelledby="musicTab"
+                data-pairing-panel="music"
+              >
+                <div class="spotify-panel">
+                  <iframe
+                    class="spotify-embed"
+                    data-testid="embed-iframe"
+                    src="https://open.spotify.com/embed/playlist/3Up0ZO50JDfjCqPvHZWyHW?utm_source=generator&amp;si=45c804835b364cb4"
+                    title="Spotify playlist paired with Wijn 2"
+                    width="100%"
+                    height="352"
+                    frameborder="0"
+                    allowfullscreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                  ></iframe>
+
+                  <div class="pairing-reason">
+                    <p class="pairing-reason-label">Why this pairing</p>
+                    <p>
+                      Quiet rhythm, space and a lingering warmth mirror
+                      the wine’s restrained, slowly unfolding character.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- PAINTING -->
+              <section
+                class="pairing-panel"
+                id="paintingPanel"
+                role="tabpanel"
+                aria-labelledby="paintingTab"
+                data-pairing-panel="painting"
+                hidden
+              >
+                <a
+                  class="artwork-reference"
+                  href="https://www.nga.gov/artworks/67648-untitled"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Untitled, 1969 by Mark Rothko at the National Gallery of Art"
+                >
+                  <span class="artwork-reference-visual" aria-hidden="true">
+                    <span class="artwork-reference-field artwork-reference-field--top"></span>
+                    <span class="artwork-reference-field artwork-reference-field--middle"></span>
+                    <span class="artwork-reference-field artwork-reference-field--bottom"></span>
+                  </span>
+
+                  <span class="artwork-reference-content">
+                    <span class="artwork-reference-type">
+                      Painting pairing
+                    </span>
+
+                    <span class="artwork-reference-title">
+                      <cite>Untitled</cite>, 1969
+                    </span>
+
+                    <span class="artwork-reference-artist">
+                      Mark Rothko
+                    </span>
+
+                    <span class="artwork-reference-collection">
+                      National Gallery of Art
+                    </span>
+
+                    <span class="artwork-reference-source">
+                      View the official artwork
+                      <span aria-hidden="true">→</span>
+                    </span>
+                  </span>
+                </a>
+
+                <div class="pairing-reason">
+                  <p class="pairing-reason-label">Why this pairing</p>
+                  <p>
+                    Deep fields of color suggest stillness, warmth and
+                    concentration—the same slow attention this wine invites.
+                  </p>
+                </div>
+              </section>
+
+              <!-- CINEMA -->
+              <section
+                class="pairing-panel"
+                id="cinemaPanel"
+                role="tabpanel"
+                aria-labelledby="cinemaTab"
+                data-pairing-panel="cinema"
+                hidden
+              >
+                <div class="upcoming-panel">
+                  <span class="upcoming-symbol" aria-hidden="true">◇</span>
+                  <p class="upcoming-category">Cinema pairing</p>
+                  <h2>Upcoming</h2>
+                  <p>
+                    A film pairing for this wine is being selected.
+                  </p>
+                </div>
+              </section>
+
+              <!-- LITERATURE -->
+              <section
+                class="pairing-panel"
+                id="literaturePanel"
+                role="tabpanel"
+                aria-labelledby="literatureTab"
+                data-pairing-panel="literature"
+                hidden
+              >
+                <div class="upcoming-panel">
+                  <span class="upcoming-symbol" aria-hidden="true">◇</span>
+                  <p class="upcoming-category">Literature pairing</p>
+                  <h2>Upcoming</h2>
+                  <p>
+                    A poem or literary fragment will be paired here soon.
+                  </p>
+                </div>
+              </section>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- DISCUSSION -->
+    <section
+      class="discussion"
+      id="discussion"
+      aria-labelledby="discussionTitle"
+      data-comments-key="wijn2"
+    >
+      <div class="discussion-heading">
+        <div>
+          <p class="discussion-eyebrow">Community pairing notes</p>
+          <h2 id="discussionTitle">Discussion</h2>
+        </div>
+
+        <div class="discussion-actions">
+          <label class="sort-label" for="commentSort">
+            Sort
+          </label>
+
+          <select class="comment-sort" id="commentSort">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+          </select>
+
+          <button
+            class="open-comment-button"
+            id="openCommentButton"
+            type="button"
+            aria-expanded="false"
+            aria-controls="commentComposer"
+          >
+            Add your thoughts
+          </button>
+        </div>
+      </div>
+
+      <!-- PINNED WINEMAKER COMMENT -->
+      <article class="comment comment--pinned">
+        <div class="comment-avatar" aria-hidden="true">W</div>
+
+        <div class="comment-body">
+          <div class="comment-topline">
+            <p class="comment-author">
+              Featured winemaker
+              <span class="comment-badge">Winemaker · Pinned</span>
+            </p>
+          </div>
+
+          <p class="comment-text">
+            Coming soon.
+          </p>
+        </div>
+      </article>
+
+      <!-- COMMENT COMPOSER -->
+      <form
+        class="comment-composer"
+        id="commentComposer"
+        hidden
+        novalidate
+      >
+        <div class="reply-context" id="replyContext" hidden>
+          <span id="replyContextText"></span>
+
+          <button
+            class="cancel-reply-button"
+            id="cancelReplyButton"
+            type="button"
+          >
+            Cancel reply
+          </button>
+        </div>
+
+        <input id="commentParentId" type="hidden" value="">
+
+        <div class="comment-fields">
+          <div class="comment-field">
+            <label for="commentName">Your name</label>
+            <input
+              id="commentName"
+              name="name"
+              type="text"
+              maxlength="60"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="comment-field comment-field--message">
+            <label for="commentText">Your pairing thought</label>
+            <textarea
+              id="commentText"
+              name="comment"
+              rows="4"
+              maxlength="1200"
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="comment-composer-footer">
+          <p class="comment-privacy">
+            Demo version: comments are saved only in this browser.
+          </p>
+
+          <div class="comment-submit-actions">
+            <button
+              class="cancel-comment-button"
+              id="cancelCommentButton"
+              type="button"
+            >
+              Cancel
+            </button>
+
+            <button class="submit-comment-button" type="submit">
+              Post comment
+            </button>
+          </div>
+        </div>
+
+        <p
+          class="comment-status"
+          id="commentStatus"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
+
+      <div
+        class="comment-list"
+        id="commentList"
+        aria-live="polite"
+      >
+        <p class="discussion-empty" id="discussionEmpty">
+          No community comments yet. Be the first to add a pairing thought.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Vers Le Vin</span>
+    <span>by Stijn Verschelden</span>
+  </footer>
+
+  <script src="pairing-wijn2.js"></script>
+</body>
+</html>
