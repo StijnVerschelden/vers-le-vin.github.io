@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    Comments are stored locally under the same key used by
    pairing.html's discussion preview:
-   versLeVinPairingComments:wijn2
+   versLeVinPairingComments:wijn1
 
    This is a front-end demo. A public shared forum requires
    a database/backend.
