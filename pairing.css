@@ -293,7 +293,7 @@ nav button:hover {
 
 /*
   All wines use the original four-column proportions:
-  photo 34% | wine text 25% | pairing media 23% | winemaker suggestion 18%
+  photo 34% | wine text 25% | pairing media 23% | discussion preview 18%
 */
 .pairing-row {
   display: grid;
@@ -443,46 +443,156 @@ nav button:hover {
   opacity: 0.72;
 }
 
-/* Smaller winemaker suggestion at the right */
-.winemaker-box {
+/* Discussion preview at the right */
+.comment-preview {
   align-self: center;
   width: calc(100% - 14px);
+  min-width: 0;
+  max-height: 180px;
   box-sizing: border-box;
   margin: 0 0 0 7px;
-  padding: 13px 12px 12px;
-  background: var(--panel);
+  padding: 11px 12px 10px;
+  overflow: hidden;
+
+  background: rgba(255, 252, 244, 0.19);
   border: 1px solid var(--soft-line);
   border-radius: 7px;
   text-align: left;
 }
 
-.winemaker-heading {
-  margin: 0 0 9px;
+.comment-preview-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.comment-preview-title,
+.comment-preview-subtitle {
+  margin: 0;
   font-family: 'EB Garamond', serif;
-  font-size: 9px;
-  line-height: 1.15;
-  letter-spacing: 0.075em;
+  line-height: 1;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
-.winemaker-heading span {
-  margin-right: 4px;
-  font-size: 13px;
+.comment-preview-title {
+  font-size: 10px;
 }
 
-.winemaker-box blockquote {
+.comment-preview-subtitle {
+  margin-bottom: 5px;
+  font-size: 8px;
+  opacity: 0.72;
+}
+
+.comment-preview-link {
+  flex: 0 0 auto;
+  color: var(--text-color);
+  font-family: 'EB Garamond', serif;
+  font-size: 11px;
+  line-height: 1;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.comment-preview-link:hover {
+  opacity: 0.66;
+  border-bottom-color: currentColor;
+}
+
+.comment-preview-item {
+  min-width: 0;
+}
+
+.comment-preview-item--winemaker {
+  margin-bottom: 8px;
+  padding: 7px 8px 6px;
+  background: rgba(89, 44, 56, 0.045);
+  border-left: 2px solid rgba(89, 44, 56, 0.28);
+}
+
+.comment-preview-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.76;
+}
+
+.comment-preview-text {
   margin: 0;
+  overflow: hidden;
+
   font-family: 'EB Garamond', serif;
-  font-size: clamp(12px, 0.84vw, 14px);
+  font-size: clamp(11px, 0.76vw, 13px);
   font-style: italic;
-  line-height: 1.25;
+  line-height: 1.18;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
-.winemaker-name {
-  margin: 8px 0 0;
+.comment-preview-author {
+  margin: 4px 0 0;
   font-family: 'EB Garamond', serif;
-  font-size: clamp(12px, 0.84vw, 14px);
-  line-height: 1.1;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.comment-preview-list {
+  display: grid;
+  gap: 4px;
+}
+
+.comment-preview-community-item {
+  min-width: 0;
+  padding-top: 4px;
+  border-top: 1px solid rgba(89, 44, 56, 0.12);
+}
+
+.comment-preview-community-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+  font-family: 'EB Garamond', serif;
+  font-size: 9px;
+  line-height: 1;
+  opacity: 0.72;
+}
+
+.comment-preview-community-text {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'EB Garamond', serif;
+  font-size: 11px;
+  line-height: 1.15;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.comment-preview-empty {
+  margin: 0;
+  padding-top: 5px;
+  border-top: 1px solid rgba(89, 44, 56, 0.12);
+  font-family: 'EB Garamond', serif;
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.15;
+  opacity: 0.68;
 }
 
 .pairing-empty {
@@ -545,7 +655,7 @@ footer {
     grid-template-areas:
       "photo details"
       "photo media"
-      "photo suggestion";
+      "photo comments";
     min-height: auto;
     padding: 10px 0;
   }
@@ -571,21 +681,21 @@ footer {
     height: 180px;
   }
 
-  .winemaker-box {
-    grid-area: suggestion;
+  .comment-preview {
+    grid-area: comments;
     width: auto;
+    max-height: none;
     margin: 0 18px 18px 28px;
     padding: 14px 17px;
   }
 
-  .winemaker-heading {
-    font-size: 10px;
-    letter-spacing: 0.09em;
+  .comment-preview-text {
+    font-size: 14px;
   }
 
-  .winemaker-box blockquote,
-  .winemaker-name {
-    font-size: 14px;
+  .comment-preview-community-text,
+  .comment-preview-empty {
+    font-size: 13px;
   }
 }
 
@@ -752,7 +862,7 @@ footer {
       "photo"
       "details"
       "media"
-      "suggestion";
+      "comments";
     min-height: auto;
     padding: 14px 0 18px;
   }
@@ -801,22 +911,32 @@ footer {
     border-radius: 10px;
   }
 
-  .winemaker-box {
-    grid-area: suggestion;
+  .comment-preview {
+    grid-area: comments;
     width: 100%;
+    max-height: none;
     margin: 0;
     padding: 17px 18px;
     border-radius: 7px;
   }
 
-  .winemaker-heading {
+  .comment-preview-title {
     font-size: 11px;
-    letter-spacing: 0.1em;
   }
 
-  .winemaker-box blockquote,
-  .winemaker-name {
+  .comment-preview-subtitle {
+    font-size: 10px;
+  }
+
+  .comment-preview-text,
+  .comment-preview-community-text,
+  .comment-preview-empty {
     font-size: 16px;
+  }
+
+  .comment-preview-community-text {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
   }
 
   footer {

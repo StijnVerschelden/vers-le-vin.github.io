@@ -155,3 +155,119 @@ document.addEventListener('DOMContentLoaded', () => {
       : 'Show more…';
   });
 });
+
+/* =========================
+   DISCUSSION PREVIEWS
+
+   The main pairing page shows:
+   1. One pinned winemaker comment from the HTML.
+   2. The two newest community comments.
+
+   For the future wine-detail pages, save comments under:
+   localStorage key: versLeVinPairingComments:<wine key>
+
+   Example:
+   versLeVinPairingComments:wijn1
+
+   Each stored comment should look like:
+   {
+     "name": "Sophie",
+     "text": "A beautiful pairing.",
+     "createdAt": "2026-07-29T12:00:00.000Z"
+   }
+
+   This localStorage setup is useful for design/testing only.
+   A public forum shared by all visitors will require a backend.
+   ========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const previews = Array.from(
+    document.querySelectorAll('.comment-preview[data-comments-key]')
+  );
+
+  if (!previews.length) return;
+
+  const STORAGE_PREFIX = 'versLeVinPairingComments:';
+
+  function readComments(key) {
+    try {
+      const raw = localStorage.getItem(`${STORAGE_PREFIX}${key}`);
+      if (!raw) return [];
+
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+
+      return parsed
+        .filter((comment) => {
+          return (
+            comment &&
+            typeof comment.name === 'string' &&
+            typeof comment.text === 'string'
+          );
+        })
+        .sort((a, b) => {
+          const timeA = Date.parse(a.createdAt || '') || 0;
+          const timeB = Date.parse(b.createdAt || '') || 0;
+          return timeB - timeA;
+        });
+    } catch (error) {
+      console.warn('Could not read pairing comments:', error);
+      return [];
+    }
+  }
+
+  function formatDate(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+
+    return new Intl.DateTimeFormat('en', {
+      month: 'short',
+      day: 'numeric'
+    }).format(date);
+  }
+
+  function createCommentElement(comment) {
+    const item = document.createElement('article');
+    item.className = 'comment-preview-community-item';
+
+    const top = document.createElement('div');
+    top.className = 'comment-preview-community-top';
+
+    const author = document.createElement('span');
+    author.textContent = comment.name.trim() || 'Anonymous';
+
+    const date = document.createElement('span');
+    date.textContent = formatDate(comment.createdAt);
+
+    const text = document.createElement('p');
+    text.className = 'comment-preview-community-text';
+    text.textContent = comment.text.trim();
+
+    top.append(author, date);
+    item.append(top, text);
+
+    return item;
+  }
+
+  previews.forEach((preview) => {
+    const key = preview.dataset.commentsKey;
+    const list = preview.querySelector('[data-comment-list]');
+
+    if (!key || !list) return;
+
+    const latestComments = readComments(key).slice(0, 2);
+    list.replaceChildren();
+
+    if (!latestComments.length) {
+      const empty = document.createElement('p');
+      empty.className = 'comment-preview-empty';
+      empty.textContent = 'No comments yet.';
+      list.appendChild(empty);
+      return;
+    }
+
+    latestComments.forEach((comment) => {
+      list.appendChild(createCommentElement(comment));
+    });
+  });
+});
+
