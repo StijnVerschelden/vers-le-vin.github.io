@@ -402,8 +402,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* Replace these two empty values with your newsletter Google Form details. */
-  const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSc05WEaWWyqvK8oJ7JHVcFk-iRVEIY8RlZzjGmHtuL-QHtj7w/viewform";
-  const GOOGLE_FORM_EMAIL_ENTRY = "entry.1045781291";
+  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSc05WEaWWyqvK8oJ7JHVcFk-iRVEIY8RlZzjGmHtuL-QHtj7w/viewform';
+  const GOOGLE_FORM_EMAIL_ENTRY = 'entry.1045781291';
 
   const OPEN_DELAY_MS = 900;
   let previouslyFocusedElement = null;
