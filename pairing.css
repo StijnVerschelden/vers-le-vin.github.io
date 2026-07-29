@@ -227,6 +227,7 @@ nav button:hover {
    ========================= */
 
 .pairing-filters {
+  grid-column: 2;
   min-width: 0;
   display: flex;
   justify-content: space-between;
@@ -393,40 +394,13 @@ nav button:hover {
   box-sizing: border-box;
   padding: 10px 9px 10px 8px;
 }
-.spotify-tinted {
-  position: relative;
-}
-
-.spotify-tinted::after {
-  content: '';
-  position: absolute;
-  inset: 10px 9px 10px 8px;
-  z-index: 2;
-
-  background: rgba(89, 44, 56, 0.08);
-  border-radius: 12px;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-
-  transition: opacity 0.3s ease;
-}
-
-.spotify-tinted:hover::after {
-  opacity: 0.25;
-}
-
 .spotify-embed {
   width: 100%;
-  height: 165px;
+  height: 180px;
   display: block;
   border: 0;
   border-radius: 12px;
-
-  opacity: 0.92;
-  filter:
-    sepia(0.18)
-    saturate(0.82)
-    contrast(0.96);
+  background: transparent;
 }
 .pairing-media-placeholder {
   width: 100%;
@@ -553,6 +527,7 @@ footer {
   }
 
   .pairing-filters {
+    grid-column: 1;
     justify-content: flex-start;
     gap: 16px;
     overflow-x: auto;
@@ -746,6 +721,7 @@ footer {
   }
 
   .pairing-filters {
+    grid-column: 1;
     justify-content: flex-start;
     gap: 10px;
     margin-top: 22px;

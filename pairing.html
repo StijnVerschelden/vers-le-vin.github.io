@@ -62,7 +62,8 @@
 <!-- MAIN -->
 <main class="pairing-main">
 
- <header class="pairing-intro">
+  <section class="pairing-top" aria-labelledby="pairingTitle">
+    <header class="pairing-intro">
   <h1 id="pairingTitle">Moodboard</h1>
 
   <div class="pairing-intro-copy">
@@ -89,8 +90,8 @@
       aria-controls="pairingIntroText">
       Show more…
     </button>
-  </div>
-</header>
+    </div>
+    </header>
 
     <div class="pairing-filters" role="group" aria-label="Filter pairings by category">
       <button class="pairing-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
@@ -121,19 +122,20 @@
         </a>
       </div>
 
-      <div class="pairing-media-wrap spotify-tinted" aria-label="Spotify pairing for Wijn 1">
+      <div class="pairing-media-wrap" aria-label="Spotify pairing for Wijn 1">
   <iframe
-    class="spotify-embed"
-    data-testid="embed-iframe"
-    src="https://open.spotify.com/embed/track/0AxZUYeQ9bZwSdt1LmZuok?utm_source=generator&amp;theme=0&amp;si=da7ea00a8ed74b9a"
-    title="Spotify track paired with Mi by Domaine de Romarand"
-    width="100%"
-    height="165"
-    frameborder="0"
-    allowfullscreen
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy">
-  </iframe>
+          class="spotify-embed"
+          data-testid="embed-iframe"
+          style="border-radius:12px"
+          src="https://open.spotify.com/embed/playlist/3Up0ZO50JDfjCqPvHZWyHW?utm_source=generator&amp;si=45c804835b364cb4"
+          title="Spotify playlist paired with Mi by Domaine de Romarand"
+          width="100%"
+          height="352"
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
 </div>
 
       <aside class="winemaker-box" aria-label="Winemaker suggestion for Wijn 1">
