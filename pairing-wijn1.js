@@ -1,4 +1,4 @@
-/* pairing-wijn2.js — Vers Le Vin
+/* pairing-wijn1.js — Vers Le Vin
    Detail-page navigation, slideshow, pairing tabs and discussion.
    ---------------------------------------------------------------- */
 
