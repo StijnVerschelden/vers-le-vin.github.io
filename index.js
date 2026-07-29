@@ -84,7 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   controls.forEach((control) => {
-    const button = document.getElementById(control.btnId);
+    const button =
+      document.getElementById(control.btnId);
 
     if (!button) return;
 
@@ -97,19 +98,25 @@ document.addEventListener("DOMContentLoaded", () => {
         expanded ? "false" : "true"
       );
 
-      const menu = button.nextElementSibling;
+      const menu =
+        button.nextElementSibling;
 
       if (menu) {
-        menu.style.display = expanded ? "none" : "block";
+        menu.style.display =
+          expanded ? "none" : "block";
       }
     });
 
     button.addEventListener("keydown", (event) => {
       if (event.key !== "Escape") return;
 
-      button.setAttribute("aria-expanded", "false");
+      button.setAttribute(
+        "aria-expanded",
+        "false"
+      );
 
-      const menu = button.nextElementSibling;
+      const menu =
+        button.nextElementSibling;
 
       if (menu) {
         menu.style.display = "none";
@@ -121,11 +128,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("click", (event) => {
     controls.forEach((control) => {
-      const button = document.getElementById(control.btnId);
+      const button =
+        document.getElementById(control.btnId);
 
       if (!button) return;
 
-      const menu = button.nextElementSibling;
+      const menu =
+        button.nextElementSibling;
 
       if (!menu) return;
 
@@ -133,7 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
         !button.contains(event.target) &&
         !menu.contains(event.target)
       ) {
-        button.setAttribute("aria-expanded", "false");
+        button.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
         menu.style.display = "none";
       }
     });
@@ -145,18 +158,24 @@ document.addEventListener("DOMContentLoaded", () => {
    CENTRE LOGO CARD FLIP
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const logoCard = document.getElementById("logoCard");
-  const backRow = document.getElementById("backRow");
-  const hint = document.querySelector(".hover-hint");
+  const logoCard =
+    document.getElementById("logoCard");
+
+  const backRow =
+    document.getElementById("backRow");
+
+  const hint =
+    document.querySelector(".hover-hint");
 
   if (!logoCard) return;
 
   let isFlipped = false;
 
   function scrollBackIntoView() {
-    const mobileView = window.matchMedia(
-      "(max-width: 720px)"
-    ).matches;
+    const mobileView =
+      window.matchMedia(
+        "(max-width: 720px)"
+      ).matches;
 
     if (!mobileView || !backRow) return;
 
@@ -190,91 +209,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  logoCard.addEventListener("pointerup", (event) => {
-    if (
-      isFlipped &&
-      event.target.closest("a")
-    ) {
-      return;
+  logoCard.addEventListener(
+    "pointerup",
+    (event) => {
+      if (
+        isFlipped &&
+        event.target.closest("a")
+      ) {
+        return;
+      }
+
+      setFlipped(!isFlipped);
     }
+  );
 
-    setFlipped(!isFlipped);
-  });
+  logoCard.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key !== "Enter" &&
+        event.key !== " "
+      ) {
+        return;
+      }
 
-  logoCard.addEventListener("keydown", (event) => {
-    if (
-      event.key !== "Enter" &&
-      event.key !== " "
-    ) {
-      return;
+      event.preventDefault();
+      setFlipped(!isFlipped);
     }
+  );
 
-    event.preventDefault();
-    setFlipped(!isFlipped);
-  });
+  document.addEventListener(
+    "pointerdown",
+    (event) => {
+      if (!isFlipped) return;
+      if (logoCard.contains(event.target)) return;
 
-  document.addEventListener("pointerdown", (event) => {
-    if (!isFlipped) return;
-    if (logoCard.contains(event.target)) return;
-
-    setFlipped(false);
-  });
-});
-
-
-/* =========================
-   WINKEL CARD FLIP
-   ========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const card = document.getElementById("winkelCard");
-
-  if (!card) return;
-
-  let flipped = false;
-
-  function setFlipped(state) {
-    flipped = state;
-
-    card.classList.toggle(
-      "is-flipped",
-      flipped
-    );
-
-    card.setAttribute(
-      "aria-pressed",
-      flipped ? "true" : "false"
-    );
-  }
-
-  card.addEventListener("pointerup", (event) => {
-    if (
-      flipped &&
-      event.target.closest("a")
-    ) {
-      return;
+      setFlipped(false);
     }
-
-    setFlipped(!flipped);
-  });
-
-  card.addEventListener("keydown", (event) => {
-    if (
-      event.key !== "Enter" &&
-      event.key !== " "
-    ) {
-      return;
-    }
-
-    event.preventDefault();
-    setFlipped(!flipped);
-  });
-
-  document.addEventListener("pointerdown", (event) => {
-    if (!flipped) return;
-    if (card.contains(event.target)) return;
-
-    setFlipped(false);
-  });
+  );
 });
 
 
@@ -283,7 +255,8 @@ document.addEventListener("DOMContentLoaded", () => {
    CONTINUOUS TWO-FACE IMAGE CYCLE
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const card = document.getElementById("terroirCard");
+  const card =
+    document.getElementById("terroirCard");
 
   if (!card) return;
 
@@ -354,7 +327,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const SECONDS_PER_SLIDE = 3.5;
   const FLIP_DURATION_MS = 1400;
 
-  let cursor = 2 % slides.length;
+  let cursor =
+    2 % slides.length;
+
   let frontIsA = true;
   let autoplayTimer = null;
 
@@ -370,8 +345,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const slide =
       slides[normalizedIndex];
 
-    imageElement.src = slide.img;
-    imageElement.alt = slide.keyword;
+    imageElement.src =
+      slide.img;
+
+    imageElement.alt =
+      slide.keyword;
 
     keywordElement.textContent =
       slide.keyword;
@@ -386,7 +364,8 @@ document.addEventListener("DOMContentLoaded", () => {
       frontIsA
     );
 
-    const hiddenIsA = frontIsA;
+    const hiddenIsA =
+      frontIsA;
 
     window.setTimeout(() => {
       if (hiddenIsA) {
@@ -408,13 +387,16 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor =
         (cursor + 1) % slides.length;
 
-      frontIsA = !frontIsA;
+      frontIsA =
+        !frontIsA;
     }, FLIP_DURATION_MS * 0.55);
   }
 
   function stopAutoplay() {
     if (autoplayTimer) {
-      window.clearInterval(autoplayTimer);
+      window.clearInterval(
+        autoplayTimer
+      );
     }
 
     autoplayTimer = null;
@@ -423,29 +405,36 @@ document.addEventListener("DOMContentLoaded", () => {
   function startAutoplay() {
     stopAutoplay();
 
-    autoplayTimer = window.setInterval(
-      flipOnce,
-      SECONDS_PER_SLIDE * 1000
-    );
+    autoplayTimer =
+      window.setInterval(
+        flipOnce,
+        SECONDS_PER_SLIDE * 1000
+      );
   }
 
-  card.addEventListener("pointerup", () => {
-    flipOnce();
-    startAutoplay();
-  });
-
-  card.addEventListener("keydown", (event) => {
-    if (
-      event.key !== "Enter" &&
-      event.key !== " "
-    ) {
-      return;
+  card.addEventListener(
+    "pointerup",
+    () => {
+      flipOnce();
+      startAutoplay();
     }
+  );
 
-    event.preventDefault();
-    flipOnce();
-    startAutoplay();
-  });
+  card.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key !== "Enter" &&
+        event.key !== " "
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+      flipOnce();
+      startAutoplay();
+    }
+  );
 
   document.addEventListener(
     "visibilitychange",
@@ -508,37 +497,49 @@ document.addEventListener("DOMContentLoaded", () => {
       open ? "hidden" : "";
   }
 
-  hamburger.addEventListener("click", (event) => {
-    event.stopPropagation();
+  hamburger.addEventListener(
+    "click",
+    (event) => {
+      event.stopPropagation();
 
-    setOpen(
-      !navWrap.classList.contains("open")
-    );
-  });
-
-  document.addEventListener("click", (event) => {
-    if (
-      !navWrap.classList.contains("open")
-    ) {
-      return;
+      setOpen(
+        !navWrap.classList.contains("open")
+      );
     }
+  );
 
-    if (!navWrap.contains(event.target)) {
-      setOpen(false);
-    }
-  });
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (
+        !navWrap.classList.contains("open")
+      ) {
+        return;
+      }
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      setOpen(false);
+      if (!navWrap.contains(event.target)) {
+        setOpen(false);
+      }
     }
-  });
+  );
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 720) {
-      setOpen(false);
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
     }
-  });
+  );
+
+  window.addEventListener(
+    "resize",
+    () => {
+      if (window.innerWidth > 720) {
+        setOpen(false);
+      }
+    }
+  );
 });
 
 
@@ -623,9 +624,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const SECONDS_PER_SLIDE = 3.5;
   const FLIP_DURATION_MS = 1400;
 
-  const total = slides.length;
+  const total =
+    slides.length;
 
-  let cursor = 2 % total;
+  let cursor =
+    2 % total;
+
   let frontIsA = true;
   let timer = null;
 
@@ -641,8 +645,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const slide =
       slides[normalizedIndex];
 
-    imageElement.src = slide.img;
-    imageElement.alt = slide.keyword;
+    imageElement.src =
+      slide.img;
+
+    imageElement.alt =
+      slide.keyword;
 
     keywordElement.textContent =
       slide.keyword;
@@ -657,7 +664,8 @@ document.addEventListener("DOMContentLoaded", () => {
       frontIsA
     );
 
-    const hiddenIsA = frontIsA;
+    const hiddenIsA =
+      frontIsA;
 
     window.setTimeout(() => {
       if (hiddenIsA) {
@@ -679,7 +687,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor =
         (cursor + 1) % total;
 
-      frontIsA = !frontIsA;
+      frontIsA =
+        !frontIsA;
     }, FLIP_DURATION_MS * 0.55);
   }
 
@@ -694,29 +703,36 @@ document.addEventListener("DOMContentLoaded", () => {
   function start() {
     stop();
 
-    timer = window.setInterval(
-      flipOnce,
-      SECONDS_PER_SLIDE * 1000
-    );
+    timer =
+      window.setInterval(
+        flipOnce,
+        SECONDS_PER_SLIDE * 1000
+      );
   }
 
-  card.addEventListener("pointerup", () => {
-    flipOnce();
-    start();
-  });
-
-  card.addEventListener("keydown", (event) => {
-    if (
-      event.key !== "Enter" &&
-      event.key !== " "
-    ) {
-      return;
+  card.addEventListener(
+    "pointerup",
+    () => {
+      flipOnce();
+      start();
     }
+  );
 
-    event.preventDefault();
-    flipOnce();
-    start();
-  });
+  card.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key !== "Enter" &&
+        event.key !== " "
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+      flipOnce();
+      start();
+    }
+  );
 
   document.addEventListener(
     "visibilitychange",
@@ -749,31 +765,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =========================
    NEWSLETTER POPUP
+
+   Visitors enter their email address on the website.
+   Clicking "Sign up" opens the published Google Form
+   with the email address pre-filled.
+
+   Google Forms does not report the final Submit action
+   back to this website. Therefore, this browser remembers
+   when the visitor continues to the Google Form.
+
+   The popup then stays hidden on future visits in the
+   same browser and on the same device.
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const overlay =
     document.getElementById("newsletterOverlay");
 
   const modal =
-    overlay?.querySelector(".newsletter-modal");
+    overlay?.querySelector(
+      ".newsletter-modal"
+    );
 
   const closeButton =
-    document.getElementById("newsletterClose");
+    document.getElementById(
+      "newsletterClose"
+    );
 
   const laterButton =
-    document.getElementById("newsletterLater");
+    document.getElementById(
+      "newsletterLater"
+    );
 
   const form =
-    document.getElementById("newsletterForm");
+    document.getElementById(
+      "newsletterForm"
+    );
 
   const emailInput =
-    document.getElementById("newsletterEmail");
+    document.getElementById(
+      "newsletterEmail"
+    );
 
   const submitButton =
-    document.getElementById("newsletterSubmit");
+    document.getElementById(
+      "newsletterSubmit"
+    );
 
   const status =
-    document.getElementById("newsletterStatus");
+    document.getElementById(
+      "newsletterStatus"
+    );
 
   if (
     !overlay ||
@@ -789,27 +830,77 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*
-    IMPORTANT:
+    Visible Google Form URL.
 
-    The Google Form submission address must end in
-    /formResponse, not /viewform.
+    The visitor is redirected here and must press
+    Google's own Submit button.
   */
-  const GOOGLE_FORM_ACTION =
-    "https://docs.google.com/forms/d/e/1FAIpQLSc05WEaWWyqvK8oJ7JHVcFk-iRVEIY8RlZzjGmHtuL-QHtj7w/formResponse";
+  const GOOGLE_FORM_URL =
+    "https://docs.google.com/forms/d/e/1FAIpQLSc05WEaWWyqvK8oJ7JHVcFk-iRVEIY8RlZzjGmHtuL-QHtj7w/viewform";
 
   /*
-    This must match the entry number belonging to
-    the email question in your Google Form.
+    Field ID belonging to the email question.
+
+    If the email is not pre-filled in Google Forms,
+    this entry number must be checked again.
   */
   const GOOGLE_FORM_EMAIL_ENTRY =
     "entry.1045781291";
+
+  /*
+    localStorage key used to remember the visitor.
+
+    It remains saved in this browser until the visitor
+    clears the website's storage or browser data.
+  */
+  const NEWSLETTER_COMPLETED_KEY =
+    "versLeVinNewsletterCompleted";
 
   const OPEN_DELAY_MS = 900;
 
   let previouslyFocusedElement = null;
 
+
+  function hasCompletedNewsletterSignup() {
+    try {
+      return (
+        localStorage.getItem(
+          NEWSLETTER_COMPLETED_KEY
+        ) === "true"
+      );
+    } catch (error) {
+      console.warn(
+        "Could not read newsletter preference:",
+        error
+      );
+
+      return false;
+    }
+  }
+
+
+  function rememberNewsletterSignup() {
+    try {
+      localStorage.setItem(
+        NEWSLETTER_COMPLETED_KEY,
+        "true"
+      );
+    } catch (error) {
+      console.warn(
+        "Could not save newsletter preference:",
+        error
+      );
+    }
+  }
+
+
   function openNewsletter() {
-    if (!overlay.hidden) return;
+    if (
+      hasCompletedNewsletterSignup() ||
+      !overlay.hidden
+    ) {
+      return;
+    }
 
     previouslyFocusedElement =
       document.activeElement;
@@ -830,6 +921,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 80);
   }
 
+
   function closeNewsletter() {
     overlay.hidden = true;
 
@@ -848,6 +940,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "is-invalid"
     );
 
+    submitButton.disabled = false;
+    submitButton.textContent = "Sign up";
+
     if (
       previouslyFocusedElement instanceof
       HTMLElement
@@ -856,16 +951,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
   function scheduleNewsletter() {
+    if (hasCompletedNewsletterSignup()) {
+      return;
+    }
+
     window.setTimeout(
       openNewsletter,
       OPEN_DELAY_MS
     );
   }
 
+
   /*
-    When the age gate is visible, the newsletter waits
-    until the visitor confirms that they are 18+.
+    Do not display the popup when this browser already
+    continued to the newsletter form before.
+  */
+  if (hasCompletedNewsletterSignup()) {
+    overlay.hidden = true;
+
+    overlay.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    return;
+  }
+
+
+  /*
+    If the age gate is visible, wait until the visitor
+    confirms that they are 18+.
   */
   const ageGate =
     document.getElementById("ageGate");
@@ -889,21 +1006,28 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleNewsletter();
   }
 
+
   closeButton.addEventListener(
     "click",
     closeNewsletter
   );
+
 
   laterButton.addEventListener(
     "click",
     closeNewsletter
   );
 
-  overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) {
-      closeNewsletter();
+
+  overlay.addEventListener(
+    "click",
+    (event) => {
+      if (event.target === overlay) {
+        closeNewsletter();
+      }
     }
-  });
+  );
+
 
   document.addEventListener(
     "keydown",
@@ -916,8 +1040,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       /*
-        Keep keyboard focus inside the modal while
-        it is open.
+        Keep keyboard focus inside the modal.
       */
       if (event.key === "Tab") {
         const focusableElements =
@@ -938,19 +1061,24 @@ document.addEventListener("DOMContentLoaded", () => {
             focusableElements.length - 1
           ];
 
-        if (!firstElement || !lastElement) {
+        if (
+          !firstElement ||
+          !lastElement
+        ) {
           return;
         }
 
         if (
           event.shiftKey &&
-          document.activeElement === firstElement
+          document.activeElement ===
+            firstElement
         ) {
           event.preventDefault();
           lastElement.focus();
         } else if (
           !event.shiftKey &&
-          document.activeElement === lastElement
+          document.activeElement ===
+            lastElement
         ) {
           event.preventDefault();
           firstElement.focus();
@@ -959,9 +1087,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
+
   form.addEventListener(
     "submit",
-    async (event) => {
+    (event) => {
       event.preventDefault();
 
       const email =
@@ -988,77 +1117,42 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      if (
-        !GOOGLE_FORM_ACTION ||
-        !GOOGLE_FORM_EMAIL_ENTRY
-      ) {
-        status.textContent =
-          "The signup form still needs to be connected in index.js.";
+      /*
+        Build the Google Form URL and pre-fill the
+        visitor's email address.
+      */
+      const destination =
+        new URL(GOOGLE_FORM_URL);
 
-        return;
-      }
+      destination.searchParams.set(
+        "usp",
+        "pp_url"
+      );
+
+      destination.searchParams.set(
+        GOOGLE_FORM_EMAIL_ENTRY,
+        email
+      );
+
+      /*
+        Remember the visitor before leaving the website.
+
+        This means the popup will not return after they
+        come back from Google Forms.
+      */
+      rememberNewsletterSignup();
 
       submitButton.disabled = true;
 
       submitButton.textContent =
-        "Signing up…";
+        "Opening form…";
 
-      try {
-        /*
-          Google Forms expects a normal URL-encoded
-          form submission using its entry number.
-        */
-        const formData =
-          new URLSearchParams();
+      status.textContent =
+        "Opening the Google signup form…";
 
-        formData.append(
-          GOOGLE_FORM_EMAIL_ENTRY,
-          email
-        );
-
-        await fetch(
-          GOOGLE_FORM_ACTION,
-          {
-            method: "POST",
-
-            /*
-              Google does not return an accessible
-              cross-origin response to your website.
-            */
-            mode: "no-cors",
-
-            headers: {
-              "Content-Type":
-                "application/x-www-form-urlencoded"
-            },
-
-            body: formData.toString()
-          }
-        );
-
-        status.textContent =
-          "Thank you — your email was submitted.";
-
-        form.reset();
-
-        window.setTimeout(
-          closeNewsletter,
-          1300
-        );
-      } catch (error) {
-        console.error(
-          "Newsletter signup failed:",
-          error
-        );
-
-        status.textContent =
-          "Something went wrong. Please try again.";
-      } finally {
-        submitButton.disabled = false;
-
-        submitButton.textContent =
-          "Sign up";
-      }
+      window.location.assign(
+        destination.toString()
+      );
     }
   );
 });
