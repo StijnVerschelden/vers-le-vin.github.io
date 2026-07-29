@@ -62,15 +62,35 @@
 <!-- MAIN -->
 <main class="pairing-main">
 
-  <section class="pairing-top" aria-labelledby="pairingTitle">
-    <header class="pairing-intro">
-      <h1 id="pairingTitle">Moodboard</h1>
-      <p>
-        Like music, literature and film, wine can evoke a particular world of feelings and associations. Some music enhances a certain mood and feels more fitting in specific moments: some albums I only play in winter, others when darkness falls, and others again in the morning, when the first rays of sunlight illuminate the world.<br>
-        For each wine, I therefore collect a series of associations: a song, a painting, a film, a colour, a landscape or a poem. Perhaps the same wine will evoke something entirely different for you.<br>
-        Be part of the conversation and explore the pairings below, or suggest your own by clicking on the "Suggest a Pairing" button.
-      </p>
-    </header>
+ <header class="pairing-intro">
+  <h1 id="pairingTitle">Moodboard</h1>
+
+  <div class="pairing-intro-copy">
+    <p class="pairing-intro-text" id="pairingIntroText">
+      Like music, literature and film, wine can evoke a particular world of
+      feelings and associations. Some music enhances a certain mood and feels
+      more fitting in specific moments: some albums I only play in winter,
+      others when darkness falls, and others again in the morning, when the
+      first rays of sunlight illuminate the world.
+
+      For each wine, I therefore collect a series of associations: a song, a
+      painting, a film, a colour, a landscape or a poem. Perhaps the same wine
+      will evoke something entirely different for you.
+
+      Be part of the conversation and explore the pairings below, or suggest
+      your own by clicking on the “Suggest a Pairing” button.
+    </p>
+
+    <button
+      class="pairing-intro-toggle"
+      id="pairingIntroToggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="pairingIntroText">
+      Show more…
+    </button>
+  </div>
+</header>
 
     <div class="pairing-filters" role="group" aria-label="Filter pairings by category">
       <button class="pairing-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
@@ -127,8 +147,8 @@
     </article>
 
     <article class="pairing-row has-pairing-media" data-category="cinema">
-      <a class="pairing-image-link" href="pairing-wijn2.html" aria-label="Open the full pairing page for Wijn 2">
-        <img class="pairing-image" src="images/wijn2.jpg" alt="Wijn 2" loading="lazy">
+      <a class="pairing-image-link" href="pairing-wijn1.html" aria-label="Open the full pairing page for Wijn 1">
+        <img class="pairing-image" src="images/wijn1.jpg" alt="Wijn 1" loading="lazy">
       </a>
 
       <div class="pairing-details">

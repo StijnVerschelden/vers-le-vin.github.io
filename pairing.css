@@ -163,12 +163,63 @@ nav button:hover {
   letter-spacing: -0.025em;
 }
 
-.pairing-intro p {
+.pairing-intro-copy {
+  width: 100%;
+}
+
+.pairing-intro-text {
   margin: 0;
   font-family: 'EB Garamond', serif;
   font-size: clamp(14px, 1.18vw, 16px);
-  line-height: 1.24;
-  text-align: left;
+  line-height: 1.35;
+
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* Collapse to three lines only when JavaScript is available */
+.js .pairing-intro-text:not(.is-expanded) {
+  display: -webkit-box;
+  overflow: hidden;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+
+  line-clamp: 3;
+}
+
+.pairing-intro-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+
+  margin: 8px 0 0;
+  padding: 0 0 2px;
+
+  color: var(--text-color);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(89, 44, 56, 0.45);
+  border-radius: 0;
+
+  font-family: 'EB Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.2;
+
+  cursor: pointer;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.pairing-intro-toggle:hover {
+  opacity: 0.65;
+  border-bottom-color: currentColor;
+}
+
+.pairing-intro-toggle:focus-visible {
+  outline: 2px solid rgba(89, 44, 56, 0.45);
+  outline-offset: 4px;
 }
 
 /* =========================
@@ -352,7 +403,7 @@ nav button:hover {
   inset: 10px 9px 10px 8px;
   z-index: 2;
 
-  background: rgba(89, 44, 56, 0.1);
+  background: rgba(89, 44, 56, 0.08);
   border-radius: 12px;
   mix-blend-mode: multiply;
   pointer-events: none;
@@ -361,7 +412,7 @@ nav button:hover {
 }
 
 .spotify-tinted:hover::after {
-  opacity: 0.85;
+  opacity: 0.25;
 }
 
 .spotify-embed {
@@ -371,11 +422,11 @@ nav button:hover {
   border: 0;
   border-radius: 12px;
 
-  opacity: 0.70;
+  opacity: 0.92;
   filter:
-    sepia(0.35)
+    sepia(0.18)
     saturate(0.82)
-    contrast(0.90);
+    contrast(0.96);
 }
 .pairing-media-placeholder {
   width: 100%;

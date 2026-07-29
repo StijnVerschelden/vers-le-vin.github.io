@@ -4,6 +4,8 @@
 
 'use strict';
 
+document.documentElement.classList.add('js');
+
 /* =========================
    DROPDOWN CONTROLS
    ========================= */
@@ -129,4 +131,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   applyFilter('all');
+});
+
+/* =========================
+   PAIRING INTRO: SHOW MORE
+   ========================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const introText = document.getElementById('pairingIntroText');
+  const introToggle = document.getElementById('pairingIntroToggle');
+
+  if (!introText || !introToggle) return;
+
+  introToggle.addEventListener('click', () => {
+    const isExpanded = introText.classList.toggle('is-expanded');
+
+    introToggle.setAttribute(
+      'aria-expanded',
+      isExpanded ? 'true' : 'false'
+    );
+
+    introToggle.textContent = isExpanded
+      ? 'Show less'
+      : 'Show more…';
+  });
 });
