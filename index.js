@@ -5,39 +5,68 @@ document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("ageVerified") === "true") return;
 
   let gate = document.getElementById("ageGate");
+
   if (!gate) {
     gate = document.createElement("div");
     gate.id = "ageGate";
     gate.setAttribute("data-nosnippet", "");
+
     gate.innerHTML = `
-      <div class="age-modal" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+      <div
+        class="age-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ageGateTitle"
+      >
         <h2 id="ageGateTitle">Bent u 18 jaar of ouder?</h2>
-        <p>U moet de wettelijke leeftijd hebben om alcohol te kopen.</p>
+
+        <p>
+          U moet de wettelijke leeftijd hebben om alcohol te kopen.
+        </p>
+
         <div class="age-actions">
-          <button type="button" id="enterBtn">Ja, ik ben 18+</button>
-          <button type="button" id="leaveBtn">Nee</button>
+          <button type="button" id="enterBtn">
+            Ja, ik ben 18+
+          </button>
+
+          <button type="button" id="leaveBtn">
+            Nee
+          </button>
         </div>
       </div>
     `;
+
     document.body.appendChild(gate);
   }
 
   gate.classList.remove("hidden");
   document.body.style.overflow = "hidden";
 
-  document.addEventListener("click", (e) => {
-    if (e.target.id === "enterBtn") {
-      localStorage.setItem("ageVerified", "true");
-      document.getElementById("ageGate")?.classList.add("hidden");
-      document.body.style.overflow = "";
-    }
-    if (e.target.id === "leaveBtn") {
-      window.location.href = "https://www.google.com";
-    }
-  }, true);
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (event.target.id === "enterBtn") {
+        localStorage.setItem("ageVerified", "true");
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !gate.classList.contains("hidden")) {
+        document
+          .getElementById("ageGate")
+          ?.classList.add("hidden");
+
+        document.body.style.overflow = "";
+      }
+
+      if (event.target.id === "leaveBtn") {
+        window.location.href = "https://www.google.com";
+      }
+    },
+    true
+  );
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      !gate.classList.contains("hidden")
+    ) {
       window.location.href = "https://www.google.com";
     }
   });
@@ -48,37 +77,63 @@ document.addEventListener("DOMContentLoaded", () => {
    DROPDOWN CONTROLS
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const controls = [{ btnId: "lantBtn" }, { btnId: "blogBtn" }, { btnId: "wijnBtn" }];
+  const controls = [
+    { btnId: "lantBtn" },
+    { btnId: "blogBtn" },
+    { btnId: "wijnBtn" }
+  ];
 
-  controls.forEach((c) => {
-    const btn = document.getElementById(c.btnId);
-    if (!btn) return;
+  controls.forEach((control) => {
+    const button = document.getElementById(control.btnId);
 
-    btn.addEventListener("click", () => {
-      const expanded = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", expanded ? "false" : "true");
-      const menu = btn.nextElementSibling;
-      if (menu) menu.style.display = expanded ? "none" : "block";
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+      const expanded =
+        button.getAttribute("aria-expanded") === "true";
+
+      button.setAttribute(
+        "aria-expanded",
+        expanded ? "false" : "true"
+      );
+
+      const menu = button.nextElementSibling;
+
+      if (menu) {
+        menu.style.display = expanded ? "none" : "block";
+      }
     });
 
-    btn.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        btn.setAttribute("aria-expanded", "false");
-        const menu = btn.nextElementSibling;
-        if (menu) menu.style.display = "none";
-        btn.blur();
+    button.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+
+      button.setAttribute("aria-expanded", "false");
+
+      const menu = button.nextElementSibling;
+
+      if (menu) {
+        menu.style.display = "none";
       }
+
+      button.blur();
     });
   });
 
-  document.addEventListener("click", (e) => {
-    controls.forEach((c) => {
-      const btn = document.getElementById(c.btnId);
-      if (!btn) return;
-      const menu = btn.nextElementSibling;
+  document.addEventListener("click", (event) => {
+    controls.forEach((control) => {
+      const button = document.getElementById(control.btnId);
+
+      if (!button) return;
+
+      const menu = button.nextElementSibling;
+
       if (!menu) return;
-      if (!btn.contains(e.target) && !menu.contains(e.target)) {
-        btn.setAttribute("aria-expanded", "false");
+
+      if (
+        !button.contains(event.target) &&
+        !menu.contains(event.target)
+      ) {
+        button.setAttribute("aria-expanded", "false");
         menu.style.display = "none";
       }
     });
@@ -93,163 +148,285 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoCard = document.getElementById("logoCard");
   const backRow = document.getElementById("backRow");
   const hint = document.querySelector(".hover-hint");
+
   if (!logoCard) return;
 
   let isFlipped = false;
 
   function scrollBackIntoView() {
-    if (!window.matchMedia("(max-width: 720px)").matches || !backRow) return;
-    setTimeout(() => {
-      backRow.scrollIntoView({ behavior: "smooth", block: "start" });
+    const mobileView = window.matchMedia(
+      "(max-width: 720px)"
+    ).matches;
+
+    if (!mobileView || !backRow) return;
+
+    window.setTimeout(() => {
+      backRow.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     }, 140);
   }
 
   function setFlipped(state) {
     isFlipped = state;
-    logoCard.classList.toggle("flipped", isFlipped);
-    logoCard.setAttribute("aria-pressed", isFlipped ? "true" : "false");
-    if (hint) hint.style.opacity = "0";
-    if (isFlipped) scrollBackIntoView();
+
+    logoCard.classList.toggle(
+      "flipped",
+      isFlipped
+    );
+
+    logoCard.setAttribute(
+      "aria-pressed",
+      isFlipped ? "true" : "false"
+    );
+
+    if (hint) {
+      hint.style.opacity = "0";
+    }
+
+    if (isFlipped) {
+      scrollBackIntoView();
+    }
   }
 
-  logoCard.addEventListener("pointerup", (e) => {
-    if (isFlipped && e.target.closest("a")) return;
+  logoCard.addEventListener("pointerup", (event) => {
+    if (
+      isFlipped &&
+      event.target.closest("a")
+    ) {
+      return;
+    }
+
     setFlipped(!isFlipped);
   });
 
-  logoCard.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
+  logoCard.addEventListener("keydown", (event) => {
+    if (
+      event.key !== "Enter" &&
+      event.key !== " "
+    ) {
+      return;
+    }
+
+    event.preventDefault();
     setFlipped(!isFlipped);
   });
 
-  document.addEventListener("pointerdown", (e) => {
+  document.addEventListener("pointerdown", (event) => {
     if (!isFlipped) return;
-    if (logoCard.contains(e.target)) return;
+    if (logoCard.contains(event.target)) return;
+
     setFlipped(false);
   });
 });
 
 
 /* =========================
-   WINKEL CARD FLIP (simple single flip)
+   WINKEL CARD FLIP
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const card = document.getElementById("winkelCard");
+
   if (!card) return;
 
   let flipped = false;
 
   function setFlipped(state) {
     flipped = state;
-    card.classList.toggle("is-flipped", flipped);
-    card.setAttribute("aria-pressed", flipped ? "true" : "false");
+
+    card.classList.toggle(
+      "is-flipped",
+      flipped
+    );
+
+    card.setAttribute(
+      "aria-pressed",
+      flipped ? "true" : "false"
+    );
   }
 
-  card.addEventListener("pointerup", (e) => {
-    if (flipped && e.target.closest("a")) return;
+  card.addEventListener("pointerup", (event) => {
+    if (
+      flipped &&
+      event.target.closest("a")
+    ) {
+      return;
+    }
+
     setFlipped(!flipped);
   });
 
-  card.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
+  card.addEventListener("keydown", (event) => {
+    if (
+      event.key !== "Enter" &&
+      event.key !== " "
+    ) {
+      return;
+    }
+
+    event.preventDefault();
     setFlipped(!flipped);
   });
 
-  document.addEventListener("pointerdown", (e) => {
+  document.addEventListener("pointerdown", (event) => {
     if (!flipped) return;
-    if (card.contains(e.target)) return;
+    if (card.contains(event.target)) return;
+
     setFlipped(false);
   });
 });
 
 
 /* =========================
-   TERROIR CARD — CONTINUOUS TWO-FACE IMAGE CYCLE
-   (rewritten with simpler, correct logic)
-
-   Instead of juggling two separate "next index" trackers for
-   face A and face B (which was error-prone), we now keep ONE
-   single counter for "which slide should be visible next",
-   and a single boolean for which physical face is currently
-   front-facing. Whichever face is about to be HIDDEN gets its
-   image updated mid-flip to the slide that will be needed
-   the NEXT time it comes back around.
+   TERROIR CARD
+   CONTINUOUS TWO-FACE IMAGE CYCLE
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
   const card = document.getElementById("terroirCard");
+
   if (!card) return;
 
-  const imgA = document.getElementById("terroirImgA");
-  const imgB = document.getElementById("terroirImgB");
-  const keywordA = document.getElementById("terroirKeywordA");
-  const keywordB = document.getElementById("terroirKeywordB");
-  const counterA = document.getElementById("terroirCounterA");
-  const counterB = document.getElementById("terroirCounterB");
-  if (!imgA || !imgB) return;
+  const imgA =
+    document.getElementById("terroirImgA");
 
-  /* ─── IMAGES + KEYWORDS — add as many as you like ─── */
+  const imgB =
+    document.getElementById("terroirImgB");
+
+  const keywordA =
+    document.getElementById("terroirKeywordA");
+
+  const keywordB =
+    document.getElementById("terroirKeywordB");
+
+  const counterA =
+    document.getElementById("terroirCounterA");
+
+  const counterB =
+    document.getElementById("terroirCounterB");
+
+  if (
+    !imgA ||
+    !imgB ||
+    !keywordA ||
+    !keywordB ||
+    !counterA ||
+    !counterB
+  ) {
+    return;
+  }
+
   const slides = [
-    { img: "images/beelden/wijnenik.jpg",     keyword: "Wine" },
-    { img: "images/beelden/arthistory.jpg",   keyword: "Art History" },
-    { img: "images/beelden/wijnenmensen.jpg", keyword: "Wine Travel" },
-    { img: "images/beelden/natuurenik.jpg",   keyword: "Nature" },
-    { img: "images/beelden/photography1.jpg", keyword: "Analog Photography"},
-    { img: "images/beelden/filmmaker2.jpg", keyword: "Filmmaker"},
-    {img: "images/beelden/filmposter.png", keyword: "Short Film"},
-    { img: "images/beelden/photography2.jpg", keyword: "Travelogue"},
+    {
+      img: "images/beelden/wijnenik.jpg",
+      keyword: "Wine"
+    },
+    {
+      img: "images/beelden/arthistory.jpg",
+      keyword: "Art History"
+    },
+    {
+      img: "images/beelden/wijnenmensen.jpg",
+      keyword: "Wine Travel"
+    },
+    {
+      img: "images/beelden/natuurenik.jpg",
+      keyword: "Nature"
+    },
+    {
+      img: "images/beelden/photography1.jpg",
+      keyword: "Analog Photography"
+    },
+    {
+      img: "images/beelden/filmmaker2.jpg",
+      keyword: "Filmmaker"
+    },
+    {
+      img: "images/beelden/filmposter.png",
+      keyword: "Short Film"
+    },
+    {
+      img: "images/beelden/photography2.jpg",
+      keyword: "Travelogue"
+    }
   ];
-    
 
   const SECONDS_PER_SLIDE = 3.5;
   const FLIP_DURATION_MS = 1400;
 
-  /* "cursor" = index of the NEXT slide to be assigned to whichever
-     face is currently hidden. Starts at 2 because faces A and B
-     already hold slides 0 and 1 from the initial paint below. */
   let cursor = 2 % slides.length;
-
-  /* true = face A is currently the one facing the viewer (card NOT flipped) */
   let frontIsA = true;
-
   let autoplayTimer = null;
 
-  function paint(imgEl, keywordEl, counterEl, slideIndex) {
-    const slide = slides[slideIndex % slides.length];
-    imgEl.src = slide.img;
-    keywordEl.textContent = slide.keyword;
-    counterEl.textContent = (slideIndex % slides.length + 1) + "/" + slides.length;
+  function paint(
+    imageElement,
+    keywordElement,
+    counterElement,
+    slideIndex
+  ) {
+    const normalizedIndex =
+      slideIndex % slides.length;
+
+    const slide =
+      slides[normalizedIndex];
+
+    imageElement.src = slide.img;
+    imageElement.alt = slide.keyword;
+
+    keywordElement.textContent =
+      slide.keyword;
+
+    counterElement.textContent =
+      `${normalizedIndex + 1}/${slides.length}`;
   }
 
   function flipOnce() {
-    /* Flip the card: if A is currently front, flipping shows B (and vice versa) */
-    card.classList.toggle("is-flipped", frontIsA);
+    card.classList.toggle(
+      "is-flipped",
+      frontIsA
+    );
 
-    /* The face that is now becoming HIDDEN (the one that was front a
-       moment ago) gets repainted partway through the flip, once it's
-       turned away from the viewer. */
-    const hiddenIsA = frontIsA; // the face going out of view
+    const hiddenIsA = frontIsA;
 
-    setTimeout(() => {
+    window.setTimeout(() => {
       if (hiddenIsA) {
-        paint(imgA, keywordA, counterA, cursor);
+        paint(
+          imgA,
+          keywordA,
+          counterA,
+          cursor
+        );
       } else {
-        paint(imgB, keywordB, counterB, cursor);
+        paint(
+          imgB,
+          keywordB,
+          counterB,
+          cursor
+        );
       }
-      cursor = (cursor + 1) % slides.length;
+
+      cursor =
+        (cursor + 1) % slides.length;
+
       frontIsA = !frontIsA;
     }, FLIP_DURATION_MS * 0.55);
   }
 
-  function startAutoplay() {
-    stopAutoplay();
-    autoplayTimer = setInterval(flipOnce, SECONDS_PER_SLIDE * 1000);
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      window.clearInterval(autoplayTimer);
+    }
+
+    autoplayTimer = null;
   }
 
-  function stopAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-    autoplayTimer = null;
+  function startAutoplay() {
+    stopAutoplay();
+
+    autoplayTimer = window.setInterval(
+      flipOnce,
+      SECONDS_PER_SLIDE * 1000
+    );
   }
 
   card.addEventListener("pointerup", () => {
@@ -257,24 +434,44 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoplay();
   });
 
-  card.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
+  card.addEventListener("keydown", (event) => {
+    if (
+      event.key !== "Enter" &&
+      event.key !== " "
+    ) {
+      return;
+    }
+
+    event.preventDefault();
     flipOnce();
     startAutoplay();
   });
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      stopAutoplay();
-    } else {
-      startAutoplay();
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
     }
-  });
+  );
 
-  /* Initial paint: face A = slide 0, face B = slide 1 */
-  paint(imgA, keywordA, counterA, 0);
-  paint(imgB, keywordB, counterB, 1);
+  paint(
+    imgA,
+    keywordA,
+    counterA,
+    0
+  );
+
+  paint(
+    imgB,
+    keywordB,
+    counterB,
+    1
+  );
+
   startAutoplay();
 });
 
@@ -282,247 +479,586 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================
    MOBILE HAMBURGER
    ========================= */
-(function () {
-  const navWrap = document.querySelector(".nav-wrap");
-  const hamburger = document.querySelector(".hamburger");
+document.addEventListener("DOMContentLoaded", () => {
+  const navWrap =
+    document.querySelector(".nav-wrap");
+
+  const hamburger =
+    document.querySelector(".hamburger");
+
   if (!navWrap || !hamburger) return;
 
   function setOpen(open) {
-    hamburger.setAttribute("aria-expanded", open ? "true" : "false");
-    navWrap.classList.toggle("open", open);
-    document.body.style.overflow = open ? "hidden" : "";
+    hamburger.setAttribute(
+      "aria-expanded",
+      open ? "true" : "false"
+    );
+
+    hamburger.setAttribute(
+      "aria-label",
+      open ? "Close menu" : "Open menu"
+    );
+
+    navWrap.classList.toggle(
+      "open",
+      open
+    );
+
+    document.body.style.overflow =
+      open ? "hidden" : "";
   }
 
-  hamburger.addEventListener("click", (e) => {
-    e.stopPropagation();
-    setOpen(!navWrap.classList.contains("open"));
+  hamburger.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    setOpen(
+      !navWrap.classList.contains("open")
+    );
   });
 
-  document.addEventListener("click", (e) => {
-    if (!navWrap.classList.contains("open")) return;
-    if (!navWrap.contains(e.target)) setOpen(false);
+  document.addEventListener("click", (event) => {
+    if (
+      !navWrap.classList.contains("open")
+    ) {
+      return;
+    }
+
+    if (!navWrap.contains(event.target)) {
+      setOpen(false);
+    }
   });
 
-  window.addEventListener("resize", () => setOpen(false));
-})();
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setOpen(false);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 720) {
+      setOpen(false);
+    }
+  });
+});
+
 
 /* =========================
-   WINKEL CARD — autoplay wine photo flip
+   WINKEL CARD
+   AUTOPLAY WINE PHOTO FLIP
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const card = document.getElementById("winkelCard");   // <-- add this
+  const card =
+    document.getElementById("winkelCard");
+
   if (!card) return;
 
-  const imgA     = document.getElementById("winkelImgA");
-  const imgB     = document.getElementById("winkelImgB");
-  const kwA      = document.getElementById("winkelKeywordA");
-  const kwB      = document.getElementById("winkelKeywordB");
-  const ctA      = document.getElementById("winkelCounterA");
-  const ctB      = document.getElementById("winkelCounterB");
-  if (!imgA || !imgB) return;
+  const imgA =
+    document.getElementById("winkelImgA");
 
-  /* ── add your real filenames here ── */
+  const imgB =
+    document.getElementById("winkelImgB");
+
+  const keywordA =
+    document.getElementById("winkelKeywordA");
+
+  const keywordB =
+    document.getElementById("winkelKeywordB");
+
+  const counterA =
+    document.getElementById("winkelCounterA");
+
+  const counterB =
+    document.getElementById("winkelCounterB");
+
+  if (
+    !imgA ||
+    !imgB ||
+    !keywordA ||
+    !keywordB ||
+    !counterA ||
+    !counterB
+  ) {
+    return;
+  }
+
   const slides = [
-    { img: "images/Winkel-minimal.jpeg", keyword: "Winkel" },
-    { img: "images/FBWIT1.jpg", keyword: "Wit" },
-    { img: "images/FBROOD1.jpg", keyword: "Rood" },
-    { img: "images/cosimaface.jpg", keyword: "Wit" },
-    { img: "images/cosimalandscape.jpg", keyword: "Rood" },
-    { img: "images/axiom25.jpg", keyword: "Wit" },
-    { img: "images/aliopacto.jpg", keyword: "Rood" },
-    { img: "images/alba.jpg", keyword: "Wit" },
-    { img: "images/pi.jpg", keyword: "Rood" }
+    {
+      img: "images/Winkel-minimal.jpeg",
+      keyword: "Winkel"
+    },
+    {
+      img: "images/FBWIT1.jpg",
+      keyword: "Wit"
+    },
+    {
+      img: "images/FBROOD1.jpg",
+      keyword: "Rood"
+    },
+    {
+      img: "images/cosimaface.jpg",
+      keyword: "Wit"
+    },
+    {
+      img: "images/cosimalandscape.jpg",
+      keyword: "Rood"
+    },
+    {
+      img: "images/axiom25.jpg",
+      keyword: "Wit"
+    },
+    {
+      img: "images/aliopacto.jpg",
+      keyword: "Rood"
+    },
+    {
+      img: "images/alba.jpg",
+      keyword: "Wit"
+    },
+    {
+      img: "images/pi.jpg",
+      keyword: "Rood"
+    }
   ];
 
   const SECONDS_PER_SLIDE = 3.5;
   const FLIP_DURATION_MS = 1400;
 
   const total = slides.length;
-  let cursor   = 2 % total;
-  let frontIsA = true;
-  let timer    = null;
 
-  function paint(imgEl, kwEl, ctEl, i) {
-    const s = slides[i % total];
-    imgEl.src           = s.img;
-    kwEl.textContent    = s.keyword;
-    ctEl.textContent    = (i % total + 1) + "/" + total;
+  let cursor = 2 % total;
+  let frontIsA = true;
+  let timer = null;
+
+  function paint(
+    imageElement,
+    keywordElement,
+    counterElement,
+    slideIndex
+  ) {
+    const normalizedIndex =
+      slideIndex % total;
+
+    const slide =
+      slides[normalizedIndex];
+
+    imageElement.src = slide.img;
+    imageElement.alt = slide.keyword;
+
+    keywordElement.textContent =
+      slide.keyword;
+
+    counterElement.textContent =
+      `${normalizedIndex + 1}/${total}`;
   }
 
   function flipOnce() {
-    card.classList.toggle("is-flipped", frontIsA);
+    card.classList.toggle(
+      "is-flipped",
+      frontIsA
+    );
+
     const hiddenIsA = frontIsA;
-    setTimeout(() => {
-      if (hiddenIsA) { paint(imgA, kwA, ctA, cursor); }
-      else           { paint(imgB, kwB, ctB, cursor); }
-      cursor   = (cursor + 1) % total;
+
+    window.setTimeout(() => {
+      if (hiddenIsA) {
+        paint(
+          imgA,
+          keywordA,
+          counterA,
+          cursor
+        );
+      } else {
+        paint(
+          imgB,
+          keywordB,
+          counterB,
+          cursor
+        );
+      }
+
+      cursor =
+        (cursor + 1) % total;
+
       frontIsA = !frontIsA;
     }, FLIP_DURATION_MS * 0.55);
   }
 
-  function start() {
-    if (timer) clearInterval(timer);
-    timer = setInterval(flipOnce, SECONDS_PER_SLIDE * 1000);
+  function stop() {
+    if (timer) {
+      window.clearInterval(timer);
+    }
+
+    timer = null;
   }
 
-  card.addEventListener("pointerup", () => { flipOnce(); start(); });
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) { clearInterval(timer); } else { start(); }
+  function start() {
+    stop();
+
+    timer = window.setInterval(
+      flipOnce,
+      SECONDS_PER_SLIDE * 1000
+    );
+  }
+
+  card.addEventListener("pointerup", () => {
+    flipOnce();
+    start();
   });
 
-  paint(imgA, kwA, ctA, 0);
-  paint(imgB, kwB, ctB, 1);
+  card.addEventListener("keydown", (event) => {
+    if (
+      event.key !== "Enter" &&
+      event.key !== " "
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    flipOnce();
+    start();
+  });
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    }
+  );
+
+  paint(
+    imgA,
+    keywordA,
+    counterA,
+    0
+  );
+
+  paint(
+    imgB,
+    keywordB,
+    counterB,
+    1
+  );
+
   start();
 });
 
+
 /* =========================
    NEWSLETTER POPUP
-
-   The popup appears on every home-page load. To collect addresses,
-   connect it to a Google Form by filling in the two constants below.
-
-   GOOGLE_FORM_ACTION example:
-   https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse
-
-   GOOGLE_FORM_EMAIL_ENTRY example:
-   entry.123456789
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const overlay = document.getElementById("newsletterOverlay");
-  const modal = overlay?.querySelector(".newsletter-modal");
-  const closeBtn = document.getElementById("newsletterClose");
-  const laterBtn = document.getElementById("newsletterLater");
-  const form = document.getElementById("newsletterForm");
-  const emailInput = document.getElementById("newsletterEmail");
-  const submitBtn = document.getElementById("newsletterSubmit");
-  const status = document.getElementById("newsletterStatus");
+  const overlay =
+    document.getElementById("newsletterOverlay");
 
-  if (!overlay || !modal || !closeBtn || !laterBtn || !form || !emailInput || !submitBtn || !status) {
+  const modal =
+    overlay?.querySelector(".newsletter-modal");
+
+  const closeButton =
+    document.getElementById("newsletterClose");
+
+  const laterButton =
+    document.getElementById("newsletterLater");
+
+  const form =
+    document.getElementById("newsletterForm");
+
+  const emailInput =
+    document.getElementById("newsletterEmail");
+
+  const submitButton =
+    document.getElementById("newsletterSubmit");
+
+  const status =
+    document.getElementById("newsletterStatus");
+
+  if (
+    !overlay ||
+    !modal ||
+    !closeButton ||
+    !laterButton ||
+    !form ||
+    !emailInput ||
+    !submitButton ||
+    !status
+  ) {
     return;
   }
 
-  /* Replace these two empty values with your newsletter Google Form details. */
-  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSc05WEaWWyqvK8oJ7JHVcFk-iRVEIY8RlZzjGmHtuL-QHtj7w/viewform';
-  const GOOGLE_FORM_EMAIL_ENTRY = 'entry.1045781291';
+  /*
+    IMPORTANT:
+
+    The Google Form submission address must end in
+    /formResponse, not /viewform.
+  */
+  const GOOGLE_FORM_ACTION =
+    "https://docs.google.com/forms/d/e/1FAIpQLSc05WEaWWyqvK8oJ7JHVcFk-iRVEIY8RlZzjGmHtuL-QHtj7w/formResponse";
+
+  /*
+    This must match the entry number belonging to
+    the email question in your Google Form.
+  */
+  const GOOGLE_FORM_EMAIL_ENTRY =
+    "entry.1045781291";
 
   const OPEN_DELAY_MS = 900;
+
   let previouslyFocusedElement = null;
 
   function openNewsletter() {
     if (!overlay.hidden) return;
 
-    previouslyFocusedElement = document.activeElement;
-    overlay.hidden = false;
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.classList.add("newsletter-open");
+    previouslyFocusedElement =
+      document.activeElement;
 
-    window.setTimeout(() => emailInput.focus(), 80);
+    overlay.hidden = false;
+
+    overlay.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.classList.add(
+      "newsletter-open"
+    );
+
+    window.setTimeout(() => {
+      emailInput.focus();
+    }, 80);
   }
 
   function closeNewsletter() {
     overlay.hidden = true;
-    overlay.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("newsletter-open");
-    status.textContent = "";
-    emailInput.classList.remove("is-invalid");
 
-    if (previouslyFocusedElement instanceof HTMLElement) {
+    overlay.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.classList.remove(
+      "newsletter-open"
+    );
+
+    status.textContent = "";
+
+    emailInput.classList.remove(
+      "is-invalid"
+    );
+
+    if (
+      previouslyFocusedElement instanceof
+      HTMLElement
+    ) {
       previouslyFocusedElement.focus();
     }
   }
 
   function scheduleNewsletter() {
-    window.setTimeout(openNewsletter, OPEN_DELAY_MS);
+    window.setTimeout(
+      openNewsletter,
+      OPEN_DELAY_MS
+    );
   }
 
-  /* If the age gate is visible, wait until the visitor confirms 18+. */
-  const ageGate = document.getElementById("ageGate");
-  const ageGateVisible = ageGate && !ageGate.classList.contains("hidden");
+  /*
+    When the age gate is visible, the newsletter waits
+    until the visitor confirms that they are 18+.
+  */
+  const ageGate =
+    document.getElementById("ageGate");
+
+  const ageGateVisible =
+    ageGate &&
+    !ageGate.classList.contains("hidden");
 
   if (ageGateVisible) {
-    const enterBtn = document.getElementById("enterBtn");
-    if (enterBtn) {
-      enterBtn.addEventListener("click", scheduleNewsletter, { once: true });
+    const enterButton =
+      document.getElementById("enterBtn");
+
+    if (enterButton) {
+      enterButton.addEventListener(
+        "click",
+        scheduleNewsletter,
+        { once: true }
+      );
     }
   } else {
     scheduleNewsletter();
   }
 
-  closeBtn.addEventListener("click", closeNewsletter);
-  laterBtn.addEventListener("click", closeNewsletter);
+  closeButton.addEventListener(
+    "click",
+    closeNewsletter
+  );
+
+  laterButton.addEventListener(
+    "click",
+    closeNewsletter
+  );
 
   overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) closeNewsletter();
+    if (event.target === overlay) {
+      closeNewsletter();
+    }
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (overlay.hidden) return;
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (overlay.hidden) return;
 
-    if (event.key === "Escape") {
-      closeNewsletter();
-      return;
-    }
+      if (event.key === "Escape") {
+        closeNewsletter();
+        return;
+      }
 
-    /* Keep keyboard focus inside the open modal. */
-    if (event.key === "Tab") {
-      const focusable = modal.querySelectorAll(
-        'button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
-      );
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
+      /*
+        Keep keyboard focus inside the modal while
+        it is open.
+      */
+      if (event.key === "Tab") {
+        const focusableElements =
+          modal.querySelectorAll(
+            [
+              "button:not([disabled])",
+              "input:not([disabled])",
+              "a[href]",
+              '[tabindex]:not([tabindex="-1"])'
+            ].join(", ")
+          );
 
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+        const firstElement =
+          focusableElements[0];
+
+        const lastElement =
+          focusableElements[
+            focusableElements.length - 1
+          ];
+
+        if (!firstElement || !lastElement) {
+          return;
+        }
+
+        if (
+          event.shiftKey &&
+          document.activeElement === firstElement
+        ) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === lastElement
+        ) {
+          event.preventDefault();
+          firstElement.focus();
+        }
       }
     }
-  });
+  );
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  form.addEventListener(
+    "submit",
+    async (event) => {
+      event.preventDefault();
 
-    const email = emailInput.value.trim();
-    emailInput.classList.remove("is-invalid");
-    status.textContent = "";
+      const email =
+        emailInput.value.trim();
 
-    if (!emailInput.checkValidity() || !email) {
-      emailInput.classList.add("is-invalid");
-      status.textContent = "Please enter a valid email address.";
-      emailInput.focus();
-      return;
+      emailInput.classList.remove(
+        "is-invalid"
+      );
+
+      status.textContent = "";
+
+      if (
+        !email ||
+        !emailInput.checkValidity()
+      ) {
+        emailInput.classList.add(
+          "is-invalid"
+        );
+
+        status.textContent =
+          "Please enter a valid email address.";
+
+        emailInput.focus();
+        return;
+      }
+
+      if (
+        !GOOGLE_FORM_ACTION ||
+        !GOOGLE_FORM_EMAIL_ENTRY
+      ) {
+        status.textContent =
+          "The signup form still needs to be connected in index.js.";
+
+        return;
+      }
+
+      submitButton.disabled = true;
+
+      submitButton.textContent =
+        "Signing up…";
+
+      try {
+        /*
+          Google Forms expects a normal URL-encoded
+          form submission using its entry number.
+        */
+        const formData =
+          new URLSearchParams();
+
+        formData.append(
+          GOOGLE_FORM_EMAIL_ENTRY,
+          email
+        );
+
+        await fetch(
+          GOOGLE_FORM_ACTION,
+          {
+            method: "POST",
+
+            /*
+              Google does not return an accessible
+              cross-origin response to your website.
+            */
+            mode: "no-cors",
+
+            headers: {
+              "Content-Type":
+                "application/x-www-form-urlencoded"
+            },
+
+            body: formData.toString()
+          }
+        );
+
+        status.textContent =
+          "Thank you — your email was submitted.";
+
+        form.reset();
+
+        window.setTimeout(
+          closeNewsletter,
+          1300
+        );
+      } catch (error) {
+        console.error(
+          "Newsletter signup failed:",
+          error
+        );
+
+        status.textContent =
+          "Something went wrong. Please try again.";
+      } finally {
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          "Sign up";
+      }
     }
-
-    if (!GOOGLE_FORM_ACTION || !GOOGLE_FORM_EMAIL_ENTRY) {
-      status.textContent = "The signup form still needs to be connected in index.js.";
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Signing up…";
-
-    try {
-      const formData = new FormData();
-      formData.append(GOOGLE_FORM_EMAIL_ENTRY, email);
-
-      await fetch(GOOGLE_FORM_ACTION, {
-        method: "POST",
-        mode: "no-cors",
-        body: formData
-      });
-
-      status.textContent = "Thank you — you are on the list.";
-      form.reset();
-      window.setTimeout(closeNewsletter, 1300);
-    } catch (error) {
-      console.error("Newsletter signup failed:", error);
-      status.textContent = "Something went wrong. Please try again.";
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Sign up";
-    }
-  });
+  );
 });
-
